@@ -10,17 +10,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.RouteActivity">
 
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fromCityId"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Iz grada:"
+        android:layout_marginTop="43dp" />
+
     <TextView
-        android:text="Route Activity"
+        android:text="IZ:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="133dp"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="183dp"
-        android:id="@+id/textView"
-        android:textSize="24sp" />
+        android:id="@+id/textView3" />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp"
+        android:hint="U grad:"
+        android:id="@+id/toCityId" />
+
+    <TextView
+        android:text="U:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/fromCityId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

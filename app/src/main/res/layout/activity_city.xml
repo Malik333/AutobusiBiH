@@ -30,6 +30,7 @@
         android:id="@+id/autoCompleteTextView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="City name" />
+        android:hint="City name"
+        android:textColor="?attr/actionMenuTextColor" />
 
 </RelativeLayout>
