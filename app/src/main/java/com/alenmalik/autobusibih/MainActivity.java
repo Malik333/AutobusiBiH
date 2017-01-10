@@ -5,55 +5,47 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button city;
-    Button route;
-    Button busState;
-    Button about;
+    ImageButton city;
+    ImageButton route;
+    ImageButton busState;
+    ImageButton about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        city = (Button) findViewById(R.id.city_btn);
-        route = (Button) findViewById(R.id.route_btn);
-        busState = (Button) findViewById(R.id.butState_btn);
-        about = (Button) findViewById(R.id.about_btn);
+        city = (ImageButton) findViewById(R.id.cityId);
+        route = (ImageButton) findViewById(R.id.routeId);
+        busState = (ImageButton) findViewById(R.id.busStateId);
+        about = (ImageButton) findViewById(R.id.aboutId);
 
-        city.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
-                startActivity(cityIntent);
-            }
-        });
-        route.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cityIntent = new Intent(MainActivity.this, RouteActivity.class);
-                startActivity(cityIntent);
-            }
-        });
+        city.setOnClickListener(this);
+        route.setOnClickListener(this);
+        busState.setOnClickListener(this);
+        about.setOnClickListener(this);
 
-        busState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
-                startActivity(cityIntent);
-            }
-        });
+    }
 
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cityIntent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(cityIntent);
-            }
-        });
-
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.cityId) {
+            Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
+            startActivity(cityIntent);
+        } else if (view.getId() == R.id.routeId) {
+            Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
+            startActivity(routeIntent);
+        } else if (view.getId() == R.id.busStateId) {
+            Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
+            startActivity(cityIntent);
+        } else if (view.getId() == R.id.aboutId) {
+            Intent cityIntent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(cityIntent);
+        }
     }
 }
