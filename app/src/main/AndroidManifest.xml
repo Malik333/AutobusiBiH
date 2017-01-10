@@ -23,7 +23,8 @@
         <activity android:name=".RouteActivity" />
         <activity android:name=".BusStateActivity" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".CityActivity"></activity>
+        <activity android:name=".CityActivity" />
+        <activity android:name=".ListToCityActivity"></activity>
     </application>
 
 </manifest>
