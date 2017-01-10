@@ -18,11 +18,9 @@ import java.util.List;
 
 public class CityActivity extends AppCompatActivity {
 
-    EditText cityName;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapter;
     ArrayList<String> nameList;
-    String[] name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +30,8 @@ public class CityActivity extends AppCompatActivity {
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
 
 
-        // cityName = (EditText) findViewById(R.id.city_EditText);
 
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-      /*  name = new String[]{"Bugojno", "Bihac", "Sarajevo"};
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, name);
-        autoCompleteTextView.setThreshold(1);
-        adapter.notifyDataSetChanged();*/
-
-        //  autoCompleteTextView.setAdapter(adapter);
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
@@ -51,21 +42,16 @@ public class CityActivity extends AppCompatActivity {
                 if (e == null){
                     if (list.size()> 0){
 
-                       /* ParseObject[] data = list.toArray(new ParseObject[list.size()]);
-                        name = new String[data.length];
-
-                        for (int i = 0; i < data.length; i++) {
-                            name[i] = String.valueOf(data[i].get("fromCity"));
-                        } */
-
                         for (ParseObject object : list){
 
                             nameList.add(String.valueOf(object.get("fromCity")));
 
 
                         }
-                        name = new String[nameList.size()];
-                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, nameList);
+
+
+                        Log.i("City", String.valueOf(nameList.size()));
+                        adapter = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
                         autoCompleteTextView.setThreshold(1);
 
                         autoCompleteTextView.setAdapter(adapter);
