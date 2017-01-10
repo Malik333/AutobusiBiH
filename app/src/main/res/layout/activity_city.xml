@@ -10,17 +10,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.CityActivity">
 
-    <TextView
-        android:text="City Activity"
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/autoCompleteTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:id="@+id/button" />
+
+    <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="133dp"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="183dp"
-        android:id="@+id/textView"
-        android:textSize="24sp" />
+        android:layout_marginTop="20dp"
+        android:id="@+id/autoCompleteTextView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="City name" />
 
 </RelativeLayout>

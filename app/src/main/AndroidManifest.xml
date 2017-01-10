@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alenmalik.autobusibih">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".StarterApplication"
         android:allowBackup="true"
@@ -16,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".City" />
+        <activity android:name=".CityActivity" />
         <activity android:name=".RouteActivity" />
         <activity android:name=".BusStateActivity" />
         <activity android:name=".AboutActivity" />
