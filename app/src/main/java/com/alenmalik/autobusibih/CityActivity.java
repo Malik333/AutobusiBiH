@@ -14,6 +14,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class CityActivity extends AppCompatActivity {
@@ -28,9 +29,7 @@ public class CityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city);
         nameList = new ArrayList<String>();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-
-
-
+        final HashSet<String> hashSet = new HashSet<String>();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
 
 
@@ -51,6 +50,10 @@ public class CityActivity extends AppCompatActivity {
 
 
                         Log.i("City", String.valueOf(nameList.size()));
+
+                        hashSet.addAll(nameList);
+                        nameList.clear();
+                        nameList.addAll(hashSet);
                         adapter = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
                         autoCompleteTextView.setThreshold(1);
 
