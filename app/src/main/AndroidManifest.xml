@@ -3,8 +3,8 @@
     package="com.alenmalik.autobusibih">
 
     <application
-        android:allowBackup="true"
         android:name=".StarterApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".City" />
+        <activity android:name=".RouteActivity" />
+        <activity android:name=".BusStateActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".CityActivity"></activity>
     </application>
 
 </manifest>
