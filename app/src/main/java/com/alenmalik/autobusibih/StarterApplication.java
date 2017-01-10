@@ -4,11 +4,15 @@ import android.app.Application;
 
 import com.parse.Parse;
 
+import java.util.ArrayList;
+
 /**
  * Created by korisnik on 09/01/2017.
  */
 
 public class StarterApplication extends Application {
+
+
 
     @Override
     public void onCreate() {

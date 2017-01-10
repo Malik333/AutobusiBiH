@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,8 +11,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.MainActivity">
 
-    <TextView
+
+    <Button
+        android:text="City"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginTop="95dp"
+        android:id="@+id/city_btn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="51dp"
+        android:layout_marginStart="51dp" />
+
+    <Button
+        android:text="Route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/city_btn"
+        android:layout_toRightOf="@+id/city_btn"
+        android:layout_toEndOf="@+id/city_btn"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:id="@+id/route_btn" />
+
+    <Button
+        android:text="Bus state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city_btn"
+        android:layout_toLeftOf="@+id/route_btn"
+        android:layout_toStartOf="@+id/route_btn"
+        android:layout_marginTop="115dp"
+        android:id="@+id/butState_btn" />
+
+    <Button
+        android:text="About"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/butState_btn"
+        android:layout_alignLeft="@+id/route_btn"
+        android:layout_alignStart="@+id/route_btn"
+        android:id="@+id/about_btn" />
 </RelativeLayout>
