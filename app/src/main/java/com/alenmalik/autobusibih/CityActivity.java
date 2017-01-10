@@ -1,8 +1,10 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ public class CityActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapter;
     ArrayList<String> nameList;
+    HashSet<String> hashSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,8 @@ public class CityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city);
         nameList = new ArrayList<String>();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-        final HashSet<String> hashSet = new HashSet<String>();
+        hashSet = new HashSet<String>();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -64,6 +66,16 @@ public class CityActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    public void searchCity(View view){
+
+        String chooseCityName = String.valueOf(autoCompleteTextView.getText());
+
+        Intent intentToCity = new Intent(CityActivity.this, ListToCityActivity.class);
+        intentToCity.putExtra("cityName", chooseCityName);
+        startActivity(intentToCity);
     }
 
 
