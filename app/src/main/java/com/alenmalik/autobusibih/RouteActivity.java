@@ -1,9 +1,12 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class RouteActivity extends AppCompatActivity {
+public class RouteActivity extends AppCompatActivity implements View.OnClickListener {
     AutoCompleteTextView fromCity;
     AutoCompleteTextView toCity;
     ArrayList<String> fromCityList;
@@ -23,6 +26,7 @@ public class RouteActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter2;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
+    Button search;
 
 
     @Override
@@ -31,6 +35,8 @@ public class RouteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_route);
         fromCity = (AutoCompleteTextView) findViewById(R.id.fromCityId);
         toCity = (AutoCompleteTextView) findViewById(R.id.toCityId);
+        search = (Button) findViewById(R.id.button2);
+        search.setOnClickListener(this);
 
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
@@ -109,6 +115,13 @@ public class RouteActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
+        startActivity(i);
 
     }
 }
