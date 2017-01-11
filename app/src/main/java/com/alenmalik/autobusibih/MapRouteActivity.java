@@ -2,13 +2,21 @@ package com.alenmalik.autobusibih;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.ViewTreeObserver;
+import android.widget.RelativeLayout;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MapRouteActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -22,6 +30,20 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        RelativeLayout mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+
+        mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+
+
+
+
+            }
+        });
+
     }
 
 
@@ -39,8 +61,26 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        ArrayList<Marker> markers = new ArrayList<Marker>();
+
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.newLat, CityActivity.newLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
+
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(ListToCityActivity.secondCityLAT, ListToCityActivity.secondCityLNG)).title("Your Location")));
+
+        for (Marker marker : markers) {
+            builder.include(marker.getPosition());
+        }
+
+        LatLngBounds bounds = builder.build();
+
+        int padding = 100;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        mMap.animateCamera(cu);
+
+
     }
 }

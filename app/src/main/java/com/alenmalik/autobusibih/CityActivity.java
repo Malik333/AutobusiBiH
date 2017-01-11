@@ -1,6 +1,7 @@
 package com.alenmalik.autobusibih;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,10 +12,13 @@ import android.widget.EditText;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +29,8 @@ public class CityActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter3;
     ArrayList<String> nameList;
     HashSet<String> hashSet;
+   static double  newLng;
+    static  double newLat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,9 @@ public class CityActivity extends AppCompatActivity {
             public void done(List<ParseObject> list, ParseException e) {
 
                 if (e == null){
-                    if (list.size()> 0){
+                    if (list.size()> 0) {
 
-                        for (ParseObject object : list){
+                        for (ParseObject object : list) {
 
                             nameList.add(String.valueOf(object.get("fromCity")));
 
@@ -50,23 +56,19 @@ public class CityActivity extends AppCompatActivity {
                         }
 
 
-                        Log.i("City", String.valueOf(nameList.size()));
 
-                        hashSet.addAll(nameList);
-                        nameList.clear();
-                        nameList.addAll(hashSet);
-                        adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
-                        autoCompleteTextView.setThreshold(1);
+                            Log.i("City", String.valueOf(nameList.size()));
 
-                        autoCompleteTextView.setAdapter(adapter3);
+                            hashSet.addAll(nameList);
+                            nameList.clear();
+                            nameList.addAll(hashSet);
+                            adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
+                            autoCompleteTextView.setThreshold(1);
 
-                        adapter3.notifyDataSetChanged();
-                    } else {
-                        adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
-                        autoCompleteTextView.setThreshold(1);
+                            autoCompleteTextView.setAdapter(adapter3);
 
-                        nameList.add("Not found");
-                        adapter3.notifyDataSetChanged();
+                            adapter3.notifyDataSetChanged();
+
 
                     }
                 }
@@ -78,6 +80,35 @@ public class CityActivity extends AppCompatActivity {
     public void searchCity(View view){
 
         String chooseCityName = String.valueOf(autoCompleteTextView.getText());
+
+        double latitude = 0;
+        double longitude = 0;
+        ParseGeoPoint location = new ParseGeoPoint(latitude,longitude);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+        query.whereNear("Location", location);
+        query.whereEqualTo("Name", chooseCityName);
+        query.setLimit(10);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+
+                    if (list.size() > 0){
+
+                        for (ParseObject object : list){
+                            newLat = object.getParseGeoPoint("Location").getLatitude();
+                            newLng = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("latituda",String.valueOf(newLat));
+                            Log.i("longituda",String.valueOf(newLng));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
 
         Intent intentToCity = new Intent(CityActivity.this, ListToCityActivity.class);
         intentToCity.putExtra("cityName", chooseCityName);
