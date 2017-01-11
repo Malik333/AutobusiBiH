@@ -1,7 +1,11 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 
@@ -15,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -31,18 +36,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        RelativeLayout mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-
-
-
-
-            }
-        });
 
     }
 
@@ -70,6 +64,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(ListToCityActivity.secondCityLAT, ListToCityActivity.secondCityLNG)).title("Your Location")));
 
+
         for (Marker marker : markers) {
             builder.include(marker.getPosition());
         }
@@ -80,6 +75,16 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
         mMap.animateCamera(cu);
+
+
+
+    }
+
+    public void routeDirection(View view){
+
+        String uri = "http://maps.google.com/maps?f=d&hl=en&saddr="+CityActivity.newLat+","+CityActivity.newLng+"&daddr="+ListToCityActivity.secondCityLAT+","+ListToCityActivity.secondCityLNG;
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
 
 
     }
