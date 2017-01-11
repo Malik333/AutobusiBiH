@@ -120,7 +120,14 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+
+        String fromCityString = String.valueOf(fromCity.getText());
+        String toCityString = String.valueOf(toCity.getText());
+
         Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
+        i.putExtra("fromCity",fromCityString);
+        i.putExtra("toCity",toCityString);
+
         startActivity(i);
 
     }
