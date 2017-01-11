@@ -22,7 +22,7 @@ import java.util.List;
 public class CityActivity extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteTextView;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter3;
     ArrayList<String> nameList;
     HashSet<String> hashSet;
 
@@ -33,7 +33,6 @@ public class CityActivity extends AppCompatActivity {
         nameList = new ArrayList<String>();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
         hashSet = new HashSet<String>();
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -56,12 +55,19 @@ public class CityActivity extends AppCompatActivity {
                         hashSet.addAll(nameList);
                         nameList.clear();
                         nameList.addAll(hashSet);
-                        adapter = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
+                        adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
                         autoCompleteTextView.setThreshold(1);
 
-                        autoCompleteTextView.setAdapter(adapter);
+                        autoCompleteTextView.setAdapter(adapter3);
 
-                        adapter.notifyDataSetChanged();
+                        adapter3.notifyDataSetChanged();
+                    } else {
+                        adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
+                        autoCompleteTextView.setThreshold(1);
+
+                        nameList.add("Not found");
+                        adapter3.notifyDataSetChanged();
+
                     }
                 }
             }

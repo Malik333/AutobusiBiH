@@ -18,7 +18,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Iz grada:"
-        android:layout_marginTop="43dp" />
+        android:layout_marginTop="43dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="IZ:"
@@ -37,7 +39,9 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp"
         android:hint="U grad:"
-        android:id="@+id/toCityId" />
+        android:id="@+id/toCityId"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="U:"
