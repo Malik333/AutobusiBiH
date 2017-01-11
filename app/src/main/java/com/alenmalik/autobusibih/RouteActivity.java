@@ -19,7 +19,8 @@ public class RouteActivity extends AppCompatActivity {
     AutoCompleteTextView toCity;
     ArrayList<String> fromCityList;
     ArrayList<String> toCityList;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> fromCityAdapter;
+    ArrayAdapter<String> toCityAdapter;
     final HashSet<String> hashSet = new HashSet<String>();
 
     @Override
@@ -44,15 +45,15 @@ public class RouteActivity extends AppCompatActivity {
                          fromCityList.add(String.valueOf(object.get("fromCity")));
 
                      }
-                     hashSet.addAll(toCityList);
+                     hashSet.addAll(fromCityList);
                      fromCityList.clear();
                      fromCityList.addAll(hashSet);
-                     adapter = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,fromCityList);
+                     fromCityAdapter = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,fromCityList);
                      fromCity.setThreshold(1);
 
-                     fromCity.setAdapter(adapter);
+                     fromCity.setAdapter(fromCityAdapter);
 
-                     adapter.notifyDataSetChanged();
+                     fromCityAdapter.notifyDataSetChanged();
 
                  }
 
@@ -78,12 +79,12 @@ public class RouteActivity extends AppCompatActivity {
                         hashSet.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet);
-                        adapter = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,toCityList);
+                        toCityAdapter = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,toCityList);
                         toCity.setThreshold(1);
 
-                        toCity.setAdapter(adapter);
+                        toCity.setAdapter(toCityAdapter);
 
-                        adapter.notifyDataSetChanged();
+                        toCityAdapter.notifyDataSetChanged();
 
                     }
 
