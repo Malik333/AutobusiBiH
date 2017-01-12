@@ -37,8 +37,6 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-
     }
 
 
@@ -57,7 +55,19 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         // Add a marker in Sydney and move the camera
 
-    /*    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        if (MainActivity.cityActivityActive == true){
+
+            cityActivity();
+        } else if (MainActivity.routeActivityActive == true){
+
+            routeActivity();
+        }
+
+    }
+
+    public  void cityActivity(){
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
         ArrayList<Marker> markers = new ArrayList<Marker>();
 
@@ -75,7 +85,11 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         int padding = 100;
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
-        mMap.animateCamera(cu);*/
+        mMap.animateCamera(cu);
+
+    }
+
+    public void routeActivity(){
 
 
         LatLngBounds.Builder routeBuilder = new LatLngBounds.Builder();
@@ -84,7 +98,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         routeMarkers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(RouteActivity.routeLatFromCIty, RouteActivity.routeLngFromCity)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
 
-         routeMarkers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(RouteActivity.routeLatToCIty, RouteActivity.routeLngToCity)).title("Your Location")));
+        routeMarkers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(RouteActivity.routeLatToCIty, RouteActivity.routeLngToCity)).title("Your Location")));
 
 
         for (Marker routeMarker : routeMarkers) {
@@ -98,21 +112,20 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         mMap.animateCamera(cu1);
 
-//beze komentaer
-
     }
 
     public void routeDirection(View view){
 
-        /*String uri = "http://maps.google.com/maps?f=d&hl=en&saddr="+CityActivity.newLat+","+CityActivity.newLng+"&daddr="+ListToCityActivity.secondCityLAT+","+ListToCityActivity.secondCityLNG;
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-        startActivity(intent);*/
+        if (MainActivity.cityActivityActive == true) {
 
-        String uri1 = "http://maps.google.com/maps?f=d&hl=en&saddr="+RouteActivity.routeLngFromCity+","+RouteActivity.routeLatFromCIty+"&daddr="+RouteActivity.routeLatToCIty+","+RouteActivity.routeLngToCity;
-        Intent intent1 = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri1));
-        startActivity(intent1);
+            String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + CityActivity.newLat + "," + CityActivity.newLng + "&daddr=" + ListToCityActivity.secondCityLAT + "," + ListToCityActivity.secondCityLNG;
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+        }else if (MainActivity.routeActivityActive == true) {
 
-
-
+            String uri1 = "http://maps.google.com/maps?f=d&hl=en&saddr=" + RouteActivity.routeLatFromCIty + "," + RouteActivity.routeLngFromCity + "&daddr=" + RouteActivity.routeLatToCIty + "," + RouteActivity.routeLngToCity;
+            Intent intent1 = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri1));
+            startActivity(intent1);
+        }
     }
 }

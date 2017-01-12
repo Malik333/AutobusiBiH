@@ -3,6 +3,7 @@ package com.alenmalik.autobusibih;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,6 +15,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton route;
     ImageButton busState;
     ImageButton about;
+
+    static Boolean cityActivityActive = false;
+    static Boolean routeActivityActive = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.cityId) {
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
+            cityActivityActive = true;
+            routeActivityActive = false;
         } else if (view.getId() == R.id.routeId) {
             Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
             startActivity(routeIntent);
+            routeActivityActive = true;
+            cityActivityActive = false;
         } else if (view.getId() == R.id.busStateId) {
             Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
             startActivity(cityIntent);
