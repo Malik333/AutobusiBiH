@@ -26,6 +26,7 @@ package="com.alenmalik.autobusibih">
     <activity android:name=".AboutActivity" />
     <activity android:name=".ListToCityActivity" />
     <activity android:name=".DetailsActivity" />
+    <activity android:name=".BusMapActivity"/>
     <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

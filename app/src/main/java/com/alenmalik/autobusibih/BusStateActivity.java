@@ -1,11 +1,15 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -35,7 +39,8 @@ public class BusStateActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(BusStateActivity.this, android.R.layout.simple_list_item_1, listCityName);
         listView.setAdapter(adapter);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -51,6 +56,17 @@ public class BusStateActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 
                 }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
+
+                Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
+                intent.putExtra("city",String.valueOf(listCityName.get(position)));
+                startActivity(intent);
+
             }
         });
     }
