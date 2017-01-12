@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -31,8 +32,13 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     LocationManager locationManager;
     String provider;
+    double latitude = 0;
+    double longitude = 0;
+
+    double busLat, busLng;
 
     TextView name, address, phone;
+    String nameCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +77,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
         Intent inte = getIntent();
 
-        String nameCity = inte.getStringExtra("city");
+        nameCity = inte.getStringExtra("city");
 
         name.setText(nameCity);
 
@@ -94,6 +100,35 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
     }
 
+    public void busStateLocation() {
+        ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        query.whereEqualTo("Name", nameCity);
+
+        query.whereNear("Location", location);
+        query.setLimit(10);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            busLat = object.getParseGeoPoint("Location").getLatitude();
+                            busLng = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("latituda", String.valueOf(busLat));
+                            Log.i("longituda", String.valueOf(busLng));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+    }
 
     /**
      * Manipulates the map once available.
@@ -107,6 +142,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -126,7 +162,6 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);
       //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //bezveze komentar
 
     }
 
