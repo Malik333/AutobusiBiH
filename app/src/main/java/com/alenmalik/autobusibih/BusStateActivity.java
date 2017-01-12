@@ -22,7 +22,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusStateActivity extends AppCompatActivity {
+public class BusStateActivity extends AppCompatActivity{
 
     ArrayAdapter adapter;
     ArrayList<String> listCityName;
