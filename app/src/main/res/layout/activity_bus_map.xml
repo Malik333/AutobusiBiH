@@ -18,27 +18,27 @@
         android:id="@+id/linear1"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="15dp">
 
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView7" />
+            android:id="@+id/cityName_txt" />
 
         <TextView
             android:text="TextView"
             android:layout_width="369dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView5"
+            android:id="@+id/address_txt"
             android:layout_marginTop="30dp" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6"
+            android:id="@+id/phone_number"
             android:layout_marginTop="30dp" />
     </LinearLayout>
     <LinearLayout
