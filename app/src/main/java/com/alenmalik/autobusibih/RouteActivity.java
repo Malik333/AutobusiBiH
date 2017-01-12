@@ -3,6 +3,7 @@ package com.alenmalik.autobusibih;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -27,6 +29,10 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
     Button search;
+    static double routeLatFromCIty;
+    static double routeLngFromCity;
+    static double routeLatToCIty;
+    static double routeLngToCity;
 
 
     @Override
@@ -123,6 +129,63 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         String fromCityString = String.valueOf(fromCity.getText());
         String toCityString = String.valueOf(toCity.getText());
+
+        double latitude = 0;
+        double longitude = 0;
+        ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude,longitude);
+        ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
+        fromCityQuery.whereNear("Location", fromCityLocation);
+        fromCityQuery.whereEqualTo("Name", fromCityString);
+        fromCityQuery.setLimit(10);
+        fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+
+                    if (list.size() > 0){
+
+                        for (ParseObject object : list){
+                            routeLatFromCIty = object.getParseGeoPoint("Location").getLatitude();
+                            routeLngFromCity = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("rutalatituda",String.valueOf(routeLatFromCIty));
+                            Log.i("rutalongituda",String.valueOf(routeLngFromCity));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+
+
+        ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude,longitude);
+        ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
+        toCityQuery.whereNear("Location", toCityLocation);
+        toCityQuery.whereEqualTo("Name", toCityString);
+        toCityQuery.setLimit(10);
+        toCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+
+                    if (list.size() > 0){
+
+                        for (ParseObject object : list){
+                            routeLatToCIty = object.getParseGeoPoint("Location").getLatitude();
+                            routeLngToCity = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("rutalatituda",String.valueOf(routeLatToCIty));
+                            Log.i("rutalongituda",String.valueOf(routeLngToCity));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
 
         Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
         i.putExtra("fromCity",fromCityString);
