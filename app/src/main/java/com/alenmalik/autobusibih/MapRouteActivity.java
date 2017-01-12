@@ -98,7 +98,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         mMap.animateCamera(cu1);
 
-
+//beze komentaer
 
     }
 
