@@ -55,6 +55,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
+        busStateLocation();
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -66,14 +67,6 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        if (location != null) {
-            Log.i("Location info", "location achieved");
-        } else {
-            Log.i("Location info", "location failed");
-        }
-
 
         Intent inte = getIntent();
 
@@ -103,7 +96,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
     public void busStateLocation() {
         ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-        query.whereEqualTo("Name", nameCity);
+        query.whereEqualTo("CityName", nameCity);
 
         query.whereNear("Location", location);
         query.setLimit(10);
@@ -120,7 +113,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
                             Log.i("latituda", String.valueOf(busLat));
                             Log.i("longituda", String.valueOf(busLng));
-                        }
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(busLat,busLng)).title("your location"));                    }
 
                     }
 
@@ -157,8 +150,11 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
         if (location != null){
             locationManager.removeUpdates(this);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),10));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(),location.getLongitude())).title("your location"));
             locationManager.requestLocationUpdates(provider,400,1,this);
+            busStateLocation();
         }
+
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);
       //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
