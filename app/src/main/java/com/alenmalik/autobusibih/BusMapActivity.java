@@ -1,7 +1,9 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,10 +11,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class BusMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    TextView name, address, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,34 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        name = (TextView) findViewById(R.id.cityName_txt);
+        address = (TextView) findViewById(R.id.address_txt);
+        phone = (TextView) findViewById(R.id.phone_number);
+
+        Intent inte = getIntent();
+
+        String nameCity = inte.getStringExtra("city");
+
+        name.setText(nameCity);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        query.whereEqualTo("CityName", nameCity);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+
+                    for (ParseObject object : list){
+
+                        address.setText(object.get("Address").toString());
+                        phone.setText(object.get("PhoneNumber").toString());
+                    }
+
+                }
+            }
+        });
+
     }
 
 
