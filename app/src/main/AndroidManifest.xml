@@ -1,39 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alenmalik.autobusibih">
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.alenmalik.autobusibih">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
 
-    <!--
+<!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <application
-        android:name=".StarterApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<application android:name=".StarterApplication" android:allowBackup="true" android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme">
+    <activity android:name=".MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CityActivity" />
-        <activity android:name=".RouteActivity" />
-        <activity android:name=".BusStateActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".CityActivity" />
-        <activity android:name=".ListToCityActivity" />
-        <activity android:name=".DetailsActivity" />
-        <!--
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity android:name=".CityActivity" />
+    <activity android:name=".RouteActivity" />
+    <activity android:name=".BusStateActivity" />
+    <activity android:name=".AboutActivity" />
+    <activity android:name=".ListToCityActivity" />
+    <activity android:name=".DetailsActivity" />
+    <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
@@ -41,13 +34,18 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC378RXW_PAAAastgQvwXQEuNHt3stkpbQ" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyC378RXW_PAAAastgQvwXQEuNHt3stkpbQ" />
 
-        <activity
-            android:name=".MapRouteActivity"
-            android:label="@string/title_activity_map_route"></activity>
-    </application>
+    <activity android:name=".MapRouteActivity" android:label="@string/title_activity_map_route"></activity>
+</application>
+
+         -->
+    <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="@string/google_maps_key" />
+
+    <activity android:name="com.alenmalik.autobusibih.BusMapActivity" android:label="@string/title_activity_bus_map">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.alenmalik.autobusibih.BusStateActivity" />
+
+    </activity>
 
 </manifest>
