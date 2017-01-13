@@ -1,11 +1,13 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -75,45 +77,57 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             cityview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    double latitude = 0;
-                    double longitude = 0;
-                    ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-                    query.whereNear("Location", location);
-                    query.whereEqualTo("Name", listCity.get(position));
-                    query.setLimit(10);
-                    query.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> list, ParseException e) {
-                            if (e == null) {
 
-                                if (list.size() > 0) {
+                    if (listCity.get(position).equals("Waiting...")) {
 
-                                    for (ParseObject object : list) {
-                                        secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
-                                        secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
+
+
+                    } else {
+                        double latitude = 0;
+                        double longitude = 0;
+                        ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+                        query.whereNear("Location", location);
+                        query.whereEqualTo("Name", listCity.get(position));
+                        query.setLimit(10);
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> list, ParseException e) {
+                                if (e == null) {
+
+                                    if (list.size() > 0) {
+
+                                        for (ParseObject object : list) {
+                                            secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
+                                            secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
+
+                                        }
 
                                     }
 
+
                                 }
-
-
                             }
-                        }
-                    });
+                        });
 
-                    Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
-                    intent1.putExtra("selectCity", listCity.get(position));
-                    startActivity(intent1);
+                        Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
+                        intent1.putExtra("selectCity", listCity.get(position));
+                        startActivity(intent1);
+                    }
+
                 }
-
-
             });
+
         }
 
 
             public void onClick(View view) {
                 if (view.getId() == R.id.search_city_btn) {
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
 
                     chooseCityName = String.valueOf(autoCompleteTextView.getText());
 
