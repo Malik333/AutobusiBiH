@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,9 +27,13 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     ArrayList<String> toCityList;
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> adapter2;
+    ArrayList<String> hours_list;
+    ArrayAdapter adapter_Hours;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
     Button search;
+    Button openMap;
+    ListView hours_Listview;
     static double routeLatFromCIty;
     static double routeLngFromCity;
     static double routeLatToCIty;
@@ -41,11 +46,21 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_route);
         fromCity = (AutoCompleteTextView) findViewById(R.id.fromCityId);
         toCity = (AutoCompleteTextView) findViewById(R.id.toCityId);
-        search = (Button) findViewById(R.id.button2);
+        search = (Button) findViewById(R.id.searchroute_bn);
         search.setOnClickListener(this);
+        hours_list = new ArrayList<String>();
+        openMap = (Button) findViewById(R.id.open_map);
 
+        hours_list.add("Waiting");
+        adapter_Hours = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours_list);
+        hours_Listview = (ListView) findViewById(R.id.listView_hours1);
+        hours_Listview.setAdapter(adapter_Hours);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
+
+        openMap.setOnClickListener(this);
+
+
 
         fromCityRoute();
         toCityRoute();
@@ -127,71 +142,100 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        String fromCityString = String.valueOf(fromCity.getText());
-        String toCityString = String.valueOf(toCity.getText());
+        if (view.getId() == R.id.searchroute_bn) {
+            String fromCityString = String.valueOf(fromCity.getText());
+            String toCityString = String.valueOf(toCity.getText());
 
-        double latitude = 0;
-        double longitude = 0;
-        ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude,longitude);
-        ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
-        fromCityQuery.whereNear("Location", fromCityLocation);
-        fromCityQuery.whereEqualTo("Name", fromCityString);
-        fromCityQuery.setLimit(10);
-        fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
+            double latitude = 0;
+            double longitude = 0;
+            ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude, longitude);
+            ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
+            fromCityQuery.whereNear("Location", fromCityLocation);
+            fromCityQuery.whereEqualTo("Name", fromCityString);
+            fromCityQuery.setLimit(10);
+            fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
 
-                    if (list.size() > 0){
+                        if (list.size() > 0) {
 
-                        for (ParseObject object : list){
-                            routeLatFromCIty = object.getParseGeoPoint("Location").getLatitude();
-                            routeLngFromCity = object.getParseGeoPoint("Location").getLongitude();
+                            for (ParseObject object : list) {
+                                routeLatFromCIty = object.getParseGeoPoint("Location").getLatitude();
+                                routeLngFromCity = object.getParseGeoPoint("Location").getLongitude();
 
-                            Log.i("rutalatituda",String.valueOf(routeLatFromCIty));
-                            Log.i("rutalongituda",String.valueOf(routeLngFromCity));
+                                Log.i("rutalatituda", String.valueOf(routeLatFromCIty));
+                                Log.i("rutalongituda", String.valueOf(routeLngFromCity));
+                            }
+
                         }
 
+
                     }
-
-
                 }
-            }
-        });
+            });
 
 
-        ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude,longitude);
-        ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
-        toCityQuery.whereNear("Location", toCityLocation);
-        toCityQuery.whereEqualTo("Name", toCityString);
-        toCityQuery.setLimit(10);
-        toCityQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
+            ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude, longitude);
+            ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
+            toCityQuery.whereNear("Location", toCityLocation);
+            toCityQuery.whereEqualTo("Name", toCityString);
+            toCityQuery.setLimit(10);
+            toCityQuery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
 
-                    if (list.size() > 0){
+                        if (list.size() > 0) {
 
-                        for (ParseObject object : list){
-                            routeLatToCIty = object.getParseGeoPoint("Location").getLatitude();
-                            routeLngToCity = object.getParseGeoPoint("Location").getLongitude();
+                            for (ParseObject object : list) {
+                                routeLatToCIty = object.getParseGeoPoint("Location").getLatitude();
+                                routeLngToCity = object.getParseGeoPoint("Location").getLongitude();
 
-                            Log.i("rutalatituda",String.valueOf(routeLatToCIty));
-                            Log.i("rutalongituda",String.valueOf(routeLngToCity));
+                                Log.i("rutalatituda", String.valueOf(routeLatToCIty));
+                                Log.i("rutalongituda", String.valueOf(routeLngToCity));
+                            }
+
                         }
 
+
+                    }
+                }
+            });
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
+            query.whereEqualTo("fromCity", fromCityString);
+            query.whereEqualTo("toCity", toCityString);
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+
+                    if (e == null) {
+
+                        if (list.size() > 0) {
+                            hours_list.clear();
+                            for (ParseObject object : list) {
+
+                                hours_list.add(String.valueOf(object.get("Hours")));
+                            }
+
+                            adapter_Hours.notifyDataSetChanged();
+
+                        }
                     }
 
-
                 }
-            }
-        });
+            });
+        }else if (view.getId() == R.id.open_map){
 
-        Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
+            Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
+            startActivity(intent);
+        }
+      /*  Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
         i.putExtra("fromCity",fromCityString);
         i.putExtra("toCity",toCityString);
 
-        startActivity(i);
+        startActivity(i); */
 
     }
 }

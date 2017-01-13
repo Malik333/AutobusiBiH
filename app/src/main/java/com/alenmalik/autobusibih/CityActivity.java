@@ -205,7 +205,6 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                                 autoCompleteTextView.setThreshold(1);
 
                                 autoCompleteTextView.setAdapter(adapter3);
-
                                 adapter3.notifyDataSetChanged();
 
 
@@ -214,46 +213,5 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
             }
-
-
-
-   /* public void searchCity(View view){
-
-        String chooseCityName = String.valueOf(autoCompleteTextView.getText());
-
-        double latitude = 0;
-        double longitude = 0;
-        ParseGeoPoint location = new ParseGeoPoint(latitude,longitude);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-        query.whereNear("Location", location);
-        query.whereEqualTo("Name", chooseCityName);
-        query.setLimit(10);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
-
-                    if (list.size() > 0){
-
-                        for (ParseObject object : list){
-                            newLat = object.getParseGeoPoint("Location").getLatitude();
-                            newLng = object.getParseGeoPoint("Location").getLongitude();
-
-                            Log.i("latituda",String.valueOf(newLat));
-                            Log.i("longituda",String.valueOf(newLng));
-                        }
-
-                    }
-
-
-                }
-            }
-        });
-
-        Intent intentToCity = new Intent(CityActivity.this, ListToCityActivity.class);
-        intentToCity.putExtra("cityName", chooseCityName);
-        startActivity(intentToCity);
-        */
-
 
             }
