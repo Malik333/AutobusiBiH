@@ -42,7 +42,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static String nameCity;
     static Double secondCityLAT;
     static Double secondCityLNG;
-    String chooseCityName;
+ static    String chooseCityName;
 
 
     @Override

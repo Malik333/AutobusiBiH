@@ -1,10 +1,12 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -45,7 +47,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
         fromCity = (AutoCompleteTextView) findViewById(R.id.fromCityId);
-        toCity = (AutoCompleteTextView) findViewById(R.id.toCityId);
+        toCity = (AutoCompleteTextView) findViewById(R.id.toCityId_txt);
         search = (Button) findViewById(R.id.searchroute_bn);
         search.setOnClickListener(this);
         hours_list = new ArrayList<String>();
@@ -226,6 +228,11 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             });
+            InputMethodManager inputManager = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
         }else if (view.getId() == R.id.open_map){
 
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
