@@ -146,6 +146,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
                 ArrayList<Marker> markers = new ArrayList<Marker>();
 
                 Location location = locationManager.getLastKnownLocation(provider);
+                mMap.clear();
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Rider Location")));
 
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
@@ -166,6 +167,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
                 mMap.animateCamera(cu);
 
+
                 if (ActivityCompat.checkSelfPermission(BusMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -179,6 +181,9 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
 
             }});
+
+
+
             // Add a marker in Sydney and move the camera
             //LatLng sydney = new LatLng(-34, 151);
             //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));

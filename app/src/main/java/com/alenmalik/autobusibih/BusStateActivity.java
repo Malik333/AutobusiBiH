@@ -93,12 +93,15 @@ public class BusStateActivity extends AppCompatActivity{
                                     Log.i("buslongituda", String.valueOf(busLng));
                                 }
 
+
                             }
 
 
                         }
                     }
                 });
+
+
 
 
                 intent.putExtra("city",String.valueOf(listCityName.get(position)));
