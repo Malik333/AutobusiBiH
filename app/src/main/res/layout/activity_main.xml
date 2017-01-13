@@ -97,7 +97,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strlica"
+            app:srcCompat="@drawable/strrlica"
             android:id="@+id/imageButton2"
             android:layout_marginRight="13dp"
             android:layout_marginEnd="13dp"
@@ -150,7 +150,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strlica"
+            app:srcCompat="@drawable/strrlica"
             android:id="@+id/imageButton3"
             android:layout_marginRight="13dp"
             android:layout_marginEnd="13dp"
@@ -203,7 +203,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strlica"
+            app:srcCompat="@drawable/strrlica"
             android:id="@+id/imageButton4"
             android:layout_marginRight="13dp"
             android:layout_marginEnd="13dp"
@@ -255,7 +255,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strlica"
+            app:srcCompat="@drawable/strrlica"
             android:id="@+id/imageButton5"
             android:layout_marginRight="13dp"
             android:layout_marginEnd="13dp"
