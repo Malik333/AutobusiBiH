@@ -91,7 +91,10 @@ public class BusStateActivity extends AppCompatActivity{
 
                                     Log.i("buslatituda", String.valueOf(busLat));
                                     Log.i("buslongituda", String.valueOf(busLng));
+
+
                                 }
+
 
 
                             }
