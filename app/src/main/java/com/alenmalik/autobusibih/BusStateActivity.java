@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
@@ -27,6 +29,8 @@ public class BusStateActivity extends AppCompatActivity{
     ArrayAdapter adapter;
     ArrayList<String> listCityName;
     ListView listView;
+
+    static   double busLat, busLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,42 @@ public class BusStateActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
 
                 Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
+
+                double latitude=0, longitude=0;
+
+
+                ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+                query.whereEqualTo("CityName", listCityName.get(position));
+
+                query.whereNear("Location", location);
+                query.setLimit(10);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, ParseException e) {
+                        if (e == null) {
+
+                            if (list.size() > 0) {
+
+                                for (ParseObject object : list) {
+                                    busLat = object.getParseGeoPoint("Location").getLatitude();
+                                    busLng = object.getParseGeoPoint("Location").getLongitude();
+
+                                    Log.i("buslatituda", String.valueOf(busLat));
+                                    Log.i("buslongituda", String.valueOf(busLng));
+                                }
+
+                            }
+
+
+                        }
+                    }
+                });
+
+
                 intent.putExtra("city",String.valueOf(listCityName.get(position)));
+                intent.putExtra("busLat", busLat);
+                intent.putExtra("busLng", busLng);
                 startActivity(intent);
 
             }
