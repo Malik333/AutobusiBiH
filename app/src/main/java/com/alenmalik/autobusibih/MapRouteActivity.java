@@ -73,7 +73,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.newLat, CityActivity.newLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
 
-        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(ListToCityActivity.secondCityLAT, ListToCityActivity.secondCityLNG)).title("Your Location")));
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.secondCityLAT, CityActivity.secondCityLNG)).title("Your Location")));
 
 
         for (Marker marker : markers) {
@@ -118,7 +118,7 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         if (MainActivity.cityActivityActive == true) {
 
-            String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + CityActivity.newLat + "," + CityActivity.newLng + "&daddr=" + ListToCityActivity.secondCityLAT + "," + ListToCityActivity.secondCityLNG;
+            String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + CityActivity.newLat + "," + CityActivity.newLng + "&daddr=" + CityActivity.secondCityLAT + "," + CityActivity.secondCityLNG;
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
             startActivity(intent);
         }else if (MainActivity.routeActivityActive == true) {

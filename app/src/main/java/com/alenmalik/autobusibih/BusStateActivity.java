@@ -104,13 +104,13 @@ public class BusStateActivity extends AppCompatActivity{
 
 
 
-                intent.putExtra("city",String.valueOf(listCityName.get(position)));
-                intent.putExtra("busLat", busLat);
-                intent.putExtra("busLng", busLng);
+                intent.putExtra("city", listCityName.get(position));
                 startActivity(intent);
 
             }
         });
+
+
     }
 
     @Override

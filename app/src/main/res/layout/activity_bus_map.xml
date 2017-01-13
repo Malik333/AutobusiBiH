@@ -41,14 +41,15 @@
             android:id="@+id/phone_number"
             android:layout_marginTop="30dp" />
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/linear1"
         android:id="@+id/linear2"
         android:layout_marginTop="20dp"
         android:padding="0dp">
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
@@ -56,6 +57,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.alenmalik.autobusibih.BusMapActivity" />
-    </LinearLayout>
+
+    </RelativeLayout>
 
     </RelativeLayout>

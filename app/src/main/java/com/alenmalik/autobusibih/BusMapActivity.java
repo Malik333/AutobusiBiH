@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -112,15 +113,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
             }
         });
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-    public void busStateLocation() {
-
-    }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -133,6 +126,17 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        setMarker();
+        }
+
+    public void back(View v){
+
+        Intent ij = new Intent(BusMapActivity.this, BusStateActivity.class);
+        startActivity(ij);
+    }
+
+    public void setMarker(){
 
         RelativeLayout mapLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
 
@@ -147,9 +151,11 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
                 Location location = locationManager.getLastKnownLocation(provider);
                 mMap.clear();
+
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Rider Location")));
 
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
+
                 locationManager.requestLocationUpdates(provider, 400, 1, BusMapActivity.this);
                 if (location != null) {
                     locationManager.removeUpdates(BusMapActivity.this);
@@ -159,6 +165,8 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
                 for (Marker marker : markers) {
                     builder.include(marker.getPosition());
                 }
+
+
 
                 LatLngBounds bounds = builder.build();
 
@@ -181,14 +189,7 @@ public class BusMapActivity extends FragmentActivity implements OnMapReadyCallba
 
 
             }});
-
-
-
-            // Add a marker in Sydney and move the camera
-            //LatLng sydney = new LatLng(-34, 151);
-            //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-
-        }
+    }
 
         @Override
         protected void onResume () {

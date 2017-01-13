@@ -69,7 +69,7 @@ public class DetailsActivity extends AppCompatActivity {
         intent = getIntent();
         toCityListActivity = intent.getStringExtra("selectCity");
 
-        String fromCityListActivity = ListToCityActivity.nameCity;
+        String fromCityListActivity = CityActivity.nameCity;
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.whereEqualTo("fromCity", fromCityListActivity);
