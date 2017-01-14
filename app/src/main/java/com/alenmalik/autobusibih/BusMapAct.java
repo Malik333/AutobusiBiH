@@ -84,12 +84,6 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
 
-
-
-        if (mMap != null)
-            mMap.clear();
-        markers.clear();
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -146,7 +140,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-        //  mMap.clear();
+          mMap.clear();
 
         markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 

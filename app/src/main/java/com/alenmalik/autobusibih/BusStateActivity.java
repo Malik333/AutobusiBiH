@@ -72,6 +72,7 @@ public class BusStateActivity extends AppCompatActivity{
 
 
 
+
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
                 query.whereEqualTo("CityName", listCityName.get(position));
@@ -93,6 +94,7 @@ public class BusStateActivity extends AppCompatActivity{
                                     Log.i("buslongituda", String.valueOf(busLng));
 
 
+
                                 }
 
 
@@ -103,10 +105,14 @@ public class BusStateActivity extends AppCompatActivity{
                         }
                     }
                 });
+
                 Intent intent = new Intent(BusStateActivity.this,BusMapAct.class);
 
+
                 intent.putExtra("city", listCityName.get(position));
+
                 startActivity(intent);
+
 
 
             }
