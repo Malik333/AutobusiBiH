@@ -132,7 +132,7 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
                 ArrayList<Marker> markers = new ArrayList<Marker>();
 
-
+//neštpo
                 mMap.clear();
                 markers.clear();
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Rider Location")));
