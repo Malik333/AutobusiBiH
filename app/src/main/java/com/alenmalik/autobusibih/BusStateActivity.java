@@ -103,7 +103,7 @@ public class BusStateActivity extends AppCompatActivity{
                         }
                     }
                 });
-                Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
+                Intent intent = new Intent(BusStateActivity.this,BusMapAct.class);
 
                 intent.putExtra("city", listCityName.get(position));
                 startActivity(intent);

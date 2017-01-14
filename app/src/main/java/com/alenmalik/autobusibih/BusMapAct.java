@@ -45,7 +45,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
     LocationManager locationManager;
@@ -84,7 +84,7 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         if (mMap != null)
-                mMap.clear();
+            mMap.clear();
         markers.clear();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -125,7 +125,7 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
         location = locationManager.getLastKnownLocation(provider);
         if (location != null) {
-            locationManager.removeUpdates(BusMapActivity.this);
+            locationManager.removeUpdates(BusMapAct.this);
 
         }
     }
@@ -138,40 +138,40 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
             @Override
             public void onGlobalLayout() {
             */
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-          //  mMap.clear();
+        //  mMap.clear();
 
-                markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
-                markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
-
-
-                for (Marker marker : markers) {
-                    builder.include(marker.getPosition());
-                }
-
-                LatLngBounds bounds = builder.build();
-
-                int padding = 100;
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-
-                mMap.animateCamera(cu);
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
 
 
-                if (ActivityCompat.checkSelfPermission(BusMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-      //  markers.clear();
-            }
-   //     });
+        for (Marker marker : markers) {
+            builder.include(marker.getPosition());
+        }
+
+        LatLngBounds bounds = builder.build();
+
+        int padding = 100;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        mMap.animateCamera(cu);
+
+
+        if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        //  markers.clear();
+    }
+    //     });
 
 
 
@@ -195,7 +195,7 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-busStateLocation();
+        busStateLocation();
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);
         //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -270,28 +270,28 @@ busStateLocation();
     }*/
 
     @Override
-        public void onLocationChanged (Location userLocation){
+    public void onLocationChanged (Location userLocation){
 
         busStateLocation();
 
-           // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
+        // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
 
-        }
+    }
 
-        @Override
-        public void onStatusChanged (String s,int i, Bundle bundle){
+    @Override
+    public void onStatusChanged (String s,int i, Bundle bundle){
 
-        }
+    }
 
-        @Override
-        public void onProviderEnabled (String s){
+    @Override
+    public void onProviderEnabled (String s){
 
-        }
+    }
 
-        @Override
-        public void onProviderDisabled (String s){
+    @Override
+    public void onProviderDisabled (String s){
 
-        }
+    }
 
     public void rotebus(View v){
 
@@ -301,6 +301,6 @@ busStateLocation();
     }
 
 
-    }
+}
 
 
