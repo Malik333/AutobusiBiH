@@ -57,11 +57,8 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
     TextView name, address, phone;
     String nameCity;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    RelativeLayout mapLayout;
+    ArrayList<Marker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +68,8 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        markers = new ArrayList<Marker>();
 
         name = (TextView) findViewById(R.id.cityName_txt);
         address = (TextView) findViewById(R.id.address_txt);
@@ -79,6 +78,7 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
 
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -126,20 +126,20 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public void busStateLocation() {
 
-        RelativeLayout mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
+
+      /*  mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+            */
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-                ArrayList<Marker> markers = new ArrayList<Marker>();
 
-//neštpo
                 mMap.clear();
-                markers.clear();
+
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Rider Location")));
 
                 markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
-
-
 
 
                 for (Marker marker : markers) {
@@ -165,10 +165,17 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
                     return;
                 }
 
+            }
+   //     });
 
 
 
-    }
+
+
+
+
+
+
 
     /**
      * Manipulates the map once available.

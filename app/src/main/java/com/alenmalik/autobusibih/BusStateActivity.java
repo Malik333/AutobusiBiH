@@ -31,6 +31,7 @@ public class BusStateActivity extends AppCompatActivity{
     ListView listView;
 
     static   double busLat, busLng;
+    double latitude=0, longitude=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class BusStateActivity extends AppCompatActivity{
         listView = (ListView) findViewById(R.id.busName_list);
 
         listCityName = new ArrayList<String>();
+
         listCityName.add("Waiting...");
         adapter = new ArrayAdapter<String>(BusStateActivity.this, android.R.layout.simple_list_item_1, listCityName);
         listView.setAdapter(adapter);
@@ -67,7 +69,7 @@ public class BusStateActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
 
-                double latitude=0, longitude=0;
+
 
 
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
@@ -102,8 +104,10 @@ public class BusStateActivity extends AppCompatActivity{
                     }
                 });
                 Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
+
                 intent.putExtra("city", listCityName.get(position));
                 startActivity(intent);
+
 
             }
         });
