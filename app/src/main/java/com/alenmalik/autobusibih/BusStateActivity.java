@@ -67,8 +67,6 @@ public class BusStateActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
 
-                Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
-
                 double latitude=0, longitude=0;
 
 
@@ -103,10 +101,7 @@ public class BusStateActivity extends AppCompatActivity{
                         }
                     }
                 });
-
-
-
-
+                Intent intent = new Intent(BusStateActivity.this,BusMapActivity.class);
                 intent.putExtra("city", listCityName.get(position));
                 startActivity(intent);
 
