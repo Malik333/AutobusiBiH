@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -62,6 +63,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     String nameCity;
     RelativeLayout mapLayout;
     ArrayList<Marker> markers;
+    Button ruteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         mapFragment.getMapAsync(this);
         mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         markers = new ArrayList<Marker>();
-
+ruteBtn = (Button) findViewById(R.id.routeId);
         name = (TextView) findViewById(R.id.cityName_txt);
         address = (TextView) findViewById(R.id.address_txt);
         phone = (TextView) findViewById(R.id.phone_number);
