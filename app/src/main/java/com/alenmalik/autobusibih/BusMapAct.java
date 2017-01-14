@@ -83,6 +83,9 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
+
+
+
         if (mMap != null)
             mMap.clear();
         markers.clear();
@@ -137,7 +140,10 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
       /*  mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
+
             */
+
+
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
         //  mMap.clear();
