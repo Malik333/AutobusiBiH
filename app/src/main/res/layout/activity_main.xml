@@ -6,294 +6,10 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#030303"
-    tools:context="com.alenmalik.autobusibih.MainActivity">
+    android:background="#9DA5A8"
+    tools:context="com.alenmalik.autobusibih.MainActivity"
+    android:elevation="0dp">
 
-
-    <ImageButton
-        android:id="@+id/aboutId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_row="1"
-        android:background="#030303"
-        app:srcCompat="@drawable/onama"
-        android:layout_marginRight="21dp"
-        android:layout_marginEnd="21dp"
-        android:layout_alignTop="@+id/busStateId"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="IZABERITE ŽELJENU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView2"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="30sp" />
-
-    <TextView
-        android:text="OPCIJU :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:id="@+id/cityId"
-        android:layout_column="0"
-        android:layout_row="0"
-        android:background="#030303"
-        app:srcCompat="@drawable/grad"
-
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="32dp" />
-
-    <ImageButton
-        android:id="@+id/routeId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_row="0"
-        android:background="#030303"
-        app:srcCompat="@drawable/ruta"
-        android:layout_alignTop="@+id/cityId"
-        android:layout_alignLeft="@+id/aboutId"
-        android:layout_alignStart="@+id/aboutId" />
-
-    <ImageButton
-        android:id="@+id/busStateId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="1"
-        android:background="#030303"
-        app:srcCompat="@drawable/stanice"
-        android:layout_below="@+id/routeId"
-        android:layout_alignLeft="@+id/cityId"
-        android:layout_alignStart="@+id/cityId"
-        android:layout_marginTop="113dp" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/routeId"
-        android:layout_alignLeft="@+id/cityId"
-        android:layout_alignStart="@+id/cityId">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strrlica"
-            android:id="@+id/imageButton2"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_below="@+id/routeId"
-            android:layout_toLeftOf="@+id/textView5"
-            android:layout_toStartOf="@+id/textView5"
-            android:background="#030303" />
-
-        <TextView
-            android:text="klikom na ovu opciju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView12"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bbla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView11"
-            android:elevation="0dp"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView10"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9"
-            android:textColor="#ffffff" />
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/routeId"
-        android:layout_alignLeft="@+id/routeId"
-        android:layout_alignStart="@+id/routeId">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strrlica"
-            android:id="@+id/imageButton3"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_below="@+id/routeId"
-            android:layout_toLeftOf="@+id/textView5"
-            android:layout_toStartOf="@+id/textView5"
-            android:background="#030303" />
-
-        <TextView
-            android:text="klikom na ovu opciju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView13"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bbla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14"
-            android:elevation="0dp"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView15"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView16"
-            android:textColor="#ffffff" />
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/busStateId"
-        android:layout_alignLeft="@+id/busStateId"
-        android:layout_alignStart="@+id/busStateId">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strrlica"
-            android:id="@+id/imageButton4"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_below="@+id/routeId"
-            android:layout_toLeftOf="@+id/textView5"
-            android:layout_toStartOf="@+id/textView5"
-            android:background="#030303" />
-
-        <TextView
-            android:text="klikom na ovu opciju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView17"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bbla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView18"
-            android:elevation="0dp"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView19"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView20"
-            android:textColor="#ffffff" />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/aboutId"
-        android:layout_alignLeft="@+id/aboutId"
-        android:layout_alignStart="@+id/aboutId">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/strrlica"
-            android:id="@+id/imageButton5"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_below="@+id/routeId"
-            android:layout_toLeftOf="@+id/textView5"
-            android:layout_toStartOf="@+id/textView5"
-            android:background="#030303" />
-
-        <TextView
-            android:text="klikom na ovu opciju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView21"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bbla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView22"
-            android:elevation="0dp"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView23"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:text="bla bla bla bla bla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView24"
-            android:textColor="#ffffff" />
-    </LinearLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -304,5 +20,81 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id">
     </com.google.android.gms.ads.AdView>
+
+    <ImageButton
+        android:id="@+id/routeId"
+        android:layout_column="0"
+        android:layout_row="0"
+        app:srcCompat="@drawable/krug"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cityIde"
+        android:layout_alignLeft="@+id/aboutIde"
+        android:layout_alignStart="@+id/aboutIde"
+        android:background="@color/backgroundColorApp" />
+
+    <ImageButton
+        android:id="@+id/cityIde"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:background="@color/backgroundColorApp"
+        app:srcCompat="@drawable/krug"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/busStateId"
+        android:layout_alignLeft="@+id/adView"
+        android:layout_alignStart="@+id/adView"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:text="KLIKNITE NA ŽELJENU "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="OPCIJU :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/aboutIde"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:background="@color/backgroundColorApp"
+        app:srcCompat="@drawable/krug"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cityIde"
+        android:layout_alignRight="@+id/adView"
+        android:layout_alignEnd="@+id/adView" />
+
+    <ImageButton
+        android:id="@+id/busStateId"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:background="@color/backgroundColorApp"
+        app:srcCompat="@drawable/krug"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_above="@+id/adView"
+        android:layout_alignLeft="@+id/adView"
+        android:layout_alignStart="@+id/adView" />
 
 </RelativeLayout>

@@ -30,23 +30,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityActivity extends AppCompatActivity implements View.OnClickListener {
+public class CityActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
 
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView cityAutocomplete;
     ArrayAdapter<String> adapter3;
     ArrayList<String> nameList;
     HashSet<String> hashSet;
     static double newLng;
     static double newLat;
     Button search;
-    ListView cityview;
+    ListView cityView;
     ArrayAdapter<String> adapter;
     ArrayList<String> listCity;
-    Intent intent;
-    static String nameCity;
     static Double secondCityLAT;
     static Double secondCityLNG;
- static    String chooseCityName;
+    static String chooseCityName;
 
 
 
@@ -59,74 +57,22 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
 
         nameList = new ArrayList<String>();
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+        cityAutocomplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteCityId);
         hashSet = new HashSet<String>();
-        autoCompleteSuggesstion();
+        autoCompleteSuggestion();
         search = (Button) findViewById(R.id.search_city_btn);
-        //listCityNameto();
-
-        cityview = (ListView) findViewById(R.id.listView34);
+        cityView = (ListView) findViewById(R.id.cityListView);
         listCity = new ArrayList<String>();
         listCity.add("Waiting...");
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listCity);
-        cityview.setAdapter(adapter);
-
+        cityView.setAdapter(adapter);
         search.setOnClickListener(this);
+        cityView.setOnItemClickListener(this);
 
-        gotNext();
+      //  gotNext();
 
 
     }
-
-        public void gotNext() {
-
-
-            cityview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                    if (listCity.get(position).equals("Waiting...")) {
-
-
-
-                    } else {
-                        double latitude = 0;
-                        double longitude = 0;
-                        ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-                        query.whereNear("Location", location);
-                        query.whereEqualTo("Name", listCity.get(position));
-                        query.setLimit(10);
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> list, ParseException e) {
-                                if (e == null) {
-
-                                    if (list.size() > 0) {
-
-                                        for (ParseObject object : list) {
-                                            secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
-                                            secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
-
-                                        }
-
-                                    }
-
-
-                                }
-                            }
-                        });
-
-                        Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
-                        intent1.putExtra("selectCity", listCity.get(position));
-                        startActivity(intent1);
-                    }
-
-                }
-            });
-
-        }
-
 
             public void onClick(View view) {
                 if (view.getId() == R.id.search_city_btn) {
@@ -136,7 +82,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    chooseCityName = String.valueOf(autoCompleteTextView.getText());
+                    chooseCityName = String.valueOf(cityAutocomplete.getText());
 
                     double latitude = 0;
                     double longitude = 0;
@@ -193,13 +139,14 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
 
+                }else if (view.getId() == R.id.cityListView){
+
+
                 }
             }
-    public void listCityNameto(){
 
-    }
 
-            public void autoCompleteSuggesstion() {
+            public void autoCompleteSuggestion() {
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
                 query.findInBackground(new FindCallback<ParseObject>() {
@@ -223,9 +170,9 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                                 nameList.clear();
                                 nameList.addAll(hashSet);
                                 adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
-                                autoCompleteTextView.setThreshold(1);
+                                cityAutocomplete.setThreshold(1);
 
-                                autoCompleteTextView.setAdapter(adapter3);
+                                cityAutocomplete.setAdapter(adapter3);
                                 adapter3.notifyDataSetChanged();
 
 
@@ -235,4 +182,98 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        if (adapterView.getId() == R.id.cityListView){
+
+            if (listCity.get(position).equals("Waiting...")) {
+
+
+
+            } else {
+                double latitude = 0;
+                double longitude = 0;
+                ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+                query.whereNear("Location", location);
+                query.whereEqualTo("Name", listCity.get(position));
+                query.setLimit(10);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, ParseException e) {
+                        if (e == null) {
+
+                            if (list.size() > 0) {
+
+                                for (ParseObject object : list) {
+                                    secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
+                                    secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
+
+                                }
+
+                            }
+
+
+                        }
+                    }
+                });
+
+                Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
+                intent1.putExtra("selectCity", listCity.get(position));
+                startActivity(intent1);
             }
+
+
+        }
+
+    }
+    /*  public void gotNext() {
+            cityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                    if (listCity.get(position).equals("Waiting...")) {
+
+
+
+                    } else {
+                        double latitude = 0;
+                        double longitude = 0;
+                        ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+                        query.whereNear("Location", location);
+                        query.whereEqualTo("Name", listCity.get(position));
+                        query.setLimit(10);
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> list, ParseException e) {
+                                if (e == null) {
+
+                                    if (list.size() > 0) {
+
+                                        for (ParseObject object : list) {
+                                            secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
+                                            secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
+
+                                        }
+
+                                    }
+
+
+                                }
+                            }
+                        });
+
+                        Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
+                        intent1.putExtra("selectCity", listCity.get(position));
+                        startActivity(intent1);
+                    }
+
+                }
+            });
+
+
+
+        }*/
+
+}

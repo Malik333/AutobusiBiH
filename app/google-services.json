@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "451553972675",
+    "firebase_url": "https://autobusi-bih.firebaseio.com",
+    "project_id": "autobusi-bih",
+    "storage_bucket": "autobusi-bih.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451553972675:android:2e111397339f5471",
+        "android_client_info": {
+          "package_name": "com.alenmalik.autobusibih"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451553972675-f6pbfsnhmb7usiqaok4s2hb3ike9vf14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alenmalik.autobusibih",
+            "certificate_hash": "9D65CAA874BDCC7234181161707150A5599DD7DF"
+          }
+        },
+        {
+          "client_id": "451553972675-b5quf191f9dkfiiegsjpj6fs8lo9574r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVafj-kGMW2ebAQGuOBt7fRRKA0tAvqmY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451553972675-b5quf191f9dkfiiegsjpj6fs8lo9574r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

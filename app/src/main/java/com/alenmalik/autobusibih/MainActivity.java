@@ -3,9 +3,7 @@ package com.alenmalik.autobusibih;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.BoringLayout;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.ads.AdRequest;
@@ -36,10 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //nešto
 
-        city = (ImageButton) findViewById(R.id.cityId);
+        city = (ImageButton) findViewById(R.id.cityIde);
         route = (ImageButton) findViewById(R.id.routeId);
         busState = (ImageButton) findViewById(R.id.busStateId);
-        about = (ImageButton) findViewById(R.id.aboutId);
+        about = (ImageButton) findViewById(R.id.aboutIde);
 
         city.setOnClickListener(this);
         route.setOnClickListener(this);
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.cityId) {
+        if (view.getId() == R.id.cityIde) {
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
             cityActivityActive = true;
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.busStateId) {
             Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
             startActivity(cityIntent);
-        } else if (view.getId() == R.id.aboutId) {
+        } else if (view.getId() == R.id.aboutIde) {
             Intent cityIntent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(cityIntent);
         }

@@ -8,51 +8,56 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.alenmalik.autobusibih.CityActivity">
+    tools:context="com.alenmalik.autobusibih.CityActivity"
+    android:background="@color/backgroundColorApp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlayoutcity1">
+        android:id="@+id/cityBtnLayout">
 
         <Button
-            android:text="Search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="TRAŽI"
             android:id="@+id/search_city_btn"
             android:onClick="searchCity"
             android:textSize="16sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/shape"
+            android:layout_width="80dp"
+            android:layout_height="50dp" />
 
         <AutoCompleteTextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/autoCompleteTextView2"
+            android:id="@+id/autoCompleteCityId"
             android:hint="City name"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_toLeftOf="@+id/search_city_btn"
             android:layout_toStartOf="@+id/search_city_btn"
-            android:layout_marginRight="10dp" />
+            android:inputType="textPhonetic"
+            android:background="@drawable/rectshape"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rlayoutcity1">
+        android:layout_below="@id/cityBtnLayout"
+        android:id="@+id/listViewLayout">
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rlayoutcity1"
+
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="13dp"
-            android:id="@+id/listView34" />
+            android:id="@+id/cityListView" />
     </RelativeLayout>
 
 </RelativeLayout>

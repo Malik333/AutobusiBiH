@@ -78,7 +78,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     public void fromCityRoute(){
 
-
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Cities");
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -113,7 +112,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     public void toCityRoute(){
 
-
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Cities");
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -136,9 +134,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                         adapter2.notifyDataSetChanged();
 
                     }
-
-
-
 
                 }
             }
@@ -246,7 +241,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
       /*  Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
         i.putExtra("fromCity",fromCityString);
         i.putExtra("toCity",toCityString);
-
         startActivity(i); */
 
     }
