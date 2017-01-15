@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //nešto
+
         city = (ImageButton) findViewById(R.id.cityId);
         route = (ImageButton) findViewById(R.id.routeId);
         busState = (ImageButton) findViewById(R.id.busStateId);
