@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -31,6 +33,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ArrayList<String> list;
     ArrayAdapter adapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         toCity = (TextView) findViewById(R.id.toCityId_txt);
         openMap = (Button) findViewById(R.id.open_map2);
         listView = (ListView) findViewById(R.id.listView_hours2);
+
+
 
         Intent i = getIntent();
         String toCityString = i.getStringExtra("selectCity");

@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,12 +21,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     static Boolean cityActivityActive = false;
     static Boolean routeActivityActive = false;
+    private AdView mAdView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         city = (ImageButton) findViewById(R.id.cityId);
         route = (ImageButton) findViewById(R.id.routeId);

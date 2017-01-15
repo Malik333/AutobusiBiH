@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.FindCallback;
@@ -33,11 +35,14 @@ public class BusStateActivity extends AppCompatActivity{
     static   double busLat, busLng;
     double latitude=0, longitude=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_state);
         listView = (ListView) findViewById(R.id.busName_list);
+
+
 
         listCityName = new ArrayList<String>();
 

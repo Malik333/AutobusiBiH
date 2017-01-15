@@ -12,6 +12,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
@@ -42,6 +44,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         search.setOnClickListener(this);
         hours_list = new ArrayList<String>();
         openMap = (Button) findViewById(R.id.open_map);
+
 
         hours_list.add("Waiting");
         adapter_Hours = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours_list);
