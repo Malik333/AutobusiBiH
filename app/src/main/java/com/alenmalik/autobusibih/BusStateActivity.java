@@ -26,14 +26,14 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusStateActivity extends AppCompatActivity{
+public class BusStateActivity extends AppCompatActivity {
 
     ArrayAdapter adapter;
     ArrayList<String> listCityName;
     ListView listView;
 
-    static   double busLat, busLng;
-    double latitude=0, longitude=0;
+    static double busLat, busLng;
+    double latitude = 0, longitude = 0;
 
 
     @Override
@@ -41,7 +41,6 @@ public class BusStateActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_state);
         listView = (ListView) findViewById(R.id.busName_list);
-
 
 
         listCityName = new ArrayList<String>();
@@ -55,10 +54,10 @@ public class BusStateActivity extends AppCompatActivity{
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
+                if (e == null) {
 
                     listCityName.clear();
-                    for (ParseObject object : list){
+                    for (ParseObject object : list) {
 
                         listCityName.add(String.valueOf(object.get("CityName")));
 
@@ -73,9 +72,6 @@ public class BusStateActivity extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
-
-
-
 
 
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
@@ -99,9 +95,7 @@ public class BusStateActivity extends AppCompatActivity{
                                     Log.i("buslongituda", String.valueOf(busLng));
 
 
-
                                 }
-
 
 
                             }
@@ -111,13 +105,12 @@ public class BusStateActivity extends AppCompatActivity{
                     }
                 });
 
-                Intent intent = new Intent(BusStateActivity.this,BusMapAct.class);
+                Intent intent = new Intent(BusStateActivity.this, BusMapAct.class);
 
 
                 intent.putExtra("city", listCityName.get(position));
 
                 startActivity(intent);
-
 
 
             }
@@ -130,7 +123,7 @@ public class BusStateActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search,menu);
+        inflater.inflate(R.menu.menu_search, menu);
         MenuItem item = menu.findItem(R.id.menu_search);
 
         SearchView searchView = (SearchView) item.getActionView();
