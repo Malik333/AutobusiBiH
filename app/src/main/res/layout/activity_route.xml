@@ -29,7 +29,7 @@
             android:layout_alignRight="@+id/searchroute_bn"
             android:layout_alignEnd="@+id/searchroute_bn"
             android:layout_height="40dp"
-            android:inputType="textPhonetic"/>
+            android:inputType="textPhonetic" />
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -41,7 +41,8 @@
             android:background="@drawable/rectshape"
             android:layout_alignRight="@+id/fromCityId"
             android:layout_alignEnd="@+id/fromCityId"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:inputType="textPhonetic" />
 
         <Button
             android:text="PRIKAŽI"

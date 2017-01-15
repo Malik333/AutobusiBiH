@@ -32,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ListView listView;
     ArrayList<String> list;
     ArrayAdapter adapter;
-//ilehiohghaogopjp
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
