@@ -4,7 +4,7 @@
         android:radius="14dp"
     />
     <gradient
-        android:angle="45"
+        android:angle="90"
         android:centerX="35%"
         android:centerColor="#95989C"
         android:startColor="#D9D9D9"
@@ -18,7 +18,7 @@
         android:bottom="0dp"
     />
     <size
-        android:width="270dp"
+        android:width="100dp"
         android:height="60dp"
     />
     <stroke

@@ -37,7 +37,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     HashSet<String> hashSet2 = new HashSet<String>();
     Button search;
     Button openMap;
-    ListView hours_Listview;
+    ListView hoursListView;
     static double routeLatFromCIty;
     static double routeLngFromCity;
     static double routeLatToCIty;
@@ -60,8 +60,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         hours_list.add("Waiting");
         adapter_Hours = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours_list);
-        hours_Listview = (ListView) findViewById(R.id.listView_hours1);
-        hours_Listview.setAdapter(adapter_Hours);
+        hoursListView = (ListView) findViewById(R.id.listView_hours1);
+        hoursListView.setAdapter(adapter_Hours);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
 

@@ -34,7 +34,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ArrayAdapter adapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +43,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         toCity = (TextView) findViewById(R.id.toCityId_txt);
         openMap = (Button) findViewById(R.id.open_map2);
         listView = (ListView) findViewById(R.id.listView_hours2);
-
 
 
         Intent i = getIntent();
@@ -86,7 +84,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.open_map2){
+        if (view.getId() == R.id.open_map2) {
 
             Intent intent = new Intent(DetailsActivity.this, MapRouteActivity.class);
             startActivity(intent);

@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.alenmalik.autobusibih.RouteActivity">
+    tools:context="com.alenmalik.autobusibih.RouteActivity"
+    android:background="@color/backgroundColorApp">
 
 
 
@@ -19,32 +20,37 @@
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/fromCityId"
             android:hint="Iz grada:"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@drawable/rectshape"
+            android:layout_alignRight="@+id/searchroute_bn"
+            android:layout_alignEnd="@+id/searchroute_bn"
+            android:layout_height="40dp" />
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="45dp"
             android:hint="U grad:"
             android:id="@+id/toCityId_txt"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:background="@drawable/rectshape"
+            android:layout_alignRight="@+id/fromCityId"
+            android:layout_alignEnd="@+id/fromCityId"
+            android:layout_height="40dp" />
 
         <Button
-            android:text="Search"
-            android:layout_width="wrap_content"
+            android:text="PRIKAŽI"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/searchroute_bn"
             android:layout_below="@+id/toCityId_txt"
             android:gravity="center"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/shape" />
 
     </RelativeLayout>
 
@@ -69,10 +75,11 @@
         android:layout_alignParentRight="true">
 
         <Button
-            android:text="Map"
-            android:layout_width="wrap_content"
+            android:text="PRIKAŽI NA MAPI"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:id="@+id/open_map" />
+            android:id="@+id/open_map"
+            android:background="@drawable/shape" />
     </RelativeLayout>
 
 </RelativeLayout>
