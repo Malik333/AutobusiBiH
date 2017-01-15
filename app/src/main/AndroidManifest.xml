@@ -10,8 +10,9 @@ package="com.alenmalik.autobusibih">
          location permissions for the 'MyLocation' functionality. 
     -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  
 
-<application android:name=".StarterApplication" android:allowBackup="true" android:icon="@mipmap/ic_launcher"
+    <application android:name=".StarterApplication" android:allowBackup="true" android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
         <intent-filter>
@@ -20,13 +21,19 @@ package="com.alenmalik.autobusibih">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".CityActivity" />
-    <activity android:name=".RouteActivity" />
-    <activity android:name=".BusStateActivity" />
-    <activity android:name=".AboutActivity" />
-    <activity android:name=".ListToCityActivity" />
-    <activity android:name=".DetailsActivity" />
-    <activity android:name=".BusMapActivity"/>
+    <activity android:name=".CityActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".RouteActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".BusStateActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".AboutActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".BusMapAct"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".DetailsActivity"
+        android:screenOrientation="portrait"/>
+
     <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
