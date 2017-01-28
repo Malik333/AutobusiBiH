@@ -76,7 +76,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         mapFragment.getMapAsync(this);
         mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         markers = new ArrayList<Marker>();
-ruteBtn = (Button) findViewById(R.id.routeId);
+        ruteBtn = (Button) findViewById(R.id.routeId);
         name = (TextView) findViewById(R.id.cityName_txt);
         address = (TextView) findViewById(R.id.address_txt);
         phone = (TextView) findViewById(R.id.phone_number);

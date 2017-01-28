@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -48,6 +49,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static Double secondCityLNG;
     static String chooseCityName;
 
+    private ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         search = (Button) findViewById(R.id.search_city_btn);
         cityView = (ListView) findViewById(R.id.cityListView);
         listCity = new ArrayList<String>();
+        dialog = new ProgressDialog(this);
         listCity.add("Waiting...");
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listCity);
         cityView.setAdapter(adapter);
@@ -116,6 +120,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
             query2.whereEqualTo("fromCity", chooseCityName);
 
+            dialog.setMessage("Loading...");
+            dialog.show();
             query2.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
@@ -135,6 +141,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                             listCity.addAll(hashSettoCity);
                             Collections.sort(listCity);
                             adapter.notifyDataSetChanged();
+                            dialog.dismiss();
 
                         }
 

@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngFromCity;
     static double routeLatToCIty;
     static double routeLngToCity;
+    private ProgressDialog dialog;
 
 
 
@@ -57,6 +59,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         hours_list = new ArrayList<String>();
         openMap = (Button) findViewById(R.id.open_map);
 
+        dialog = new ProgressDialog(this);
 
         hours_list.add("Waiting");
         adapter_Hours = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours_list);
@@ -208,6 +211,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             query.whereEqualTo("fromCity", fromCityString);
             query.whereEqualTo("toCity", toCityString);
 
+            dialog.setMessage("Loading...");
+            dialog.show();
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
@@ -224,6 +229,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                             }
 
                             adapter_Hours.notifyDataSetChanged();
+                            dialog.dismiss();
 
                         }
                     }

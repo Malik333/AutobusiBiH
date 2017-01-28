@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class BusStateActivity extends AppCompatActivity {
 
     static double busLat, busLng;
     double latitude = 0, longitude = 0;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -43,6 +45,7 @@ public class BusStateActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.busName_list);
 
 
+        dialog = new ProgressDialog(this);
         listCityName = new ArrayList<String>();
 
         listCityName.add("Waiting...");
@@ -50,7 +53,10 @@ public class BusStateActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
 
+
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        dialog.setMessage("Searching...");
+        dialog.show();
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -64,6 +70,7 @@ public class BusStateActivity extends AppCompatActivity {
                     }
 
                     adapter.notifyDataSetChanged();
+                    dialog.dismiss();
 
                 }
             }
