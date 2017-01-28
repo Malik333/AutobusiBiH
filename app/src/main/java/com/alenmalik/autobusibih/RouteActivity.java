@@ -218,7 +218,9 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                             hours_list.clear();
                             for (ParseObject object : list) {
 
-                                hours_list.add(String.valueOf(object.get("Hours")));
+                                String hoursDay = object.get("Day") + ":  "+ object.get("Hours");
+
+                                hours_list.add(hoursDay);
                             }
 
                             adapter_Hours.notifyDataSetChanged();

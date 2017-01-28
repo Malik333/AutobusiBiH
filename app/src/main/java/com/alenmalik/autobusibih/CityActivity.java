@@ -25,8 +25,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.lang.reflect.Array;
+import java.text.CollationElementIterator;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     AutoCompleteTextView cityAutocomplete;
     ArrayAdapter<String> adapter3;
     ArrayList<String> nameList;
-    HashSet<String> hashSet;
+    HashSet<String> hashSet, hashSettoCity;
     static double newLng;
     static double newLat;
     Button search;
@@ -56,6 +58,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         nameList = new ArrayList<String>();
         cityAutocomplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteCityId);
         hashSet = new HashSet<String>();
+        hashSettoCity = new HashSet<String>();
         autoCompleteSuggestion();
         search = (Button) findViewById(R.id.search_city_btn);
         cityView = (ListView) findViewById(R.id.cityListView);
@@ -125,9 +128,12 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                             for (ParseObject object : list) {
 
                                 listCity.add(String.valueOf(object.get("toCity")));
-
                             }
 
+                            hashSettoCity.addAll(listCity);
+                            listCity.clear();
+                            listCity.addAll(hashSettoCity);
+                            Collections.sort(listCity);
                             adapter.notifyDataSetChanged();
 
                         }
@@ -135,6 +141,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
+
+            hashSettoCity.clear();
 
         } else if (view.getId() == R.id.cityListView) {
 
