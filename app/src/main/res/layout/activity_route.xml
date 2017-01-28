@@ -51,10 +51,9 @@
             android:id="@+id/searchroute_bn"
             android:gravity="center"
              android:background="@drawable/shape"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="11dp" />
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/fromCityId"
+            android:layout_toRightOf="@+id/fromCityId" />
 
     </RelativeLayout>
 
