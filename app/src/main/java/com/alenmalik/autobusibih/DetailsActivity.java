@@ -35,7 +35,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ArrayAdapter adapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         toCity = (TextView) findViewById(R.id.toCityId_txt);
         openMap = (Button) findViewById(R.id.open_map2);
         listView = (ListView) findViewById(R.id.listView_hours2);
-
 
 
         Intent i = getIntent();
@@ -71,7 +69,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         list.clear();
                         for (ParseObject object : listt) {
 
-                            String dateHours = object.get("Day") +":  "+ object.get("Hours");
+                            String dateHours = object.get("Day") + ":  " + object.get("Hours");
                             list.add(dateHours);
                         }
 

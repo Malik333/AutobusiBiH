@@ -48,16 +48,10 @@ import java.util.List;
 
 public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
-    //nešto
     private GoogleMap mMap;
     LocationManager locationManager;
     String provider;
-    double latitude = 0;
-    double longitude = 0;
-
     Intent inte;
-
-    double busLat, busLng;
     Location location;
 
     TextView name, address, phone;
@@ -70,7 +64,6 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_map2);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -89,15 +82,9 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
-
 
 
         inte = getIntent();
@@ -132,19 +119,10 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
     public void busStateLocation() {
 
-
-
-      /*  mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-            */
-
-
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-          mMap.clear();
-        if (location!= null) {
+        mMap.clear();
+        if (location != null) {
             markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
             markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
@@ -157,37 +135,22 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
             LatLngBounds bounds = builder.build();
             int width = getResources().getDisplayMetrics().widthPixels;
             int height = getResources().getDisplayMetrics().heightPixels;
-            int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
+            int padding = (int) (width * 0.12);
 
-            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-// end of new code
-
-            mMap.animateCamera(cu);
+            CameraUpdate cu1 = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
 
 
+            mMap.animateCamera(cu1);
 
-        if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        }else locationManager.requestLocationUpdates(provider,400,1,this);
-        //  markers.clear();
+
+            if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+
+                return;
+            }
+        } else locationManager.requestLocationUpdates(provider, 400, 1, this);
+
     }
-    //     });
-
-
-
-
-
-
-
-
 
 
     /**
@@ -278,7 +241,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     }*/
 
     @Override
-    public void onLocationChanged (Location userLocation){
+    public void onLocationChanged(Location userLocation) {
 
         busStateLocation();
 
@@ -287,24 +250,24 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
     @Override
-    public void onStatusChanged (String s,int i, Bundle bundle){
+    public void onStatusChanged(String s, int i, Bundle bundle) {
 
     }
 
     @Override
-    public void onProviderEnabled (String s){
+    public void onProviderEnabled(String s) {
 
     }
 
     @Override
-    public void onProviderDisabled (String s){
+    public void onProviderDisabled(String s) {
 
     }
 
-    public void rotebus(View v){
+    public void rotebus(View v) {
 
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr="+BusStateActivity.busLat+","+BusStateActivity.busLng+""));
+                Uri.parse("http://maps.google.com/maps?daddr=" + BusStateActivity.busLat + "," + BusStateActivity.busLng + ""));
         startActivity(intent);
     }
 

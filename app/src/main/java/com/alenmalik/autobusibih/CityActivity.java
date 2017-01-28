@@ -48,7 +48,6 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static Double secondCityLAT;
     static Double secondCityLNG;
     static String chooseCityName;
-
     private ProgressDialog dialog;
 
 
@@ -238,53 +237,4 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-    /*  public void gotNext() {
-            cityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                    if (listCity.get(position).equals("Waiting...")) {
-
-
-
-                    } else {
-                        double latitude = 0;
-                        double longitude = 0;
-                        ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-                        query.whereNear("Location", location);
-                        query.whereEqualTo("Name", listCity.get(position));
-                        query.setLimit(10);
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> list, ParseException e) {
-                                if (e == null) {
-
-                                    if (list.size() > 0) {
-
-                                        for (ParseObject object : list) {
-                                            secondCityLAT = object.getParseGeoPoint("Location").getLatitude();
-                                            secondCityLNG = object.getParseGeoPoint("Location").getLongitude();
-
-                                        }
-
-                                    }
-
-
-                                }
-                            }
-                        });
-
-                        Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
-                        intent1.putExtra("selectCity", listCity.get(position));
-                        startActivity(intent1);
-                    }
-
-                }
-            });
-
-
-
-        }*/
-
 }

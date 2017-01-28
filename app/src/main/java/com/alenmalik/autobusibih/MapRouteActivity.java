@@ -32,7 +32,6 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_route);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -53,19 +52,18 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
 
-        if (MainActivity.cityActivityActive == true){
+        if (MainActivity.cityActivityActive == true) {
 
             cityActivity();
-        } else if (MainActivity.routeActivityActive == true){
+        } else if (MainActivity.routeActivityActive == true) {
 
             routeActivity();
         }
 
     }
 
-    public  void cityActivity(){
+    public void cityActivity() {
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
@@ -83,16 +81,16 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         LatLngBounds bounds = builder.build();
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
-        int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
+        int padding = (int) (width * 0.12);
 
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-// end of new code
+
 
         mMap.animateCamera(cu);
 
     }
 
-    public void routeActivity(){
+    public void routeActivity() {
 
 
         LatLngBounds.Builder routeBuilder = new LatLngBounds.Builder();
@@ -112,23 +110,22 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
-        int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
+        int padding = (int) (width * 0.12);
 
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(newBounds, width, height, padding);
-// end of new code
 
         mMap.animateCamera(cu);
 
     }
 
-    public void routeDirection(View view){
+    public void routeDirection(View view) {
 
         if (MainActivity.cityActivityActive == true) {
 
             String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + CityActivity.newLat + "," + CityActivity.newLng + "&daddr=" + CityActivity.secondCityLAT + "," + CityActivity.secondCityLNG;
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
             startActivity(intent);
-        }else if (MainActivity.routeActivityActive == true) {
+        } else if (MainActivity.routeActivityActive == true) {
 
             String uri1 = "http://maps.google.com/maps?f=d&hl=en&saddr=" + RouteActivity.routeLatFromCIty + "," + RouteActivity.routeLngFromCity + "&daddr=" + RouteActivity.routeLatToCIty + "," + RouteActivity.routeLngToCity;
             Intent intent1 = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri1));

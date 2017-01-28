@@ -46,8 +46,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     private ProgressDialog dialog;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,31 +69,29 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         openMap.setOnClickListener(this);
 
 
-
         fromCityRoute();
         toCityRoute();
 
 
-
     }
 
-    public void fromCityRoute(){
+    public void fromCityRoute() {
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Cities");
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
-                    if (list.size() > 0){
+                if (e == null) {
+                    if (list.size() > 0) {
 
-                        for (ParseObject object : list){
+                        for (ParseObject object : list) {
                             fromCityList.add(String.valueOf(object.get("fromCity")));
 
                         }
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        adapter = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,fromCityList);
+                        adapter = new ArrayAdapter<String>(RouteActivity.this, android.R.layout.simple_dropdown_item_1line, fromCityList);
                         fromCity.setThreshold(1);
 
                         fromCity.setAdapter(adapter);
@@ -105,31 +101,29 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                     }
 
 
-
-
                 }
             }
         });
 
     }
 
-    public void toCityRoute(){
+    public void toCityRoute() {
 
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Cities");
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
-                    if (list.size() > 0){
+                if (e == null) {
+                    if (list.size() > 0) {
 
-                        for (ParseObject object : list){
+                        for (ParseObject object : list) {
                             toCityList.add(String.valueOf(object.get("toCity")));
 
                         }
                         hashSet2.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet2);
-                        adapter2 = new ArrayAdapter<String>(RouteActivity.this,android.R.layout.simple_dropdown_item_1line,toCityList);
+                        adapter2 = new ArrayAdapter<String>(RouteActivity.this, android.R.layout.simple_dropdown_item_1line, toCityList);
                         toCity.setThreshold(1);
 
                         toCity.setAdapter(adapter2);
@@ -223,7 +217,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                             hours_list.clear();
                             for (ParseObject object : list) {
 
-                                String hoursDay = object.get("Day") + ":  "+ object.get("Hours");
+                                String hoursDay = object.get("Day") + ":  " + object.get("Hours");
 
                                 hours_list.add(hoursDay);
                             }
@@ -241,15 +235,13 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
             inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
-        }else if (view.getId() == R.id.open_map){
+        } else if (view.getId() == R.id.open_map) {
+
 
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
             startActivity(intent);
         }
-      /*  Intent i = new Intent(RouteActivity.this,DetailsActivity.class);
-        i.putExtra("fromCity",fromCityString);
-        i.putExtra("toCity",toCityString);
-        startActivity(i); */
+
 
     }
 }

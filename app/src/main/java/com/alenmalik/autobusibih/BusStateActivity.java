@@ -53,7 +53,6 @@ public class BusStateActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
 
-
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         dialog.setMessage("Searching...");
         dialog.show();

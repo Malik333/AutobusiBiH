@@ -12,27 +12,26 @@
     android:background="@color/backgroundColorApp">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/route_rl_layoit">
+        android:id="@+id/route_rl_layoit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <AutoCompleteTextView
-            android:layout_width="match_parent"
             android:id="@+id/fromCityId"
             android:hint="Iz grada:"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="@drawable/rectshape"
-            android:layout_alignRight="@+id/searchroute_bn"
-            android:layout_alignEnd="@+id/searchroute_bn"
             android:layout_height="40dp"
-            android:inputType="textPhonetic" />
+            android:inputType="textPhonetic"
+            android:layout_width="220dp" />
 
         <AutoCompleteTextView
-            android:layout_width="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="45dp"
@@ -42,25 +41,30 @@
             android:layout_alignRight="@+id/fromCityId"
             android:layout_alignEnd="@+id/fromCityId"
             android:layout_height="40dp"
-            android:inputType="textPhonetic" />
+            android:inputType="textPhonetic"
+            android:layout_width="220dp" />
 
         <Button
             android:text="PRIKAŽI"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/searchroute_bn"
-            android:layout_below="@+id/toCityId_txt"
             android:gravity="center"
-            android:layout_marginLeft="100dp"
-            android:background="@drawable/shape" />
+             android:background="@drawable/shape"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="11dp" />
 
     </RelativeLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/route_rl_layoit"
-        android:layout_marginTop="10dp">
+        android:layout_above="@+id/open_map">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -76,18 +80,13 @@
     </RelativeLayout>
     </HorizontalScrollView>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:text="PRIKAŽI NA MAPI"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:id="@+id/open_map"
+        android:background="@drawable/shape"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
-
-        <Button
-            android:text="PRIKAŽI NA MAPI"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/open_map"
-            android:background="@drawable/shape" />
-    </RelativeLayout>
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
