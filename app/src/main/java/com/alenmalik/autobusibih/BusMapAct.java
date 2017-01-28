@@ -144,22 +144,26 @@ ruteBtn = (Button) findViewById(R.id.routeId);
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
           mMap.clear();
+        if (location!= null) {
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
-        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
-
-        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
 
 
-        for (Marker marker : markers) {
-            builder.include(marker.getPosition());
-        }
+            for (Marker marker : markers) {
+                builder.include(marker.getPosition());
+            }
 
-        LatLngBounds bounds = builder.build();
+            LatLngBounds bounds = builder.build();
+            int width = getResources().getDisplayMetrics().widthPixels;
+            int height = getResources().getDisplayMetrics().heightPixels;
+            int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
 
-        int padding = 100;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+// end of new code
 
-        mMap.animateCamera(cu);
+            mMap.animateCamera(cu);
+
 
 
         if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -172,6 +176,7 @@ ruteBtn = (Button) findViewById(R.id.routeId);
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        }else locationManager.requestLocationUpdates(provider,400,1,this);
         //  markers.clear();
     }
     //     });
