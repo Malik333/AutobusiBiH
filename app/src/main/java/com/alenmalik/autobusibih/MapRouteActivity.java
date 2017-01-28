@@ -81,9 +81,12 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
         }
 
         LatLngBounds bounds = builder.build();
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
 
-        int padding = 100;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+// end of new code
 
         mMap.animateCamera(cu);
 
@@ -107,10 +110,14 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         LatLngBounds newBounds = routeBuilder.build();
 
-        int padding1 = 100;
-        CameraUpdate cu1 = CameraUpdateFactory.newLatLngBounds(newBounds, padding1);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
 
-        mMap.animateCamera(cu1);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(newBounds, width, height, padding);
+// end of new code
+
+        mMap.animateCamera(cu);
 
     }
 
