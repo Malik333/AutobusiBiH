@@ -48,6 +48,7 @@ import java.util.List;
 
 public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
+    //nešto
     private GoogleMap mMap;
     LocationManager locationManager;
     String provider;
