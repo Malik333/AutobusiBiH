@@ -211,7 +211,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         }
         locationManager.removeUpdates(this);
     }
- /*   @Override
+    @Override
     protected void onStop() {
         super.onStop();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -242,14 +242,14 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
             return;
         }
         locationManager.removeUpdates(this);
-    }*/
+    }
 
     @Override
     public void onLocationChanged(Location userLocation) {
 
         busStateLocation();
 
-        // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
+       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
 
     }
 
