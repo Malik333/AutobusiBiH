@@ -46,7 +46,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener, View.OnClickListener {
 
     private GoogleMap mMap;
     LocationManager locationManager;
@@ -91,7 +91,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
         nameCity = inte.getStringExtra("city");
 
-        name.setText(nameCity);
+        name.setText("Grad: " + nameCity);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.whereEqualTo("CityName", nameCity);
@@ -103,7 +103,11 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
                     for (ParseObject object : list) {
 
                         address.setText(object.get("Address").toString());
+
                         phone.setText(object.get("PhoneNumber").toString());
+
+                        phone.setOnClickListener(BusMapAct.this);
+
                     }
 
                 }
@@ -272,6 +276,16 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
 
+    @Override
+    public void onClick(View view) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:+" + phone.getText().toString().trim()));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        startActivity(callIntent);
+    }
 }
 
 
