@@ -69,9 +69,9 @@ public class MapRouteActivity extends FragmentActivity implements OnMapReadyCall
 
         ArrayList<Marker> markers = new ArrayList<Marker>();
 
-        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.newLat, CityActivity.newLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.newLat, CityActivity.newLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title(CityActivity.chooseCityName)));
 
-        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.secondCityLAT, CityActivity.secondCityLNG)).title("Your Location")));
+        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityActivity.secondCityLAT, CityActivity.secondCityLNG)).title(DetailsActivity.toCityString)));
 
 
         for (Marker marker : markers) {
