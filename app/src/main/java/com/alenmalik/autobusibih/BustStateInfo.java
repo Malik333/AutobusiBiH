@@ -45,7 +45,7 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
 
         nameCity = inte.getStringExtra("city");
 
-        name.setText("Grad: " + nameCity);
+        name.setText(nameCity);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.whereEqualTo("CityName", nameCity);

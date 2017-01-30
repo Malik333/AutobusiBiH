@@ -26,7 +26,7 @@
             android:layout_alignParentTop="true" />
 
         <Button
-            android:text="PRIKAŽI RUTU"
+            android:text="ODVEDI ME DO AUTOBUSNE STANICE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/routeId"
