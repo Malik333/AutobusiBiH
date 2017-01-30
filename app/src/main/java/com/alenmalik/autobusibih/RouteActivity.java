@@ -48,6 +48,9 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     String chooseCityName;
 
+    static String fromCityString;
+    static String toCityString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,8 +167,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view.getId() == R.id.searchroute_bn) {
-            String fromCityString = String.valueOf(fromCity.getText());
-            String toCityString = String.valueOf(toCity.getText());
+            fromCityString = String.valueOf(fromCity.getText());
+            toCityString = String.valueOf(toCity.getText());
 
             double latitude = 0;
             double longitude = 0;
