@@ -48,8 +48,9 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/route_rl_layoit">
+        android:layout_height="150dp"
+        android:layout_below="@+id/route_rl_layoit"
+        android:layout_above="@+id/open_map2">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,20 +67,18 @@
     </RelativeLayout>
     </HorizontalScrollView>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:text="PRIKAŽI NA MAPI"
         android:layout_height="wrap_content"
+        android:id="@+id/open_map2"
+        android:elevation="0dp"
+        android:background="@drawable/shape"
+        android:layout_width="120dp"
+        android:layout_marginLeft="101dp"
+        android:layout_marginStart="101dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
-
-        <Button
-            android:text="PRIKAŽI NA MAPI"
-            android:layout_height="wrap_content"
-            android:id="@+id/open_map2"
-            android:elevation="0dp"
-            android:background="@drawable/shape"
-            android:layout_width="120dp" />
-    </RelativeLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

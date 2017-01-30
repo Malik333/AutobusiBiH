@@ -53,7 +53,8 @@
              android:background="@drawable/shape"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/fromCityId"
-            android:layout_toRightOf="@+id/fromCityId" />
+            android:layout_toRightOf="@+id/fromCityId"
+            android:layout_marginLeft="15dp" />
 
     </RelativeLayout>
 

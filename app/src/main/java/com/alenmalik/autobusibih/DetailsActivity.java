@@ -33,6 +33,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ListView listView;
     ArrayList<String> list;
     ArrayAdapter adapter;
+    static String toCityString;
 
 
     @Override
@@ -47,7 +48,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
 
         Intent i = getIntent();
-        String toCityString = i.getStringExtra("selectCity");
+        toCityString = i.getStringExtra("selectCity");
         list = new ArrayList<String>();
         list.add("Waiting");
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
