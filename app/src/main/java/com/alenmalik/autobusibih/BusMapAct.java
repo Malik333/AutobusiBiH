@@ -130,9 +130,9 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         dialog.show();
         mMap.clear();
         if (location != null) {
-            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Lokacija autobusne").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
-            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Your Location")));
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Vaša lokacija")));
 
 
             for (Marker marker : markers) {
@@ -215,7 +215,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         }
         locationManager.removeUpdates(this);
     }
-    @Override
+ /*   @Override
     protected void onStop() {
         super.onStop();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -229,10 +229,10 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
             return;
         }
         locationManager.removeUpdates(this);
-    }
+    }*/
 
 
-    @Override
+   /* @Override
     protected void onDestroy() {
         super.onDestroy();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -246,7 +246,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
             return;
         }
         locationManager.removeUpdates(this);
-    }
+    }*/
 
     @Override
     public void onLocationChanged(Location userLocation) {
