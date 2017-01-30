@@ -37,5 +37,6 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hello");
         emailIntent.putExtra(Intent.EXTRA_TEXT,  ime.getText().toString() + "\n" + prezime.getText().toString() + "\n" + redoslijedVoznje.getText().toString());
         startActivity(Intent.createChooser(emailIntent,"Send email..."));
+        //
     }
 }
