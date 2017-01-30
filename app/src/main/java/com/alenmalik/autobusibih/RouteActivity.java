@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -45,6 +46,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
     private ProgressDialog dialog;
 
+    String chooseCityName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +70,23 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         toCityList = new ArrayList<>();
 
         openMap.setOnClickListener(this);
+        fromCity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                chooseCityName = (String) adapterView.getItemAtPosition(i);
+                Log.i("cityName autoco", chooseCityName);
+                hashSet2.clear();
+                toCityList.clear();
+                toCityRoute(chooseCityName);
+
+            }
+        });
 
 
         fromCityRoute();
-        toCityRoute();
+
 
 
     }
@@ -78,6 +94,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     public void fromCityRoute() {
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Cities");
+        fromCityQuery.setLimit(10000);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -98,6 +115,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
                         adapter.notifyDataSetChanged();
 
+
+
                     }
 
 
@@ -107,9 +126,12 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void toCityRoute() {
+    public void toCityRoute(String name) {
 
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Cities");
+        toCityQuery.whereEqualTo("fromCity", name);
+        
+        toCityQuery.setLimit(10000);
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

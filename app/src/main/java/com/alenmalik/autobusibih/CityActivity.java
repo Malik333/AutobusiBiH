@@ -93,7 +93,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
             query.whereNear("Location", location);
             query.whereEqualTo("Name", chooseCityName);
-            query.setLimit(10);
+           // query.setLimit(10);
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
@@ -118,6 +118,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
             query2.whereEqualTo("fromCity", chooseCityName);
+            query2.setLimit(10000);
 
             dialog.setMessage("Loading...");
             dialog.show();
@@ -129,16 +130,20 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                         if (list.size() > 0) {
 
                             listCity.clear();
+                            int i = 0;
 
                             for (ParseObject object : list) {
 
-                                listCity.add(String.valueOf(object.get("toCity")));
+                                    Log.i("City", i++ +" " + String.valueOf(object.get("toCity")));
+                                    listCity.add(String.valueOf(object.get("toCity")));
+
                             }
 
                             hashSettoCity.addAll(listCity);
                             listCity.clear();
                             listCity.addAll(hashSettoCity);
                             Collections.sort(listCity);
+
                             adapter.notifyDataSetChanged();
                             dialog.dismiss();
 
@@ -160,6 +165,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     public void autoCompleteSuggestion() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
+        query.setLimit(10000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -207,7 +213,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
                 query.whereNear("Location", location);
                 query.whereEqualTo("Name", listCity.get(position));
-                query.setLimit(10);
+                //query.setLimit(10);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {

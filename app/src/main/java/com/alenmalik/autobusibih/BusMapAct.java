@@ -2,6 +2,7 @@ package com.alenmalik.autobusibih;
 
 import android.*;
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -122,9 +123,11 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
     public void busStateLocation() {
-
+        ProgressDialog dialog = new ProgressDialog(this);
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
+        dialog.setMessage("Loading...");
+        dialog.show();
         mMap.clear();
         if (location != null) {
             markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Bus state Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
@@ -146,6 +149,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
             mMap.animateCamera(cu1);
 
+            dialog.dismiss();
 
             if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
