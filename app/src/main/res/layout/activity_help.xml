@@ -57,7 +57,7 @@
         android:textStyle="normal|bold" />
 
     <TextView
-        android:text="Vaše ime:"
+        android:text="Vaše ime i prezime:(ukoliko želite)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView11"
@@ -75,66 +75,44 @@
         android:layout_below="@+id/textView12"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imeEdit"
+        android:id="@+id/imeIPrezimeEdit"
         android:background="@drawable/rectshape"
         android:layout_marginTop="10dp"
-        android:hint="Ime"
+        android:hint="Ime i Prezime"
         android:layout_height="35dp" />
-
-    <TextView
-        android:text="Vaše prezime:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imeEdit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView13"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textView13"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/prezimeEdit"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rectshape"
-        android:hint="Prezime" />
-
-    <TextView
-        android:text="Redoslijed vožnje sa cijenom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prezimeEdit"
-        android:id="@+id/textView14"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/redoslijedVoznjeEdit"
-        android:layout_height="140dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rectshape" />
 
     <Button
         android:text="POŠALJI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/prezimeEdit"
-        android:layout_alignEnd="@+id/prezimeEdit"
         android:id="@+id/posaljiBtn"
-        android:background="@drawable/shape" />
+        android:background="@drawable/shape"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:text="Redoslijed vožnje sa cijenom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_below="@+id/imeIPrezimeEdit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/redoslijedVoznjeEdit"
+        android:background="@drawable/rectshape"
+        android:layout_below="@+id/textView14"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_height="60dp" />
+
 </RelativeLayout>
