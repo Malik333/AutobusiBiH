@@ -42,6 +42,14 @@
             android:background="@drawable/rectshape"
             android:layout_height="50dp"
             android:layout_marginRight="30dp" />
+
+        <ImageButton android:id="@+id/clearCityAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_dark"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/autoCompleteCityId"
+            android:layout_alignEnd="@+id/autoCompleteCityId" />
     </RelativeLayout>
 
     <RelativeLayout

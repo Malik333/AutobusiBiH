@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -44,6 +45,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngFromCity;
     static double routeLatToCIty;
     static double routeLngToCity;
+    ImageButton clearto, clearfrom;
     private ProgressDialog dialog;
 
     String chooseCityName;
@@ -62,6 +64,11 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         search.setOnClickListener(this);
         hours_list = new ArrayList<String>();
         openMap = (Button) findViewById(R.id.open_map);
+        clearfrom = (ImageButton) findViewById(R.id.clearfromCity);
+        clearto = (ImageButton) findViewById(R.id.cleartoCity);
+
+        clearfrom.setOnClickListener(this);
+        clearto.setOnClickListener(this);
 
         dialog = new ProgressDialog(this);
 
@@ -265,6 +272,10 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
             startActivity(intent);
+        } else if (view.getId() == R.id.clearfromCity){
+            fromCity.setText("");
+        } else if (view.getId() == R.id.cleartoCity){
+            toCity.setText("");
         }
 
 

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -42,6 +43,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static double newLng;
     static double newLat;
     Button search;
+    ImageButton clear;
     ListView cityView;
     ArrayAdapter<String> adapter;
     ArrayList<String> listCity;
@@ -66,11 +68,13 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         cityView = (ListView) findViewById(R.id.cityListView);
         listCity = new ArrayList<String>();
         dialog = new ProgressDialog(this);
+        clear = (ImageButton) findViewById(R.id.clearCityAct);
         listCity.add("Waiting...");
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listCity);
         cityView.setAdapter(adapter);
         search.setOnClickListener(this);
         cityView.setOnItemClickListener(this);
+        clear.setOnClickListener(this);
 
         //  gotNext();
 
@@ -158,6 +162,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.cityListView) {
 
 
+        } else if (view.getId() == R.id.clearCityAct){
+            cityAutocomplete.setText("");
         }
     }
 

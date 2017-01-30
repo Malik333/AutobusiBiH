@@ -101,8 +101,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         ProgressDialog dialog = new ProgressDialog(this);
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-        dialog.setMessage("Loading...");
-        dialog.show();
+
         mMap.clear();
         if (location != null) {
             markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(BusStateActivity.busLat, BusStateActivity.busLng)).title("Lokacija autobusne").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
@@ -124,7 +123,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
             mMap.animateCamera(cu1);
 
-            dialog.dismiss();
+
 
             if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling

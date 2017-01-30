@@ -56,6 +56,22 @@
             android:layout_toRightOf="@+id/fromCityId"
             android:layout_marginLeft="15dp" />
 
+        <ImageButton android:id="@+id/cleartoCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_dark"
+            android:layout_alignTop="@+id/toCityId_txt"
+            android:layout_alignRight="@+id/toCityId_txt"
+            android:layout_alignEnd="@+id/toCityId_txt" />
+
+        <ImageButton android:id="@+id/clearfromCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_dark"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/searchroute_bn"
+            android:layout_toStartOf="@+id/searchroute_bn" />
+
     </RelativeLayout>
 
     <HorizontalScrollView
