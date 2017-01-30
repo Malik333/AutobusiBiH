@@ -55,7 +55,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     Intent inte;
     Location location;
 
-    TextView name, address, phone;
+
     String nameCity;
     RelativeLayout mapLayout;
     ArrayList<Marker> markers;
@@ -71,9 +71,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         markers = new ArrayList<Marker>();
         ruteBtn = (Button) findViewById(R.id.routeId);
-        name = (TextView) findViewById(R.id.cityName_txt);
-        address = (TextView) findViewById(R.id.address_txt);
-        phone = (TextView) findViewById(R.id.phone_number);
+
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
@@ -88,32 +86,9 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         }
 
 
-        inte = getIntent();
 
-        nameCity = inte.getStringExtra("city");
 
-        name.setText("Grad: " + nameCity);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-        query.whereEqualTo("CityName", nameCity);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-
-                    for (ParseObject object : list) {
-
-                        address.setText(object.get("Address").toString());
-
-                        phone.setText(object.get("PhoneNumber").toString());
-
-                        phone.setOnClickListener(BusMapAct.this);
-
-                    }
-
-                }
-            }
-        });
 
         location = locationManager.getLastKnownLocation(provider);
         if (location != null) {
@@ -282,13 +257,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
     @Override
     public void onClick(View view) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:+" + phone.getText().toString().trim()));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
-        }
-        startActivity(callIntent);
     }
 }
 
