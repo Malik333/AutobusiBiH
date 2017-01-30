@@ -77,7 +77,9 @@
         <activity
             android:name=".MapRouteActivity"
             android:label="@string/title_activity_map_route" />
-        <activity android:name=".BustStateInfo"></activity>
+        <activity android:name=".BustStateInfo" />
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".AboutUsActivity"></activity>
     </application>
 
 </manifest>
