@@ -30,7 +30,7 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","alenmalik43@gmail.com",null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hello");
-        emailIntent.putExtra(Intent.EXTRA_TEXT,  imeIPrezime.getText().toString() +"\n" + redoslijedVoznje.getText().toString());
+        emailIntent.putExtra(Intent.EXTRA_TEXT,  imeIPrezime.getText().toString() +"\n\n" + redoslijedVoznje.getText().toString());
         startActivity(Intent.createChooser(emailIntent,"Send email..."));
     }
 }
