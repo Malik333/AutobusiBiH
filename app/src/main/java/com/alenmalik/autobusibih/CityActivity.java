@@ -123,7 +123,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
             query2.whereEqualTo("fromCity", chooseCityName);
             query2.setLimit(10000);
-
+           query2.fromLocalDatastore();
             dialog.setMessage("Loading...");
             dialog.show();
             query2.findInBackground(new FindCallback<ParseObject>() {
@@ -172,6 +172,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.setLimit(10000);
+        query.fromLocalDatastore();
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
