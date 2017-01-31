@@ -5,4 +5,5 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="pomozite_u_razvoju_aplikacije">pomozite u razvoju aplikacije</string>
     <string name="o_nama">o nama</string>
+    <string name="klikni_za_poziv"><![CDATA[<-- klikni za poziv]]></string>
 </resources>

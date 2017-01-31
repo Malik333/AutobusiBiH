@@ -32,7 +32,7 @@
         <AutoCompleteTextView
             android:layout_width="wrap_content"
             android:id="@+id/autoCompleteCityId"
-            android:hint="City name"
+            android:hint="Unesi ime grada"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
