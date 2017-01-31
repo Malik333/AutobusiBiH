@@ -52,6 +52,7 @@ public class BusStateActivity extends AppCompatActivity {
         listCityName.add("Waiting...");
         adapter = new ArrayAdapter<String>(BusStateActivity.this, android.R.layout.simple_list_item_1, listCityName);
         listView.setAdapter(adapter);
+        listView.setTextFilterEnabled(true);
 
 
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
@@ -83,7 +84,7 @@ public class BusStateActivity extends AppCompatActivity {
 
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-                query.whereEqualTo("CityName", listCityName.get(position));
+                query.whereEqualTo("CityName", adapter.getItem(position));
 
                 query.whereNear("Location", location);
                 query.setLimit(10);
@@ -114,8 +115,9 @@ public class BusStateActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(BusStateActivity.this, BustStateInfo.class);
 
+                String item = String.valueOf(adapter.getItem(position));
 
-                intent.putExtra("city", listCityName.get(position));
+                intent.putExtra("city", item);
 
                 startActivity(intent);
 
@@ -138,6 +140,7 @@ public class BusStateActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
@@ -145,8 +148,10 @@ public class BusStateActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
                 adapter.getFilter().filter(newText);
+
                 return false;
             }
+
         });
 
         return super.onCreateOptionsMenu(menu);
