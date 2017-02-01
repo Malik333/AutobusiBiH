@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        pinObject();
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -55,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         route.setOnClickListener(this);
         busState.setOnClickListener(this);
         about.setOnClickListener(this);
+
+        PinObject ob = new PinObject();
+        ob.pinAllobject();
 
     }
 
@@ -110,106 +111,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void pinObject() {
-
-        ParseGeoPoint location = new ParseGeoPoint(0, 0);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-
-        query.whereNear("Location", location);
-        query.whereEqualTo("Name", CityActivity.chooseCityName);
-        // query.setLimit(10);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-                    ParseObject.pinAllInBackground(list);
-
-
-                    if (list.size() > 0) {
-
-                        for (ParseObject object : list) {
-
-                        }
-
-                    }
-
-                }
-            }
-        });
-
-        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
-        query2.whereEqualTo("fromCity", CityActivity.chooseCityName);
-        query2.setLimit(10000);
-
-
-        query2.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-                    ParseObject.pinAllInBackground(list);
-
-                    if (list.size() > 0) {
-
-
-                        for (ParseObject object : list) {
-
-                        }
-
-
-                    }
-
-                }
-            }
-        });
-
-        ParseQuery<ParseObject> query3 = ParseQuery.getQuery("Cities");
-        query3.setLimit(10000);
-
-        query3.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-
-
-                if (e == null) {
-                    if (list.size() > 0) {
-
-                        ParseObject.pinAllInBackground(list);
-                        for (ParseObject object : list) {
-
-                        }
-                    }
-                }
-
-            }
-        });
-
-        ParseGeoPoint location2 = new ParseGeoPoint(0, 0);
-        ParseQuery<ParseObject> query4 = ParseQuery.getQuery("CityLocation");
-
-        query4.whereNear("Location", location2);
-
-        //query.setLimit(10);
-        query4.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-                    ParseObject.pinAllInBackground(list);
-
-                    if (list.size() > 0) {
-
-                        for (ParseObject object : list) {
-
-                        }
-
-                    }
-
-
-                }
-            }
-        });
-
-
-
-
-    }
 }

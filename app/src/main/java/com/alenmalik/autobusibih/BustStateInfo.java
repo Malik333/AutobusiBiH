@@ -22,7 +22,7 @@ import java.util.List;
 public class BustStateInfo extends AppCompatActivity implements View.OnClickListener {
 
     TextView name, address, phone;
-    String nameCity;
+    static String nameCity;
     Intent inte;
     Button openMap;
 
