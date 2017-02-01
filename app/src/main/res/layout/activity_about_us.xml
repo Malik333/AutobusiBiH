@@ -110,7 +110,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    app:srcCompat="@drawable/fromcity"
+                    app:srcCompat="@drawable/izzgrada"
                     android:layout_below="@+id/textView25"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -140,7 +140,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    app:srcCompat="@drawable/fromcitytocity"
+                    app:srcCompat="@drawable/oddograda"
                     android:layout_below="@+id/textZaPrviImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -170,7 +170,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    app:srcCompat="@drawable/busstate"
+                    app:srcCompat="@drawable/busstanice"
                     android:layout_below="@+id/textZaDrugiImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -199,15 +199,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
                 <ImageView
-                    app:srcCompat="@drawable/cijene"
+                    app:srcCompat="@drawable/ciijene"
                     android:layout_below="@+id/textZaTreciImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/cetvrtiImageView"
                     android:layout_marginTop="10dp"
                     android:layout_height="50dp"
-                    android:layout_weight="0.38"
-                    android:layout_width="50dp" />
+                    android:layout_width="44dp"
+                    android:layout_weight="0.25" />
 
                 <TextView
                     android:text="@string/izlistava_redoslijede_vo_nje_sa_cijenom"
@@ -219,7 +219,7 @@
                     android:layout_alignStart="@+id/textZaTreciImageView"
                     android:layout_weight="1"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="25dp" />
 
             </LinearLayout>
 
