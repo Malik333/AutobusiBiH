@@ -4,14 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.Collections;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,9 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static Boolean cityActivityActive = false;
     static Boolean routeActivityActive = false;
     private AdView mAdView;
-    MenuItem ofline;
-
-    boolean offloneModeActive = false;
 
 
     @Override
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pinObject();
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -54,17 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.cityIde) {
 
-            if (offloneModeActive == false){
+
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
             cityActivityActive = true;
             routeActivityActive = false;
-        } else{
-                Intent cityIntent = new Intent(MainActivity.this, CityActivityOffline.class);
-                startActivity(cityIntent);
-                cityActivityActive = true;
-                routeActivityActive = false;
-            }
 
         } else if (view.getId() == R.id.routeId) {
             Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
@@ -83,38 +85,131 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main,menu);
-        ofline = menu.findItem(R.id.ofllinemode);
+        inflater.inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_o_nama:
-                Intent i = new Intent(MainActivity.this,AboutUsActivity.class);
+                Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
                 startActivity(i);
                 return true;
             case R.id.menu_pomozite_nam:
-                Intent intent = new Intent(MainActivity.this,HelpActivity.class);
+                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.ofllinemode:
-                boolean isClicked = false;
-                if (ofline.getTitle().equals("OFFLINE MODE")) {
-                    offloneModeActive = true;
-                    ofline.setTitle("ONLINE MODE");
-                    isClicked = true;
-                }else if (ofline.getTitle().equals("ONLINE MODE")){
-                    offloneModeActive = false;
-                    ofline.setTitle("OFFLINE MODE");
-                    isClicked = false;
-                }
-                return true;
 
-            default: return super.onOptionsItemSelected(item);
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    public void pinObject() {
+
+        ParseGeoPoint location = new ParseGeoPoint(0, 0);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+
+        query.whereNear("Location", location);
+        query.whereEqualTo("Name", CityActivity.chooseCityName);
+        // query.setLimit(10);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(list);
+
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+
+                        }
+
+                    }
+
+                }
+            }
+        });
+
+        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
+        query2.whereEqualTo("fromCity", CityActivity.chooseCityName);
+        query2.setLimit(10000);
+
+
+        query2.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(list);
+
+                    if (list.size() > 0) {
+
+
+                        for (ParseObject object : list) {
+
+                        }
+
+
+                    }
+
+                }
+            }
+        });
+
+        ParseQuery<ParseObject> query3 = ParseQuery.getQuery("Cities");
+        query3.setLimit(10000);
+
+        query3.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+
+                if (e == null) {
+                    if (list.size() > 0) {
+
+                        ParseObject.pinAllInBackground(list);
+                        for (ParseObject object : list) {
+
+                        }
+                    }
+                }
+
+            }
+        });
+
+        ParseGeoPoint location2 = new ParseGeoPoint(0, 0);
+        ParseQuery<ParseObject> query4 = ParseQuery.getQuery("CityLocation");
+
+        query4.whereNear("Location", location2);
+
+        //query.setLimit(10);
+        query4.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(list);
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+
+
+
 
     }
 }

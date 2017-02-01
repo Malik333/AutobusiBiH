@@ -106,7 +106,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             double longitude = 0;
             ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
             ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-
+            query.fromLocalDatastore();
             query.whereNear("Location", location);
             query.whereEqualTo("Name", chooseCityName);
             // query.setLimit(10);
@@ -135,7 +135,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             });
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
-
+            query2.fromLocalDatastore();
             query2.whereEqualTo("fromCity", chooseCityName);
             query2.setLimit(10000);
 
@@ -189,7 +189,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.setLimit(10000);
-
+        query.fromLocalDatastore();
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -242,6 +242,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
 
+                query.fromLocalDatastore();
                 query.whereNear("Location", location);
                 query.whereEqualTo("Name", listCity.get(position));
                 //query.setLimit(10);
@@ -276,23 +277,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.offline_menu,menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.cityakt_offline:
-                Intent i = new Intent(CityActivity.this,CityActivityOffline.class);
-                startActivity(i);
-                return true;
-            default: return super.onOptionsItemSelected(item);
-        }
 
-    }
 }

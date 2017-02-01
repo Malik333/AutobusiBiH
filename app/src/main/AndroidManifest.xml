@@ -80,7 +80,6 @@
         <activity android:name=".BustStateInfo" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".CityActivityOffline"></activity>
     </application>
 
 </manifest>
