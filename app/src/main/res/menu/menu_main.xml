@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
    <group android:checkableBehavior="single">
+       <item
+           android:id="@+id/ofllinemode"
+           android:orderInCategory="3"
+           android:title="OFFLINE MODE"
+           app:showAsAction="ifRoom"/>
+
        <item android:id="@+id/menu_o_nama"
          android:orderInCategory="2"
           android:icon="@android:drawable/ic_menu_info_details"

@@ -10,4 +10,5 @@
     <string name="unosite_iz_kojeg_grada_autobus_kre_e_i_unosite_do_kojeg_grada_autobus_ide_i_izlistavaju_vam_se_satnice"><![CDATA[unosite iz kojeg grada autobus kreče i unosite do kojeg grada autobus ide i izlistavaju vam se satnice]]></string>
     <string name="prikaziva_vam_listu_gradova_i_njihove_najbli_e_autobusne_stanice_pritiskom_na_dugme_odvedi_me_do_stanice_pali_se_navigacija_koja_vas_navigira_do_najbli_e_autobusne"><![CDATA[prikaziva vam listu gradova i njihove najbliže autobusne stanice,pritiskom na dugme odvedi me do stanice pali se navigacija koja vas navigira do najbliže autobusne]]></string>
     <string name="izlistava_redoslijede_vo_nje_sa_cijenom"><![CDATA[izlistava redoslijede vožnje sa cijenom]]></string>
+    <string name="offlineMode"></string>
 </resources>

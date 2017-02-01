@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static Boolean cityActivityActive = false;
     static Boolean routeActivityActive = false;
     private AdView mAdView;
+    MenuItem ofline;
+
+    boolean offloneModeActive = false;
 
 
     @Override
@@ -50,10 +53,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.cityIde) {
+
+            if (offloneModeActive == false){
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
             cityActivityActive = true;
             routeActivityActive = false;
+        } else{
+                Intent cityIntent = new Intent(MainActivity.this, CityActivityOffline.class);
+                startActivity(cityIntent);
+                cityActivityActive = true;
+                routeActivityActive = false;
+            }
+
         } else if (view.getId() == R.id.routeId) {
             Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
             startActivity(routeIntent);
@@ -72,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main,menu);
+        ofline = menu.findItem(R.id.ofllinemode);
         return true;
     }
 
@@ -87,6 +100,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this,HelpActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.ofllinemode:
+                boolean isClicked = false;
+                if (ofline.getTitle().equals("OFFLINE MODE")) {
+                    offloneModeActive = true;
+                    ofline.setTitle("ONLINE MODE");
+                    isClicked = true;
+                }else if (ofline.getTitle().equals("ONLINE MODE")){
+                    offloneModeActive = false;
+                    ofline.setTitle("OFFLINE MODE");
+                    isClicked = false;
+                }
+                return true;
+
             default: return super.onOptionsItemSelected(item);
         }
 
