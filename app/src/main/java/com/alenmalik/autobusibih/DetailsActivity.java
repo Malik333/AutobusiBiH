@@ -57,8 +57,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.whereEqualTo("fromCity", CityActivity.chooseCityName);
         query.whereEqualTo("toCity", toCityString);
-        query.fromLocalDatastore();
-
         fromCty.setText(CityActivity.chooseCityName);
         toCity.setText(toCityString);
         query.findInBackground(new FindCallback<ParseObject>() {

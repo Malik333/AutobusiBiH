@@ -4,5 +4,5 @@
 
     <item android:title="Offline mode"
         android:id="@+id/cityakt_offline"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 </menu>

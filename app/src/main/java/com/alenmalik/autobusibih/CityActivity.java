@@ -114,6 +114,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
+                        ParseObject.pinAllInBackground(list);
 
 
                         if (list.size() > 0) {
@@ -144,6 +145,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
+                        ParseObject.pinAllInBackground(list);
 
                         if (list.size() > 0) {
 
@@ -191,7 +193,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-
+                      ParseObject.pinAllInBackground(list);
 
                 if (e == null) {
                     if (list.size() > 0) {
@@ -246,6 +248,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e == null) {
+                            ParseObject.pinAllInBackground(list);
 
                             if (list.size() > 0) {
 
