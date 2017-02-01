@@ -56,6 +56,7 @@ public class BusStateActivity extends AppCompatActivity {
 
 
          ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        query.addAscendingOrder("CityName");
 
         query.fromLocalDatastore();
         dialog.getProgress();
