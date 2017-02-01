@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -52,6 +55,9 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static String chooseCityName;
     private ProgressDialog dialog;
 
+    ConnectivityManager connManager;
+    NetworkInfo mWifi;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         search.setOnClickListener(this);
         cityView.setOnItemClickListener(this);
         clear.setOnClickListener(this);
+        connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        mWifi = connManager.getActiveNetworkInfo();
 
         //  gotNext();
 
@@ -95,14 +103,16 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             double longitude = 0;
             ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
             ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+            query.fromLocalDatastore();
             query.whereNear("Location", location);
             query.whereEqualTo("Name", chooseCityName);
-           // query.setLimit(10);
+            // query.setLimit(10);
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
+                        ParseObject.pinAllInBackground(list);
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -121,15 +131,17 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             });
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
+            query2.fromLocalDatastore();
             query2.whereEqualTo("fromCity", chooseCityName);
             query2.setLimit(10000);
-           query2.fromLocalDatastore();
+
             dialog.setMessage("Loading...");
             dialog.show();
             query2.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
+                        ParseObject.pinAllInBackground(list);
 
                         if (list.size() > 0) {
 
@@ -138,8 +150,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
                             for (ParseObject object : list) {
 
-                                    Log.i("City", i++ +" " + String.valueOf(object.get("toCity")));
-                                    listCity.add(String.valueOf(object.get("toCity")));
+                                Log.i("City", i++ + " " + String.valueOf(object.get("toCity")));
+                                listCity.add(String.valueOf(object.get("toCity")));
 
                             }
 
@@ -162,13 +174,14 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.cityListView) {
 
 
-        } else if (view.getId() == R.id.clearCityAct){
+        } else if (view.getId() == R.id.clearCityAct) {
             cityAutocomplete.setText("");
         }
     }
 
 
     public void autoCompleteSuggestion() {
+
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.setLimit(10000);
@@ -177,10 +190,12 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void done(List<ParseObject> list, ParseException e) {
 
+
                 if (e == null) {
                     if (list.size() > 0) {
-
+                        ParseObject.pinAllInBackground(list);
                         for (ParseObject object : list) {
+
 
                             nameList.add(String.valueOf(object.get("fromCity")));
 
@@ -202,12 +217,15 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 }
+
             }
         });
+
+
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
         if (adapterView.getId() == R.id.cityListView) {
 
             if (listCity.get(position).equals("Waiting...")) {
@@ -218,6 +236,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 double longitude = 0;
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
+                query.fromLocalDatastore();
                 query.whereNear("Location", location);
                 query.whereEqualTo("Name", listCity.get(position));
                 //query.setLimit(10);
@@ -225,6 +244,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e == null) {
+                            ParseObject.pinAllInBackground(list);
 
                             if (list.size() > 0) {
 

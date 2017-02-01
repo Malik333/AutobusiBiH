@@ -55,9 +55,12 @@ public class BusStateActivity extends AppCompatActivity {
         listView.setTextFilterEnabled(true);
 
 
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+
+        dialog.getProgress();
         dialog.setMessage("Searching...");
         dialog.show();
+
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -84,6 +87,7 @@ public class BusStateActivity extends AppCompatActivity {
 
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+                query.fromLocalDatastore();
                 query.whereEqualTo("CityName", adapter.getItem(position));
 
                 query.whereNear("Location", location);
@@ -93,6 +97,7 @@ public class BusStateActivity extends AppCompatActivity {
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e == null) {
 
+                            ParseObject.pinAllInBackground(list);
                             if (list.size() > 0) {
 
                                 for (ParseObject object : list) {

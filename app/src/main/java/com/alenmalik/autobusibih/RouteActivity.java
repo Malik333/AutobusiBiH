@@ -139,6 +139,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     public void toCityRoute(String name) {
 
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Cities");
+        toCityQuery.fromLocalDatastore();
         toCityQuery.whereEqualTo("fromCity", name);
         
         toCityQuery.setLimit(10000);
