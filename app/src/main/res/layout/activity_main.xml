@@ -97,16 +97,6 @@
         android:layout_marginBottom="10dp" />
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/cityIde"
-        android:layout_toLeftOf="@+id/textView4"
-        android:layout_toStartOf="@+id/textView4"
-        android:layout_marginTop="57dp"
-        android:id="@+id/textView3" />
-
-    <TextView
         android:text="Stanice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,19 +108,6 @@
         android:textSize="20sp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor" />
-
-    <TextView
-        android:text="Autobusne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:id="@+id/textView13"
-        android:textStyle="bold|italic"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/busStateId"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3"
         android:textColor="@color/blackColor" />
 
     <TextView
@@ -146,5 +123,71 @@
         android:layout_toEndOf="@+id/textView4"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="-5dp" />
+
+    <TextView
+        android:text="Autobusne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:id="@+id/textView13"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:textColor="@color/blackColor"
+        android:layout_alignTop="@+id/busStateId"
+        android:layout_toLeftOf="@+id/textView4"
+        android:layout_toStartOf="@+id/textView4" />
+
+    <TextView
+        android:text="Do grada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView17"
+        android:layout_alignRight="@+id/textView17"
+        android:layout_alignEnd="@+id/textView17"
+        android:id="@+id/textView23"
+        android:textStyle="bold|italic"
+        android:textSize="25sp"
+        android:textColor="@color/blackColor" />
+
+    <TextView
+        android:text="Iz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView3"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/blackColor"
+        android:layout_alignTop="@+id/cityIde"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
+
+    <TextView
+        android:text="Od grada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/blackColor"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:text="Grada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView22"
+        android:textStyle="bold|italic"
+        android:textSize="25sp"
+        android:textColor="@color/blackColor"
+        android:layout_below="@+id/textView3"
+        android:layout_alignRight="@+id/textView15"
+        android:layout_alignEnd="@+id/textView15"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

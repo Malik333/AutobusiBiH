@@ -110,15 +110,15 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    app:srcCompat="@drawable/krug"
+                    app:srcCompat="@drawable/fromcity"
                     android:layout_below="@+id/textView25"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/prviImageView"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:layout_height="40dp"
-                    android:layout_width="100dp" />
+                    android:layout_width="100dp"
+                    android:layout_height="50dp" />
 
                 <TextView
                     android:text="@string/unosite_ime_grada_odakle_autobus_kre_e_i_izlistavaju_vam_se_gradovi_do_kojih_autobus_ide_zajedno_sa_satnicom"
@@ -140,7 +140,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    app:srcCompat="@drawable/krug"
+                    app:srcCompat="@drawable/fromcitytocity"
                     android:layout_below="@+id/textZaPrviImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -148,7 +148,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:layout_width="100dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="50dp" />
 
                 <TextView
                     android:text="@string/unosite_iz_kojeg_grada_autobus_kre_e_i_unosite_do_kojeg_grada_autobus_ide_i_izlistavaju_vam_se_satnice"
@@ -170,7 +170,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    app:srcCompat="@drawable/krug"
+                    app:srcCompat="@drawable/busstate"
                     android:layout_below="@+id/textZaDrugiImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -178,18 +178,18 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:layout_width="100dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="50dp" />
 
                 <TextView
-                    android:text="@string/prikaziva_vam_listu_gradova_i_njihove_najbli_e_autobusne_stanice_pritiskom_na_dugme_odvedi_me_do_stanice_pali_se_navigacija_koja_vas_navigira_do_najbli_e_autobusne"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textZaTreciImageView"
-                    android:layout_alignTop="@+id/treciImageView"
-                    android:layout_alignLeft="@+id/textZaDrugiImageView"
-                    android:layout_alignStart="@+id/textZaDrugiImageView"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="40dp" />
+                android:text="@string/prikaziva_vam_listu_gradova_i_njihove_najbli_e_autobusne_stanice_pritiskom_na_dugme_odvedi_me_do_stanice_pali_se_navigacija_koja_vas_navigira_do_najbli_e_autobusne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textZaTreciImageView"
+                android:layout_alignTop="@+id/treciImageView"
+                android:layout_alignLeft="@+id/textZaDrugiImageView"
+                android:layout_alignStart="@+id/textZaDrugiImageView"
+                android:layout_weight="1"
+                android:layout_marginLeft="40dp" />
 
             </LinearLayout>
 
@@ -198,29 +198,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
-
                 <ImageView
-                    app:srcCompat="@drawable/krug"
+                    app:srcCompat="@drawable/cijene"
                     android:layout_below="@+id/textZaTreciImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/cetvrtiImageView"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="-20dp" />
+                    android:layout_height="50dp"
+                    android:layout_weight="0.38"
+                    android:layout_width="50dp" />
 
                 <TextView
                     android:text="@string/izlistava_redoslijede_vo_nje_sa_cijenom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/cetvrtiImageView"
-                    android:layout_alignLeft="@+id/textZaPrviImageView"
-                    android:layout_alignStart="@+id/textZaPrviImageView"
                     android:id="@+id/textZaCetvrtiImageView"
+                    android:layout_alignTop="@+id/cetvrtiImageView"
+                    android:layout_alignLeft="@+id/textZaTreciImageView"
+                    android:layout_alignStart="@+id/textZaTreciImageView"
                     android:layout_weight="1"
-                    android:layout_marginLeft="27dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp" />
 
             </LinearLayout>

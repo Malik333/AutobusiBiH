@@ -98,7 +98,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         fromCityRoute();
 
 
-
     }
 
     public void fromCityRoute() {
@@ -110,6 +109,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
+                    ParseObject.pinAllInBackground(list);
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
@@ -125,7 +125,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                         fromCity.setAdapter(adapter);
 
                         adapter.notifyDataSetChanged();
-
 
 
                     }
@@ -147,6 +146,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
+                    ParseObject.pinAllInBackground(list);
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
@@ -186,11 +186,12 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             fromCityQuery.whereNear("Location", fromCityLocation);
             fromCityQuery.whereEqualTo("Name", fromCityString);
             fromCityQuery.setLimit(10);
+            fromCityQuery.fromLocalDatastore();
             fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-
+                        ParseObject.pinAllInBackground(list);
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -215,11 +216,12 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             toCityQuery.whereNear("Location", toCityLocation);
             toCityQuery.whereEqualTo("Name", toCityString);
             toCityQuery.setLimit(10);
+            toCityQuery.fromLocalDatastore();
             toCityQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-
+                        ParseObject.pinAllInBackground(list);
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -247,7 +249,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                 public void done(List<ParseObject> list, ParseException e) {
 
                     if (e == null) {
-
+                        ParseObject.pinAllInBackground(list);
                         if (list.size() > 0) {
                             hours_list.clear();
                             for (ParseObject object : list) {
@@ -275,9 +277,9 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
             startActivity(intent);
-        } else if (view.getId() == R.id.clearfromCity){
+        } else if (view.getId() == R.id.clearfromCity) {
             fromCity.setText("");
-        } else if (view.getId() == R.id.cleartoCity){
+        } else if (view.getId() == R.id.cleartoCity) {
             toCity.setText("");
         }
 
