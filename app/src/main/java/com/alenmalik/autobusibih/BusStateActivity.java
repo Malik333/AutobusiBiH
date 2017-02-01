@@ -57,6 +57,7 @@ public class BusStateActivity extends AppCompatActivity {
 
          ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
 
+        query.fromLocalDatastore();
         dialog.getProgress();
         dialog.setMessage("Searching...");
         dialog.show();
@@ -66,6 +67,7 @@ public class BusStateActivity extends AppCompatActivity {
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
 
+                    ParseObject.pinAllInBackground(list);
                     listCityName.clear();
                     for (ParseObject object : list) {
 

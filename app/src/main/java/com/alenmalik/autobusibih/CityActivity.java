@@ -193,11 +193,12 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                      ParseObject.pinAllInBackground(list);
+
 
                 if (e == null) {
                     if (list.size() > 0) {
 
+                        ParseObject.pinAllInBackground(list);
                         for (ParseObject object : list) {
 
 
