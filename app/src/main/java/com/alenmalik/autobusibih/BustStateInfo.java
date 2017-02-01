@@ -49,6 +49,7 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.whereEqualTo("CityName", nameCity);
+        query.fromLocalDatastore();
         dialog.setMessage("Searching...");
         dialog.show();
         query.findInBackground(new FindCallback<ParseObject>() {

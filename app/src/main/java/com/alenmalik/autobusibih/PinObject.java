@@ -75,14 +75,10 @@ public class PinObject {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
 
-
+                ParseObject.pinAllInBackground(list);
                 if (e == null) {
                     if (list.size() > 0) {
 
-                        ParseObject.pinAllInBackground(list);
-                        for (ParseObject object : list) {
-
-                        }
                     }
                 }
 
@@ -100,16 +96,8 @@ public class PinObject {
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
                     ParseObject.pinAllInBackground(list);
-
                     if (list.size() > 0) {
-
-                        for (ParseObject object : list) {
-
-                        }
-
                     }
-
-
                 }
             }
         });
@@ -143,9 +131,6 @@ public class PinObject {
 
         ParseGeoPoint location3 = new ParseGeoPoint(0, 0);
         ParseQuery<ParseObject> query7 = ParseQuery.getQuery("BusAddress");
-
-
-
         query7.whereNear("Location", location3);
         query7.setLimit(10);
         query7.findInBackground(new FindCallback<ParseObject>() {
@@ -174,6 +159,47 @@ public class PinObject {
 
 
                 }
+            }
+        });
+
+        ParseGeoPoint fromCityLocation = new ParseGeoPoint(0, 0);
+        ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
+        fromCityQuery.whereNear("Location", fromCityLocation);
+        fromCityQuery.whereEqualTo("Name", RouteActivity.fromCityString);
+        fromCityQuery.setLimit(10);
+        fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(list);
+                }
+            }
+        });
+
+
+        ParseGeoPoint toCityLocation = new ParseGeoPoint(0, 0);
+        ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
+        toCityQuery.whereNear("Location", toCityLocation);
+        toCityQuery.whereEqualTo("Name", RouteActivity.toCityString);
+        toCityQuery.setLimit(10);
+        toCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(list);
+
+                }
+            }
+        });
+        ParseQuery<ParseObject> query9 = ParseQuery.getQuery("Cities");
+        query9.whereEqualTo("fromCity", RouteActivity.fromCityString);
+        query9.whereEqualTo("toCity", RouteActivity.toCityString);
+
+        query9.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                ParseObject.pinAllInBackground(list);
+
             }
         });
 
