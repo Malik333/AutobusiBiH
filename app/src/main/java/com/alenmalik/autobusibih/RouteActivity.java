@@ -109,7 +109,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
-                    ParseObject.pinAllInBackground(list);
+
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
@@ -146,7 +146,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
-                    ParseObject.pinAllInBackground(list);
+
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
@@ -191,7 +191,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-                        ParseObject.pinAllInBackground(list);
+
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -221,7 +221,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-                        ParseObject.pinAllInBackground(list);
+
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -249,7 +249,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                 public void done(List<ParseObject> list, ParseException e) {
 
                     if (e == null) {
-                        ParseObject.pinAllInBackground(list);
+
                         if (list.size() > 0) {
                             hours_list.clear();
                             for (ParseObject object : list) {

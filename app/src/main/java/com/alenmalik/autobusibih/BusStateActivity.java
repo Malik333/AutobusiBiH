@@ -68,7 +68,7 @@ public class BusStateActivity extends AppCompatActivity {
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
 
-                    ParseObject.pinAllInBackground(list);
+
                     listCityName.clear();
                     for (ParseObject object : list) {
 
@@ -100,7 +100,7 @@ public class BusStateActivity extends AppCompatActivity {
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e == null) {
 
-                            ParseObject.pinAllInBackground(list);
+
                             if (list.size() > 0) {
 
                                 for (ParseObject object : list) {

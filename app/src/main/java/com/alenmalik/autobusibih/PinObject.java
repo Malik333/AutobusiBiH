@@ -153,11 +153,10 @@ public class PinObject {
         query8.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
+                ParseObject.pinAllInBackground(list);
                 if (e == null) {
-
-                    ParseObject.pinAllInBackground(list);
-
-
+                    for (ParseObject object : list) {
+                    }
                 }
             }
         });
@@ -170,8 +169,10 @@ public class PinObject {
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
+                ParseObject.pinAllInBackground(list);
                 if (e == null) {
-                    ParseObject.pinAllInBackground(list);
+                    for (ParseObject object : list) {
+                    }
                 }
             }
         });
@@ -185,9 +186,10 @@ public class PinObject {
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
+                ParseObject.pinAllInBackground(list);
                 if (e == null) {
-                    ParseObject.pinAllInBackground(list);
-
+                    for (ParseObject object : list) {
+                    }
                 }
             }
         });
@@ -199,6 +201,11 @@ public class PinObject {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 ParseObject.pinAllInBackground(list);
+                if (list.size() > 0) {
+
+                    for (ParseObject object : list) {
+                    }
+                }
 
             }
         });
