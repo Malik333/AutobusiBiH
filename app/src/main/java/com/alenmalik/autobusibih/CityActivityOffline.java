@@ -3,44 +3,31 @@ package com.alenmalik.autobusibih;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
-import java.lang.reflect.Array;
-import java.text.CollationElementIterator;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class CityActivityOffline extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     AutoCompleteTextView cityAutocomplete;
     ArrayAdapter<String> adapter3;
@@ -58,42 +45,33 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     static String chooseCityName;
     private ProgressDialog dialog;
 
-    ConnectivityManager connManager;
-    NetworkInfo mWifi;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_city);
-
-
+        setContentView(R.layout.activity_city_offline);
         nameList = new ArrayList<String>();
-        cityAutocomplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteCityId);
+        cityAutocomplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteCityId_offline);
         hashSet = new HashSet<String>();
         hashSettoCity = new HashSet<String>();
         autoCompleteSuggestion();
-        search = (Button) findViewById(R.id.search_city_btn);
-        cityView = (ListView) findViewById(R.id.cityListView);
+        search = (Button) findViewById(R.id.search_city_btn_offline);
+        cityView = (ListView) findViewById(R.id.cityListViewoffline);
         listCity = new ArrayList<String>();
         dialog = new ProgressDialog(this);
-        clear = (ImageButton) findViewById(R.id.clearCityAct);
+        clear = (ImageButton) findViewById(R.id.clearCityAct_offline);
         listCity.add("Waiting...");
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listCity);
         cityView.setAdapter(adapter);
         search.setOnClickListener(this);
         cityView.setOnItemClickListener(this);
         clear.setOnClickListener(this);
-        connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        mWifi = connManager.getActiveNetworkInfo();
-
-        //  gotNext();
-
 
     }
 
+    @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.search_city_btn) {
+        if (view.getId() == R.id.search_city_btn_offline) {
             InputMethodManager inputManager = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -106,7 +84,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             double longitude = 0;
             ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
             ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-
+            query.fromLocalDatastore();
             query.whereNear("Location", location);
             query.whereEqualTo("Name", chooseCityName);
             // query.setLimit(10);
@@ -115,7 +93,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
-
+                        ParseObject.pinAllInBackground(list);
                         if (list.size() > 0) {
 
                             for (ParseObject object : list) {
@@ -134,7 +112,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
             });
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Cities");
-
+            query2.fromLocalDatastore();
             query2.whereEqualTo("fromCity", chooseCityName);
             query2.setLimit(10000);
 
@@ -144,6 +122,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
+                        ParseObject.pinAllInBackground(list);
 
                         if (list.size() > 0) {
 
@@ -173,21 +152,20 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
             hashSettoCity.clear();
 
-        } else if (view.getId() == R.id.cityListView) {
+        } else if (view.getId() == R.id.cityListViewoffline) {
 
 
-        } else if (view.getId() == R.id.clearCityAct) {
+        } else if (view.getId() == R.id.clearCityAct_offline) {
             cityAutocomplete.setText("");
         }
     }
-
 
     public void autoCompleteSuggestion() {
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.setLimit(10000);
-
+        query.fromLocalDatastore();
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -195,7 +173,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (e == null) {
                     if (list.size() > 0) {
-
+                        ParseObject.pinAllInBackground(list);
                         for (ParseObject object : list) {
 
 
@@ -210,7 +188,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                         hashSet.addAll(nameList);
                         nameList.clear();
                         nameList.addAll(hashSet);
-                        adapter3 = new ArrayAdapter<String>(CityActivity.this, android.R.layout.simple_dropdown_item_1line, nameList);
+                        adapter3 = new ArrayAdapter<String>(CityActivityOffline.this, android.R.layout.simple_dropdown_item_1line, nameList);
                         cityAutocomplete.setThreshold(1);
 
                         cityAutocomplete.setAdapter(adapter3);
@@ -227,8 +205,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
-        if (adapterView.getId() == R.id.cityListView) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        if (adapterView.getId() == R.id.cityListViewoffline) {
 
             if (listCity.get(position).equals("Waiting...")) {
 
@@ -238,7 +216,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                 double longitude = 0;
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("CityLocation");
-
+                query.fromLocalDatastore();
                 query.whereNear("Location", location);
                 query.whereEqualTo("Name", listCity.get(position));
                 //query.setLimit(10);
@@ -246,6 +224,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e == null) {
+                            ParseObject.pinAllInBackground(list);
 
                             if (list.size() > 0) {
 
@@ -262,32 +241,12 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-                Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
+                Intent intent1 = new Intent(CityActivityOffline.this, DetailsActivity.class);
                 intent1.putExtra("selectCity", listCity.get(position));
                 startActivity(intent1);
             }
 
 
-        }
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.offline_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.cityakt_offline:
-                Intent i = new Intent(CityActivity.this,CityActivityOffline.class);
-                startActivity(i);
-                return true;
-            default: return super.onOptionsItemSelected(item);
         }
 
     }
