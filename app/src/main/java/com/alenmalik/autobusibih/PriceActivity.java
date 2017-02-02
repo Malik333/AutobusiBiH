@@ -21,7 +21,7 @@ public class PriceActivity extends AppCompatActivity {
     ArrayList<String> priceList;
     ListView priceListView;
     ProgressDialog dialog;
-
+//ponovo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
