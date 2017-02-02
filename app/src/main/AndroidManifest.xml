@@ -77,10 +77,15 @@
         <activity
             android:name=".MapRouteActivity"
             android:label="@string/title_activity_map_route" />
-        <activity android:name=".BustStateInfo" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".AboutUsActivity" />
-        <activity android:name=".PriceInfoActivitiy"></activity>
+        <activity android:name=".BustStateInfo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HelpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutUsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PriceInfoActivitiy"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
