@@ -241,6 +241,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
             query.whereEqualTo("fromCity", fromCityString);
             query.whereEqualTo("toCity", toCityString);
+            query.addAscendingOrder("createdAt");
             query.fromLocalDatastore();
             dialog.setMessage("Loading...");
             dialog.show();
