@@ -2,8 +2,12 @@ package com.alenmalik.autobusibih;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -21,6 +25,7 @@ public class PriceActivity extends AppCompatActivity {
     ArrayList<String> priceList;
     ListView priceListView;
     ProgressDialog dialog;
+    String cityName;
 //ponovo
 
     @Override
@@ -54,7 +59,7 @@ public class PriceActivity extends AppCompatActivity {
 
                     for (ParseObject object : list) {
 
-                        String cityName = object.get("fromCity") +" - "+ object.get("toCity");
+                        cityName = object.get("fromCity") +" - "+ object.get("toCity");
 
                         priceList.add(String.valueOf(cityName));
 
@@ -64,6 +69,26 @@ public class PriceActivity extends AppCompatActivity {
                     dialog.dismiss();
 
                 }
+            }
+        });
+
+        priceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                String[] split = priceList.get(position).split("-");
+
+                String city1 = split[0];
+                String city2 = split[1].trim();
+
+                Log.i("cityOne", city1);
+                Log.i("cityTwo", city2);
+
+                Intent intent = new Intent(PriceActivity.this, PriceInfoActivitiy.class);
+                intent.putExtra("fromcity", city1);
+                intent.putExtra("tocity", city2);
+                startActivity(intent);
+
             }
         });
 

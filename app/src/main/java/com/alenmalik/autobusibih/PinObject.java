@@ -228,5 +228,22 @@ public class PinObject {
             }
         });
 
+        ParseQuery<ParseObject> query11 = ParseQuery.getQuery("Cijene");
+        query11.whereEqualTo("fromCity", PriceInfoActivitiy.cityFrom);
+        query11.whereEqualTo("toCity", PriceInfoActivitiy.cityto);
+        query11.fromLocalDatastore();
+
+        query11.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+                    ParseObject.pinAllInBackground(list);
+                    for (ParseObject object : list){
+
+                    }
+                }
+            }
+        });
+
     }
 }
