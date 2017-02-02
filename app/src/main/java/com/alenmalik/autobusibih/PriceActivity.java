@@ -78,7 +78,7 @@ public class PriceActivity extends AppCompatActivity {
 
                 String[] split = priceList.get(position).split("-");
 
-                String city1 = split[0];
+                String city1 = split[0].trim();
                 String city2 = split[1].trim();
 
                 Log.i("cityOne", city1);

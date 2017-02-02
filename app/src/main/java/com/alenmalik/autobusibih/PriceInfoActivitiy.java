@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class PriceInfoActivitiy extends AppCompatActivity {
 
     TextView dnevna, povratna;
     Intent intent;
+    ProgressDialog dialog;
 
     static String cityFrom;
     static String cityto;
@@ -37,7 +39,9 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
         query.whereEqualTo("fromCity", cityFrom);
         query.whereEqualTo("toCity", cityto);
-        //query.fromLocalDatastore();
+        query.fromLocalDatastore();
+        dialog.setMessage("Please wait");
+        dialog.show();
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -46,11 +50,10 @@ public class PriceInfoActivitiy extends AppCompatActivity {
 
                     for (ParseObject object : list){
 
-                        Log.i("cdnevna:", String.valueOf(object.get("jedanSmijer")));
-                        Log.i("cpovratna:", String.valueOf(object.get("povratna")));
-
                         dnevna.setText("Dnevna: " +object.get("jedanSmijer").toString());
                         povratna.setText("Povratna: "+object.get("povratna").toString());
+
+                        dialog.dismiss();
                     }
                 }
             }
