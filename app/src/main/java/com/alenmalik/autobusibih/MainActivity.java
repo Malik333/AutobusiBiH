@@ -4,24 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.util.Collections;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -78,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
             startActivity(cityIntent);
         } else if (view.getId() == R.id.aboutIde) {
-            Intent cityIntent = new Intent(MainActivity.this, AboutActivity.class);
+            Intent cityIntent = new Intent(MainActivity.this, PriceActivity.class);
             startActivity(cityIntent);
         }
     }

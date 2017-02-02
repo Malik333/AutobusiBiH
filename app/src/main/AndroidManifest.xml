@@ -53,7 +53,7 @@
             android:name=".BusStateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".PriceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".BusMapAct"
