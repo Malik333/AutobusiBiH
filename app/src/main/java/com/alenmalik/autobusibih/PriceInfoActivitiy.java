@@ -31,17 +31,19 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         dnevna = (TextView) findViewById(R.id.dnevna_txt);
         povratna = (TextView) findViewById(R.id.povratna_txt);
 
+        dialog = new ProgressDialog(this);
+
         intent = getIntent();
 
         cityFrom = intent.getStringExtra("fromcity");
         cityto = intent.getStringExtra("tocity");
-
+        dialog.setMessage("Please wait");
+        dialog.show();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
         query.whereEqualTo("fromCity", cityFrom);
         query.whereEqualTo("toCity", cityto);
         query.fromLocalDatastore();
-        dialog.setMessage("Please wait");
-        dialog.show();
+
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
