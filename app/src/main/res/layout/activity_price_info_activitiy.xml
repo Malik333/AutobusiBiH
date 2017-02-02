@@ -8,24 +8,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.alenmalik.autobusibih.PriceInfoActivitiy">
+    tools:context="com.alenmalik.autobusibih.PriceInfoActivitiy"
+    android:background="@color/backgroundColorApp">
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/dnevna_txt" />
+        android:id="@+id/dnevna_txt"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor" />
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/povratna_txt"
         android:layout_below="@+id/dnevna_txt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor" />
 </RelativeLayout>
