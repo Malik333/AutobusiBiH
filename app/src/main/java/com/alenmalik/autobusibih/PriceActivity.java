@@ -38,7 +38,7 @@ public class PriceActivity extends AppCompatActivity {
 
 
         ParseQuery<ParseObject> query10 = ParseQuery.getQuery("Cijene");
-        query10.addAscendingOrder("FromCity");
+        query10.addAscendingOrder("fromCity");
 
         query10.fromLocalDatastore();
         dialog.getProgress();
@@ -54,7 +54,9 @@ public class PriceActivity extends AppCompatActivity {
 
                     for (ParseObject object : list) {
 
-                        priceList.add(String.valueOf(object.get("FromCity")));
+                        String cityName = object.get("fromCity") +" - "+ object.get("toCity");
+
+                        priceList.add(String.valueOf(cityName));
 
                     }
 

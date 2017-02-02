@@ -212,7 +212,7 @@ public class PinObject {
 
 
         ParseQuery<ParseObject> query10 = ParseQuery.getQuery("Cijene");
-        query10.addAscendingOrder("FromCity");
+        query10.addAscendingOrder("fromCity");
         query10.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

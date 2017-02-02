@@ -1,6 +1,8 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -33,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        SharedPreferences prefs = this.getSharedPreferences(
+                "com.your.app", Context.MODE_PRIVATE);
+        boolean hasVisisted = prefs.getBoolean("HAS_VISISTED_BEFORE", false);
+        if(!hasVisisted) {
+            Toast.makeText(MainActivity.this, "Potrebno je da internet bude uključen da se podaci skinu", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("HAS_VISISTED_BEFORE", true).commit();
+        }
 
         city = (ImageButton) findViewById(R.id.cityIde);
         route = (ImageButton) findViewById(R.id.routeId);
