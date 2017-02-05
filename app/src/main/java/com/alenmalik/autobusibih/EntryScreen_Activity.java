@@ -28,4 +28,9 @@ public class EntryScreen_Activity extends AppCompatActivity {
             }
         }, splash_time_out);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }

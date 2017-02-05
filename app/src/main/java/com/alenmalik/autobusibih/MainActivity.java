@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -19,10 +19,10 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageButton city;
-    ImageButton route;
-    ImageButton busState;
-    ImageButton about;
+    ImageView city;
+    ImageView route;
+    ImageView busState;
+    ImageView about;
 
     static Boolean cityActivityActive = false;
     static Boolean routeActivityActive = false;
@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             prefs.edit().putBoolean("HAS_VISISTED_BEFORE", true).commit();
         }
 
-        city = (ImageButton) findViewById(R.id.cityIde);
-        route = (ImageButton) findViewById(R.id.routeId);
-        busState = (ImageButton) findViewById(R.id.busStateId);
-        about = (ImageButton) findViewById(R.id.aboutIde);
+        city = (ImageView) findViewById(R.id.cityIde);
+        route = (ImageView) findViewById(R.id.routeId);
+        busState = (ImageView) findViewById(R.id.busStateId);
+        about = (ImageView) findViewById(R.id.priceId);
 
         city.setOnClickListener(this);
         route.setOnClickListener(this);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.busStateId) {
             Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
             startActivity(cityIntent);
-        } else if (view.getId() == R.id.aboutIde) {
+        } else if (view.getId() == R.id.priceId) {
             Intent cityIntent = new Intent(MainActivity.this, PriceActivity.class);
             startActivity(cityIntent);
         }

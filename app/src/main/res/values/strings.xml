@@ -11,4 +11,5 @@
     <string name="prikaziva_vam_listu_gradova_i_njihove_najbli_e_autobusne_stanice_pritiskom_na_dugme_odvedi_me_do_stanice_pali_se_navigacija_koja_vas_navigira_do_najbli_e_autobusne"><![CDATA[prikaziva vam listu gradova i njihove najbliže autobusne stanice,pritiskom na dugme odvedi me do stanice pali se navigacija koja vas navigira do najbliže autobusne]]></string>
     <string name="izlistava_redoslijede_vo_nje_sa_cijenom"><![CDATA[izlistava redoslijede vožnje sa cijenom]]></string>
     <string name="offlineMode"></string>
+    <string name="autobuske">AUTOBUSKE</string>
 </resources>

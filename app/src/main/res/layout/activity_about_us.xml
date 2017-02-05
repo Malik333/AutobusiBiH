@@ -109,8 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    app:srcCompat="@drawable/izzgrada"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@drawable/city"
                     android:layout_below="@+id/textView25"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -140,7 +140,6 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    app:srcCompat="@drawable/oddograda"
                     android:layout_below="@+id/textZaPrviImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -169,8 +168,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
 
-                <ImageView
-                    app:srcCompat="@drawable/busstanice"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@drawable/bus_station"
                     android:layout_below="@+id/textZaDrugiImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -198,8 +197,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
-                <ImageView
-                    app:srcCompat="@drawable/ciijene"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@drawable/price"
                     android:layout_below="@+id/textZaTreciImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
