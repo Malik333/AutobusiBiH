@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class EntryScreen_Activity extends AppCompatActivity {
 
-    private static int splash_time_out = 10000;
+    private static int splash_time_out = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -183,7 +183,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             fromCityQuery.whereNear("Location", fromCityLocation);
             fromCityQuery.whereEqualTo("Name", fromCityString);
             fromCityQuery.setLimit(10);
-            fromCityQuery.fromLocalDatastore();
             fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
@@ -212,7 +211,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             toCityQuery.whereNear("Location", toCityLocation);
             toCityQuery.whereEqualTo("Name", toCityString);
             toCityQuery.setLimit(10);
-            toCityQuery.fromLocalDatastore();
             toCityQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {

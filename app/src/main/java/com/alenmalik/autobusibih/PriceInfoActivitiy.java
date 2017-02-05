@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -23,6 +25,8 @@ public class PriceInfoActivitiy extends AppCompatActivity {
     static String cityFrom;
     static String cityto;
 
+    AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,10 @@ public class PriceInfoActivitiy extends AppCompatActivity {
 
         dnevna = (TextView) findViewById(R.id.dnevna_txt);
         povratna = (TextView) findViewById(R.id.povratna_txt);
+
+        mAdView = (AdView) findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         dialog = new ProgressDialog(this);
 

@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -26,6 +28,7 @@ public class PriceActivity extends AppCompatActivity {
     ListView priceListView;
     ProgressDialog dialog;
     String cityName;
+
 //ponovo
 
     @Override
@@ -35,8 +38,9 @@ public class PriceActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         priceListView = (ListView) findViewById(R.id.priceListView);
         priceList = new ArrayList<>();
-        priceList.add("Waiting");
         adapter = new ArrayAdapter<String>(PriceActivity.this,android.R.layout.simple_list_item_1,priceList);
+
+
 
 
         priceListView.setAdapter(adapter);
