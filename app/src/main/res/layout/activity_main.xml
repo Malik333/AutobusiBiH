@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context="com.alenmalik.autobusibih.MainActivity">
+    tools:context="com.alenmalik.autobusibih.MainActivity"
+    android:background="@drawable/background">
 
 
     <com.google.android.gms.ads.AdView
