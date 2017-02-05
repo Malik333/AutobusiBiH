@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         busState.setOnClickListener(this);
         about.setOnClickListener(this);
 
-        PinObject ob = new PinObject();
-        ob.pinAllobject();
+      //  PinObject ob = new PinObject();
+        //  ob.pinAllobject();
 
     }
 

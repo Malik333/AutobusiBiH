@@ -34,11 +34,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".EntryScreen_Activity"
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -77,15 +77,20 @@
         <activity
             android:name=".MapRouteActivity"
             android:label="@string/title_activity_map_route" />
-        <activity android:name=".BustStateInfo"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HelpActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AboutUsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PriceInfoActivitiy"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".BustStateInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PriceInfoActivitiy"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>
