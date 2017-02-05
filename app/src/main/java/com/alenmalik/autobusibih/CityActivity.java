@@ -151,7 +151,6 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
                             for (ParseObject object : list) {
 
-                                Log.i("City", i++ + " " + String.valueOf(object.get("toCity")));
                                 listCity.add(String.valueOf(object.get("toCity")));
 
                             }
@@ -201,9 +200,6 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
 
 
                         }
-
-
-                        Log.i("City", String.valueOf(nameList.size()));
 
                         hashSet.addAll(nameList);
                         nameList.clear();
