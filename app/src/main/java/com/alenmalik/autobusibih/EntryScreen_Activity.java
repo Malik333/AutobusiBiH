@@ -14,8 +14,7 @@ public class EntryScreen_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_screen_);
 
-        PinObject object = new PinObject();
-        object.pinAllobject(this);
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

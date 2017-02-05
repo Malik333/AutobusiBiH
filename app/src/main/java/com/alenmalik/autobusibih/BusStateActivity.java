@@ -57,8 +57,6 @@ public class BusStateActivity extends AppCompatActivity {
 
          ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.addAscendingOrder("CityName");
-
-        query.fromLocalDatastore();
         dialog.getProgress();
         dialog.setMessage("Searching...");
         dialog.show();
@@ -90,7 +88,6 @@ public class BusStateActivity extends AppCompatActivity {
 
                 ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-                query.fromLocalDatastore();
                 query.whereEqualTo("CityName", adapter.getItem(position));
 
                 query.whereNear("Location", location);

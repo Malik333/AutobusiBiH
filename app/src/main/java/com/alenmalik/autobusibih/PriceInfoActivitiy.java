@@ -42,9 +42,6 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
         query.whereEqualTo("fromCity", cityFrom);
         query.whereEqualTo("toCity", cityto);
-        query.fromLocalDatastore();
-
-
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

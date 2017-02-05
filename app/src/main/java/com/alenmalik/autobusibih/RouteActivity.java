@@ -104,7 +104,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Cities");
         fromCityQuery.setLimit(10000);
-        fromCityQuery.fromLocalDatastore();
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -140,7 +139,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Cities");
         toCityQuery.whereEqualTo("fromCity", name);
-        toCityQuery.fromLocalDatastore();
         toCityQuery.setLimit(10000);
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -182,7 +180,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             double longitude = 0;
             ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude, longitude);
             ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
-            fromCityQuery.fromLocalDatastore();
             fromCityQuery.whereNear("Location", fromCityLocation);
             fromCityQuery.whereEqualTo("Name", fromCityString);
             fromCityQuery.setLimit(10);
@@ -212,7 +209,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
             ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude, longitude);
             ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
-            toCityQuery.fromLocalDatastore();
             toCityQuery.whereNear("Location", toCityLocation);
             toCityQuery.whereEqualTo("Name", toCityString);
             toCityQuery.setLimit(10);
@@ -242,7 +238,6 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             query.whereEqualTo("fromCity", fromCityString);
             query.whereEqualTo("toCity", toCityString);
             query.addAscendingOrder("createdAt");
-            query.fromLocalDatastore();
             dialog.setMessage("Loading...");
             dialog.show();
             query.findInBackground(new FindCallback<ParseObject>() {
