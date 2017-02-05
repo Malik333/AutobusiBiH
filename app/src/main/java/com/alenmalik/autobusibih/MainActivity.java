@@ -54,9 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         route.setOnClickListener(this);
         busState.setOnClickListener(this);
         about.setOnClickListener(this);
-
-      //  PinObject ob = new PinObject();
-        //  ob.pinAllobject();
+        onStop();
 
     }
 
@@ -110,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return super.onOptionsItemSelected(item);
         }
 
+
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }

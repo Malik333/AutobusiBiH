@@ -44,8 +44,6 @@ public class PriceActivity extends AppCompatActivity {
 
         ParseQuery<ParseObject> query10 = ParseQuery.getQuery("Cijene");
         query10.addAscendingOrder("fromCity");
-
-        query10.fromLocalDatastore();
         dialog.getProgress();
         dialog.setMessage("Searching...");
         dialog.show();
