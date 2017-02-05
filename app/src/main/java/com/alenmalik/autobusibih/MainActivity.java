@@ -66,12 +66,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.cityIde) {
 
-            city.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button));
+
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
+            vibe.vibrate(200);
+            city.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button));
             startActivity(cityIntent);
             cityActivityActive = true;
             routeActivityActive = false;
-            vibe.vibrate(500);
+
+
 
         } else if (view.getId() == R.id.routeId) {
             Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
@@ -122,5 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStop() {
         super.onStop();
+    }
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

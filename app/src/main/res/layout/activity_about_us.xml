@@ -139,7 +139,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@drawable/ruta5"
                     android:layout_below="@+id/textZaPrviImageView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"

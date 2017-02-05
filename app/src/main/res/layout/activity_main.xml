@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context="com.alenmalik.autobusibih.MainActivity"
-    android:background="@drawable/background4">
+    tools:context="com.alenmalik.autobusibih.MainActivity">
 
 
     <com.google.android.gms.ads.AdView
@@ -42,17 +41,6 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/cityIde"
-        android:src="@drawable/city"
-        android:layout_marginTop="17dp"
-        android:textAlignment="center"
-        android:layout_width="120dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/busStateId"
-        android:layout_alignStart="@+id/busStateId"
-        android:layout_height="120dp" />
-
     <TextView
         android:text="IZ GRADA"
         android:layout_width="wrap_content"
@@ -61,10 +49,10 @@
         android:layout_alignLeft="@+id/cityIde"
         android:layout_alignStart="@+id/cityIde"
         android:id="@+id/textView3"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp" />
 
     <TextView
@@ -75,10 +63,10 @@
         android:layout_alignRight="@+id/routeId"
         android:layout_alignEnd="@+id/routeId"
         android:id="@+id/textView13"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textStyle="bold|italic"
         android:textColor="@color/blackColor"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="13dp" />
 
     <TextView
@@ -89,39 +77,32 @@
         android:layout_alignLeft="@+id/textView13"
         android:layout_alignStart="@+id/textView13"
         android:id="@+id/textView15"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textStyle="bold|italic"
         android:textColor="@color/blackColor"
         android:layout_marginTop="5dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/busStateId"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
         android:src="@drawable/bus_station"
         android:layout_above="@+id/adView"
         android:layout_alignLeft="@+id/adView"
         android:layout_alignStart="@+id/adView"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="45dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/priceId"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
         android:src="@drawable/price"
         android:layout_above="@+id/adView"
         android:layout_alignRight="@+id/adView"
         android:layout_alignEnd="@+id/adView"
-        android:layout_marginBottom="60dp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/routeId"
-        android:src="@drawable/ruta5"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignTop="@+id/cityIde"
-        android:layout_alignLeft="@+id/priceId"
-        android:layout_alignStart="@+id/priceId" />
+        android:layout_marginBottom="45dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:text="CIJENE"
@@ -133,8 +114,9 @@
         android:id="@+id/textView29"
         android:textStyle="bold|italic"
         android:textColor="@color/blackColor"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp" />
+        android:textSize="14sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -144,10 +126,31 @@
         android:layout_alignStart="@+id/adView"
         android:id="@+id/textView30"
         android:text="AUTOBUSKE \n STANICE"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="5dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/routeId"
+        android:src="@drawable/ruta5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/cityIde"
+        android:layout_alignLeft="@+id/priceId"
+        android:layout_alignStart="@+id/priceId"
+        android:layout_marginRight="10dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cityIde"
+        android:src="@drawable/city"
+        android:layout_marginTop="17dp"
+        android:textAlignment="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/busStateId"
+        android:layout_alignStart="@+id/busStateId" />
 
 </RelativeLayout>
