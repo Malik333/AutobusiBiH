@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:elevation="0dp"
     tools:context="com.alenmalik.autobusibih.MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/backgroung">
 
 
     <com.google.android.gms.ads.AdView
