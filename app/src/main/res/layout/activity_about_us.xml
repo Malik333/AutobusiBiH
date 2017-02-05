@@ -83,10 +83,10 @@
         android:text="UPUTE:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView24"
+        android:layout_below="@+id/textView27"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/textView25"
         android:textStyle="bold"
         android:textColor="@color/blackColor" />
@@ -225,5 +225,29 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:text="NAPOMENA:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView24"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView27"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="aplikacija u offline modu nije u potpunosti funkcionalna(ne rade mape)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView28"
+        android:layout_alignBaseline="@+id/textView27"
+        android:layout_alignBottom="@+id/textView27"
+        android:layout_toRightOf="@+id/textView27"
+        android:layout_toEndOf="@+id/textView27"
+        android:textColor="@color/blackColor"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>
