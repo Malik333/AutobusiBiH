@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -66,10 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.cityIde) {
 
-
-            Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
+            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button);
+            city.startAnimation(anim);
             vibe.vibrate(200);
-            city.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button));
+            Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
             cityActivityActive = true;
             routeActivityActive = false;
