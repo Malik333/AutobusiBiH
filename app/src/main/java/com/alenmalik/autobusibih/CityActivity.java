@@ -80,7 +80,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         dialog = new ProgressDialog(this);
         clear = (ImageButton) findViewById(R.id.clearCityAct);
         listCity.add("Waiting...");
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listCity);
+        adapter = new ArrayAdapter<String>(this, R.layout.itemlistview, listCity);
         cityView.setAdapter(adapter);
         search.setOnClickListener(this);
         cityView.setOnItemClickListener(this);
@@ -221,6 +221,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, final long l) {
         if (adapterView.getId() == R.id.cityListView) {
+
 
             if (listCity.get(position).equals("Waiting...")) {
 

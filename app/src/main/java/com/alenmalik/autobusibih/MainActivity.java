@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AdView mAdView;
 
     Vibrator vibe;
+    Animation anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         busState = (ImageView) findViewById(R.id.busStateId);
         about = (ImageView) findViewById(R.id.priceId);
 
+        anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button);
+
+
         city.setOnClickListener(this);
         route.setOnClickListener(this);
         busState.setOnClickListener(this);
@@ -67,30 +71,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.cityIde) {
 
-            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button);
             city.startAnimation(anim);
-            vibe.vibrate(200);
+            vibe.vibrate(150);
             Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(cityIntent);
             cityActivityActive = true;
             routeActivityActive = false;
 
-
-
         } else if (view.getId() == R.id.routeId) {
+            route.setAnimation(anim);
             Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
             startActivity(routeIntent);
             routeActivityActive = true;
             cityActivityActive = false;
-            vibe.vibrate(500);
+            vibe.vibrate(150);
         } else if (view.getId() == R.id.busStateId) {
+            busState.startAnimation(anim);
             Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
             startActivity(cityIntent);
-            vibe.vibrate(500);
+            vibe.vibrate(150);
         } else if (view.getId() == R.id.priceId) {
+            about.startAnimation(anim);
             Intent cityIntent = new Intent(MainActivity.this, PriceActivity.class);
             startActivity(cityIntent);
-            vibe.vibrate(500);
+            vibe.vibrate(150);
         }
     }
 
