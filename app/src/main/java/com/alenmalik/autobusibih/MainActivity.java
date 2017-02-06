@@ -132,7 +132,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStop();
     }
     public void onPause() {
+
+            if (mAdView != null) {
+                mAdView.pause();
+            }
+            super.onPause();
+
         super.onPause();
         overridePendingTransition(0, 0);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

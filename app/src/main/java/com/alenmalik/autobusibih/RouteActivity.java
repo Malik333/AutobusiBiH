@@ -79,8 +79,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         clearto.setOnClickListener(this);
 
         dialog = new ProgressDialog(this);
-
-        hours_list.add("Waiting");
+        
         adapter_Hours = new ArrayAdapter<String>(this, R.layout.itemlistview, hours_list);
         hoursListView = (ListView) findViewById(R.id.listView_hours1);
         hoursListView.setAdapter(adapter_Hours);
