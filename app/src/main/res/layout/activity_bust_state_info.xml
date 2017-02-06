@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.BustStateInfo"
-    android:background="@color/backgroundColorApp">
+    android:background="#a5d6a7">
 
 
 
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/openMapStateBus"
-        android:background="@drawable/shape"
+        android:background="@drawable/shape3"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

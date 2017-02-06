@@ -59,7 +59,7 @@
         android:id="@+id/textView13"
         android:textSize="14sp"
         android:textStyle="bold|italic"
-        android:textColor="#d50000"
+        android:textColor="#40c4ff"
         android:layout_marginTop="5dp"
         android:layout_marginRight="13dp" />
 
@@ -73,7 +73,7 @@
         android:id="@+id/textView15"
         android:textSize="14sp"
         android:textStyle="bold|italic"
-        android:textColor="#d50000"
+        android:textColor="#40c4ff"
         android:layout_marginTop="5dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -107,7 +107,7 @@
         android:layout_alignEnd="@+id/textView2"
         android:id="@+id/textView29"
         android:textStyle="bold|italic"
-        android:textColor="#d50000"
+        android:textColor="#40c4ff"
         android:textSize="14sp"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="10dp" />
@@ -121,7 +121,7 @@
         android:id="@+id/textView30"
         android:text="AUTOBUSKE \n STANICE"
         android:textSize="14sp"
-        android:textColor="#d50000"
+        android:textColor="#40c4ff"
         android:textStyle="bold|italic"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="5dp" />
@@ -158,6 +158,6 @@
         android:layout_alignBottom="@+id/textView13"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
-        android:textColor="#d50000" />
+        android:textColor="#40c4ff" />
 
 </RelativeLayout>

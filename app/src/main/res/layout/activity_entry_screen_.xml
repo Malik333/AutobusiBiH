@@ -18,47 +18,42 @@
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:text="Dobro došli"
+        android:text="Da bi aplikacija uspješno radila morate biti konektovani na internet."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:id="@+id/entry_screen_txt"
-        android:textSize="30sp"
-        android:textColor="@color/blackColor"
+        android:id="@+id/internet_txt"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:allowUndo="true"
-        android:layout_marginLeft="79dp"
-        android:layout_marginStart="79dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp"
+        android:layout_margin="30dp" />
 
     <TextView
         android:text="Autobusi BiH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
         android:id="@+id/autousi34_txt"
-        android:textSize="30sp"
-        android:textColor="@color/blackColor"
+        android:textSize="50sp"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:allowUndo="true"
-        android:layout_marginLeft="67dp"
-        android:layout_marginStart="67dp"
-        android:layout_below="@+id/entry_screen_txt"
-        android:layout_alignLeft="@+id/entry_screen_txt"
-        android:layout_alignStart="@+id/entry_screen_txt" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Da bi aplikacija uspješno radila morate biti konektovani na internet."
+        android:text="Dobro došli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/internet_txt"
-        android:textSize="14sp"
-        android:textColor="@color/blackColor"
+        android:layout_marginTop="25dp"
+        android:id="@+id/entry_screen_txt"
+        android:textSize="30sp"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:allowUndo="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

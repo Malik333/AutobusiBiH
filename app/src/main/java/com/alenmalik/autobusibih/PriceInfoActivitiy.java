@@ -57,7 +57,7 @@ public class PriceInfoActivitiy extends AppCompatActivity {
 
                     for (ParseObject object : list){
 
-                        dnevna.setText("Dnevna: " +object.get("jedanSmijer").toString());
+                        dnevna.setText("U jednom smijeru: " +object.get("jedanSmijer").toString());
                         povratna.setText("Povratna: "+object.get("povratna").toString());
 
                         dialog.dismiss();

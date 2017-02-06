@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/price"
         android:id="@+id/imageView6"
         android:scaleType="centerCrop"
-        android:background="#81d4fa" />
+        android:background="#b2ebf2" />
 
     <TextView
         android:text="Redovi vožnje sa cijenom:"

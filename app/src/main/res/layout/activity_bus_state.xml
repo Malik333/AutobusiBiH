@@ -22,5 +22,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/busName_list" />
+        android:id="@+id/busName_list"
+        android:layout_margin="10dp" />
 </RelativeLayout>
