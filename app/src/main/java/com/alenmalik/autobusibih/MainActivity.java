@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         busState.setOnClickListener(this);
         about.setOnClickListener(this);
         onStop();
-//nesghgfnbvc
+//nesghgfnbvcsadasda
     }
 
     @Override
