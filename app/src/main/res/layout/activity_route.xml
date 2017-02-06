@@ -30,35 +30,29 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@drawable/rectshape"
+            android:background="@drawable/rectshape1"
             android:layout_height="40dp"
             android:inputType="textPhonetic"
-            android:layout_width="220dp" />
+            android:layout_width="220dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp" />
 
         <AutoCompleteTextView
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="45dp"
+            android:layout_below="@+id/fromCityId"
             android:hint="U grad:"
             android:id="@+id/toCityId_txt"
-            android:background="@drawable/rectshape"
+            android:background="@drawable/rectshape1"
             android:layout_alignRight="@+id/fromCityId"
             android:layout_alignEnd="@+id/fromCityId"
             android:layout_height="40dp"
             android:inputType="textPhonetic"
-            android:layout_width="220dp" />
-
-        <Button
-            android:text="PRIKAŽI"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchroute_bn"
-            android:gravity="center"
-             android:background="@drawable/shape"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/fromCityId"
-            android:layout_toRightOf="@+id/fromCityId"
-            android:layout_marginLeft="15dp" />
+            android:layout_width="220dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp" />
 
         <ImageButton android:id="@+id/cleartoCity"
             android:layout_width="wrap_content"
@@ -66,25 +60,41 @@
             android:src="@drawable/ic_close_dark"
             android:layout_alignTop="@+id/toCityId_txt"
             android:layout_alignRight="@+id/toCityId_txt"
-            android:layout_alignEnd="@+id/toCityId_txt" />
+            android:layout_alignEnd="@+id/toCityId_txt"
+            android:background="#b2ebf2"
+            android:layout_margin="10dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:text="PRIKAŽI"
+            android:id="@+id/searchroute_bn"
+            android:gravity="center"
+            android:src="@drawable/rutatrazi"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
 
         <ImageButton android:id="@+id/clearfromCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_close_dark"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/searchroute_bn"
-            android:layout_toStartOf="@+id/searchroute_bn" />
+            android:layout_alignBottom="@+id/fromCityId"
+            android:layout_alignRight="@+id/fromCityId"
+            android:layout_alignEnd="@+id/fromCityId"
+            android:background="#b2ebf2"
+            android:layout_margin="10dp" />
 
     </RelativeLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/route_rl_layoit"
-        android:layout_above="@+id/open_map">
+        android:layout_above="@+id/open_map"
+        android:layout_marginTop="10dp"
+        android:layout_height="150dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -105,8 +115,9 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/open_map"
-        android:background="@drawable/shape"
+        android:background="@drawable/shape1"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

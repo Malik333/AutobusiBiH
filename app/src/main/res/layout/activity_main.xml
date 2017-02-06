@@ -50,20 +50,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:text="IZ GRADA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cityIde"
-        android:layout_alignLeft="@+id/cityIde"
-        android:layout_alignStart="@+id/cityIde"
-        android:id="@+id/textView3"
-        android:textSize="14sp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp" />
-
-    <TextView
         android:text="OD GRADA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +59,7 @@
         android:id="@+id/textView13"
         android:textSize="14sp"
         android:textStyle="bold|italic"
-        android:textColor="@color/blackColor"
+        android:textColor="#d50000"
         android:layout_marginTop="5dp"
         android:layout_marginRight="13dp" />
 
@@ -87,7 +73,7 @@
         android:id="@+id/textView15"
         android:textSize="14sp"
         android:textStyle="bold|italic"
-        android:textColor="@color/blackColor"
+        android:textColor="#d50000"
         android:layout_marginTop="5dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -121,7 +107,7 @@
         android:layout_alignEnd="@+id/textView2"
         android:id="@+id/textView29"
         android:textStyle="bold|italic"
-        android:textColor="@color/blackColor"
+        android:textColor="#d50000"
         android:textSize="14sp"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="10dp" />
@@ -135,7 +121,7 @@
         android:id="@+id/textView30"
         android:text="AUTOBUSKE \n STANICE"
         android:textSize="14sp"
-        android:textColor="@color/blackColor"
+        android:textColor="#d50000"
         android:textStyle="bold|italic"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="5dp" />
@@ -160,5 +146,18 @@
         android:layout_below="@+id/textView4"
         android:layout_alignLeft="@+id/busStateId"
         android:layout_alignStart="@+id/busStateId" />
+
+    <TextView
+        android:text="IZ GRADA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
+        android:layout_alignBaseline="@+id/textView13"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:textColor="#d50000" />
 
 </RelativeLayout>

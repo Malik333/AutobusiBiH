@@ -20,17 +20,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/cityBtnLayout">
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:text="TRAŽI"
             android:id="@+id/search_city_btn"
+            android:src="@drawable/citytrazi"
             android:onClick="searchCity"
             android:textSize="16sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/shape"
-            android:layout_width="80dp"
-            android:layout_height="50dp" />
+            android:layout_marginTop="5dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
 
         <AutoCompleteTextView
             android:layout_width="wrap_content"
@@ -44,7 +45,10 @@
             android:inputType="textPhonetic"
             android:background="@drawable/rectshape"
             android:layout_height="50dp"
-            android:layout_marginRight="30dp" />
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:padding="10dp" />
 
         <ImageButton android:id="@+id/clearCityAct"
             android:layout_width="wrap_content"
@@ -52,7 +56,9 @@
             android:src="@drawable/ic_close_dark"
             android:layout_centerVertical="true"
             android:layout_alignRight="@+id/autoCompleteCityId"
-            android:layout_alignEnd="@+id/autoCompleteCityId" />
+            android:layout_alignEnd="@+id/autoCompleteCityId"
+            android:background="#ffcdd2"
+            android:layout_marginRight="15dp" />
     </RelativeLayout>
 
     <RelativeLayout

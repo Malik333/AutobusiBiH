@@ -27,6 +27,6 @@
         android:onClick="routeDirection"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/shape" />
+        android:background="@drawable/shape2" />
 
 </RelativeLayout>

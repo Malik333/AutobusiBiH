@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -38,7 +39,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     ArrayAdapter adapter_Hours;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
-    Button search;
+    ImageView search;
     Button openMap;
     ListView hoursListView;
     static double routeLatFromCIty;
@@ -60,7 +61,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_route);
         fromCity = (AutoCompleteTextView) findViewById(R.id.fromCityId);
         toCity = (AutoCompleteTextView) findViewById(R.id.toCityId_txt);
-        search = (Button) findViewById(R.id.searchroute_bn);
+        search = (ImageView) findViewById(R.id.searchroute_bn);
         search.setOnClickListener(this);
         hours_list = new ArrayList<String>();
         openMap = (Button) findViewById(R.id.open_map);

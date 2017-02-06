@@ -20,6 +20,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     HashSet<String> hashSet, hashSettoCity;
     static double newLng;
     static double newLat;
-    Button search;
+    ImageView search;
     ImageButton clear;
     ListView cityView;
     ArrayAdapter<String> adapter;
@@ -73,7 +74,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         hashSet = new HashSet<String>();
         hashSettoCity = new HashSet<String>();
         autoCompleteSuggestion();
-        search = (Button) findViewById(R.id.search_city_btn);
+        search = (ImageView) findViewById(R.id.search_city_btn);
         cityView = (ListView) findViewById(R.id.cityListView);
         listCity = new ArrayList<String>();
         dialog = new ProgressDialog(this);
