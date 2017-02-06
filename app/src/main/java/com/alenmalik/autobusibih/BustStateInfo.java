@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,6 +34,9 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
     ProgressDialog dialog;
 
     private AdView mAdView;
+
+    Vibrator vibe;
+    Animation anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,8 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
         address = (TextView) findViewById(R.id.address_txt);
         phone = (TextView) findViewById(R.id.phone_number);
         dialog = new ProgressDialog(this);
+        vibe = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        anim = AnimationUtils.loadAnimation(this, R.anim.anim_click_button);
 
         openMap = (Button) findViewById(R.id.openMapStateBus);
 
@@ -86,6 +94,8 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
 
         if (view.getId() == R.id.openMapStateBus){
             Intent intent = new Intent(BustStateInfo.this, BusMapAct.class);
+            vibe.vibrate(150);
+            openMap.startAnimation(anim);
             startActivity(intent);
 
         }else {

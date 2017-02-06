@@ -3,10 +3,14 @@ package com.alenmalik.autobusibih;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +32,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class RouteActivity extends AppCompatActivity implements View.OnClickListener {
+public class RouteActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
     AutoCompleteTextView fromCity;
     AutoCompleteTextView toCity;
     ArrayList<String> fromCityList;
@@ -48,6 +52,9 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
     ImageButton clearto, clearfrom;
     private ProgressDialog dialog;
+
+    Animation anim;
+    Vibrator vibe;
 
     String chooseCityName;
 
@@ -79,6 +86,11 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         hoursListView.setAdapter(adapter_Hours);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
+        anim = AnimationUtils.loadAnimation(this, R.anim.anim_click_button);
+        vibe = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+        fromCity.setOnKeyListener(this);
+        toCity.setOnKeyListener(this);
 
         openMap.setOnClickListener(this);
         fromCity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -170,114 +182,129 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    public void searchCity(View view){
+        fromCityString = String.valueOf(fromCity.getText());
+        toCityString = String.valueOf(toCity.getText());
+
+        double latitude = 0;
+        double longitude = 0;
+        ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude, longitude);
+        ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
+        fromCityQuery.whereNear("Location", fromCityLocation);
+        fromCityQuery.whereEqualTo("Name", fromCityString);
+        fromCityQuery.setLimit(10);
+        fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            routeLatFromCIty = object.getParseGeoPoint("Location").getLatitude();
+                            routeLngFromCity = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("rutalatituda", String.valueOf(routeLatFromCIty));
+                            Log.i("rutalongituda", String.valueOf(routeLngFromCity));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+
+
+        ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude, longitude);
+        ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
+        toCityQuery.whereNear("Location", toCityLocation);
+        toCityQuery.whereEqualTo("Name", toCityString);
+        toCityQuery.setLimit(10);
+        toCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            routeLatToCIty = object.getParseGeoPoint("Location").getLatitude();
+                            routeLngToCity = object.getParseGeoPoint("Location").getLongitude();
+
+                            Log.i("rutalatituda", String.valueOf(routeLatToCIty));
+                            Log.i("rutalongituda", String.valueOf(routeLngToCity));
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
+        query.whereEqualTo("fromCity", fromCityString);
+        query.whereEqualTo("toCity", toCityString);
+        query.addAscendingOrder("createdAt");
+        dialog.setMessage("Loading...");
+        dialog.show();
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+                if (e == null) {
+
+                    if (list.size() > 0) {
+                        hours_list.clear();
+                        for (ParseObject object : list) {
+
+                            String hoursDay = object.get("Day") + ":  " + object.get("Hours");
+
+                            hours_list.add(hoursDay);
+                        }
+
+                        adapter_Hours.notifyDataSetChanged();
+                        dialog.dismiss();
+
+                    }
+                }
+
+            }
+        });
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
     @Override
     public void onClick(View view) {
 
         if (view.getId() == R.id.searchroute_bn) {
-            fromCityString = String.valueOf(fromCity.getText());
-            toCityString = String.valueOf(toCity.getText());
-
-            double latitude = 0;
-            double longitude = 0;
-            ParseGeoPoint fromCityLocation = new ParseGeoPoint(latitude, longitude);
-            ParseQuery<ParseObject> fromCityQuery = ParseQuery.getQuery("CityLocation");
-            fromCityQuery.whereNear("Location", fromCityLocation);
-            fromCityQuery.whereEqualTo("Name", fromCityString);
-            fromCityQuery.setLimit(10);
-            fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null) {
-
-                        if (list.size() > 0) {
-
-                            for (ParseObject object : list) {
-                                routeLatFromCIty = object.getParseGeoPoint("Location").getLatitude();
-                                routeLngFromCity = object.getParseGeoPoint("Location").getLongitude();
-
-                                Log.i("rutalatituda", String.valueOf(routeLatFromCIty));
-                                Log.i("rutalongituda", String.valueOf(routeLngFromCity));
-                            }
-
-                        }
-
-
-                    }
-                }
-            });
-
-
-            ParseGeoPoint toCityLocation = new ParseGeoPoint(latitude, longitude);
-            ParseQuery<ParseObject> toCityQuery = ParseQuery.getQuery("CityLocation");
-            toCityQuery.whereNear("Location", toCityLocation);
-            toCityQuery.whereEqualTo("Name", toCityString);
-            toCityQuery.setLimit(10);
-            toCityQuery.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null) {
-
-                        if (list.size() > 0) {
-
-                            for (ParseObject object : list) {
-                                routeLatToCIty = object.getParseGeoPoint("Location").getLatitude();
-                                routeLngToCity = object.getParseGeoPoint("Location").getLongitude();
-
-                                Log.i("rutalatituda", String.valueOf(routeLatToCIty));
-                                Log.i("rutalongituda", String.valueOf(routeLngToCity));
-                            }
-
-                        }
-
-
-                    }
-                }
-            });
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
-            query.whereEqualTo("fromCity", fromCityString);
-            query.whereEqualTo("toCity", toCityString);
-            query.addAscendingOrder("createdAt");
-            dialog.setMessage("Loading...");
-            dialog.show();
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-
-                    if (e == null) {
-
-                        if (list.size() > 0) {
-                            hours_list.clear();
-                            for (ParseObject object : list) {
-
-                                String hoursDay = object.get("Day") + ":  " + object.get("Hours");
-
-                                hours_list.add(hoursDay);
-                            }
-
-                            adapter_Hours.notifyDataSetChanged();
-                            dialog.dismiss();
-
-                        }
-                    }
-
-                }
-            });
-            InputMethodManager inputManager = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
-        } else if (view.getId() == R.id.open_map) {
-
-
+            vibe.vibrate(150);
+            search.startAnimation(anim);
+            searchCity(view);
+        }else if (view.getId() == R.id.open_map) {
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
             startActivity(intent);
-        } else if (view.getId() == R.id.clearfromCity) {
+        }else if (view.getId() == R.id.clearfromCity) {
             fromCity.setText("");
         } else if (view.getId() == R.id.cleartoCity) {
             toCity.setText("");
         }
 
 
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+
+        if (i == keyEvent.KEYCODE_ENTER){
+
+            searchCity(view);
+
+        }
+        return false;
     }
 }

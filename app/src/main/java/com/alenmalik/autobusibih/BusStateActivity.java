@@ -50,7 +50,7 @@ public class BusStateActivity extends AppCompatActivity {
         listCityName = new ArrayList<String>();
 
         listCityName.add("Waiting...");
-        adapter = new ArrayAdapter<String>(BusStateActivity.this, android.R.layout.simple_list_item_1, listCityName);
+        adapter = new ArrayAdapter<String>(BusStateActivity.this, R.layout.itemlistview, listCityName);
         listView.setAdapter(adapter);
         listView.setTextFilterEnabled(true);
 

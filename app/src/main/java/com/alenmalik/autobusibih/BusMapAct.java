@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +63,8 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     RelativeLayout mapLayout;
     ArrayList<Marker> markers;
     Button ruteBtn;
+    Animation anim;
+    Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,8 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         mapLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         markers = new ArrayList<Marker>();
         ruteBtn = (Button) findViewById(R.id.routeId);
+        vibe = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        anim = AnimationUtils.loadAnimation(this, R.anim.anim_click_button);
 
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -248,6 +255,8 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
     public void rotebus(View v) {
 
+        vibe.vibrate(150);
+        anim.start();
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("http://maps.google.com/maps?daddr=" + BusStateActivity.busLat + "," + BusStateActivity.busLng + ""));
         startActivity(intent);
