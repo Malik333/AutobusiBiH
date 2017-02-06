@@ -12,7 +12,7 @@
     android:textColor="@color/blackColor"
     android:textStyle="bold"
     android:alpha="1"
-    android:background="@color/cast_expanded_controller_ad_label_background_color"
+    android:background="@color/backgroundColorApp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="20dp"
     android:gravity="center_vertical" />

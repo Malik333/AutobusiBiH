@@ -38,7 +38,7 @@ public class PriceActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         priceListView = (ListView) findViewById(R.id.priceListView);
         priceList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(PriceActivity.this,android.R.layout.simple_list_item_1,priceList);
+        adapter = new ArrayAdapter<String>(PriceActivity.this, R.layout.itemlistview, priceList);
 
 
 
