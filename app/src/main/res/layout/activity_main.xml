@@ -8,8 +8,15 @@
     android:layout_height="match_parent"
     android:elevation="0dp"
     tools:context="com.alenmalik.autobusibih.MainActivity"
-    android:background="@drawable/backgroung">
+    >
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:srcCompat="@drawable/backgroung"
+        android:id="@+id/imageView2"
+        android:scaleType="centerCrop" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
