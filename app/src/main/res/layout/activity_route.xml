@@ -36,7 +36,8 @@
             android:layout_width="220dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:layout_marginRight="150dp" />
 
         <AutoCompleteTextView
             android:layout_alignParentLeft="true"
