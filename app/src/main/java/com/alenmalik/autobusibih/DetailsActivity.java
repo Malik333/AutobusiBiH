@@ -52,7 +52,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         toCityString = i.getStringExtra("selectCity");
         list = new ArrayList<String>();
         list.add("Waiting");
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        adapter = new ArrayAdapter<String>(this, R.layout.itemlistview, list);
         listView.setAdapter(adapter);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
