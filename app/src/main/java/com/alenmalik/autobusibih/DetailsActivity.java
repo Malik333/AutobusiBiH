@@ -103,6 +103,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view.getId() == R.id.open_map2) {
 
+            vibe.vibrate(150);
+            anim.start();
             Intent intent = new Intent(DetailsActivity.this, MapRouteActivity.class);
             startActivity(intent);
         }else if (view.getId() == R.id.cijenaImageView){

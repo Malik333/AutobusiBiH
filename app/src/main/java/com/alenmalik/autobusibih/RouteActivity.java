@@ -291,6 +291,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             search.startAnimation(anim);
             searchCity(view);
         }else if (view.getId() == R.id.open_map) {
+            vibe.vibrate(150);
+            anim.start();
             Intent intent = new Intent(RouteActivity.this, MapRouteActivity.class);
             startActivity(intent);
         }else if (view.getId() == R.id.clearfromCity) {
