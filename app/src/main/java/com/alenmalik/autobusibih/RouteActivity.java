@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -52,7 +53,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
     ImageButton clearto, clearfrom;
     private ProgressDialog dialog;
-    static boolean routeAct = false;
+    TextView cijena;
+
     Animation anim;
     Vibrator vibe;
 
@@ -74,9 +76,11 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         openMap = (Button) findViewById(R.id.open_map);
         clearfrom = (ImageButton) findViewById(R.id.clearfromCity);
         clearto = (ImageButton) findViewById(R.id.cleartoCity);
+        cijena = (TextView) findViewById(R.id.cijena_txt_routa);
 
         clearfrom.setOnClickListener(this);
         clearto.setOnClickListener(this);
+        cijena.setOnClickListener(this);
 
         dialog = new ProgressDialog(this);
         
@@ -291,6 +295,9 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             fromCity.setText("");
         } else if (view.getId() == R.id.cleartoCity) {
             toCity.setText("");
+        } else if (view.getId() == R.id.cijena_txt_routa){
+            Intent intent = new Intent(RouteActivity.this, PriceInfoActivitiy.class);
+            startActivity(intent);
         }
 
 

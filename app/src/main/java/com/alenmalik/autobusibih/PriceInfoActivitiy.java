@@ -49,7 +49,11 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         dialog.show();
         if (MainActivity.cityActivityActive == true){
             city();
-        }else {
+        }else if (MainActivity.routeActivityActive == true){
+
+            ruta();
+
+        } else{
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
             query.whereEqualTo("fromCity", cityFrom);
             query.whereEqualTo("toCity", cityto);
@@ -96,6 +100,26 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         });
     }
 
+    public void ruta(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
+        query.whereEqualTo("fromCity", RouteActivity.fromCityString);
+        query.whereEqualTo("toCity", RouteActivity.toCityString);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+
+                    for (ParseObject object : list){
+
+                        dnevna.setText("U jednom smijeru: " +object.get("jedanSmijer").toString());
+                        povratna.setText("Povratna: "+object.get("povratna").toString());
+
+                        dialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
     @Override
     protected void onStop() {
         super.onStop();
