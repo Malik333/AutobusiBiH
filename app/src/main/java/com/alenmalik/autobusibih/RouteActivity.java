@@ -55,6 +55,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     private ProgressDialog dialog;
     TextView cijena;
 
+    //nešto
+
     Animation anim;
     Vibrator vibe;
 
