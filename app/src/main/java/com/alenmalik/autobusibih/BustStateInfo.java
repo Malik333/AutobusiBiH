@@ -43,6 +43,7 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
 
     Vibrator vibe;
     Animation anim;
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
         anim = AnimationUtils.loadAnimation(this, R.anim.anim_click_button);
 
         openMap = (Button) findViewById(R.id.openMapStateBus);
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         openMap.setOnClickListener(this);
 
@@ -100,28 +103,32 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view.getId() == R.id.openMapStateBus) {
-            new AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Potrebno je da upalite usluge lokacije")
-                    .setMessage("Da li želite uključiti lokaciju ?")
-                    .setPositiveButton("Da", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            BustStateInfo.this.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                            Intent intent = new Intent(BustStateInfo.this, BusMapAct.class);
-                            vibe.vibrate(150);
-                            openMap.startAnimation(anim);
-                            startActivity(intent);
+            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Potrebno je da upalite usluge lokacije")
+                        .setMessage("Da li želite uključiti lokaciju ?")
+                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                BustStateInfo.this.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 
-                        }
-                    })
-                    .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(getApplicationContext(),"Ne radi dok se ne upale lokacije",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(), "Ne radi dok se ne upale lokacije", Toast.LENGTH_LONG).show();
 
-                        }
-                    }).show();
+                            }
+                        }).show();
+
+            }else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                  Intent intent = new Intent(BustStateInfo.this, BusMapAct.class);
+                vibe.vibrate(150);
+                openMap.startAnimation(anim);
+                startActivity(intent);
+            }
 
 
 
@@ -171,14 +178,6 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
         super.onDestroy();
     }
 
-    public void statusCheck() {
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            buildAlertMessageNoGps();
-
-        }
-    }
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
