@@ -298,6 +298,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         } else if (view.getId() == R.id.cleartoCity) {
             toCity.setText("");
         } else if (view.getId() == R.id.cijenaImageViewPlava){
+            vibe.vibrate(150);
+            anim.start();
             Intent intent = new Intent(RouteActivity.this, PriceInfoActivitiy.class);
             startActivity(intent);
         }

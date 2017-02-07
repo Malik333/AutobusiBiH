@@ -1,11 +1,14 @@
 package com.alenmalik.autobusibih;
 
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,6 +40,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     ArrayAdapter adapter;
     static String toCityString;
 
+    Vibrator vibe;
+    Animation anim;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         list.add("Waiting");
         adapter = new ArrayAdapter<String>(this, R.layout.itemlistview, list);
         listView.setAdapter(adapter);
+
+        vibe = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        anim = AnimationUtils.loadAnimation(this, R.anim.anim_click_button);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cities");
         query.whereEqualTo("fromCity", CityActivity.chooseCityName);
@@ -97,6 +106,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(DetailsActivity.this, MapRouteActivity.class);
             startActivity(intent);
         }else if (view.getId() == R.id.cijenaImageView){
+            vibe.vibrate(150);
+            anim.start();
             Intent intent = new Intent(DetailsActivity.this, PriceInfoActivitiy.class);
             intent.putExtra("fromCity", CityActivity.chooseCityName);
             intent.putExtra("toCity", toCityString);
