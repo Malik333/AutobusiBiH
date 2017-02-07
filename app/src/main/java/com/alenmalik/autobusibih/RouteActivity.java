@@ -52,7 +52,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
     ImageButton clearto, clearfrom;
     private ProgressDialog dialog;
-
+    static boolean routeAct = false;
     Animation anim;
     Vibrator vibe;
 

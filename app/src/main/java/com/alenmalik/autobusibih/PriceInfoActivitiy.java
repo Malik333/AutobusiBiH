@@ -47,9 +47,38 @@ public class PriceInfoActivitiy extends AppCompatActivity {
         cityto = intent.getStringExtra("tocity");
         dialog.setMessage("Please wait");
         dialog.show();
+        if (MainActivity.cityActivityActive == true){
+            city();
+        }else {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
+            query.whereEqualTo("fromCity", cityFrom);
+            query.whereEqualTo("toCity", cityto);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+
+                        for (ParseObject object : list) {
+
+                            dnevna.setText("U jednom smijeru: " + object.get("jedanSmijer").toString());
+                            povratna.setText("Povratna: " + object.get("povratna").toString());
+
+                            dialog.dismiss();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    public void city (){
+        Intent tt = getIntent();
+        String fromCity = tt.getStringExtra("fromCity");
+        String toCity = tt.getStringExtra("toCity");
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Cijene");
-        query.whereEqualTo("fromCity", cityFrom);
-        query.whereEqualTo("toCity", cityto);
+        query.whereEqualTo("fromCity", fromCity);
+        query.whereEqualTo("toCity", toCity);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

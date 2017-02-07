@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -62,7 +63,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<String> listCity;
     static Double secondCityLAT;
     static Double secondCityLNG;
-    static String chooseCityName;
+    static String chooseCityName, selectCity;
     private ProgressDialog dialog;
     RelativeLayout cityLayout, listViewLayout;
 
@@ -210,6 +211,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.clearCityAct) {
             cityAutocomplete.setText("");
         }
+
     }
 
 
@@ -287,6 +289,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
+                selectCity = listCity.get(position);
                 Intent intent1 = new Intent(CityActivity.this, DetailsActivity.class);
                 intent1.putExtra("selectCity", listCity.get(position));
                 startActivity(intent1);
