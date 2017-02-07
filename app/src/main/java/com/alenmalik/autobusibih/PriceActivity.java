@@ -93,6 +93,8 @@ public class PriceActivity extends AppCompatActivity {
                 Intent intent = new Intent(PriceActivity.this, PriceInfoActivitiy.class);
                 intent.putExtra("fromcity", city1);
                 intent.putExtra("tocity", city2);
+                MainActivity.routeActivityActive = false;
+                MainActivity.cityActivityActive = false;
                 startActivity(intent);
 
             }
