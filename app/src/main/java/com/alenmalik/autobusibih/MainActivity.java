@@ -42,13 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        SharedPreferences prefs = this.getSharedPreferences(
-                "com.your.app", Context.MODE_PRIVATE);
-        boolean hasVisisted = prefs.getBoolean("HAS_VISISTED_BEFORE", false);
-        if(!hasVisisted) {
-            Toast.makeText(MainActivity.this, "Potrebno je da internet bude uključen da se podaci skinu", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("HAS_VISISTED_BEFORE", true).commit();
-        }
 
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         city = (ImageView) findViewById(R.id.cityIde);

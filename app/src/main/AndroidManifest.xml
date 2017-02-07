@@ -19,13 +19,7 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="@string/google_maps_key" />
 
-    <activity
-        android:name=".BusMapActivity"
-        android:label="@string/title_activity_bus_map">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.alenmalik.autobusibih.BusStateActivity" />
-    </activity>
+
 
     <application
         android:name=".StarterApplication"
@@ -92,7 +86,9 @@
             android:name=".PriceInfoActivitiy"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"></activity>
+
     </application>
 
 </manifest>
