@@ -53,7 +53,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     static double routeLngToCity;
     ImageButton clearto, clearfrom;
     private ProgressDialog dialog;
-    TextView cijena;
+    ImageView cijena;
 
     //nešto
 
@@ -78,7 +78,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         openMap = (Button) findViewById(R.id.open_map);
         clearfrom = (ImageButton) findViewById(R.id.clearfromCity);
         clearto = (ImageButton) findViewById(R.id.cleartoCity);
-        cijena = (TextView) findViewById(R.id.cijena_txt_routa);
+        cijena = (ImageView) findViewById(R.id.cijenaImageViewPlava);
 
         clearfrom.setOnClickListener(this);
         clearto.setOnClickListener(this);
@@ -297,7 +297,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             fromCity.setText("");
         } else if (view.getId() == R.id.cleartoCity) {
             toCity.setText("");
-        } else if (view.getId() == R.id.cijena_txt_routa){
+        } else if (view.getId() == R.id.cijenaImageViewPlava){
             Intent intent = new Intent(RouteActivity.this, PriceInfoActivitiy.class);
             startActivity(intent);
         }
