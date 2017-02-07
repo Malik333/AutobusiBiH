@@ -11,6 +11,100 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.BustStateInfo"
     android:background="#a5d6a7">
+    <TextView
+        android:text="Grad:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityName_txt"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_marginLeft="20dp"
+        android:text="TextView" />
+
+
+    <TextView
+        android:text="Adresa:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/address_txt"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp" />
+
+
+
+    <TextView
+        android:text="Kontakt tel:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="80dp"  />
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone_number"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="80dp" />
+    <TextView
+        android:text="@string/klikni_za_poziv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/phone_number"
+        android:layout_toEndOf="@+id/phone_number"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp" />
+
+
+    <Button
+        android:text="Prikaži na mapi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/openMapStateBus"
+        android:background="@drawable/shape3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp" />
 
 
 
@@ -24,99 +118,15 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id1"></com.google.android.gms.ads.AdView>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/phone_number"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:layout_marginLeft="14dp"
-        android:layout_alignBaseline="@+id/textView10"
-        android:layout_alignBottom="@+id/textView10"
-        android:layout_toRightOf="@+id/textView10"
-        android:layout_toEndOf="@+id/textView10"
-        android:layout_marginStart="14dp" />
 
-    <Button
-        android:text="Prikaži na mapi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/openMapStateBus"
-        android:background="@drawable/shape3"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:padding="10dp" />
 
-    <TextView
-        android:text="@string/klikni_za_poziv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:layout_alignBaseline="@+id/phone_number"
-        android:layout_alignBottom="@+id/phone_number"
-        android:layout_toRightOf="@+id/phone_number"
-        android:layout_toEndOf="@+id/phone_number"
-        android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:text="Adresa:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:textStyle="bold"
-        android:textColor="@color/blackColor"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cityName_txt"
-        android:textStyle="bold"
-        android:textColor="@color/blackColor"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9"
-        android:layout_marginLeft="20dp" />
 
-    <TextView
-        android:text="Kontakt tel:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:textStyle="bold"
-        android:textColor="@color/blackColor"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
 
-    <TextView
-        android:text="Grad:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/address_txt"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_below="@+id/cityName_txt"
-        android:layout_toRightOf="@+id/textView10"
-        android:layout_toEndOf="@+id/textView10"
-        android:layout_marginTop="15dp" />
+
+
+
 
 </RelativeLayout>
