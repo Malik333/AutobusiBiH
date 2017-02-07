@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,8 @@ import java.util.List;
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    TextView fromCty, toCity, cijena;
+    TextView fromCty, toCity;
+    ImageView cijena;
     Button openMap;
     ListView listView;
     ArrayList<String> list;
@@ -45,7 +47,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         toCity = (TextView) findViewById(R.id.toCityId_txt);
         openMap = (Button) findViewById(R.id.open_map2);
         listView = (ListView) findViewById(R.id.listView_hours2);
-        cijena = (TextView) findViewById(R.id.cijena_txt_city);
+        cijena = (ImageView) findViewById(R.id.cijenaImageView);
         cijena.setOnClickListener(this);
 
         Intent i = getIntent();
@@ -94,7 +96,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
             Intent intent = new Intent(DetailsActivity.this, MapRouteActivity.class);
             startActivity(intent);
-        }else if (view.getId() == R.id.cijena_txt_city){
+        }else if (view.getId() == R.id.cijenaImageView){
             Intent intent = new Intent(DetailsActivity.this, PriceInfoActivitiy.class);
             intent.putExtra("fromCity", CityActivity.chooseCityName);
             intent.putExtra("toCity", toCityString);
