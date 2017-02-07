@@ -2,11 +2,16 @@ package com.alenmalik.autobusibih;
 
 import android.*;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -37,6 +43,7 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
 
     Vibrator vibe;
     Animation anim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,13 +99,34 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        if (view.getId() == R.id.openMapStateBus){
-            Intent intent = new Intent(BustStateInfo.this, BusMapAct.class);
-            vibe.vibrate(150);
-            openMap.startAnimation(anim);
-            startActivity(intent);
+        if (view.getId() == R.id.openMapStateBus) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Potrebno je da upalite usluge lokacije")
+                    .setMessage("Da li želite uključiti lokaciju ?")
+                    .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            BustStateInfo.this.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                            Intent intent = new Intent(BustStateInfo.this, BusMapAct.class);
+                            vibe.vibrate(150);
+                            openMap.startAnimation(anim);
+                            startActivity(intent);
 
-        }else {
+                        }
+                    })
+                    .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(getApplicationContext(),"Ne radi dok se ne upale lokacije",Toast.LENGTH_LONG).show();
+
+                        }
+                    }).show();
+
+
+
+
+        } else {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:+" + phone.getText().toString().trim()));
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -114,6 +142,7 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
     protected void onStop() {
         super.onStop();
     }
+
     public void onPause() {
 
         if (mAdView != null) {
@@ -140,6 +169,33 @@ public class BustStateInfo extends AppCompatActivity implements View.OnClickList
             mAdView.destroy();
         }
         super.onDestroy();
+    }
+
+    public void statusCheck() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
