@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "420266233909",
+    "firebase_url": "https://autobusibih.firebaseio.com",
+    "project_id": "autobusibih",
+    "storage_bucket": "autobusibih.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420266233909:android:2e111397339f5471",
+        "android_client_info": {
+          "package_name": "com.alenmalik.autobusibih"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420266233909-2r8kjrgreag3o7m6fq5i0c2smt70hdop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo6FNo6-Bcyg3NfB_7Whh64CsRiqM1Cao"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
