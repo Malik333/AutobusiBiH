@@ -1,154 +1,229 @@
 package com.alenmalik.autobusibih;
 
-import android.content.Context;
+import android.animation.Animator;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Vibrator;
+import android.media.Image;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    ImageView aboutApplication, contactInfo, cityTraffic, internationalTraffic, busTransports;
+    TextView autobusi;
 
-    ImageView city;
-    ImageView route;
-    ImageView busState;
-    ImageView about;
+    ViewPropertyAnimator aboutAnim;
+    ViewPropertyAnimator contactAnim;
+    ViewPropertyAnimator cityAnim;
+    ViewPropertyAnimator interAnim;
+    ViewPropertyAnimator busAnim;
 
-    static Boolean cityActivityActive = false;
-    static Boolean routeActivityActive = false;
-    private AdView mAdView;
+    RelativeLayout activtiy_main;
 
-    Vibrator vibe;
-    Animation anim;
+    float parentCenterX;
+    float parentCenterY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
+        aboutApplication = (ImageView) findViewById(R.id.about);
+        contactInfo = (ImageView) findViewById(R.id.contact);
+        cityTraffic = (ImageView) findViewById(R.id.cityTraffic);
+        internationalTraffic = (ImageView) findViewById(R.id.international);
+        busTransports = (ImageView) findViewById(R.id.transport);
+        autobusi = (TextView) findViewById(R.id.textView);
 
-        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        city = (ImageView) findViewById(R.id.cityIde);
-        route = (ImageView) findViewById(R.id.routeId);
-        busState = (ImageView) findViewById(R.id.busStateId);
-        about = (ImageView) findViewById(R.id.priceId);
+        aboutApplication.setOnClickListener(this);
+        contactInfo.setOnClickListener(this);
+        cityTraffic.setOnClickListener(this);
+        internationalTraffic.setOnClickListener(this);
+        busTransports.setOnClickListener(this);
 
-        anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_button);
+        activtiy_main = (RelativeLayout) findViewById(R.id.activity_main);
 
-
-        city.setOnClickListener(this);
-        route.setOnClickListener(this);
-        busState.setOnClickListener(this);
-        about.setOnClickListener(this);
-        onStop();
-//nesghgfnbvcsadasda
+        parentCenterX = activtiy_main.getX() + activtiy_main.getWidth()/2;
+        parentCenterY = activtiy_main.getY() + activtiy_main.getHeight()/2;
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.cityIde) {
 
-            city.startAnimation(anim);
-            vibe.vibrate(150);
-            Intent cityIntent = new Intent(MainActivity.this, CityActivity.class);
-            startActivity(cityIntent);
-            cityActivityActive = true;
-            routeActivityActive = false;
+        if (view.getId() == R.id.about) {
 
-        } else if (view.getId() == R.id.routeId) {
-            route.setAnimation(anim);
-            Intent routeIntent = new Intent(MainActivity.this, RouteActivity.class);
-            startActivity(routeIntent);
-            routeActivityActive = true;
-            cityActivityActive = false;
-            vibe.vibrate(150);
-        } else if (view.getId() == R.id.busStateId) {
-            busState.startAnimation(anim);
-            Intent cityIntent = new Intent(MainActivity.this, BusStateActivity.class);
-            startActivity(cityIntent);
-            vibe.vibrate(150);
-        } else if (view.getId() == R.id.priceId) {
-            about.startAnimation(anim);
-            Intent cityIntent = new Intent(MainActivity.this, PriceActivity.class);
-            startActivity(cityIntent);
-            vibe.vibrate(150);
+            aboutAnim = aboutApplication.animate().translationX(parentCenterX - aboutApplication.getWidth()/2).translationY(parentCenterY + aboutApplication.getHeight()).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            aboutAnim.setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                    cityTraffic.setVisibility(View.INVISIBLE);
+                    internationalTraffic.setVisibility(View.INVISIBLE);
+                    contactInfo.setVisibility(View.INVISIBLE);
+                    busTransports.setVisibility(View.INVISIBLE);
+                    autobusi.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Intent aboutIntent = new Intent(MainActivity.this, AboutApplication.class);
+                    startActivity(aboutIntent);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+
+
+        } else if (view.getId() == R.id.contact) {
+
+            contactAnim = contactInfo.animate().translationX(parentCenterX - contactInfo.getWidth()/2).translationY(parentCenterY + contactInfo.getHeight()/2).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            contactAnim.setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                    cityTraffic.setVisibility(View.INVISIBLE);
+                    aboutApplication.setVisibility(View.INVISIBLE);
+                    internationalTraffic.setVisibility(View.INVISIBLE);
+                    busTransports.setVisibility(View.INVISIBLE);
+                    autobusi.setVisibility(View.INVISIBLE);
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Intent contactIntent = new Intent(MainActivity.this, ContactInfo.class);
+                    startActivity(contactIntent);
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+
+        } else if (view.getId() == R.id.cityTraffic) {
+            cityAnim = cityTraffic.animate().translationX(parentCenterX - cityTraffic.getWidth()/1.7f).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            cityAnim.setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                    contactInfo.setVisibility(View.INVISIBLE);
+                    aboutApplication.setVisibility(View.INVISIBLE);
+                    internationalTraffic.setVisibility(View.INVISIBLE);
+                    busTransports.setVisibility(View.INVISIBLE);
+                    autobusi.setVisibility(View.INVISIBLE);
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Intent cityTrafficIntent = new Intent(MainActivity.this, CityTraffic.class);
+                    startActivity(cityTrafficIntent);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+
+
+        } else if (view.getId() == R.id.international) {
+            interAnim = internationalTraffic.animate().translationX(parentCenterX - internationalTraffic.getWidth()/2).translationY(parentCenterY - internationalTraffic.getHeight()/2).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            interAnim.setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                    cityTraffic.setVisibility(View.INVISIBLE);
+                    aboutApplication.setVisibility(View.INVISIBLE);
+                    contactInfo.setVisibility(View.INVISIBLE);
+                    busTransports.setVisibility(View.INVISIBLE);
+                    autobusi.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Intent internacionalTrafficIntent = new Intent(MainActivity.this, InternacionalTraffic.class);
+                    startActivity(internacionalTrafficIntent);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+
+
+        } else if (view.getId() == R.id.transport) {
+
+            busAnim = busTransports.animate().translationX(parentCenterX - busTransports.getWidth()/2).translationY(parentCenterY - busTransports.getHeight()*1.5f).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            busAnim.setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                    cityTraffic.setVisibility(View.INVISIBLE);
+                    aboutApplication.setVisibility(View.INVISIBLE);
+                    internationalTraffic.setVisibility(View.INVISIBLE);
+                    contactInfo.setVisibility(View.INVISIBLE);
+                    autobusi.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+
+                    Intent busTransportIntent = new Intent(MainActivity.this, BusTransport.class);
+                    startActivity(busTransportIntent);
+                }
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.menu_o_nama:
-                Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
-                startActivity(i);
-                return true;
-            case R.id.menu_pomozite_nam:
-                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
-                startActivity(intent);
-                return true;
-
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-    public void onPause() {
-
-            if (mAdView != null) {
-                mAdView.pause();
-            }
-            super.onPause();
-
-        super.onPause();
-        overridePendingTransition(0, 0);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
     }
 }
