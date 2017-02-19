@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_main"
+    android:background="#ffffff"
     tools:context="autobusibihupdate.autobusibihupdate.MainActivity">
 
     <TextView
@@ -23,54 +24,56 @@
         android:layout_marginStart="14dp" />
 
     <ImageView
-        app:srcCompat="@drawable/ctiytrafficappimg"
-        android:id="@+id/cityTraffic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
         app:srcCompat="@drawable/internationalimg"
         android:id="@+id/international"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="21dp"
         android:layout_below="@+id/cityTraffic"
-        android:layout_alignLeft="@+id/contact"
-        android:layout_alignStart="@+id/contact" />
+        android:layout_toRightOf="@+id/transport"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
     <ImageView
-        app:srcCompat="@drawable/contactinfimg"
-        android:id="@+id/contact"
+        app:srcCompat="@drawable/ctiytrafficappimg"
+        android:id="@+id/cityTraffic"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginRight="33dp"
-        android:layout_marginEnd="33dp"
-        android:layout_above="@+id/cityTraffic"
-        android:layout_alignRight="@+id/cityTraffic"
-        android:layout_alignEnd="@+id/cityTraffic" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         app:srcCompat="@drawable/aboutappimg"
         android:id="@+id/about"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_above="@+id/contact"
-        android:layout_toLeftOf="@+id/contact"
-        android:layout_toStartOf="@+id/contact"
-        android:layout_marginBottom="6dp" />
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginEnd="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/cityTraffic"
+        android:layout_toStartOf="@+id/cityTraffic" />
+
+    <ImageView
+        app:srcCompat="@drawable/contactinfimg"
+        android:id="@+id/contact"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/cityTraffic"
+        android:layout_toRightOf="@+id/transport"
+        android:layout_toEndOf="@+id/transport" />
 
     <ImageView
         app:srcCompat="@drawable/transportersimg"
         android:id="@+id/transport"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="29dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/about"
+        android:layout_alignStart="@+id/about" />
 </RelativeLayout>
