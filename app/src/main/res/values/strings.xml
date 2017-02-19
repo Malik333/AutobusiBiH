@@ -5,16 +5,16 @@
     <string name="banner_ad_unit_id">ca-app-pub-1429364133461596/5522631068</string>
     <string name="banner_ad_unit_id1">ca-app-pub-1429364133461596/4405824669</string>
     <string name="banner_ad_unit_id2">ca-app-pub-1429364133461596/5882557866</string>
-    <string name="pomozite_u_razvoju_aplikacije">pomozite u razvoju aplikacije</string>
-    <string name="o_nama">o nama</string>
-    <string name="klikni_za_poziv"><![CDATA[<-- klikni za poziv]]></string>
-    <string name="unosite_ime_grada_odakle_autobus_kre_e_i_izlistavaju_vam_se_gradovi_do_kojih_autobus_ide_zajedno_sa_satnicom"><![CDATA[ unosite ime grada odakle autobus kreče i izlistavaju vam se gradovi do kojih autobus ide zajedno sa satnicom]]></string>
-    <string name="unosite_iz_kojeg_grada_autobus_kre_e_i_unosite_do_kojeg_grada_autobus_ide_i_izlistavaju_vam_se_satnice"><![CDATA[unosite iz kojeg grada autobus kreče i unosite do kojeg grada autobus ide i izlistavaju vam se satnice]]></string>
-    <string name="prikaziva_vam_listu_gradova_i_njihove_najbli_e_autobusne_stanice_pritiskom_na_dugme_odvedi_me_do_stanice_pali_se_navigacija_koja_vas_navigira_do_najbli_e_autobusne"><![CDATA[prikaziva vam listu gradova i njihove najbliže autobusne stanice,pritiskom na dugme odvedi me do stanice pali se navigacija koja vas navigira do najbliže autobusne]]></string>
-    <string name="izlistava_redoslijede_vo_nje_sa_cijenom"><![CDATA[izlistava redoslijede vožnje sa cijenom]]></string>
-    <string name="offlineMode"></string>
-    <string name="autobuske">AUTOBUSKE</string>
     <string name="title_activity_city_traffic">CityTraffic</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="drzave">
+        <item>Njemačka</item>
+        <item>Austrija</item>
+        <item>Hrvatska</item>
+        <item>Srbija</item>
+
+
+    </string-array>
 </resources>
