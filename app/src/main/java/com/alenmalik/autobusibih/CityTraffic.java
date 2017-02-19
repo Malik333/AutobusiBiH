@@ -1,5 +1,7 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -131,5 +133,12 @@ public class CityTraffic extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(CityTraffic.this, MainActivity.class));
     }
 }
