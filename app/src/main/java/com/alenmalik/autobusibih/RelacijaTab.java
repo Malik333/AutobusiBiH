@@ -117,7 +117,17 @@ public class RelacijaTab extends Fragment {
         relacijaTextView.setText(odGrada+ "-" + doGrada);
 
 
+        daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                relacijaTextView.setText(odGrada +" - "+doGrada);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
 
