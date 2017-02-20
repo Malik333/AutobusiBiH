@@ -38,13 +38,17 @@ public class RelacijaTab extends Fragment {
     ArrayAdapter<String> daysAdapter;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
-    String toCityName;
     TextView relacijaTextView;
     String odGrada;
     String doGrada;
-
-
-
+    String dan;
+    TextView danTextView;
+    TextView duzinaPutaTextView;
+    TextView linijaTextView;
+    TextView prijevoznikTextView;
+    String duzinaPuta;
+    String linija;
+    String prijevoznik;
 
 
     @Override
@@ -57,7 +61,13 @@ public class RelacijaTab extends Fragment {
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
         daysList = new ArrayList<>();
+
+
         relacijaTextView = (TextView) rootView.findViewById(R.id.relacijaIspis);
+        danTextView = (TextView) rootView.findViewById(R.id.danIspis);
+        duzinaPutaTextView = (TextView) rootView.findViewById(R.id.duzinaPutaIspis);
+        linijaTextView = (TextView) rootView.findViewById(R.id.linijaIspis);
+        prijevoznikTextView = (TextView) rootView.findViewById(R.id.prevoznikIspis);
 
         return rootView;
     }
@@ -71,38 +81,54 @@ public class RelacijaTab extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
 
-
-       fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-               odGrada = (String) adapterView.getItemAtPosition(i);
-
-               Log.i("toCity",odGrada);
+        fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+                odGrada = (String) adapterView.getItemAtPosition(i);
 
-               hashSet2.clear();
-               toCityList.clear();
-               toCity(odGrada);
-
-
-           }
-
-           @Override
-           public void onNothingSelected(AdapterView<?> adapterView) {
+                Log.i("toCity", odGrada);
 
 
+                hashSet2.clear();
+                toCityList.clear();
+                toCity(odGrada);
 
-           }
-       });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+            }
+        });
 
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            doGrada =(String) adapterView.getItemAtPosition(i);
-                Log.i("doGrada",doGrada);
+                doGrada = (String) adapterView.getItemAtPosition(i);
+                Log.i("doGrada", doGrada);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                dan = (String) adapterView.getItemAtPosition(i);
+                Log.i("dan", dan);
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
 
             }
 
@@ -114,20 +140,37 @@ public class RelacijaTab extends Fragment {
         fromCity();
         chooseDay();
 
-        relacijaTextView.setText(odGrada+ "-" + doGrada);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+        query.whereEqualTo("odGrada", "Bijeljina");
+        query.whereEqualTo("doGrada", "Brčko");
+        query.whereEqualTo("Dan", "Utorak");
 
-
-        daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        query.setLimit(10000);
+        query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                relacijaTextView.setText(odGrada +" - "+doGrada);
-            }
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                    if (list.size() > 0) {
 
+                        for (ParseObject object : list) {
+                            Log.i("proba",String.valueOf(object.get("DuzinaPuta")));
+                            Log.i("proba",String.valueOf(object.get("Linija")));
+                            Log.i("proba",String.valueOf(object.get("Prijevoznik")));
+                            duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                            linija = String.valueOf(object.get("Linija"));
+                            prijevoznik = String.valueOf(object.get("Prijevoznik"));
+
+                        }
+
+                    }
+
+
+                }
             }
         });
+
+
 
 
 
@@ -169,7 +212,6 @@ public class RelacijaTab extends Fragment {
         });
 
 
-
     }
 
 
@@ -204,9 +246,9 @@ public class RelacijaTab extends Fragment {
                 }
             }
         });
-}
+    }
 
-    public void chooseDay(){
+    public void chooseDay() {
 
         ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
 
@@ -223,7 +265,7 @@ public class RelacijaTab extends Fragment {
 
                         }
 
-                        daysAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, daysList);
+                        daysAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, daysList);
 
 
                         daysSpinner.setAdapter(daysAdapter);
@@ -238,5 +280,8 @@ public class RelacijaTab extends Fragment {
             }
         });
 
+
     }
+
+
 }
