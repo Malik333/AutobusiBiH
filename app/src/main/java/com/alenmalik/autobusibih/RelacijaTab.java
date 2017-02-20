@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Text;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -27,13 +29,22 @@ import java.util.List;
 public class RelacijaTab extends Fragment {
     Spinner fromCitySpinner;
     Spinner toCitySpinner;
+    Spinner daysSpinner;
     ArrayList<String> fromCityList;
     ArrayList<String> toCityList;
+    ArrayList<String> daysList;
     ArrayAdapter<String> fromCityAdapter;
     ArrayAdapter<String> toCityAdapter;
+    ArrayAdapter<String> daysAdapter;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
-    String toCitiName;
+    String toCityName;
+    TextView relacijaTextView;
+    String odGrada;
+    String doGrada;
+
+
+
 
 
     @Override
@@ -42,7 +53,11 @@ public class RelacijaTab extends Fragment {
         View rootView = getActivity().getLayoutInflater().inflate(R.layout.relacija_city_traffic, container, false);
         fromCitySpinner = (Spinner) rootView.findViewById(R.id.odGradaSpinner);
         toCitySpinner = (Spinner) rootView.findViewById(R.id.doGradaSpinner);
-
+        daysSpinner = (Spinner) rootView.findViewById(R.id.danSpinner);
+        fromCityList = new ArrayList<>();
+        toCityList = new ArrayList<>();
+        daysList = new ArrayList<>();
+        relacijaTextView = (TextView) rootView.findViewById(R.id.relacijaIspis);
 
         return rootView;
     }
@@ -54,26 +69,57 @@ public class RelacijaTab extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        fromCityList = new ArrayList<>();
+
 
 
        fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               toCitiName = (String) adapterView.getItemAtPosition(i);
+
+
+               odGrada = (String) adapterView.getItemAtPosition(i);
+
+               Log.i("toCity",odGrada);
+
+
 
                hashSet2.clear();
                toCityList.clear();
-               toCity(toCitiName);
+               toCity(odGrada);
+
 
            }
 
            @Override
            public void onNothingSelected(AdapterView<?> adapterView) {
 
+
+
            }
        });
+
+        toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            doGrada =(String) adapterView.getItemAtPosition(i);
+                Log.i("doGrada",doGrada);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         fromCity();
+        chooseDay();
+
+        relacijaTextView.setText(odGrada+ "-" + doGrada);
+
+
+
+
+
 
         super.onActivityCreated(savedInstanceState);
 
@@ -83,7 +129,6 @@ public class RelacijaTab extends Fragment {
     public void fromCity() {
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Relacija");
-
         fromCityQuery.setLimit(10000);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -150,4 +195,38 @@ public class RelacijaTab extends Fragment {
             }
         });
 }
+
+    public void chooseDay(){
+
+        ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
+
+        chooseDayQuery.setLimit(10000);
+        chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            daysList.add(String.valueOf(object.get("Dan")));
+
+                        }
+
+                        daysAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, daysList);
+
+
+                        daysSpinner.setAdapter(daysAdapter);
+
+                        daysAdapter.notifyDataSetChanged();
+
+
+                    }
+
+
+                }
+            }
+        });
+
+    }
 }
