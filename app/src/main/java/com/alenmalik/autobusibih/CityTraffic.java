@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
@@ -34,6 +35,7 @@ public class CityTraffic extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+    private ProgressDialog dialog;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ActionBar actionBar;
 
@@ -96,6 +98,7 @@ public class CityTraffic extends AppCompatActivity {
             switch (position) {
                 case 0:
                     RelacijaTab relacijaTab = new RelacijaTab();
+
                     return relacijaTab;
                 case 1:
                     SatnicaTab satnicaTab = new SatnicaTab();
@@ -105,6 +108,7 @@ public class CityTraffic extends AppCompatActivity {
                     return cijenaTab;
                 case 3:
                     StanicaTab stanicaTab = new StanicaTab();
+
                     return stanicaTab;
             }
             return null;

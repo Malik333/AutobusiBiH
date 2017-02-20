@@ -15,7 +15,7 @@ public class SatnicaTab extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.satnica_city_traffic, container, false);
+        View rootView =getActivity().getLayoutInflater().inflate(R.layout.satnica_city_traffic, container, false);
         return rootView;
     }
 }

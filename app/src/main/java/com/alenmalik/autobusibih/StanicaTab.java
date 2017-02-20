@@ -2,12 +2,14 @@ package com.alenmalik.autobusibih;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -27,23 +29,35 @@ public class StanicaTab extends Fragment {
     ArrayList<String> lista;
     ArrayAdapter adapter;
     ProgressDialog dialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.stanica_city_traffic, container, false);
-
+        View rootView = getActivity().getLayoutInflater().inflate(R.layout.stanica_city_traffic, container, false);
         staniceLista = (ListView) rootView.findViewById(R.id.list_busState);
         lista = new ArrayList<String>();
+
         adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, lista);
         staniceLista.setAdapter(adapter);
 
-        dialog = new ProgressDialog(getContext());
 
+
+
+
+        return rootView;
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        dialog = new ProgressDialog(getActivity());
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.addAscendingOrder("CityName");
         dialog.getProgress();
         dialog.setMessage("Searching...");
         dialog.show();
+
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -64,9 +78,19 @@ public class StanicaTab extends Fragment {
                 }
             }
         });
-
-        return rootView;
-
-
+        super.onActivityCreated(savedInstanceState);
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+
+
+
+
+
+
+
+        super.onCreate(savedInstanceState);
+    }
+
 }
