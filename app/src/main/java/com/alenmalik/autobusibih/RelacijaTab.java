@@ -109,15 +109,22 @@ public class RelacijaTab extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 doGrada = (String) adapterView.getItemAtPosition(i);
-                Log.i("doGrada", doGrada);
+                relacijaTextView.setText(odGrada +"-"+ doGrada);
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
+
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                relacijaTextView.setText(odGrada + "-" +  doGrada);
             }
         });
+
 
         daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -135,6 +142,11 @@ public class RelacijaTab extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
             }
         });
         fromCity();
@@ -197,7 +209,7 @@ public class RelacijaTab extends Fragment {
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        fromCityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, fromCityList);
+                        fromCityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, fromCityList);
                         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         fromCitySpinner.setAdapter(fromCityAdapter);
 
