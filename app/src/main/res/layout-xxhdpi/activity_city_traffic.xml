@@ -171,81 +171,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/relacijaIspis"
-        android:layout_above="@+id/textView10"
-        android:layout_toRightOf="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/vrijemePolaskaIspis"
-        android:layout_above="@+id/textView11"
-        android:layout_toRightOf="@+id/textView10"
-        android:layout_toEndOf="@+id/textView10"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/danIspis"
-        android:layout_above="@+id/textView12"
-        android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/duzinaPutaIspis"
-        android:layout_above="@+id/textView13"
-        android:layout_toRightOf="@+id/textView12"
-        android:layout_toEndOf="@+id/textView12"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/cijenaIspis"
-        android:layout_above="@+id/textView14"
-        android:layout_toRightOf="@+id/textView13"
-        android:layout_toEndOf="@+id/textView13"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/prijevoznikIspis"
-        android:layout_above="@+id/textView15"
-        android:layout_toRightOf="@+id/textView14"
-        android:layout_toEndOf="@+id/textView14"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
         android:id="@+id/adresaStaniceIspis"
 
         android:textColor="@color/blackColor"
@@ -255,6 +180,77 @@
         android:layout_toRightOf="@+id/textView15"
         android:layout_toEndOf="@+id/textView15"
         android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/prijevoznikIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_above="@+id/textView15"
+        android:layout_alignLeft="@+id/adresaStaniceIspis"
+        android:layout_alignStart="@+id/adresaStaniceIspis" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/cijenaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_above="@+id/textView14"
+        android:layout_alignLeft="@+id/prijevoznikIspis"
+        android:layout_alignStart="@+id/prijevoznikIspis" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/duzinaPutaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_alignLeft="@+id/cijenaIspis"
+        android:layout_alignStart="@+id/cijenaIspis" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/vrijemePolaskaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_alignLeft="@+id/danIspis"
+        android:layout_alignStart="@+id/danIspis" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/danIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_above="@+id/textView12"
+        android:layout_alignLeft="@+id/duzinaPutaIspis"
+        android:layout_alignStart="@+id/duzinaPutaIspis" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/relacijaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_above="@+id/textView10"
+        android:layout_alignLeft="@+id/vrijemePolaskaIspis"
+        android:layout_alignStart="@+id/vrijemePolaskaIspis" />
 
 </RelativeLayout>
 
