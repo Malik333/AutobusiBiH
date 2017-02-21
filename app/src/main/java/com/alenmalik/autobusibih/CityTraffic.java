@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityTraffic extends AppCompatActivity {
+public class CityTraffic extends AppCompatActivity implements View.OnClickListener{
     Spinner fromCitySpinner;
     Spinner toCitySpinner;
     Spinner daysSpinner;
@@ -48,27 +49,28 @@ public class CityTraffic extends AppCompatActivity {
     ArrayAdapter<String> daysAdapter;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
+    HashSet<String> hashSet3 = new HashSet<>();
     TextView relacijaTextView;
     String odGrada;
     String doGrada;
     String dan;
     TextView danTextView;
     TextView duzinaPutaTextView;
-    TextView linijaTextView;
+    TextView satnicaTextview;
     TextView prijevoznikTextView;
     String duzinaPuta;
     String linija;
     String prijevoznik;
-
+    Button ispisBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_traffic);
-        fromCitySpinner = (Spinner) findViewById(R.id.odGradaSpinner);
-        toCitySpinner = (Spinner) findViewById(R.id.doGradaSpinner);
-        daysSpinner = (Spinner) findViewById(R.id.danSpinner);
+        fromCitySpinner = (Spinner) findViewById(R.id.spinnerOdGrada);
+        toCitySpinner = (Spinner) findViewById(R.id.spinnerDoGrada);
+        daysSpinner = (Spinner) findViewById(R.id.spinnerDan);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
         daysList = new ArrayList<>();
@@ -76,9 +78,11 @@ public class CityTraffic extends AppCompatActivity {
         relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
         danTextView = (TextView) findViewById(R.id.danIspis);
         duzinaPutaTextView = (TextView) findViewById(R.id.duzinaPutaIspis);
-        linijaTextView = (TextView) findViewById(R.id.linijaIspis);
-        prijevoznikTextView = (TextView) findViewById(R.id.prevoznikIspis);
+        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
+        ispisBtn = (Button) findViewById(R.id.informacijeBtn);
+        satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
 
+        ispisBtn.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -92,7 +96,7 @@ public class CityTraffic extends AppCompatActivity {
                 hashSet2.clear();
                 toCityList.clear();
                 toCity(odGrada);
-
+                ispis();
 
             }
 
@@ -106,15 +110,7 @@ public class CityTraffic extends AppCompatActivity {
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                doGrada = (String) adapterView.getItemAtPosition(i);
-                relacijaTextView.setText(odGrada +"-"+ doGrada);
-                relacijaTextView.setText(odGrada + "-" + doGrada);
-                danTextView.setText(dan);
-                duzinaPutaTextView.setText(duzinaPuta);
-                linijaTextView.setText(linija);
-                prijevoznikTextView.setText(prijevoznik);
-
-
+                doGrada = String.valueOf(adapterView.getItemAtPosition(i));
             }
 
             @Override
@@ -129,31 +125,28 @@ public class CityTraffic extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 dan = (String) adapterView.getItemAtPosition(i);
                 Log.i("dan", dan);
-                relacijaTextView.setText(odGrada + "-" + doGrada);
-                danTextView.setText(dan);
-                duzinaPutaTextView.setText(duzinaPuta);
-                linijaTextView.setText(linija);
-                prijevoznikTextView.setText(prijevoznik);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
-                relacijaTextView.setText(odGrada + "-" + doGrada);
-                danTextView.setText(dan);
-                duzinaPutaTextView.setText(duzinaPuta);
-                linijaTextView.setText(linija);
-                prijevoznikTextView.setText(prijevoznik);
             }
         });
         fromCity();
         chooseDay();
 
+
+
+
+
+    }
+
+    public void ispis(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
-        query.whereEqualTo("odGrada", "Bijeljina");
-        query.whereEqualTo("doGrada", "Brčko");
-        query.whereEqualTo("Dan", "Utorak");
+        query.whereEqualTo("odGrada", odGrada);
+        query.whereEqualTo("doGrada", doGrada);
+        query.whereEqualTo("Dan", dan);
 
         query.setLimit(10000);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -171,6 +164,7 @@ public class CityTraffic extends AppCompatActivity {
                             linija = String.valueOf(object.get("Linija"));
                             prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
+
                         }
 
                     }
@@ -180,11 +174,7 @@ public class CityTraffic extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
     public void fromCity() {
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Relacija");
@@ -203,7 +193,7 @@ public class CityTraffic extends AppCompatActivity {
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        fromCityAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, fromCityList);
+                        fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
                         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         fromCitySpinner.setAdapter(fromCityAdapter);
 
@@ -240,7 +230,7 @@ public class CityTraffic extends AppCompatActivity {
                         hashSet2.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet2);
-                        toCityAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, toCityList);
+                        toCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
                         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
                         toCitySpinner.setAdapter(toCityAdapter);
@@ -270,8 +260,10 @@ public class CityTraffic extends AppCompatActivity {
                             daysList.add(String.valueOf(object.get("Dan")));
 
                         }
-
-                        daysAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, daysList);
+                        hashSet3.addAll(daysList);
+                        daysList.clear();
+                        daysList.addAll(hashSet3);
+                        daysAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
 
 
                         daysSpinner.setAdapter(daysAdapter);
@@ -295,24 +287,33 @@ public class CityTraffic extends AppCompatActivity {
         startActivity(new Intent(CityTraffic.this, MainActivity.class));
     }
 
-   /* ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
-    query.whereEqualTo("odGrada", "Bijeljina");
-    query.whereEqualTo("doGrada", "Brčko");
-    query.whereEqualTo("Dan", "Utorak");
-    query.findInBackground(new FindCallback<ParseObject>() {
-        @Override
-        public void done(List<ParseObject> list, ParseException e) {
-            if (e == null) {
-                for (ParseObject object : list) {
-                    satnica = String.valueOf(object.get("Satnica"));
-                }
-            }
-            String[] split = satnica.split("/");
-
-            for (int i = 0; i < split.length; i++) {
-                lista.add(split[i]);
-                adapter.notifyDataSetChanged();
-            }
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.informacijeBtn){
+            ispis();
+            satnica();
+            relacijaTextView.setText(odGrada +"-"+ doGrada);
+            danTextView.setText(dan);
+            duzinaPutaTextView.setText(duzinaPuta);
+            prijevoznikTextView.setText(prijevoznik);
         }
-    });*/
+    }
+
+   public void satnica() {
+       ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+       query.whereEqualTo("odGrada", "Bijeljina");
+       query.whereEqualTo("doGrada", "Brčko");
+       query.whereEqualTo("Dan", "Utorak");
+       query.findInBackground(new FindCallback<ParseObject>() {
+           @Override
+           public void done(List<ParseObject> list, ParseException e) {
+               if (e == null) {
+                   for (ParseObject object : list) {
+                       satnicaTextview.setText(String.valueOf(object.get("Satnica")));
+                   }
+               }
+           }
+       });
+
+   }
 }
