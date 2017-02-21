@@ -58,11 +58,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView duzinaPutaTextView;
     TextView satnicaTextview;
     TextView prijevoznikTextView;
-    String duzinaPuta;
-    String linija;
-    String prijevoznik;
+    TextView stanicaTextview;
+    TextView linijaTextView;
+    TextView cijenaTextView;
     Button ispisBtn;
-    String satnica;
 
 
     @Override
@@ -82,6 +81,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
         ispisBtn = (Button) findViewById(R.id.informacijeBtn);
         satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
+        stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
+        linijaTextView = (TextView) findViewById(R.id.linijaIspis);
+        cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
 
         ispisBtn.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -92,12 +94,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 odGrada = (String) adapterView.getItemAtPosition(i);
 
                 Log.i("toCity", odGrada);
-
-
                 hashSet2.clear();
                 toCityList.clear();
                 toCity(odGrada);
-                ispis();
 
             }
 
@@ -116,7 +115,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                relacijaTextView.setText(odGrada + "-" +  doGrada);
             }
         });
 
@@ -158,24 +156,33 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
-                            Log.i("proba",String.valueOf(object.get("DuzinaPuta")));
-                            Log.i("proba",String.valueOf(object.get("Linija")));
-                            Log.i("proba",String.valueOf(object.get("Prijevoznik")));
-                            duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
-                            linija = String.valueOf(object.get("Linija"));
-                            prijevoznik = String.valueOf(object.get("Prijevoznik"));
-                            satnica = String.valueOf(object.get("Satnica"));
-
+                            duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
+                            prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
+                            satnicaTextview.setText(String.valueOf(object.get("Satnica")));
+                            cijenaTextView.setText(String.valueOf(object.get("Cijena")));
+                            linijaTextView.setText(String.valueOf(object.get("Linija")));
 
                         }
 
                     }
-
-
+                    relacijaTextView.setText(String.valueOf(odGrada +" - "+ doGrada));
+                    danTextView.setText(dan);
                 }
             }
         });
 
+        ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+        stanicaquery.whereEqualTo("CityName", odGrada);
+        stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    for (ParseObject object : list){
+                        stanicaTextview.setText(String.valueOf(object.get("CityName")));
+                    }
+                }
+            }
+        });
     }
     public void fromCity() {
 
@@ -249,7 +256,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     public void chooseDay() {
 
         ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
-
+        chooseDayQuery.addAscendingOrder("createdAt");
         chooseDayQuery.setLimit(10000);
         chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -293,11 +300,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if (view.getId() == R.id.informacijeBtn){
 
-            relacijaTextView.setText(odGrada +"-"+ doGrada);
-            danTextView.setText(dan);
-            duzinaPutaTextView.setText(duzinaPuta);
-            prijevoznikTextView.setText(prijevoznik);
-            satnicaTextview.setText(satnica);
             ispis();
 
         }
