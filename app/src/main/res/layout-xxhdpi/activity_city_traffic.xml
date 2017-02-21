@@ -21,7 +21,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:text="DO GRADA:"
@@ -31,7 +31,7 @@
 
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentRight="true"
@@ -56,20 +56,6 @@
         android:layout_alignStart="@+id/textView5"
         android:layout_marginTop="5dp" />
 
-    <TextView
-        android:text="IZABERI DAN:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerOdGrada"
-        android:layout_alignLeft="@+id/spinnerOdGrada"
-        android:layout_alignStart="@+id/spinnerOdGrada"
-        android:id="@+id/textView8"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="100dp" />
-
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,15 +78,6 @@
         android:layout_alignLeft="@+id/spinnerOdGrada"
         android:layout_alignStart="@+id/spinnerOdGrada"
         android:layout_marginTop="20dp" />
-
-    <Button
-        android:text="INFORMACIJE:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/informacijeBtn"
-        android:layout_below="@+id/spinnerDan"
-        android:layout_toRightOf="@+id/textView14"
-        android:layout_toEndOf="@+id/textView14" />
 
 
     <TextView
@@ -153,19 +130,6 @@
         android:layout_alignBottom="@+id/textView11"
         android:layout_alignLeft="@+id/relacijaIspis"
         android:layout_alignStart="@+id/relacijaIspis" />
-
-    <TextView
-        android:text="Dužina puta:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView12"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView11"
-        android:layout_toLeftOf="@+id/spinnerDan"
-        android:layout_toStartOf="@+id/spinnerDan"
-        android:layout_marginTop="10dp" />
 
     <TextView
         android:text="TextView"
@@ -244,19 +208,6 @@
         android:layout_alignStart="@+id/cijenaIspis" />
 
     <TextView
-        android:text="Stanica:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView15"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView14"
-        android:layout_toLeftOf="@+id/relacijaIspis"
-        android:layout_toStartOf="@+id/relacijaIspis"
-        android:layout_marginTop="10dp" />
-
-    <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -293,6 +244,56 @@
         android:layout_alignBottom="@+id/textView15"
         android:layout_alignLeft="@+id/prijevoznikIspis"
         android:layout_alignStart="@+id/prijevoznikIspis" />
+
+    <TextView
+        android:text="Dužina puta:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="18sp"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+    <TextView
+        android:text="Stanica:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <Button
+        android:text="INFORMACIJE:"
+        android:background="@drawable/btn_shape"
+        android:layout_height="30dp"
+        android:layout_width="120dp"
+        android:id="@+id/informacijeBtn"
+        android:layout_below="@+id/spinnerDan"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <TextView
+        android:text="IZABERI DAN:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/spinnerOdGrada"
+        android:layout_toRightOf="@+id/textView12"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp" />
 
 </RelativeLayout>
 
