@@ -15,134 +15,304 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class CityTraffic extends AppCompatActivity {
+    Spinner fromCitySpinner;
+    Spinner toCitySpinner;
+    Spinner daysSpinner;
+    ArrayList<String> fromCityList;
+    ArrayList<String> toCityList;
+    ArrayList<String> daysList;
+    ArrayAdapter<String> fromCityAdapter;
+    ArrayAdapter<String> toCityAdapter;
+    ArrayAdapter<String> daysAdapter;
+    HashSet<String> hashSet = new HashSet<String>();
+    HashSet<String> hashSet2 = new HashSet<String>();
+    TextView relacijaTextView;
+    String odGrada;
+    String doGrada;
+    String dan;
+    TextView danTextView;
+    TextView duzinaPutaTextView;
+    TextView linijaTextView;
+    TextView prijevoznikTextView;
+    String duzinaPuta;
+    String linija;
+    String prijevoznik;
 
-    ArrayList<Integer> iconList = new ArrayList<>();    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private ProgressDialog dialog;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ActionBar actionBar;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_traffic);
+        fromCitySpinner = (Spinner) findViewById(R.id.odGradaSpinner);
+        toCitySpinner = (Spinner) findViewById(R.id.doGradaSpinner);
+        daysSpinner = (Spinner) findViewById(R.id.danSpinner);
+        fromCityList = new ArrayList<>();
+        toCityList = new ArrayList<>();
+        daysList = new ArrayList<>();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
+        danTextView = (TextView) findViewById(R.id.danIspis);
+        duzinaPutaTextView = (TextView) findViewById(R.id.duzinaPutaIspis);
+        linijaTextView = (TextView) findViewById(R.id.linijaIspis);
+        prijevoznikTextView = (TextView) findViewById(R.id.prevoznikIspis);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-
-        iconList.add(R.drawable.relation);
-        iconList.add(R.drawable.hours);
-        iconList.add(R.drawable.price);
-        iconList.add(R.drawable.busstation);
+        fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+                odGrada = (String) adapterView.getItemAtPosition(i);
 
-        tabLayout.getTabAt(0).setIcon(iconList.get(0));
-        tabLayout.getTabAt(1).setIcon(iconList.get(1));
-        tabLayout.getTabAt(2).setIcon(iconList.get(2));
-        tabLayout.getTabAt(3).setIcon(iconList.get(3));
+                Log.i("toCity", odGrada);
+
+
+                hashSet2.clear();
+                toCityList.clear();
+                toCity(odGrada);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+            }
+        });
+
+        toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                doGrada = (String) adapterView.getItemAtPosition(i);
+                relacijaTextView.setText(odGrada +"-"+ doGrada);
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                relacijaTextView.setText(odGrada + "-" +  doGrada);
+            }
+        });
+
+
+        daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                dan = (String) adapterView.getItemAtPosition(i);
+                Log.i("dan", dan);
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                relacijaTextView.setText(odGrada + "-" + doGrada);
+                danTextView.setText(dan);
+                duzinaPutaTextView.setText(duzinaPuta);
+                linijaTextView.setText(linija);
+                prijevoznikTextView.setText(prijevoznik);
+            }
+        });
+        fromCity();
+        chooseDay();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+        query.whereEqualTo("odGrada", "Bijeljina");
+        query.whereEqualTo("doGrada", "Brčko");
+        query.whereEqualTo("Dan", "Utorak");
+
+        query.setLimit(10000);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            Log.i("proba",String.valueOf(object.get("DuzinaPuta")));
+                            Log.i("proba",String.valueOf(object.get("Linija")));
+                            Log.i("proba",String.valueOf(object.get("Prijevoznik")));
+                            duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                            linija = String.valueOf(object.get("Linija"));
+                            prijevoznik = String.valueOf(object.get("Prijevoznik"));
+
+                        }
+
+                    }
+
+
+                }
+            }
+        });
+
+
+
+
+    }
+
+    public void fromCity() {
+
+        ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Relacija");
+        fromCityQuery.setLimit(10000);
+        fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            fromCityList.add(String.valueOf(object.get("odGrada")));
+
+                        }
+                        hashSet.addAll(fromCityList);
+                        fromCityList.clear();
+                        fromCityList.addAll(hashSet);
+                        fromCityAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, fromCityList);
+                        fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                        fromCitySpinner.setAdapter(fromCityAdapter);
+
+                        fromCityAdapter.notifyDataSetChanged();
+
+
+                    }
+
+
+                }
+            }
+        });
+
 
     }
 
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+    public void toCity(String name) {
 
+        ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("Relacija");
+        toCityQuery.whereEqualTo("odGrada", name);
+        toCityQuery.setLimit(10000);
+        toCityQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+                    if (list.size() > 0) {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+                        for (ParseObject object : list) {
+                            toCityList.add(String.valueOf(object.get("doGrada")));
 
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    RelacijaTab relacijaTab = new RelacijaTab();
+                        }
+                        hashSet2.addAll(toCityList);
+                        toCityList.clear();
+                        toCityList.addAll(hashSet2);
+                        toCityAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, toCityList);
+                        toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
-                    return relacijaTab;
-                case 1:
-                    SatnicaTab satnicaTab = new SatnicaTab();
-                    return satnicaTab;
-                case 2:
-                    CijenaTab cijenaTab = new CijenaTab();
-                    return cijenaTab;
-                case 3:
-                    StanicaTab stanicaTab = new StanicaTab();
+                        toCitySpinner.setAdapter(toCityAdapter);
 
-                    return stanicaTab;
+                        toCityAdapter.notifyDataSetChanged();
+
+                    }
+
+                }
             }
-            return null;
-        }
-
-
-
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 4;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "RELACIJA";
-                case 1:
-                    return "SATNICA";
-                case 2:
-                    return "CIJENA";
-                case 3:
-                    return "STANICA";
-            }
-            return null;
-        }
+        });
     }
 
-    @Override
+    public void chooseDay() {
+
+        ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
+
+        chooseDayQuery.setLimit(10000);
+        chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            daysList.add(String.valueOf(object.get("Dan")));
+
+                        }
+
+                        daysAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, daysList);
+
+
+                        daysSpinner.setAdapter(daysAdapter);
+
+                        daysAdapter.notifyDataSetChanged();
+
+
+                    }
+
+
+                }
+            }
+        });
+
+    }
+
+        @Override
     public void onBackPressed() {
         super.onBackPressed();
 
         startActivity(new Intent(CityTraffic.this, MainActivity.class));
     }
+
+   /* ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+    query.whereEqualTo("odGrada", "Bijeljina");
+    query.whereEqualTo("doGrada", "Brčko");
+    query.whereEqualTo("Dan", "Utorak");
+    query.findInBackground(new FindCallback<ParseObject>() {
+        @Override
+        public void done(List<ParseObject> list, ParseException e) {
+            if (e == null) {
+                for (ParseObject object : list) {
+                    satnica = String.valueOf(object.get("Satnica"));
+                }
+            }
+            String[] split = satnica.split("/");
+
+            for (int i = 0; i < split.length; i++) {
+                lista.add(split[i]);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    });*/
 }
