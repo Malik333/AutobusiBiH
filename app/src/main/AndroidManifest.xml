@@ -41,11 +41,8 @@
         <activity android:name=".ContactInfo" />
         <activity android:name=".BusTransport" />
         <activity
-            android:name=".CityTraffic"
-            android:label="@string/title_activity_city_traffic"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".CityTraffic" />
 
-        //nešto
     </application>
 
 </manifest>

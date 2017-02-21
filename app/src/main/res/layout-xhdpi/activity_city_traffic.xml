@@ -81,172 +81,13 @@
 
 
     <TextView
-        android:text="Vrijeme polaska:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView9"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_alignStart="@+id/textView9"
-        android:id="@+id/textView10"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-    <TextView
-        android:text="Dan:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView10"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:id="@+id/textView11"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-    <TextView
-        android:text="Dužina puta:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView11"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11"
-        android:id="@+id/textView12"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-    <TextView
-        android:text="Cijena:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView12"
-        android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12"
-        android:id="@+id/textView13"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-    <TextView
-        android:text="Prijevoznik:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView13"
-        android:layout_alignLeft="@+id/textView13"
-        android:layout_alignStart="@+id/textView13"
-        android:id="@+id/textView14"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-    <TextView
-        android:text="Autobuska stanica:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView14"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14"
-        android:id="@+id/textView15"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/adresaStaniceIspis"
-
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_alignBaseline="@+id/textView15"
-        android:layout_alignBottom="@+id/textView15"
-        android:layout_toRightOf="@+id/textView15"
-        android:layout_toEndOf="@+id/textView15"
-        android:layout_marginLeft="10dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/prijevoznikIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_above="@+id/textView15"
-        android:layout_alignLeft="@+id/adresaStaniceIspis"
-        android:layout_alignStart="@+id/adresaStaniceIspis" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/cijenaIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_above="@+id/textView14"
-        android:layout_alignLeft="@+id/prijevoznikIspis"
-        android:layout_alignStart="@+id/prijevoznikIspis" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/duzinaPutaIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/textView12"
-        android:layout_alignLeft="@+id/cijenaIspis"
-        android:layout_alignStart="@+id/cijenaIspis" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/vrijemePolaskaIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/textView10"
-        android:layout_alignLeft="@+id/danIspis"
-        android:layout_alignStart="@+id/danIspis" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/danIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_above="@+id/textView12"
-        android:layout_alignLeft="@+id/duzinaPutaIspis"
-        android:layout_alignStart="@+id/duzinaPutaIspis" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/relacijaIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold"
-        android:layout_above="@+id/textView10"
-        android:layout_alignLeft="@+id/vrijemePolaskaIspis"
-        android:layout_alignStart="@+id/vrijemePolaskaIspis" />
-
-    <TextView
         android:text="Relacija:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView9"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:layout_below="@+id/informacijeBtn"
         android:layout_alignLeft="@+id/spinnerOdGrada"
         android:layout_alignStart="@+id/spinnerOdGrada"
@@ -260,6 +101,206 @@
         android:layout_below="@+id/spinnerDan"
         android:layout_toRightOf="@+id/textView14"
         android:layout_toEndOf="@+id/textView14" />
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/relacijaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_marginLeft="90dp"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="Vrijeme polaska:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="Dan:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/vrijemePolaskaIspis"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/danIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_alignLeft="@+id/relacijaIspis"
+        android:layout_alignStart="@+id/relacijaIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/duzinaPutaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView12"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_alignLeft="@+id/danIspis"
+        android:layout_alignStart="@+id/danIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="Linija:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView19"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linijaIspis"
+        android:textStyle="bold"
+        android:textColor="@color/blackColor"
+        android:layout_alignBaseline="@+id/textView19"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_alignLeft="@+id/duzinaPutaIspis"
+        android:layout_alignStart="@+id/duzinaPutaIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="Cijena:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView19"
+        android:layout_alignLeft="@+id/textView19"
+        android:layout_alignStart="@+id/textView19"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="Prijevoznik:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/prijevoznikIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_alignLeft="@+id/cijenaIspis"
+        android:layout_alignStart="@+id/cijenaIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/cijenaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView13"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignLeft="@+id/linijaIspis"
+        android:layout_alignStart="@+id/linijaIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/vrijemePolaskaIspis"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_alignLeft="@+id/danIspis"
+        android:layout_alignStart="@+id/danIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/adresaStaniceIspis"
+
+        android:textColor="@color/blackColor"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignLeft="@+id/prijevoznikIspis"
+        android:layout_alignStart="@+id/prijevoznikIspis"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="Dužina puta:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="Stanica:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:textColor="@color/blackColor"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>
 

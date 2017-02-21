@@ -62,6 +62,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     String linija;
     String prijevoznik;
     Button ispisBtn;
+    String satnica;
 
 
     @Override
@@ -163,6 +164,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                             duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
                             linija = String.valueOf(object.get("Linija"));
                             prijevoznik = String.valueOf(object.get("Prijevoznik"));
+                            satnica = String.valueOf(object.get("Satnica"));
 
 
                         }
@@ -290,30 +292,18 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.informacijeBtn){
-            ispis();
-            satnica();
+
             relacijaTextView.setText(odGrada +"-"+ doGrada);
             danTextView.setText(dan);
             duzinaPutaTextView.setText(duzinaPuta);
             prijevoznikTextView.setText(prijevoznik);
+            satnicaTextview.setText(satnica);
+            ispis();
+
         }
     }
 
-   public void satnica() {
-       ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
-       query.whereEqualTo("odGrada", "Bijeljina");
-       query.whereEqualTo("doGrada", "Brčko");
-       query.whereEqualTo("Dan", "Utorak");
-       query.findInBackground(new FindCallback<ParseObject>() {
-           @Override
-           public void done(List<ParseObject> list, ParseException e) {
-               if (e == null) {
-                   for (ParseObject object : list) {
-                       satnicaTextview.setText(String.valueOf(object.get("Satnica")));
-                   }
-               }
-           }
-       });
 
-   }
+
+
 }
