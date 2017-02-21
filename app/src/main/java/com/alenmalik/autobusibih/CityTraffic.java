@@ -178,7 +178,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
                     for (ParseObject object : list){
-                        stanicaTextview.setText(String.valueOf(object.get("CityName")));
+                        stanicaTextview.setText(String.valueOf(object.get("Address")));
                     }
                 }
             }

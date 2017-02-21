@@ -11,7 +11,7 @@
         android:text="IZABERI DRŽAVU:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
+        android:id="@+id/textView42"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:textStyle="bold"
@@ -22,9 +22,9 @@
         android:text="IZABERI GRAD:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView25"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
+        android:id="@+id/textView252"
+        android:layout_alignBaseline="@+id/textView42"
+        android:layout_alignBottom="@+id/textView42"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="50dp"
@@ -33,19 +33,19 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/gradSpinner"
-        android:layout_below="@+id/textView25"
-        android:layout_alignLeft="@+id/textView25"
-        android:layout_alignStart="@+id/textView25"
+        android:id="@+id/spinnerOdGradaInt"
+        android:layout_below="@+id/textView252"
+        android:layout_alignLeft="@+id/textView252"
+        android:layout_alignStart="@+id/textView252"
         android:layout_marginTop="10dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/drzavaSpinner"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/textView42"
+        android:layout_alignLeft="@+id/textView42"
+        android:layout_alignStart="@+id/textView42"
         android:layout_marginTop="10dp" />
 
 
@@ -56,7 +56,7 @@
         android:layout_below="@+id/textView29"
         android:layout_alignLeft="@+id/textView29"
         android:layout_alignStart="@+id/textView29"
-        android:id="@+id/spinnerDan" />
+        android:id="@+id/spinnerDanInt" />
 
 
     <TextView
@@ -68,8 +68,8 @@
         android:textStyle="bold|italic"
         android:textSize="14sp"
         android:layout_below="@+id/informacijeBtn"
-        android:layout_alignLeft="@+id/spinnerOdGrada"
-        android:layout_alignStart="@+id/spinnerOdGrada"
+        android:layout_alignLeft="@+id/spinnerOdGradaInt"
+        android:layout_alignStart="@+id/spinnerOdGradaInt"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp" />
 
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/relacijaIspis"
+        android:id="@+id/relacijaIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/textView9"
@@ -92,85 +92,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/danIspis"
+        android:id="@+id/danIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/textView11"
-        android:layout_alignLeft="@+id/relacijaIspis"
-        android:layout_alignStart="@+id/relacijaIspis" />
+        android:layout_alignLeft="@+id/relacijaIspisInt"
+        android:layout_alignStart="@+id/relacijaIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/duzinaPutaIspis"
+        android:id="@+id/duzinaPutaIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBaseline="@+id/textView12"
         android:layout_alignBottom="@+id/textView12"
-        android:layout_alignLeft="@+id/danIspis"
-        android:layout_alignStart="@+id/danIspis" />
+        android:layout_alignLeft="@+id/danIspisInt"
+        android:layout_alignStart="@+id/danIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linijaIspis"
+        android:id="@+id/linijaIspisInt"
         android:textStyle="bold"
         android:textColor="@color/blackColor"
         android:layout_alignBaseline="@+id/textView19"
         android:layout_alignBottom="@+id/textView19"
-        android:layout_alignLeft="@+id/duzinaPutaIspis"
-        android:layout_alignStart="@+id/duzinaPutaIspis" />
+        android:layout_alignLeft="@+id/duzinaPutaIspisInt"
+        android:layout_alignStart="@+id/duzinaPutaIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/prijevoznikIspis"
+        android:id="@+id/prijevoznikIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBaseline="@+id/textView14"
         android:layout_alignBottom="@+id/textView14"
-        android:layout_alignLeft="@+id/cijenaIspis"
-        android:layout_alignStart="@+id/cijenaIspis" />
+        android:layout_alignLeft="@+id/cijenaIspisInt"
+        android:layout_alignStart="@+id/cijenaIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/cijenaIspis"
+        android:id="@+id/cijenaIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBaseline="@+id/textView13"
         android:layout_alignBottom="@+id/textView13"
-        android:layout_alignLeft="@+id/linijaIspis"
-        android:layout_alignStart="@+id/linijaIspis" />
+        android:layout_alignLeft="@+id/linijaIspisInt"
+        android:layout_alignStart="@+id/linijaIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:id="@+id/vrijemePolaskaIspis"
+        android:id="@+id/vrijemePolaskaIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/textView10"
-        android:layout_alignLeft="@+id/danIspis"
-        android:layout_alignStart="@+id/danIspis" />
+        android:layout_alignLeft="@+id/danIspisInt"
+        android:layout_alignStart="@+id/danIspisInt" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/adresaStaniceIspis"
+        android:id="@+id/adresaStaniceIspisInt"
         android:textColor="@color/blackColor"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/textView15"
-        android:layout_alignLeft="@+id/prijevoznikIspis"
-        android:layout_alignStart="@+id/prijevoznikIspis" />
+        android:layout_alignLeft="@+id/prijevoznikIspisInt"
+        android:layout_alignStart="@+id/prijevoznikIspisInt" />
 
     <Button
         android:text="INFORMACIJE:"
@@ -178,9 +178,9 @@
         android:background="@drawable/btn_shape"
         android:layout_height="30dp"
         android:layout_width="120dp"
-        android:layout_below="@+id/spinnerDan"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_below="@+id/spinnerDanInt"
+        android:layout_toRightOf="@+id/textView42"
+        android:layout_toEndOf="@+id/textView42" />
 
     <TextView
         android:text="Vrijeme polaska:"
@@ -212,7 +212,7 @@
         android:text="Dužina puta:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView12"
+        android:id="@+id/textView122"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
         android:textSize="14sp"
@@ -278,8 +278,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView29"
-        android:layout_alignLeft="@+id/gradSpinner"
-        android:layout_alignStart="@+id/gradSpinner"
+        android:layout_alignLeft="@+id/spinnerOdGradaInt"
+        android:layout_alignStart="@+id/spinnerOdGradaInt"
         android:id="@+id/textView30"
         android:textStyle="bold"
         android:textColor="@color/blackColor" />
@@ -290,7 +290,7 @@
         android:layout_below="@+id/textView30"
         android:layout_alignLeft="@+id/textView30"
         android:layout_alignStart="@+id/textView30"
-        android:id="@+id/doGradaSpinner" />
+        android:id="@+id/doGradaSpinnerInt" />
 
     <TextView
         android:text="IZABERI DAN:"
