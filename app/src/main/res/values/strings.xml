@@ -2,12 +2,4 @@
     <string name="app_name">AutobusiBiH</string>
     <string name="title_activity_city_traffic">CityTraffic</string>
 
-    <string-array name="drzave">
-        <item>Njemačka</item>
-        <item>Austrija</item>
-        <item>Hrvatska</item>
-        <item>Srbija</item>
-
-
-    </string-array>
 </resources>
