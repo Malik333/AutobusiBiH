@@ -145,7 +145,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalRelacija"
@@ -180,7 +179,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalDan"
@@ -218,7 +216,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalVrijemePolaska"
@@ -257,7 +254,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/textView28"
@@ -295,7 +291,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalLinija"
@@ -333,7 +328,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalCijena"
@@ -371,7 +365,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalPrijevoznik"
@@ -410,7 +403,6 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalStanica"

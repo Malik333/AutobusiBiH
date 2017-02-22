@@ -7,6 +7,7 @@ android {
         applicationId "com.alenmalik.autobusibih"
         minSdkVersion 14
         targetSdkVersion 25
+        multiDexEnabled true
         versionCode 2
         versionName "1.1"
 
@@ -33,9 +34,10 @@ dependencies {
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.google.firebase:firebase-ads:10.0.1'
     compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:multidex:1.0.1'
     testCompile 'junit:junit:4.12'
     compile files('libs/CircleImageView-master/gradle/wrapper/gradle-wrapper.jar')
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+
 }
 
 
