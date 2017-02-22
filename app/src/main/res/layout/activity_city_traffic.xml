@@ -114,7 +114,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/informacijeBtn"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <TextView
         android:text="Relacija:"
@@ -259,7 +259,7 @@
             android:layout_height="wrap_content"
 
             android:id="@+id/prijevoznikIspis"
-            android:textColor="@color/blackColor"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:layout_alignBaseline="@+id/textView14"
             android:layout_alignBottom="@+id/textView14"
@@ -321,7 +321,7 @@
 
             android:id="@+id/adresaStaniceIspis"
 
-            android:textColor="@color/blackColor"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:layout_alignBottom="@+id/textView15"
             android:layout_alignLeft="@+id/prijevoznikIspis"
