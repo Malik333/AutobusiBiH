@@ -291,6 +291,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             ispis();
 
         }
+        if (view.getId() == R.id.prijevoznikIspis){
+            Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
+            startActivity(intent);
+        }
     }
 
 

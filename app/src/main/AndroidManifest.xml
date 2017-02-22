@@ -40,6 +40,7 @@
         <activity android:name=".ContactInfo" />
         <activity android:name=".BusTransport" />
         <activity android:name=".CityTraffic" />
+        <activity android:name=".PopUpActivitiy"/>
     </application>
 
 </manifest>
