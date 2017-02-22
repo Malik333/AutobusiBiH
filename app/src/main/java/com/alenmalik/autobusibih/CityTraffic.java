@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView linijaTextView;
     TextView cijenaTextView;
     Button ispisBtn;
+    RelativeLayout infoLayout;
 
 
     @Override
@@ -69,6 +71,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
         linijaTextView = (TextView) findViewById(R.id.linijaIspis);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
+        infoLayout = (RelativeLayout) findViewById(R.id.infoCityLayout);
 
         ispisBtn.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -284,7 +287,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.informacijeBtn){
-
+            infoLayout.setVisibility(View.VISIBLE);
             ispis();
 
         }
