@@ -368,7 +368,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/internationalPrijevoznik"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/blackColor"
                         android:textStyle="normal|bold"
                         android:layout_alignBaseline="@+id/textView36"
                         android:layout_alignBottom="@+id/textView36"

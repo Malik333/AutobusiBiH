@@ -260,7 +260,7 @@
                 android:layout_height="wrap_content"
 
                 android:id="@+id/prijevoznikIspis"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blackColor"
                 android:textStyle="bold"
                 android:layout_alignBaseline="@+id/textView14"
                 android:layout_alignBottom="@+id/textView14"
