@@ -295,11 +295,11 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         } else if (view.getId() == R.id.adresaStaniceIspis){
             Intent infoStanica = new Intent(CityTraffic.this, PopUpActivitiy.class);
             infoStanica.putExtra("gradStanica", odGrada);
+            stanicaCity = true;
             startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){
             Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
-            stanicaCity = true;
             startActivity(intent);
         }
     }
