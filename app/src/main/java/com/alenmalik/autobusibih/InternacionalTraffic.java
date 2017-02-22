@@ -62,7 +62,7 @@ public class InternacionalTraffic extends AppCompatActivity {
                             toCityList.add(String.valueOf(object.get("doGrada")));
 
                         }
-                        hashSet2.addAll(toCityList);
+                     /*   hashSet2.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet2);
                         toCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
@@ -70,7 +70,7 @@ public class InternacionalTraffic extends AppCompatActivity {
 
                         toCitySpinner.setAdapter(toCityAdapter);
 
-                        toCityAdapter.notifyDataSetChanged();
+                        toCityAdapter.notifyDataSetChanged();*/
 
                     }
 
@@ -94,8 +94,9 @@ public class InternacionalTraffic extends AppCompatActivity {
                         for (ParseObject object : list) {
                             daysList.add(String.valueOf(object.get("Dan")));
 
+
                         }
-                        hashSet3.addAll(daysList);
+/*                        hashSet3.addAll(daysList);
                         daysList.clear();
                         daysList.addAll(hashSet3);
                         daysAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
@@ -104,6 +105,7 @@ public class InternacionalTraffic extends AppCompatActivity {
                         daysSpinner.setAdapter(daysAdapter);
 
                         daysAdapter.notifyDataSetChanged();
+*/
 
 
                     }
