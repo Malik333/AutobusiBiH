@@ -3,14 +3,19 @@ package com.alenmalik.autobusibih;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.widget.TextView;
 
 public class PopUpActivitiy extends AppCompatActivity {
 
+    TextView grad, adresa, broj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_activitiy);
 
+        grad = (TextView) findViewById(R.id.gradIspis);
+        adresa = (TextView) findViewById(R.id.adresaIspis);
+        broj = (TextView) findViewById(R.id.telefonIspis);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -18,5 +23,9 @@ public class PopUpActivitiy extends AppCompatActivity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int)( width * .8),(int)(height * .6));
+    }
+
+    public void stanicaIspisCity(){
+
     }
 }

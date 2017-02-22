@@ -10,6 +10,7 @@ android {
         multiDexEnabled true
         versionCode 2
         versionName "1.1"
+        multiDexEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +37,7 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:multidex:1.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.1'
     compile files('libs/CircleImageView-master/gradle/wrapper/gradle-wrapper.jar')
 
 }

@@ -50,6 +50,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     Button ispisBtn;
     RelativeLayout infoLayout;
 
+    static boolean stanicaCity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         infoLayout = (RelativeLayout) findViewById(R.id.infoCityLayout);
 
         ispisBtn.setOnClickListener(this);
+        stanicaTextview.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -290,9 +292,14 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             infoLayout.setVisibility(View.VISIBLE);
             ispis();
 
+        } else if (view.getId() == R.id.adresaStaniceIspis){
+            Intent infoStanica = new Intent(CityTraffic.this, PopUpActivitiy.class);
+            infoStanica.putExtra("gradStanica", odGrada);
+            startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){
             Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
+            stanicaCity = true;
             startActivity(intent);
         }
     }
