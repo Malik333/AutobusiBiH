@@ -116,7 +116,9 @@
         android:layout_below="@+id/internationalInfoBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:id="@+id/infoScroll"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"

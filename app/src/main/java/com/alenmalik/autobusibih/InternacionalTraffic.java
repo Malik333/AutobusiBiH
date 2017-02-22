@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     Spinner daySpinner;
     Spinner fromCitySpinner;
     Spinner toCitySpinner;
+    ScrollView infoScroll;
 
     ArrayList<String> stateList;
     ArrayList<String> daysList;
@@ -61,6 +63,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         daySpinner = (Spinner) findViewById(R.id.internationalSpinnerDan);
         fromCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerOdGrada);
         toCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerDoGrada);
+        infoScroll = (ScrollView) findViewById(R.id.infoScroll);
 
         informacije = (Button) findViewById(R.id.internationalInfoBtn);
         relacijaTextView = (TextView) findViewById(R.id.internationalRelacija);
@@ -315,6 +318,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.internationalInfoBtn){
+            infoScroll.setVisibility(View.VISIBLE);
             ispisInfoInternacional();
         }
     }
