@@ -1,11 +1,19 @@
 package com.alenmalik.autobusibih;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,6 +37,7 @@ public class BusTransport extends AppCompatActivity {
         prijevozniciListView = (ListView) findViewById(R.id.prijevozniciListView);
         prijevozniciList = new ArrayList<>();
         getPrijevoznik();
+
 
 
     }
@@ -74,5 +83,23 @@ public class BusTransport extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.my_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_stanice){
+            Log.i("proba","pritisno");
+            Toast.makeText(getApplicationContext(),"STANICE:",Toast.LENGTH_LONG).show();
+           /* Intent busStateIntent = new Intent(BusTransport.this,BusStateListActivity.class);
+            startActivity(busStateIntent);*/
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
