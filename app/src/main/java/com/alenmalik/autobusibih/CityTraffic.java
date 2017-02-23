@@ -296,6 +296,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             Intent infoStanica = new Intent(CityTraffic.this, PopUpActivitiy.class);
             infoStanica.putExtra("gradStanica", odGrada);
             stanicaCity = true;
+            BusStateListActivity.busTran = false;
             startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){

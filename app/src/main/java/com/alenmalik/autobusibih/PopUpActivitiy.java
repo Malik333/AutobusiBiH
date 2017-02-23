@@ -59,7 +59,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null){
                         for (ParseObject object : list){
-                            grad.setText(city);
+                            grad.setText(cityName);
                             adresa.setText(String.valueOf(object.get("Address")));
                             broj.setText(String.valueOf(object.get("PhoneNumber")));
                         }
@@ -76,7 +76,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null){
                     for (ParseObject object : list){
-                        grad.setText(cityName);
+                        grad.setText(city);
                         adresa.setText(String.valueOf(object.get("Address")));
                         broj.setText(String.valueOf(object.get("PhoneNumber")));
                     }

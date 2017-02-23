@@ -118,6 +118,7 @@ public class BusStateListActivity extends AppCompatActivity {
 
                 String item = String.valueOf(adapter.getItem(position));
                 busTran = true;
+                CityTraffic.stanicaCity = false;
                 intent.putExtra("city", item);
 
                 startActivity(intent);
