@@ -63,13 +63,12 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     RelativeLayout mapLayout;
     ArrayList<Marker> markers;
     Button ruteBtn;
-    Animation anim;
     Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bus_map2);
+        setContentView(R.layout.activity_bus_map);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -202,7 +201,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         }
         locationManager.removeUpdates(this);
     }
-   @Override
+    @Override
     protected void onStop() {
         super.onStop();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -219,7 +218,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
 
-   @Override
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -240,7 +239,7 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
 
         busStateLocation();
 
-       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
+        // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), 10));
 
     }
 
