@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -23,6 +24,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
     TextView grad, adresa, broj;
     Intent infoIntent;
     String cityName, city;
+    Button odvediDoStanice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         grad = (TextView) findViewById(R.id.gradIspis);
         adresa = (TextView) findViewById(R.id.adresaIspis);
         broj = (TextView) findViewById(R.id.telefonIspis);
+        odvediDoStanice = (Button) findViewById(R.id.odvediDoStaniceBtn);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         infoIntent = getIntent();
@@ -43,6 +46,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
 
         getWindow().setLayout((int)( width * .8),(int)(height * .6));
         broj.setOnClickListener(this);
+        odvediDoStanice.setOnClickListener(this);
         if (CityTraffic.stanicaCity == true){
             stanicaIspisCity();
         } else if (BusStateListActivity.busTran == true){
@@ -96,6 +100,11 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
 
             startActivity(callIntent);
 
+        }
+        if(view.getId() == R.id.odvediDoStaniceBtn)
+        {
+           /* Intent odvedi = new Intent(PopUpActivitiy.this,BusMap.class);
+            startActivity(odvedi);*/
         }
     }
 

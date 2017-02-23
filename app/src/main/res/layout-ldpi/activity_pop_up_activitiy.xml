@@ -93,7 +93,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView24"
         android:layout_alignBottom="@+id/telefonIspis"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp" />
+        android:layout_toRightOf="@+id/textView29"
+        android:layout_toEndOf="@+id/textView29"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp" />
+
+    <Button
+        android:text="ODVEDI ME DO STANICE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/odvediDoStaniceBtn"
+        android:background="@drawable/btn_shape"
+        android:padding="10dp" />
 </RelativeLayout>
