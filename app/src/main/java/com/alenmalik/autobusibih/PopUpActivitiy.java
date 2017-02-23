@@ -26,6 +26,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_activitiy);
+        getSupportActionBar().setTitle("INFORMACIJE");
 
         grad = (TextView) findViewById(R.id.gradIspis);
         adresa = (TextView) findViewById(R.id.adresaIspis);

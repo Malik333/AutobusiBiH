@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AutobusiBiH</string>
     <string name="title_activity_city_traffic">CityTraffic</string>
+    <string name="klik_za_poziv"><![CDATA[<-- klik za poziv]]></string>
 
 </resources>
