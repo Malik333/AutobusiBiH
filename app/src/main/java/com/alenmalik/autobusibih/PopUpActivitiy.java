@@ -103,8 +103,8 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         }
         if(view.getId() == R.id.odvediDoStaniceBtn)
         {
-           /* Intent odvedi = new Intent(PopUpActivitiy.this,BusMap.class);
-            startActivity(odvedi);*/
+           Intent odvedi = new Intent(PopUpActivitiy.this,BusMapAct.class);
+            startActivity(odvedi);
         }
     }
 
