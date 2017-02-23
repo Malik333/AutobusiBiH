@@ -97,8 +97,8 @@ public class BusTransport extends AppCompatActivity {
         if (item.getItemId() == R.id.action_stanice){
             Log.i("proba","pritisno");
             Toast.makeText(getApplicationContext(),"STANICE:",Toast.LENGTH_LONG).show();
-           /* Intent busStateIntent = new Intent(BusTransport.this,BusStateListActivity.class);
-            startActivity(busStateIntent);*/
+           Intent busStateIntent = new Intent(BusTransport.this,BusStateListActivity.class);
+            startActivity(busStateIntent);
         }
         return super.onOptionsItemSelected(item);
     }
