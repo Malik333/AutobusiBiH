@@ -30,6 +30,7 @@ public class BusTransport extends AppCompatActivity {
     ArrayList<String> prijevozniciList;
     HashSet<String> hashSet = new HashSet<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +96,6 @@ public class BusTransport extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_stanice){
-            Log.i("proba","pritisno");
-            Toast.makeText(getApplicationContext(),"STANICE:",Toast.LENGTH_LONG).show();
            Intent busStateIntent = new Intent(BusTransport.this,BusStateListActivity.class);
             startActivity(busStateIntent);
         }

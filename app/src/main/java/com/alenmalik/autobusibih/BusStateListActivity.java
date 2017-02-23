@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +34,7 @@ public class BusStateListActivity extends AppCompatActivity {
     private ProgressDialog dialog;
 
     //BEZZE
-
+    static boolean busTran = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,13 +114,13 @@ public class BusStateListActivity extends AppCompatActivity {
                     }
                 });
 
-                /*Intent intent = new Intent(BusStateActivity.this, BustStateInfo.class);
+                Intent intent = new Intent(BusStateListActivity.this, PopUpActivitiy.class);
 
                 String item = String.valueOf(adapter.getItem(position));
-
+                busTran = true;
                 intent.putExtra("city", item);
 
-                startActivity(intent);*/
+                startActivity(intent);
 
 
             }

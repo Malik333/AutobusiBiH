@@ -22,7 +22,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
 
     TextView grad, adresa, broj;
     Intent infoIntent;
-    String cityName;
+    String cityName, city;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         infoIntent = getIntent();
         cityName = infoIntent.getStringExtra("gradStanica");
-
+        city = infoIntent.getStringExtra("city");
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
@@ -45,6 +45,8 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         broj.setOnClickListener(this);
         if (CityTraffic.stanicaCity == true){
             stanicaIspisCity();
+        } else if (BusStateListActivity.busTran == true){
+            stanicaIspisBusState();
         }
     }
 
@@ -57,7 +59,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null){
                         for (ParseObject object : list){
-                            grad.setText(cityName);
+                            grad.setText(city);
                             adresa.setText(String.valueOf(object.get("Address")));
                             broj.setText(String.valueOf(object.get("PhoneNumber")));
                         }
@@ -66,6 +68,22 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
             });
         }
 
+    public void stanicaIspisBusState(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        query.whereEqualTo("CityName", city);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null){
+                    for (ParseObject object : list){
+                        grad.setText(cityName);
+                        adresa.setText(String.valueOf(object.get("Address")));
+                        broj.setText(String.valueOf(object.get("PhoneNumber")));
+                    }
+                }
+            }
+        });
+    }
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.telefonIspis){
