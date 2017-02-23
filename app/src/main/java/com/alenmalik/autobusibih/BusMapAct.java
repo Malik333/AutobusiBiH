@@ -143,6 +143,50 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
         }
     }
 
+    public void bust(){
+
+        ProgressDialog dialog = new ProgressDialog(this);
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+
+        mMap.clear();
+        if (location != null) {
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(CityTraffic.busLat, CityTraffic.busLng)).title("Lokacija autobusne").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+
+            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Vaša lokacija")));
+
+
+            for (Marker marker : markers) {
+                builder.include(marker.getPosition());
+            }
+
+            LatLngBounds bounds = builder.build();
+            int width = getResources().getDisplayMetrics().widthPixels;
+            int height = getResources().getDisplayMetrics().heightPixels;
+            int padding = (int) (width * 0.12);
+
+            CameraUpdate cu1 = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+
+
+            mMap.animateCamera(cu1);
+
+
+
+            if (ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(BusMapAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+
+                return;
+            }
+        } else {
+            locationManager.requestLocationUpdates(provider, 400, 1, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 0, 0, this);
+        }
+
+
+    }
+
 
     /**
      * Manipulates the map once available.
@@ -157,7 +201,11 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        busStateLocation();
+        if (BusStateListActivity.busTran == true) {
+            busStateLocation();
+        }else if (CityTraffic.stanicaCity == true){
+            bust();
+        }
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);
         //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -261,9 +309,15 @@ public class BusMapAct extends AppCompatActivity implements OnMapReadyCallback, 
     public void rotebus(View v) {
 
         vibe.vibrate(150);
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr=" + BusStateListActivity.busLat + "," + BusStateListActivity.busLng + ""));
-        startActivity(intent);
+        if (BusStateListActivity.busTran == true) {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=" + BusStateListActivity.busLat + "," + BusStateListActivity.busLng + ""));
+            startActivity(intent);
+        }else if (CityTraffic.stanicaCity == true){
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=" + CityTraffic.busLat + "," + CityTraffic.busLng + ""));
+            startActivity(intent);
+        }
     }
 
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -49,6 +50,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView cijenaTextView;
     Button ispisBtn;
     RelativeLayout infoLayout;
+
+    double latitude = 0, longitude = 0;
+    static double busLat, busLng;
 
     static boolean stanicaCity = false;
 
@@ -297,6 +301,37 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             infoStanica.putExtra("gradStanica", odGrada);
             stanicaCity = true;
             BusStateListActivity.busTran = false;
+            ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+            query.whereEqualTo("CityName", odGrada);
+
+            query.whereNear("Location", location);
+            query.setLimit(10);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+
+
+                        if (list.size() > 0) {
+
+                            for (ParseObject object : list) {
+                                busLat = object.getParseGeoPoint("Location").getLatitude();
+                                busLng = object.getParseGeoPoint("Location").getLongitude();
+
+                                Log.i("buslatituda", String.valueOf(busLat));
+                                Log.i("buslongituda", String.valueOf(busLng));
+
+
+                            }
+
+
+                        }
+
+
+                    }
+                }
+            });
             startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){
