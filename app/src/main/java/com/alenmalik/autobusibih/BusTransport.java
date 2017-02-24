@@ -1,6 +1,7 @@
 package com.alenmalik.autobusibih;
 
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class BusTransport extends AppCompatActivity {
     ArrayAdapter<String> prijevozniciAdapter;
     ArrayList<String> prijevozniciList;
     HashSet<String> hashSet = new HashSet<>();
-
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class BusTransport extends AppCompatActivity {
         prijevozniciListView = (ListView) findViewById(R.id.prijevozniciListView);
         prijevozniciList = new ArrayList<>();
         getPrijevoznik();
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 
     }
@@ -97,6 +98,7 @@ public class BusTransport extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_stanice){
            Intent busStateIntent = new Intent(BusTransport.this,BusStateListActivity.class);
+            vibrator.vibrate(100);
             startActivity(busStateIntent);
         }
         return super.onOptionsItemSelected(item);
