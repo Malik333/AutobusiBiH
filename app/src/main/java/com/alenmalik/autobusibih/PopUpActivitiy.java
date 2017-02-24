@@ -19,12 +19,13 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
-public class PopUpActivitiy extends AppCompatActivity implements View.OnClickListener{
+public class PopUpActivitiy extends AppCompatActivity implements View.OnClickListener {
 
     TextView grad, adresa, broj;
     Intent infoIntent;
     String cityName, city;
     Button odvediDoStanice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,42 +45,42 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)( width * .8),(int)(height * .6));
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
         broj.setOnClickListener(this);
         odvediDoStanice.setOnClickListener(this);
-        if (CityTraffic.stanicaCity == true){
+        if (CityTraffic.stanicaCity == true) {
             stanicaIspisCity();
-        } else if (BusStateListActivity.busTran == true){
+        } else if (BusStateListActivity.busTran == true) {
             stanicaIspisBusState();
         }
     }
 
-    public void stanicaIspisCity(){
+    public void stanicaIspisCity() {
 
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-            query.whereEqualTo("CityName", cityName);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null){
-                        for (ParseObject object : list){
-                            grad.setText(cityName);
-                            adresa.setText(String.valueOf(object.get("Address")));
-                            broj.setText(String.valueOf(object.get("PhoneNumber")));
-                        }
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
+        query.whereEqualTo("CityName", cityName);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    for (ParseObject object : list) {
+                        grad.setText(cityName);
+                        adresa.setText(String.valueOf(object.get("Address")));
+                        broj.setText(String.valueOf(object.get("PhoneNumber")));
                     }
                 }
-            });
-        }
+            }
+        });
+    }
 
-    public void stanicaIspisBusState(){
+    public void stanicaIspisBusState() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
         query.whereEqualTo("CityName", city);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
-                    for (ParseObject object : list){
+                if (e == null) {
+                    for (ParseObject object : list) {
                         grad.setText(city);
                         adresa.setText(String.valueOf(object.get("Address")));
                         broj.setText(String.valueOf(object.get("PhoneNumber")));
@@ -88,9 +89,10 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.telefonIspis){
+        if (view.getId() == R.id.telefonIspis) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:+" + broj.getText().toString().trim()));
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -101,10 +103,16 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
             startActivity(callIntent);
 
         }
-        if(view.getId() == R.id.odvediDoStaniceBtn)
-        {
-           Intent odvedi = new Intent(PopUpActivitiy.this,BusMapAct.class);
-            startActivity(odvedi);
+        if (view.getId() == R.id.odvediDoStaniceBtn) {
+            if (BusStateListActivity.busTran == true) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr=" + BusStateListActivity.busLat + "," + BusStateListActivity.busLng + ""));
+                startActivity(intent);
+            } else if (CityTraffic.stanicaCity == true) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr=" + CityTraffic.busLat + "," + CityTraffic.busLng + ""));
+                startActivity(intent);
+            }
         }
     }
 
