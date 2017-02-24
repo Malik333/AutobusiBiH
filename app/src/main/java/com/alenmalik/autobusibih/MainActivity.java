@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.about) {
             vibrator.vibrate(100);
 
-            aboutAnim = aboutApplication.animate().translationX(parentCenterX - aboutApplication.getWidth()/2).translationY(parentCenterY + aboutApplication.getHeight()).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            aboutAnim = aboutApplication.animate().translationX(parentCenterX - aboutApplication.getWidth()/2).translationY(parentCenterY + aboutApplication.getHeight()).scaleX(2).scaleY(2).setDuration(500);
             aboutAnim.setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.contact) {
             vibrator.vibrate(100);
 
-            contactAnim = contactInfo.animate().translationX(parentCenterX - contactInfo.getWidth()/2).translationY(parentCenterY + contactInfo.getHeight()/2).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            contactAnim = contactInfo.animate().translationX(parentCenterX - contactInfo.getWidth()/2).translationY(parentCenterY + contactInfo.getHeight()/2).scaleX(2).scaleY(2).setDuration(500);
             contactAnim.setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (view.getId() == R.id.cityTraffic) {
             vibrator.vibrate(100);
-            cityAnim = cityTraffic.animate().translationX(parentCenterX - cityTraffic.getWidth()/1.7f).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            cityAnim = cityTraffic.animate().translationX(parentCenterX - cityTraffic.getWidth()/1.7f).scaleX(2).scaleY(2).setDuration(500);
             cityAnim.setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (view.getId() == R.id.international) {
             vibrator.vibrate(100);
-            interAnim = internationalTraffic.animate().translationX(parentCenterX - internationalTraffic.getWidth()/2).translationY(parentCenterY - internationalTraffic.getHeight()/2).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            interAnim = internationalTraffic.animate().translationX(parentCenterX - internationalTraffic.getWidth()/2).translationY(parentCenterY - internationalTraffic.getHeight()/2).scaleX(2).scaleY(2).setDuration(500);
             interAnim.setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.transport) {
             vibrator.vibrate(100);
 
-            busAnim = busTransports.animate().translationX(parentCenterX - busTransports.getWidth()/2).translationY(parentCenterY - busTransports.getHeight()*1.5f).rotation(360f).scaleX(2).scaleY(2).setDuration(1200);
+            busAnim = busTransports.animate().translationX(parentCenterX - busTransports.getWidth()/2).translationY(parentCenterY - busTransports.getHeight()*1.5f).scaleX(2).scaleY(2).setDuration(500);
             busAnim.setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
