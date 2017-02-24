@@ -1,6 +1,8 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -55,6 +57,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     static double busLat, busLng;
 
     static boolean stanicaCity = false;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +80,14 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         linijaTextView = (TextView) findViewById(R.id.linijaIspis);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
         infoLayout = (RelativeLayout) findViewById(R.id.infoCityLayout);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         ispisBtn.setOnClickListener(this);
         stanicaTextview.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
 
 
                 odGrada = (String) adapterView.getItemAtPosition(i);
@@ -104,6 +109,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 doGrada = String.valueOf(adapterView.getItemAtPosition(i));
             }
 
@@ -116,6 +122,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 dan = (String) adapterView.getItemAtPosition(i);
                 Log.i("dan", dan);
 
@@ -293,10 +300,12 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.informacijeBtn){
+            vibrator.vibrate(100);
             infoLayout.setVisibility(View.VISIBLE);
             ispis();
 
         } else if (view.getId() == R.id.adresaStaniceIspis){
+            vibrator.vibrate(100);
             Intent infoStanica = new Intent(CityTraffic.this, PopUpActivitiy.class);
             infoStanica.putExtra("gradStanica", odGrada);
             stanicaCity = true;
@@ -335,6 +344,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){
+            vibrator.vibrate(100);
             Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
             startActivity(intent);
         }
