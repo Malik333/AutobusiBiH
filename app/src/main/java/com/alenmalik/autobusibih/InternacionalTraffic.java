@@ -52,7 +52,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     TextView linijaTextView;
     TextView cijenaTextView;
     TextView prijevoznikTextView;
-    TextView stanicaTextView;
+
 
     String country, citySelected, toCity, daySelect;
     Vibrator vibrator;
@@ -76,7 +76,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         linijaTextView = (TextView) findViewById(R.id.internationalLinija);
         cijenaTextView = (TextView) findViewById(R.id.internationalCijena);
         prijevoznikTextView = (TextView) findViewById(R.id.internationalPrijevoznik);
-        stanicaTextView = (TextView) findViewById(R.id.internationalStanica);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);

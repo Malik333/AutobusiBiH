@@ -380,44 +380,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/stanicaScroll">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:text="Stanica:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView36"
-                        android:layout_alignLeft="@+id/textView36"
-                        android:layout_alignStart="@+id/textView36"
-                        android:id="@+id/textView37"
-                        android:textColor="@color/blackColor"
-                        android:textStyle="normal|bold|italic"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/internationalStanica"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="normal|bold"
-                        android:layout_alignBaseline="@+id/textView37"
-                        android:layout_alignBottom="@+id/textView37"
-                        android:layout_alignLeft="@+id/internationalPrijevoznik"
-                        android:layout_alignStart="@+id/internationalPrijevoznik"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="107dp" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
         </LinearLayout>
     </ScrollView>
 
