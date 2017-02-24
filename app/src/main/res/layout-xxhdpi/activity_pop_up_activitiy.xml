@@ -102,9 +102,10 @@
         android:text="ODVEDI ME DO STANICE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/odvediDoStaniceBtn"
         android:background="@drawable/btn_shape"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_below="@+id/textView24"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 </RelativeLayout>
