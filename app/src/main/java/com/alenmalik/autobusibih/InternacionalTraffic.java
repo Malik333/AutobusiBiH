@@ -1,6 +1,8 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +55,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     TextView stanicaTextView;
 
     String country, citySelected, toCity, daySelect;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         cijenaTextView = (TextView) findViewById(R.id.internationalCijena);
         prijevoznikTextView = (TextView) findViewById(R.id.internationalPrijevoznik);
         stanicaTextView = (TextView) findViewById(R.id.internationalStanica);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
         dayAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
@@ -93,6 +97,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 country = String.valueOf(adapterView.getItemAtPosition(i));
 
                 fromCityInternacionalTraffic(country);
@@ -108,6 +113,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 citySelected = String.valueOf(adapterView.getItemAtPosition(i));
 
                 toCityInternationalTraffic(citySelected);
@@ -122,6 +128,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 toCity = String.valueOf(adapterView.getItemAtPosition(i));
             }
 
@@ -134,6 +141,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 daySelect = String.valueOf(adapterView.getItemAtPosition(i));
             }
 
@@ -318,6 +326,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.internationalInfoBtn){
+            vibrator.vibrate(100);
             infoScroll.setVisibility(View.VISIBLE);
             ispisInfoInternacional();
         }
