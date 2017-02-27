@@ -91,7 +91,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         informacije.setOnClickListener(this);
 
         chooseCountry();
-        chooseDayInternationalTraffic();
+
 
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -100,8 +100,8 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                 country = String.valueOf(adapterView.getItemAtPosition(i));
 
                 fromCityInternacionalTraffic(country);
-            }
 
+            }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -129,6 +129,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
                 toCity = String.valueOf(adapterView.getItemAtPosition(i));
+               // chooseDayInternationalTraffic(citySelected, toCity);
             }
 
             @Override
@@ -279,11 +280,13 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         });
     }
 
-    public void chooseDayInternationalTraffic() {
+    public void chooseDayInternationalTraffic(String fromCiy, String toCity ) {
 
         ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
         chooseDayQuery.addAscendingOrder("createdAt");
         chooseDayQuery.setLimit(10000);
+        chooseDayQuery.whereEqualTo("odGrada", fromCiy);
+        chooseDayQuery.whereEqualTo("doGrada", toCity);
         chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
