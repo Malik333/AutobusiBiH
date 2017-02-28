@@ -23,6 +23,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -206,7 +207,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
                         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         fromCitySpinner.setAdapter(fromCityAdapter);
-
+                        Collections.sort(fromCityList);
                         fromCityAdapter.notifyDataSetChanged();
 
 
@@ -242,7 +243,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         toCityList.addAll(hashSet2);
                         toCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
                         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-
+                        Collections.sort(toCityList);
                         toCitySpinner.setAdapter(toCityAdapter);
 
                         toCityAdapter.notifyDataSetChanged();

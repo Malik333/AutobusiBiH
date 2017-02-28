@@ -19,6 +19,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -78,30 +79,28 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         prijevoznikTextView = (TextView) findViewById(R.id.internationalPrijevoznik);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
-        dayAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
-        stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
-        stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
-
         stateList = new ArrayList<>();
         toCityList = new ArrayList<>();
         fromCityList = new ArrayList<>();
         daysList = new ArrayList<>();
 
-        informacije.setOnClickListener(this);
+        fromCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
+        fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        toCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
+        toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
-        chooseCountry();
+        informacije.setOnClickListener(this);
 
 
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
-                country = String.valueOf(adapterView.getItemAtPosition(i));
-
+                country = (String) adapterView.getItemAtPosition(i);
                 fromCityInternacionalTraffic(country);
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -113,9 +112,9 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
-                citySelected = String.valueOf(adapterView.getItemAtPosition(i));
-
-                toCityInternationalTraffic(citySelected);
+                citySelected = (String) adapterView.getItemAtPosition(i);
+                
+                toCityInternationalTraffic(citySelected, country);
             }
 
             @Override
@@ -129,7 +128,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
                 toCity = String.valueOf(adapterView.getItemAtPosition(i));
-               // chooseDayInternationalTraffic(citySelected, toCity);
+                // chooseDayInternationalTraffic(citySelected, toCity);
             }
 
             @Override
@@ -150,30 +149,30 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
             }
         });
+        chooseCountry();
+
     }
 
-    public void ispisInfoInternacional(){
+    public void ispisInfoInternacional() {
         ParseQuery<ParseObject> infoQuery = ParseQuery.getQuery("MedjunarodneRelacije");
         infoQuery.whereEqualTo("drzava", country);
         infoQuery.whereEqualTo("odGrada", citySelected);
         infoQuery.whereEqualTo("doGrada", toCity);
-        infoQuery.whereEqualTo("Dan", daySelect);
 
         infoQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e == null){
-                    for (ParseObject object : list){
+                if (e == null) {
+                    for (ParseObject object : list) {
                         vrijemepolaskaTextView.setText(String.valueOf(object.get("Satnica")));
                         duzinaputTextView.setText(String.valueOf(object.get("DuzinaPuta")));
                         linijaTextView.setText(String.valueOf(object.get("Linija")));
-                        vrijemepolaskaTextView.setText(String.valueOf(object.get("Satnica")));
                         cijenaTextView.setText(String.valueOf(object.get("Cijena")));
                         prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
                     }
                 }
 
-                relacijaTextView.setText(citySelected +" - "+ toCity);
+                relacijaTextView.setText(citySelected + " - " + toCity);
                 danTextView.setText(daySelect);
             }
         });
@@ -198,6 +197,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                         stateList.addAll(hashSet4);
                         stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
                         stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                        Collections.sort(stateList);
                         stateSpinner.setAdapter(stateAdapter);
 
                         stateAdapter.notifyDataSetChanged();
@@ -215,7 +215,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     public void fromCityInternacionalTraffic(String countryName) {
 
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
-        fromCityQuery.setLimit(10000);
         fromCityQuery.whereEqualTo("drzava", countryName);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -224,6 +223,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
                     if (list.size() > 0) {
 
+                        fromCityList.clear();
                         for (ParseObject object : list) {
                             fromCityList.add(String.valueOf(object.get("odGrada")));
 
@@ -231,8 +231,8 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        fromCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
-                        fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                        hashSet.clear();
+                        Collections.sort(fromCityList);
                         fromCitySpinner.setAdapter(fromCityAdapter);
 
                         fromCityAdapter.notifyDataSetChanged();
@@ -247,18 +247,18 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     }
 
 
-    public void toCityInternationalTraffic(String name) {
+    public void toCityInternationalTraffic(String name, String countryName) {
 
         ParseQuery<ParseObject> toCityQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
         toCityQuery.whereEqualTo("odGrada", name);
-        toCityQuery.setLimit(10000);
+        toCityQuery.whereEqualTo("drzava", countryName);
         toCityQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
 
                     if (list.size() > 0) {
-
+                        toCityList.clear();
                         for (ParseObject object : list) {
                             toCityList.add(String.valueOf(object.get("doGrada")));
 
@@ -266,9 +266,8 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                         hashSet2.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet2);
-                        toCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
-                        toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-
+                        hashSet2.clear();
+                        Collections.sort(toCityList);
                         toCitySpinner.setAdapter(toCityAdapter);
 
                         toCityAdapter.notifyDataSetChanged();
@@ -280,7 +279,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         });
     }
 
-    public void chooseDayInternationalTraffic(String fromCiy, String toCity ) {
+    public void chooseDayInternationalTraffic(String fromCiy, String toCity) {
 
         ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
         chooseDayQuery.addAscendingOrder("createdAt");
@@ -327,7 +326,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.internationalInfoBtn){
+        if (view.getId() == R.id.internationalInfoBtn) {
             vibrator.vibrate(100);
             infoScroll.setVisibility(View.VISIBLE);
             ispisInfoInternacional();
