@@ -148,6 +148,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vibrator.vibrate(100);
                 prijevoznik = (String) adapterView.getItemAtPosition(i);
             }
 
