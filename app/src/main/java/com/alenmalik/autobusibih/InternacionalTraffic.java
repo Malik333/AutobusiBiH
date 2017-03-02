@@ -25,7 +25,7 @@ import java.util.List;
 
 public class InternacionalTraffic extends AppCompatActivity implements View.OnClickListener {
     Spinner stateSpinner;
-    Spinner daySpinner;
+
     Spinner fromCitySpinner;
     Spinner toCitySpinner;
     ScrollView infoScroll;
@@ -37,18 +37,18 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
-    HashSet<String> hashSet3 = new HashSet<>();
+
     HashSet<String> hashSet4 = new HashSet<>();
 
     ArrayAdapter<String> stateAdapter;
     ArrayAdapter<String> fromCityAdapter;
     ArrayAdapter<String> toCityAdapter;
-    ArrayAdapter<String> dayAdapter;
+
 
     Button informacije;
     TextView relacijaTextView;
     TextView vrijemepolaskaTextView;
-    TextView danTextView;
+
     TextView duzinaputTextView;
     TextView linijaTextView;
     TextView cijenaTextView;
@@ -64,7 +64,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_internacional_traffic);
 
         stateSpinner = (Spinner) findViewById(R.id.izaberDrzavuSpinner);
-        daySpinner = (Spinner) findViewById(R.id.internationalSpinnerDan);
         fromCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerOdGrada);
         toCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerDoGrada);
         infoScroll = (ScrollView) findViewById(R.id.infoScroll);
@@ -72,7 +71,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         informacije = (Button) findViewById(R.id.internationalInfoBtn);
         relacijaTextView = (TextView) findViewById(R.id.internationalRelacija);
         vrijemepolaskaTextView = (TextView) findViewById(R.id.internationalVrijemePolaska);
-        danTextView = (TextView) findViewById(R.id.internationalDan);
         duzinaputTextView = (TextView) findViewById(R.id.internationalDuzinaPuta);
         linijaTextView = (TextView) findViewById(R.id.internationalLinija);
         cijenaTextView = (TextView) findViewById(R.id.internationalCijena);
@@ -137,18 +135,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             }
         });
 
-        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                vibrator.vibrate(100);
-                daySelect = String.valueOf(adapterView.getItemAtPosition(i));
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         chooseCountry();
 
     }
@@ -173,7 +160,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                 }
 
                 relacijaTextView.setText(citySelected + " - " + toCity);
-                danTextView.setText(daySelect);
+
             }
         });
     }
@@ -279,43 +266,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         });
     }
 
-    public void chooseDayInternationalTraffic(String fromCiy, String toCity) {
-
-        ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
-        chooseDayQuery.addAscendingOrder("createdAt");
-        chooseDayQuery.setLimit(10000);
-        chooseDayQuery.whereEqualTo("odGrada", fromCiy);
-        chooseDayQuery.whereEqualTo("doGrada", toCity);
-        chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-
-                    if (list.size() > 0) {
-
-                        for (ParseObject object : list) {
-                            daysList.add(String.valueOf(object.get("Dan")));
-
-                        }
-                        hashSet3.addAll(daysList);
-                        daysList.clear();
-                        daysList.addAll(hashSet3);
-                        dayAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
-
-
-                        daySpinner.setAdapter(dayAdapter);
-
-                        dayAdapter.notifyDataSetChanged();
-
-
-                    }
-
-
-                }
-            }
-        });
-
-    }
 
     @Override
     public void onBackPressed() {

@@ -59,26 +59,6 @@
             android:layout_alignStart="@+id/textView3" />
 
         <TextView
-            android:text="IZABERI DAN:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/izaberDrzavuSpinner"
-            android:layout_alignLeft="@+id/izaberDrzavuSpinner"
-            android:layout_alignStart="@+id/izaberDrzavuSpinner"
-            android:id="@+id/textView17"
-            android:textColor="@color/blackColor"
-            android:textStyle="bold|italic"
-            android:layout_marginTop="10dp" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView17"
-            android:layout_alignLeft="@+id/textView17"
-            android:layout_alignStart="@+id/textView17"
-            android:id="@+id/internationalSpinnerDan" />
-
-        <TextView
             android:text="DO GRADA:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,43 +132,6 @@
                         android:textColor="@color/blackColor"
                         android:layout_weight="1"
                         android:layout_marginLeft="100dp" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/danScroll">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:text="Dan:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView23"
-                        android:layout_alignLeft="@+id/textView23"
-                        android:layout_alignStart="@+id/textView23"
-                        android:id="@+id/textView26"
-                        android:textStyle="bold|italic"
-                        android:textColor="@color/blackColor"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/internationalDan"
-                        android:textColor="@color/blackColor"
-                        android:textStyle="bold"
-                        android:layout_above="@+id/textView28"
-                        android:layout_alignLeft="@+id/internationalVrijemePolaska"
-                        android:layout_alignStart="@+id/internationalVrijemePolaska"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="125dp" />
 
                 </LinearLayout>
             </HorizontalScrollView>
