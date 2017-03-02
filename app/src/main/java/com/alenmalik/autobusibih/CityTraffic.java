@@ -31,19 +31,24 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     Spinner fromCitySpinner;
     Spinner toCitySpinner;
     Spinner daysSpinner;
+    Spinner prijevoznikSpinner;
     ArrayList<String> fromCityList;
     ArrayList<String> toCityList;
     ArrayList<String> daysList;
+    ArrayList<String> TransportList;
     ArrayAdapter<String> fromCityAdapter;
     ArrayAdapter<String> toCityAdapter;
     ArrayAdapter<String> daysAdapter;
+    ArrayAdapter<String> TransportAdapter;
     HashSet<String> hashSet = new HashSet<String>();
     HashSet<String> hashSet2 = new HashSet<String>();
     HashSet<String> hashSet3 = new HashSet<>();
+    HashSet<String> hashSet4 = new HashSet<>();
     TextView relacijaTextView;
     String odGrada;
     String doGrada;
     String dan;
+    String prijevoznik;
     TextView danTextView;
     TextView duzinaPutaTextView;
     TextView satnicaTextview;
@@ -66,10 +71,12 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_city_traffic);
         fromCitySpinner = (Spinner) findViewById(R.id.spinnerOdGrada);
         toCitySpinner = (Spinner) findViewById(R.id.spinnerDoGrada);
+        prijevoznikSpinner = (Spinner) findViewById(R.id.spinnerPrijevoznik);
         daysSpinner = (Spinner) findViewById(R.id.spinnerDan);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
         daysList = new ArrayList<>();
+        TransportList = new ArrayList<>();
 
         relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
         danTextView = (TextView) findViewById(R.id.danIspis);
@@ -98,6 +105,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 toCityList.clear();
                 toCity(odGrada);
 
+
             }
 
             @Override
@@ -112,6 +120,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
                 doGrada = String.valueOf(adapterView.getItemAtPosition(i));
+
+                spinnerPrijevoznik(odGrada, doGrada);
             }
 
             @Override
@@ -134,6 +144,18 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+        prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                prijevoznik = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         fromCity();
         chooseDay();
 
@@ -148,6 +170,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         query.whereEqualTo("odGrada", odGrada);
         query.whereEqualTo("doGrada", doGrada);
         query.whereEqualTo("Dan", dan);
+        query.whereEqualTo("Prijevoznik", prijevoznik);
 
         query.setLimit(10000);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -257,6 +280,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
     public void chooseDay() {
 
+
         ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
         chooseDayQuery.addAscendingOrder("createdAt");
         chooseDayQuery.setLimit(10000);
@@ -288,6 +312,43 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 }
             }
         });
+
+    }
+
+    public void spinnerPrijevoznik(String name, String toCity){
+        ParseQuery<ParseObject> prijevoznikQuery = new ParseQuery<ParseObject>("Relacija");
+        prijevoznikQuery.setLimit(10000);
+        prijevoznikQuery.whereEqualTo("odGrada", name);
+        prijevoznikQuery.whereEqualTo("doGrada", toCity);
+        prijevoznikQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    if (list.size() > 0) {
+
+                        for (ParseObject object : list) {
+                            TransportList.add(String.valueOf(object.get("Prijevoznik")));
+
+                        }
+                        hashSet4.addAll(TransportList);
+                        TransportList.clear();
+                        TransportList.addAll(hashSet4);
+                        TransportAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, TransportList);
+                        TransportAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                        prijevoznikSpinner.setAdapter(TransportAdapter);
+                        hashSet4.clear();
+                        Collections.sort(TransportList);
+                        TransportAdapter.notifyDataSetChanged();
+
+
+                    }
+
+
+                }
+            }
+        });
+
 
     }
 
