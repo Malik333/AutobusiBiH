@@ -90,6 +90,14 @@
                 android:textColor="@color/blackColor"
                 android:textStyle="bold|italic"
                 android:padding="5dp"/>
+            <TextView
+                android:id="@+id/emailIspis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/blackColor"
+                android:textStyle="bold|italic"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/textView33"
