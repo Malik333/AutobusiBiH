@@ -75,7 +75,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".SemberijaTransport"></activity>
+        <activity android:name=".SemberijaTransport" />
+        <activity android:name=".PrijevozniciPopUp"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>

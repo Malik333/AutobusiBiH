@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -17,11 +20,15 @@ import static android.R.attr.value;
 public class SemberijaTransport extends AppCompatActivity {
     String webAddress;
     String value;
+    WebView myWebView;
+    WebSettings webSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semberija_transport);
+        myWebView = (WebView) findViewById(R.id.myWebView);
+
 
         Intent intent = getIntent();
        value = intent.getStringExtra("prijevoznik");
@@ -38,6 +45,10 @@ public class SemberijaTransport extends AppCompatActivity {
 
                      Log.i("proba",webAddress);
                  }
+                    webSettings = myWebView.getSettings();
+                    webSettings.setJavaScriptEnabled(true);
+                    myWebView.loadUrl(String.valueOf(webAddress));
+                    myWebView.setWebViewClient(new WebViewClient());
 
                 }
 
@@ -45,6 +56,18 @@ public class SemberijaTransport extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (myWebView.canGoBack()){
+            myWebView.goBack();
+        }else {
+
+            super.onBackPressed();
+        }
 
     }
 }
