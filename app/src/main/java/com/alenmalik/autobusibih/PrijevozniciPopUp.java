@@ -1,10 +1,14 @@
 package com.alenmalik.autobusibih;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
@@ -15,7 +19,7 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
-public class PrijevozniciPopUp extends AppCompatActivity {
+public class PrijevozniciPopUp extends AppCompatActivity implements View.OnClickListener {
 
     TextView prijevoznikTxt;
     TextView gradTxt;
@@ -45,6 +49,9 @@ public class PrijevozniciPopUp extends AppCompatActivity {
         emailTxt = (TextView) findViewById(R.id.emailIspis);
         webAdresaTxt = (TextView) findViewById(R.id.webAdresaIspis);
 
+        webAdresaTxt.setOnClickListener(this);
+        telTxt.setOnClickListener(this);
+
         Intent intent = getIntent();
         value = intent.getStringExtra("prijevoznik");
 
@@ -73,5 +80,27 @@ public class PrijevozniciPopUp extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.webAdresaIspis) {
+
+            Intent intent2 = new Intent(PrijevozniciPopUp.this, SemberijaTransport.class);
+            String webAdresa = String.valueOf(webAdresaTxt.getText());
+            intent2.putExtra("prijevoznikweb", webAdresa);
+            startActivity(intent2);
+
+        } else if (view.getId() == R.id.telIspis) {
+
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:+" + telTxt.getText().toString().trim()));
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            }
+
+            startActivity(callIntent);
+        }
     }
 }

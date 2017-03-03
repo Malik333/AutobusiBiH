@@ -33,8 +33,14 @@ public class SemberijaTransport extends AppCompatActivity {
         myWebView = (WebView) findViewById(R.id.myWebView);
 
         Intent intent = getIntent();
-       value = intent.getStringExtra("prijevoznik");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Prijevoznici");
+       value = intent.getStringExtra("prijevoznikweb");
+
+        webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        myWebView.loadUrl(String.valueOf(value));
+        myWebView.setWebViewClient(new WebViewClient());
+
+        /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Prijevoznici");
         query.whereEqualTo("Prijevoznik",value);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -47,16 +53,12 @@ public class SemberijaTransport extends AppCompatActivity {
 
                      Log.i("proba",webAddress);
                  }
-                    webSettings = myWebView.getSettings();
-                    webSettings.setJavaScriptEnabled(true);
-                    myWebView.loadUrl(String.valueOf(webAddress));
-                    myWebView.setWebViewClient(new WebViewClient());
 
                 }
 
 
             }
-        });
+        }); */
 
 
 
