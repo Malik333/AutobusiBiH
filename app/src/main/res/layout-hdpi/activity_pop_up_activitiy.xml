@@ -10,102 +10,95 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alenmalik.autobusibih.PopUpActivitiy">
 
-    <TextView
-        android:text="Grad:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView22"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="14sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:text="Adresa:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gradIspis"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/Adresa:"
-        android:textColor="@color/blackColor"
-        android:textStyle="normal|bold|italic"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Adresa:"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/adresaIspis"
-        android:textColor="@color/blackColor"
-        android:textStyle="normal|bold|italic"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="Grad:"
+                android:textColor="@color/blackColor"
+                android:textStyle="bold|italic" />
 
-    <TextView
-        android:text="Kontakt telefon:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/adresaIspis"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView29"
-        android:textColor="@color/blackColor"
-        android:textStyle="bold|italic"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/gradIspis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView22"
+                android:text="TextView"
+                android:textColor="@color/blackColor"
+                android:textStyle="bold|italic" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView29"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/telefonIspis"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold|italic"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/Adresa:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/gradIspis"
+                android:layout_marginTop="10dp"
+                android:text="Adresa:"
+                android:textColor="@color/blackColor"
+                android:textStyle="normal|bold|italic" />
 
-    <TextView
-        android:text="@string/klik_za_poziv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView24"
-        android:layout_alignBottom="@+id/telefonIspis"
-        android:layout_toRightOf="@+id/textView29"
-        android:layout_toEndOf="@+id/textView29"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="60dp" />
+            <TextView
+                android:id="@+id/adresaIspis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/Adresa:"
+                android:text="TextView"
+                android:textColor="@color/blackColor"
+                android:textStyle="normal|bold|italic" />
 
-    <Button
-        android:text="ODVEDI ME DO STANICE"
-        android:layout_width="wrap_content"
-        android:id="@+id/odvediDoStaniceBtn"
-        android:background="@drawable/btn_shape"
-        android:padding="10dp"
-        android:layout_below="@+id/telefonIspis"
-        android:layout_toRightOf="@+id/Adresa:"
-        android:layout_toEndOf="@+id/Adresa:"
-        android:layout_marginTop="15dp"
-        android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/adresaIspis"
+                android:layout_marginTop="10dp"
+                android:text="Kontakt telefon:"
+                android:textColor="@color/blackColor"
+                android:textStyle="bold|italic" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gradIspis"
-        android:textSize="14sp"
-        android:textStyle="bold|italic"
-        android:textColor="@color/blackColor"
-        android:layout_below="@+id/textView22"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:id="@+id/telefonIspis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView29"
+                android:text="TextView"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold|italic" />
+
+            <Button
+                android:id="@+id/odvediDoStaniceBtn"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView24"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_shape"
+                android:padding="10dp"
+                android:text="ODVEDI ME DO STANICE" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
