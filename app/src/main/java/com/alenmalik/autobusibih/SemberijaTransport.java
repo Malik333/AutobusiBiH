@@ -12,8 +12,11 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
+import static android.R.attr.value;
+
 public class SemberijaTransport extends AppCompatActivity {
     String webAddress;
+    String value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +24,9 @@ public class SemberijaTransport extends AppCompatActivity {
         setContentView(R.layout.activity_semberija_transport);
 
         Intent intent = getIntent();
-        intent.getStringExtra("prijevoznik");
+       value = intent.getStringExtra("prijevoznik");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Prijevoznici");
-        query.whereEqualTo("Prijevoznik","SEMBERIJA TRANSPORT");
+        query.whereEqualTo("Prijevoznik",value);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
