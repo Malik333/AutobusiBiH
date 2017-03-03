@@ -65,6 +65,15 @@
                 android:padding="5dp"/>
 
             <TextView
+                android:id="@+id/adressaIspis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="TextView"
+                android:textStyle="bold|italic"
+                android:textColor="@color/blackColor"/>
+
+            <TextView
                 android:id="@+id/textView35"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,11 +121,10 @@
                 android:id="@+id/webAdresaIspis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="TextView"
                 android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:padding="5dp"/>
-
+                android:textStyle="bold|italic" />
 
 
         </LinearLayout>
