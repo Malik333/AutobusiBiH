@@ -32,6 +32,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<String> prijevozniciList;
     HashSet<String> hashSet = new HashSet<>();
     Vibrator vibrator;
+    String webAdress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
 
 
     public void getPrijevoznik(){
-        ParseQuery<ParseObject> prijevozniciQuery = new ParseQuery<ParseObject>("Relacija");
+        ParseQuery<ParseObject> prijevozniciQuery = new ParseQuery<ParseObject>("Prijevoznici");
         prijevozniciQuery.setLimit(10000);
         prijevozniciQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -93,7 +94,14 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         });
+       prijevozniciListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Intent intent = new Intent(BusTransport.this,SemberijaTransport.class);
 
+               startActivity(intent);
+           }
+       });
 
 
     }
