@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="blackColor">#070606</color>
     <color name="whiteColor">#ffffff</color>
+    <color name="backgroundColor">#e3f2fd</color>
+    <color name="imageColor">#0d47a1</color>
+    <color name="popupColor">#ffcdd2</color>
 </resources>

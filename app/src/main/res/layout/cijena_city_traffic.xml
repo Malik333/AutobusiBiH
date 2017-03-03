@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context="com.alenmalik.autobusibih.CityTraffic$CijenaTab">
+
+    tools:context="com.alenmalik.autobusibih.CityTraffic$CijenaTab"
+    android:background="@color/backgroundColor">
 
     <ListView
         android:layout_width="match_parent"

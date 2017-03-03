@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alenmalik.autobusibih.PrijevozniciPopUp">
+    tools:context="com.alenmalik.autobusibih.PrijevozniciPopUp"
+    android:background="@color/popupColor">
 
 
     <ScrollView
@@ -86,10 +87,10 @@
                 android:id="@+id/telIspis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="TextView"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:padding="5dp"/>
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/textView32"
@@ -121,10 +122,10 @@
                 android:id="@+id/webAdresaIspis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="TextView"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:padding="5dp"/>
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold|italic" />
 
 
 

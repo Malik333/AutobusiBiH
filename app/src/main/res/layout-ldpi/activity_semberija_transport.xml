@@ -4,7 +4,8 @@
     android:id="@+id/activity_semberija_transport"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alenmalik.autobusibih.SemberijaTransport">
+    tools:context="com.alenmalik.autobusibih.SemberijaTransport"
+    android:background="@color/backgroundColor">
 
     <WebView
         android:id="@+id/myWebView"

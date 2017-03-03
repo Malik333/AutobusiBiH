@@ -34,6 +34,7 @@ public class PrijevozniciPopUp extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prijevoznici_pop_up);
+        getSupportActionBar().setTitle("O PRIJEVOZNIKU");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

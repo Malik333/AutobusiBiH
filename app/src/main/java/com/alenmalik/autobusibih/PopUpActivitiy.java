@@ -32,6 +32,8 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_pop_up_activitiy);
         getSupportActionBar().setTitle("INFORMACIJE");
 
+
+
         grad = (TextView) findViewById(R.id.gradIspis);
         adresa = (TextView) findViewById(R.id.adresaIspis);
         broj = (TextView) findViewById(R.id.telefonIspis);
