@@ -42,6 +42,16 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
         getPrijevoznik();
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
+        prijevozniciListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String value = prijevozniciAdapter.getItem(i);
+
+                Intent prijevoznikIntent = new Intent(BusTransport.this, SemberijaTransport.class);
+                prijevoznikIntent.putExtra("prijevoznik", value);
+                startActivity(prijevoznikIntent);
+            }
+        });
 
     }
 

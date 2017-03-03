@@ -9,7 +9,7 @@
     tools:context=".CityTraffic">
 
     <Button
-        android:text="INFORMACIJE:"
+        android:text="prikaži info:"
         android:id="@+id/informacijeBtn"
         android:background="@drawable/btn_shape"
         android:layout_height="30dp"
@@ -46,7 +46,7 @@
         android:id="@+id/textView9"
         android:textColor="@color/blackColor"
         android:textStyle="bold|italic"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:layout_marginTop="20dp" />
 
 
@@ -69,7 +69,7 @@
             android:id="@+id/textView10"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_below="@+id/textView9"
             android:layout_alignLeft="@+id/textView9"
             android:layout_alignStart="@+id/textView9"
@@ -82,7 +82,7 @@
             android:id="@+id/textView11"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_below="@+id/vrijemePolaskaIspis"
             android:layout_alignLeft="@+id/textView10"
             android:layout_alignStart="@+id/textView10"
@@ -108,7 +108,7 @@
             android:id="@+id/textView12"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_below="@+id/textView11"
             android:layout_marginTop="10dp" />
 
@@ -132,7 +132,7 @@
             android:id="@+id/textView19"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_below="@+id/textView12"
             android:layout_alignLeft="@+id/textView12"
             android:layout_alignStart="@+id/textView12"
@@ -158,7 +158,7 @@
             android:id="@+id/textView13"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_below="@+id/textView19"
             android:layout_alignLeft="@+id/textView19"
             android:layout_alignStart="@+id/textView19"
@@ -171,7 +171,7 @@
             android:id="@+id/textView14"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_below="@+id/textView13"
             android:layout_alignLeft="@+id/textView13"
             android:layout_alignStart="@+id/textView13"
@@ -226,7 +226,7 @@
             android:id="@+id/textView15"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_marginTop="14dp"
             android:layout_below="@+id/textView14"
             android:layout_alignRight="@+id/textView9"
@@ -292,7 +292,7 @@
 
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_alignBaseline="@+id/textView2"
             android:layout_alignBottom="@+id/textView2"
             android:layout_alignParentRight="true"
@@ -311,7 +311,7 @@
             android:layout_marginLeft="20dp"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <Spinner
             android:layout_width="wrap_content"
@@ -328,21 +328,21 @@
             android:id="@+id/textView8"
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/spinnerOdGrada"
             android:layout_alignLeft="@+id/spinnerOdGrada"
             android:layout_alignStart="@+id/spinnerOdGrada" />
 
         <TextView
-            android:text="PRIJEVOZNIK:"
+            android:text="DO GRADA:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView40"
 
             android:textColor="@color/blackColor"
             android:textStyle="bold|italic"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_alignBaseline="@+id/textView8"
             android:layout_alignBottom="@+id/textView8"
             android:layout_alignParentRight="true"
