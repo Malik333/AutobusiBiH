@@ -18,252 +18,316 @@
         android:layout_centerHorizontal="true" />
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/informacijeBtn"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/informacijeBtn"
+        android:layout_marginTop="35dp"
         android:paddingBottom="10dp">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <LinearLayout
             android:id="@+id/infoCityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:paddingLeft="10dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/informacijeBtn"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
             android:visibility="visible">
 
-            <TextView
-                android:text="Relacija:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView9"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp" />
-
-
-            <TextView
-                android:id="@+id/relacijaIspis"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView9"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/textView10"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView9"
-                android:layout_alignStart="@+id/textView9"
-                android:layout_below="@+id/textView9"
-                android:layout_marginTop="10dp"
-                android:text="Vrijeme polaska:"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:text="Dan:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView11"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_below="@+id/vrijemePolaskaIspis"
-                android:layout_alignLeft="@+id/textView10"
-                android:layout_alignStart="@+id/textView10"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:id="@+id/danIspis"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView11"
-                android:layout_alignLeft="@+id/relacijaIspis"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/relacijaIspis"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
-
-            <TextView
-                android:text="Dužina puta:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_below="@+id/textView11"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:id="@+id/duzinaPutaIspis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView12"
-                android:layout_alignBottom="@+id/textView12"
-                android:layout_alignLeft="@+id/danIspis"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/danIspis"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
-
-            <TextView
-                android:text="Linija:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView19"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_below="@+id/textView12"
-                android:layout_alignLeft="@+id/textView12"
-                android:layout_alignStart="@+id/textView12"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:id="@+id/linijaIspis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView19"
-                android:layout_alignBottom="@+id/textView19"
-                android:layout_alignLeft="@+id/duzinaPutaIspis"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/duzinaPutaIspis"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
-
-            <TextView
-                android:text="Cijena:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView13"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_below="@+id/textView19"
-                android:layout_alignLeft="@+id/textView19"
-                android:layout_alignStart="@+id/textView19"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:text="Prijevoznik:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView14"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_below="@+id/textView13"
-                android:layout_alignLeft="@+id/textView13"
-                android:layout_alignStart="@+id/textView13"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:id="@+id/prijevoznikIspis"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView14"
-                android:layout_alignBottom="@+id/textView14"
-                android:layout_alignLeft="@+id/horScroll"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/horScroll"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
-
             <HorizontalScrollView
-                android:id="@+id/horScroll"
+                android:id="@+id/relacija"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/textView14"
-                android:layout_alignLeft="@+id/linijaIspis"
-                android:layout_alignStart="@+id/linijaIspis">
-
-                <TextView
-                    android:id="@+id/cijenaIspis"
-                    android:layout_width="match_parent"
-
-                    android:layout_height="match_parent"
-                    android:layout_alignBaseline="@+id/textView13"
-                    android:layout_alignBottom="@+id/textView13"
-                    android:layout_alignLeft="@+id/linijaIspis"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/blackColor"
-                    android:textSize="18sp" />
-            </HorizontalScrollView>
-
-            <TextView
-                android:id="@+id/vrijemePolaskaIspis"
-                android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView10"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_toEndOf="@+id/textView10"
-                android:layout_toRightOf="@+id/textView10"
-                android:paddingLeft="4dp"
-                android:textColor="@color/blackColor"
-                android:textSize="18sp" />
+                android:padding="7dp">
 
-            <TextView
-                android:text="Stanica:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView15"
-                android:textColor="@color/blackColor"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                android:layout_marginTop="14dp"
-                android:layout_below="@+id/textView14"
-                android:layout_alignRight="@+id/textView9"
-                android:layout_alignEnd="@+id/textView9" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignLeft="@+id/prijevoznikIspis"
-                android:layout_alignStart="@+id/prijevoznikIspis">
-
-                <TextView
-                    android:id="@+id/adresaStaniceIspis"
+                <LinearLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    android:layout_height="wrap_content"
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Relacija:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
 
-                    android:layout_alignBottom="@+id/textView15"
-                    android:layout_alignLeft="@+id/prijevoznikIspis"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignStart="@+id/prijevoznikIspis"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/relacijaIspis"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="90dp"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
             </HorizontalScrollView>
 
-        </RelativeLayout>
+            <HorizontalScrollView
+                android:id="@+id/virjemepolaska"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Vrijeme polaska:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/vrijemePolaskaIspis"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="26dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/dansda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dan:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/danIspis"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="122dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/duzinaputa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dužina puta:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/duzinaPutaIspis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="60dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/linijascrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Linija:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/linijaIspis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="110dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/cijenascrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cijena:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/cijenaIspis"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="102dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/prijevoznikscrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Prijevoznik:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/prijevoznikIspis"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="64dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/adresastanicescrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Stanica:"
+                        android:textColor="@color/blackColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/adresaStaniceIspis"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="91dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
     </ScrollView>
 
     <RelativeLayout

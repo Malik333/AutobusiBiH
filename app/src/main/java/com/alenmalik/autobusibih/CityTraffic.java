@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView linijaTextView;
     TextView cijenaTextView;
     Button ispisBtn;
-    RelativeLayout infoLayout;
+    LinearLayout infoLayout;
 
     double latitude = 0, longitude = 0;
     static double busLat, busLng;
@@ -87,7 +88,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
         linijaTextView = (TextView) findViewById(R.id.linijaIspis);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
-        infoLayout = (RelativeLayout) findViewById(R.id.infoCityLayout);
+        infoLayout = (LinearLayout) findViewById(R.id.infoCityLayout);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         ispisBtn.setOnClickListener(this);
