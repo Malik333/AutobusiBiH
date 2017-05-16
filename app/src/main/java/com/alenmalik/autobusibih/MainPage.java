@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -80,17 +81,22 @@ public class MainPage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_medjugradski) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(MainPage.this,CityTraffic.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_medjunarodni) {
+            Intent intent = new Intent(MainPage.this,InternacionalTraffic.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_stanice) {
+            Intent intent = new Intent(MainPage.this,BusStateListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_prijevoznici) {
+            Intent intent = new Intent(MainPage.this,BusTransport.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_kontakt_informacije) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_o_aplikaciji) {
 
         }
 

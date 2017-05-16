@@ -358,7 +358,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(CityTraffic.this, MainActivity.class));
+        startActivity(new Intent(CityTraffic.this, MainPage.class));
     }
 
     @Override
