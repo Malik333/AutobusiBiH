@@ -3,5 +3,11 @@
     <string name="title_activity_city_traffic">CityTraffic</string>
     <string name="klik_za_poziv"><![CDATA[<-- klik za poziv]]></string>
     <string name="title_activity_bus_map">Map</string>
+    <string name="title_activity_main_page">MainPage</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -30,35 +30,38 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".AboutApplication"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".InternacionalTraffic"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ContactInfo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".BusTransport"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CityTraffic"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".PopUpActivitiy"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.CustomTheme" />
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".BusStateListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -76,9 +79,23 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".SemberijaTransport" />
-        <activity android:name=".PrijevozniciPopUp"
+        <activity
+            android:name=".PrijevozniciPopUp"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".MainPage"
+            android:label="@string/title_activity_main_page"
+            android:theme="@style/AppTheme.Dark">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

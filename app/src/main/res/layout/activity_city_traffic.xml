@@ -8,14 +8,14 @@
     android:background="@color/backgroundColor"
     tools:context=".CityTraffic">
 
-    <Button
-        android:text="prikaži info:"
+    <ImageView
+
         android:id="@+id/informacijeBtn"
-        android:background="@drawable/btn_shape"
-        android:layout_height="30dp"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/spinnerLayoutCity"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/infobtn" />
 
     <ScrollView
         android:layout_width="match_parent"
