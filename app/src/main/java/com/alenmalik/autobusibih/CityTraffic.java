@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -79,25 +82,23 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         daysList = new ArrayList<>();
         TransportList = new ArrayList<>();
 
-        relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
+       /* relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
         danTextView = (TextView) findViewById(R.id.danIspis);
         duzinaPutaTextView = (TextView) findViewById(R.id.duzinaPutaIspis);
-        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
-        ispisBtn = (Button) findViewById(R.id.informacijeBtn);
-        satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
+        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);*/
+        ispisBtn = (Button) findViewById(R.id.ispis);
+     /*   satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
         stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
         linijaTextView = (TextView) findViewById(R.id.linijaIspis);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
-        infoLayout = (LinearLayout) findViewById(R.id.infoCityLayout);
+        infoLayout = (LinearLayout) findViewById(R.id.infoCityLayout);*/
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
         ispisBtn.setOnClickListener(this);
-        stanicaTextview.setOnClickListener(this);
+//        stanicaTextview.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
-
 
                 odGrada = (String) adapterView.getItemAtPosition(i);
 
@@ -229,9 +230,12 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
+                        fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner,fromCityList);
                         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                        fromCitySpinner.setAdapter(fromCityAdapter);
+
+
+
+                    fromCitySpinner.setAdapter(fromCityAdapter);
                         Collections.sort(fromCityList);
                         fromCityAdapter.notifyDataSetChanged();
 
@@ -266,7 +270,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         hashSet2.addAll(toCityList);
                         toCityList.clear();
                         toCityList.addAll(hashSet2);
-                        toCityAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
+                        toCityAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, toCityList);
                         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         Collections.sort(toCityList);
                         toCitySpinner.setAdapter(toCityAdapter);
@@ -300,7 +304,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         hashSet3.addAll(daysList);
                         daysList.clear();
                         daysList.addAll(hashSet3);
-                        daysAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, daysList);
+                        daysAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, daysList);
 
 
                         daysSpinner.setAdapter(daysAdapter);
@@ -336,7 +340,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         hashSet4.addAll(TransportList);
                         TransportList.clear();
                         TransportList.addAll(hashSet4);
-                        TransportAdapter = new ArrayAdapter<String>(CityTraffic.this, android.R.layout.simple_spinner_dropdown_item, TransportList);
+                        TransportAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, TransportList);
                         TransportAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         prijevoznikSpinner.setAdapter(TransportAdapter);
                         hashSet4.clear();
@@ -361,9 +365,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         startActivity(new Intent(CityTraffic.this, MainPage.class));
     }
 
-    @Override
+
+@Override
     public void onClick(View view) {
-        if (view.getId() == R.id.informacijeBtn){
+      /*  if (view.getId() == R.id.informacijeBtn){
             vibrator.vibrate(100);
             infoLayout.setVisibility(View.VISIBLE);
             ispis();
@@ -411,8 +416,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             vibrator.vibrate(100);
             Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
             startActivity(intent);
-        }
+        }*/
     }
+
+
 
 
 
