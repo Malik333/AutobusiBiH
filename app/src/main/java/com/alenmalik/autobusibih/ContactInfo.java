@@ -45,6 +45,6 @@ public class ContactInfo extends AppCompatActivity implements View.OnClickListen
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(ContactInfo.this, MainActivity.class));
+        startActivity(new Intent(ContactInfo.this, MainPage.class));
     }
 }

@@ -271,7 +271,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(InternacionalTraffic.this, MainActivity.class));
+        startActivity(new Intent(InternacionalTraffic.this, MainPage.class));
     }
 
     @Override

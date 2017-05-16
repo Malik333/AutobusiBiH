@@ -5,6 +5,7 @@ import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -34,13 +35,18 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     Vibrator vibrator;
     String webAdress;
 
+    RecyclerView prijevoznici;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_transport);
-        prijevozniciListView = (ListView) findViewById(R.id.prijevozniciListView);
-        prijevozniciList = new ArrayList<>();
-        getPrijevoznik();
+        prijevoznici = (RecyclerView) findViewById(R.id.prijevozniciListView);
+        //prijevozniciList = new ArrayList<>();
+
+        prijevoznici.setLayoutManager(new LinearLayoutManager(this));
+        TransportAdapter adapter = new TransportAdapter(TransportData.getAlldata(), BusTransport.this);
+        prijevoznici.setAdapter(adapter);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 
@@ -51,11 +57,11 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(BusTransport.this, MainActivity.class));
+        startActivity(new Intent(BusTransport.this, MainPage.class));
     }
 
 
-    public void getPrijevoznik(){
+    /*public void getPrijevoznik(){
         ParseQuery<ParseObject> prijevozniciQuery = new ParseQuery<ParseObject>("Prijevoznici");
         prijevozniciQuery.setLimit(10000);
         prijevozniciQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -98,7 +104,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
 
 
     }
-
+**/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
