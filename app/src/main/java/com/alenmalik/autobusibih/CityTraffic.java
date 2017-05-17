@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -62,7 +63,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView linijaTextView;
     TextView cijenaTextView;
     Button ispisBtn;
-    LinearLayout infoLayout;
+    HorizontalScrollView infoLayout;
 
     double latitude = 0, longitude = 0;
     static double busLat, busLng;
@@ -83,19 +84,19 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         daysList = new ArrayList<>();
         TransportList = new ArrayList<>();
 
-       /* relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
-        danTextView = (TextView) findViewById(R.id.danIspis);
+        relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
+      danTextView = (TextView) findViewById(R.id.danIspis);
         duzinaPutaTextView = (TextView) findViewById(R.id.duzinaPutaIspis);
-        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);*/
+        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
         ispisBtn = (Button) findViewById(R.id.ispis);
-     /*   satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
+        satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
         stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
         linijaTextView = (TextView) findViewById(R.id.linijaIspis);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
-        infoLayout = (LinearLayout) findViewById(R.id.infoCityLayout);*/
+       infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
-//        stanicaTextview.setOnClickListener(this);
+     stanicaTextview.setOnClickListener(this);
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -381,9 +382,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
 @Override
     public void onClick(View view) {
-      /*  if (view.getId() == R.id.informacijeBtn){
+        if (view.getId() == R.id.ispis){
             vibrator.vibrate(100);
-            infoLayout.setVisibility(View.VISIBLE);
+          infoLayout.setVisibility(View.VISIBLE);
             ispis();
 
         } else if (view.getId() == R.id.adresaStaniceIspis){
@@ -429,7 +430,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             vibrator.vibrate(100);
             Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
             startActivity(intent);
-        }*/
+        }
     }
 
 
