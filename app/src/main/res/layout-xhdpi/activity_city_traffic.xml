@@ -51,7 +51,7 @@
             android:textStyle="bold" />
 
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerDoGrada"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,14 @@
             >
 
 
-        </Spinner>
+        </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:background="@color/whiteColor"
+            android:layout_below="@+id/spinnerDoGrada"
+            android:layout_centerHorizontal="true"/>
 
 
         <TextView
@@ -74,7 +81,7 @@
             android:textStyle="bold"
             android:text="IZABERI DAN"/>
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerDan"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -83,7 +90,14 @@
             android:layout_marginTop="10dp"
             >
 
-        </Spinner>
+        </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:background="@color/whiteColor"
+            android:layout_below="@+id/spinnerDan"
+            android:layout_centerHorizontal="true"/>
 
 
         <TextView
@@ -107,6 +121,12 @@
             >
 
         </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:background="@color/whiteColor"
+            android:layout_below="@+id/spinnerPrijevoznik"
+            android:layout_centerHorizontal="true"/>
 
 
 

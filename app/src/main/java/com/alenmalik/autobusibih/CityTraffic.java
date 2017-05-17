@@ -25,6 +25,7 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,10 +33,10 @@ import java.util.HashSet;
 import java.util.List;
 
 public class CityTraffic extends AppCompatActivity implements View.OnClickListener{
-    Spinner fromCitySpinner;
-    Spinner toCitySpinner;
-    Spinner daysSpinner;
-    Spinner prijevoznikSpinner;
+    SearchableSpinner fromCitySpinner;
+    SearchableSpinner toCitySpinner;
+    SearchableSpinner daysSpinner;
+    SearchableSpinner prijevoznikSpinner;
     ArrayList<String> fromCityList;
     ArrayList<String> toCityList;
     ArrayList<String> daysList;
@@ -73,10 +74,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_traffic);
-        fromCitySpinner = (Spinner) findViewById(R.id.spinnerOdGrada);
-        toCitySpinner = (Spinner) findViewById(R.id.spinnerDoGrada);
-        prijevoznikSpinner = (Spinner) findViewById(R.id.spinnerPrijevoznik);
-        daysSpinner = (Spinner) findViewById(R.id.spinnerDan);
+        fromCitySpinner = (SearchableSpinner) findViewById(R.id.spinnerOdGrada);
+        toCitySpinner = (SearchableSpinner) findViewById(R.id.spinnerDoGrada);
+        prijevoznikSpinner = (SearchableSpinner) findViewById(R.id.spinnerPrijevoznik);
+        daysSpinner = (SearchableSpinner) findViewById(R.id.spinnerDan);
         fromCityList = new ArrayList<>();
         toCityList = new ArrayList<>();
         daysList = new ArrayList<>();
@@ -116,6 +117,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+        fromCitySpinner.setTitle("IZABERI OD GRADA");
+
+        fromCitySpinner.setPositiveButton("OK");
 
 
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -131,6 +135,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        toCitySpinner.setTitle("IZABERI DO GRADA");
+        toCitySpinner.setPositiveButton("OK");
 
 
         daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -148,6 +154,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+        daysSpinner.setTitle("IZABERI DAN");
+        daysSpinner.setPositiveButton("OK");
+
         prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -160,6 +169,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+        prijevoznikSpinner.setTitle("IZABERI PRIJEVOZNIKA");
+        prijevoznikSpinner.setPositiveButton("OK");
         fromCity();
         chooseDay();
 
