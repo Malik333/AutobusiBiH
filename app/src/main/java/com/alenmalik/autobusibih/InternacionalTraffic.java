@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,11 +26,12 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InternacionalTraffic extends AppCompatActivity implements View.OnClickListener {
-    Spinner stateSpinner;
 
-    Spinner fromCitySpinner;
-    Spinner toCitySpinner;
-    ScrollView infoScroll;
+    SearchableSpinner stateSpinner;
+    SearchableSpinner fromCitySpinner;
+    SearchableSpinner toCitySpinner;
+
+    HorizontalScrollView infoScroll;
 
     ArrayList<String> stateList;
     ArrayList<String> daysList;
@@ -63,18 +66,18 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internacional_traffic);
 
-        stateSpinner = (Spinner) findViewById(R.id.izaberDrzavuSpinner);
-        fromCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerOdGrada);
-        toCitySpinner = (Spinner) findViewById(R.id.internationalSpinnerDoGrada);
-        infoScroll = (ScrollView) findViewById(R.id.infoScroll);
+        stateSpinner = (SearchableSpinner) findViewById(R.id.izaberDrzavuSpinner);
+        fromCitySpinner = (SearchableSpinner) findViewById(R.id.internationalSpinnerOdGrada);
+        toCitySpinner = (SearchableSpinner) findViewById(R.id.internationalSpinnerDoGrada);
+        infoScroll = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll_international);
 
-        informacije = (Button) findViewById(R.id.internationalInfoBtn);
-        relacijaTextView = (TextView) findViewById(R.id.internationalRelacija);
-        vrijemepolaskaTextView = (TextView) findViewById(R.id.internationalVrijemePolaska);
-        duzinaputTextView = (TextView) findViewById(R.id.internationalDuzinaPuta);
-        linijaTextView = (TextView) findViewById(R.id.internationalLinija);
-        cijenaTextView = (TextView) findViewById(R.id.internationalCijena);
-        prijevoznikTextView = (TextView) findViewById(R.id.internationalPrijevoznik);
+        informacije = (Button) findViewById(R.id.ispis_international);
+        relacijaTextView = (TextView) findViewById(R.id.relacijaIspis_international);
+        vrijemepolaskaTextView = (TextView) findViewById(R.id.vrijemePolaskaIspis_international);
+        duzinaputTextView = (TextView) findViewById(R.id.duzinaPutaIspis_international);
+        linijaTextView = (TextView) findViewById(R.id.linijaIspis_international);
+        cijenaTextView = (TextView) findViewById(R.id.cijenaIspis_international);
+        prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis_international);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         stateList = new ArrayList<>();
@@ -88,6 +91,10 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
         informacije.setOnClickListener(this);
+
+        stateSpinner.setTitle("IZABERITE DRŽAVU");
+        fromCitySpinner.setTitle("IZABERITE OD GRADA");
+        toCitySpinner.setTitle("IZABERITE DO GRADA");
 
 
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -276,7 +283,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.internationalInfoBtn) {
+        if (view.getId() == R.id.ispis_international) {
             vibrator.vibrate(100);
             infoScroll.setVisibility(View.VISIBLE);
             ispisInfoInternacional();
