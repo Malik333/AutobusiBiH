@@ -109,6 +109,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 toCityList.clear();
                 toCity(odGrada);
                 TransportList.clear();
+                TransportList.add("Svi");
 
 
             }
@@ -131,6 +132,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 doGrada = String.valueOf(adapterView.getItemAtPosition(i));
 
                 spinnerPrijevoznik(odGrada, doGrada);
+                TransportList.clear();
+                TransportList.add("Svi");
             }
 
             @Override
