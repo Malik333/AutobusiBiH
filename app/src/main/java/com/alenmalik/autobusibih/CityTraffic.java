@@ -117,6 +117,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

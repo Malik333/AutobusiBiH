@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/city_traffic_conteiner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -20,17 +20,24 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="OD GRADA"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerOdGrada"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textview_od_grada"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true">
 
-        </Spinner>
+        </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:background="@color/whiteColor"
+            android:layout_below="@+id/spinnerOdGrada"
+            android:layout_centerHorizontal="true"/>
 
 
         <TextView
@@ -51,7 +58,7 @@
             android:layout_below="@+id/textview_do_grada"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-           >
+            >
 
 
         </Spinner>
@@ -90,16 +97,16 @@
             android:text="IZABERI PRIJEVOZNIKA"/>
 
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerPrijevoznik"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textview_prevoznik"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             >
 
-        </Spinner>
+        </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
 
 
 
