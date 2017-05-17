@@ -2,6 +2,8 @@ package com.alenmalik.autobusibih;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
@@ -40,6 +42,9 @@ public class BusStateListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_state_list);
         listView = (ListView) findViewById(R.id.busName_list);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1a237e")));
 
 
         dialog = new ProgressDialog(this);
@@ -159,4 +164,17 @@ public class BusStateListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        if (item.getItemId() == android.R.id.home){
+            Intent intent = new Intent(BusStateListActivity.this,MainPage.class);
+            startActivity(intent);
+
+            return true;
+
+        }else
+        return super.onOptionsItemSelected(item);
+    }
 }
