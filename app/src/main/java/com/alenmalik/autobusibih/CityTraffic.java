@@ -108,6 +108,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 hashSet2.clear();
                 toCityList.clear();
                 toCity(odGrada);
+                TransportList.clear();
 
 
             }
@@ -157,6 +158,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
         daysSpinner.setTitle("IZABERI DAN");
         daysSpinner.setPositiveButton("OK");
+        //TransportList.add("Svi");
 
         prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -183,48 +185,96 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     }
 
     public void ispis(){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
-        query.whereEqualTo("odGrada", odGrada);
-        query.whereEqualTo("doGrada", doGrada);
-        query.whereEqualTo("Dan", dan);
-        query.whereEqualTo("Prijevoznik", prijevoznik);
 
-        query.setLimit(10000);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
+        String prijevoznikSelected = prijevoznik;
 
-                    if (list.size() > 0) {
+        if (prijevoznikSelected.equals("Svi")){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+            query.whereEqualTo("odGrada", odGrada);
+            query.whereEqualTo("doGrada", doGrada);
+            query.whereEqualTo("Dan", dan);
+            query.setLimit(10000);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
 
-                        for (ParseObject object : list) {
-                            duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
-                            prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
-                            satnicaTextview.setText(String.valueOf(object.get("Satnica")));
-                            cijenaTextView.setText(String.valueOf(object.get("Cijena")));
-                            linijaTextView.setText(String.valueOf(object.get("Linija")));
+                        if (list.size() > 0) {
+
+                            for (ParseObject object : list) {
+                                duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
+                                prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
+                                satnicaTextview.setText(String.valueOf(object.get("Satnica")));
+                                cijenaTextView.setText(String.valueOf(object.get("Cijena")));
+                                linijaTextView.setText(String.valueOf(object.get("Linija")));
+
+                            }
 
                         }
-
-                    }
-                    relacijaTextView.setText(String.valueOf(odGrada +" - "+ doGrada));
-                    danTextView.setText(dan);
-                }
-            }
-        });
-
-        ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
-        stanicaquery.whereEqualTo("CityName", odGrada);
-        stanicaquery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-                    for (ParseObject object : list){
-                        stanicaTextview.setText(String.valueOf(object.get("Address")));
+                        relacijaTextView.setText(String.valueOf(odGrada + " - " + doGrada));
+                        danTextView.setText(dan);
                     }
                 }
-            }
-        });
+            });
+
+            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+            stanicaquery.whereEqualTo("CityName", odGrada);
+            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject object : list) {
+                            stanicaTextview.setText(String.valueOf(object.get("Address")));
+                        }
+                    }
+                }
+            });
+        } else {
+
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
+            query.whereEqualTo("odGrada", odGrada);
+            query.whereEqualTo("doGrada", doGrada);
+            query.whereEqualTo("Dan", dan);
+            query.whereEqualTo("Prijevoznik", prijevoznik);
+
+            query.setLimit(10000);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+
+                        if (list.size() > 0) {
+
+                            for (ParseObject object : list) {
+                                duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
+                                prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
+                                satnicaTextview.setText(String.valueOf(object.get("Satnica")));
+                                cijenaTextView.setText(String.valueOf(object.get("Cijena")));
+                                linijaTextView.setText(String.valueOf(object.get("Linija")));
+
+                            }
+
+                        }
+                        relacijaTextView.setText(String.valueOf(odGrada + " - " + doGrada));
+                        danTextView.setText(dan);
+                    }
+                }
+            });
+
+            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+            stanicaquery.whereEqualTo("CityName", odGrada);
+            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject object : list) {
+                            stanicaTextview.setText(String.valueOf(object.get("Address")));
+                        }
+                    }
+                }
+            });
+        }
     }
     public void fromCity() {
 
@@ -348,6 +398,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                     if (list.size() > 0) {
 
                         for (ParseObject object : list) {
+
                             TransportList.add(String.valueOf(object.get("Prijevoznik")));
 
                         }
