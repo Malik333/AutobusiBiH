@@ -113,7 +113,7 @@
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerPrijevoznik"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textview_prevoznik"
             android:layout_centerHorizontal="true"
