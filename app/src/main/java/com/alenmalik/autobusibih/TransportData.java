@@ -23,7 +23,7 @@ public class TransportData {
     public static List<Transport> getAlldata() {
 
         final List<Transport> data = new ArrayList<>();
-        /*for (int x = 0; x < 3; x++) {
+        for (int x = 0; x < 3; x++) {
             for (int i = 0; i < name.length && i < adresa.length && i < telefon.length && i < website.length; i++) {
                 Transport item = new Transport();
                 item.setName(name[i]);
@@ -34,7 +34,7 @@ public class TransportData {
                 data.add(item);
             }
         }
-        */ParseQuery<ParseObject> prijevoznici = new ParseQuery<ParseObject>("Prijevoznici");
+        ParseQuery<ParseObject> prijevoznici = new ParseQuery<ParseObject>("Prijevoznici");
         prijevoznici.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

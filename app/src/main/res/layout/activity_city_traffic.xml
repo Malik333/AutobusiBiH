@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/city_traffic_conteiner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+       >
 
 
         <TextView
@@ -154,10 +155,12 @@
             android:layout_margin="10dp"
             android:layout_below="@+id/ispis"
             android:background="@drawable/shape_for_layout"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
