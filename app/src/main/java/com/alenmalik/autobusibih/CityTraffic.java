@@ -6,6 +6,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
@@ -67,6 +69,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     TextView cijenaTextView;
     Button ispisBtn;
     HorizontalScrollView infoLayout;
+    RecyclerView details;
+    List<MedjugradskiIspisModel> detailsList;
+    MedjugradskiIspisAdapter adapter;
 
     double latitude = 0, longitude = 0;
     static double busLat, busLng;
@@ -86,6 +91,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         toCityList = new ArrayList<>();
         daysList = new ArrayList<>();
         TransportList = new ArrayList<>();
+        details = (RecyclerView) findViewById(R.id.ispis_medjugradski_rec);
+        details.setLayoutManager(new LinearLayoutManager(this));
+        detailsList = new ArrayList<>();
 
         relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
       danTextView = (TextView) findViewById(R.id.danIspis);
@@ -99,7 +107,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
        infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
-     stanicaTextview.setOnClickListener(this);
+     //stanicaTextview.setOnClickListener(this);
 
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -195,6 +203,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         String prijevoznikSelected = prijevoznik;
 
         if (prijevoznikSelected.equals("Svi")){
+            final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
             query.whereEqualTo("odGrada", odGrada);
             query.whereEqualTo("doGrada", doGrada);
@@ -205,36 +214,41 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
-                        if (list.size() > 0) {
+                       for (int i = 0; i < list.size(); i++){
 
-                            for (ParseObject object : list) {
-                                duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
-                                prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
-                                satnicaTextview.setText(String.valueOf(object.get("Satnica")));
-                                cijenaTextView.setText(String.valueOf(object.get("Cijena")));
-                                linijaTextView.setText(String.valueOf(object.get("Linija")));
+                           item.vrijemePolaska = list.get(i).getString("Satnica");
+                           item.dan = list.get(i).getString("Dan");
+                           item.duzinaPuta = list.get(i).getString("DuzinaPuta");
+                           item.linija = list.get(i).getString("Linija");
+                           item.cijena = list.get(i).getString("Cijena");
+                           item.prijevoznik = list.get(i).getString("Prijevoznik");
+                           detailsList.add(item);
 
+                       }
+                        ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                        stanicaquery.whereEqualTo("CityName", odGrada);
+                        stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> list, ParseException e) {
+                                if (e == null) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        item.stanica = list.get(i).getString("Address");
+                                        detailsList.add(item);
+                                    }
+                                }
+                                adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                                details.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
                             }
+                        });
 
-                        }
-                        relacijaTextView.setText(String.valueOf(odGrada + " - " + doGrada));
-                        danTextView.setText(dan);
                     }
+
+
                 }
             });
 
-            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
-            stanicaquery.whereEqualTo("CityName", odGrada);
-            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null) {
-                        for (ParseObject object : list) {
-                            stanicaTextview.setText(String.valueOf(object.get("Address")));
-                        }
-                    }
-                }
-            });
+
         } else {
 
 
@@ -446,7 +460,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
                 vibrator.vibrate(100);
-                infoLayout.setVisibility(View.VISIBLE);
+                //infoLayout.setVisibility(View.VISIBLE);
                 ispis();
             }
 

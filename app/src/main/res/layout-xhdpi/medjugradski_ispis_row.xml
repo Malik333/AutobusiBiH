@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontal_layout_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ispis"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_for_layout"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/prijevoznikIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="24sp"/>
+
+            <TextView
+                android:id="@+id/relacijaRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relacija:"
+                android:layout_below="@+id/prijevoznikIspisRow"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/relacijaIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/relacijaRow"
+                android:layout_marginLeft="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_toEndOf="@+id/relacijaRow"
+                android:layout_toRightOf="@+id/relacijaRow"
+                android:textStyle="bold" />
+
+
+
+
+            <TextView
+                android:id="@+id/vrijemepolaska"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relacijaRow"
+                android:layout_marginTop="15dp"
+                android:text="Vrijeme polaska"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/vrijemePolaskaIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/vrijemepolaska"
+                android:layout_alignLeft="@id/relacijaIspisRow"
+                android:layout_alignStart="@+id/relacijaIspisRow"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/dan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vrijemepolaska"
+                android:layout_marginTop="15dp"
+                android:text="Dan:"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/danIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/dan"
+                android:layout_alignLeft="@+id/vrijemePolaskaIspisRow"
+                android:layout_alignStart="@+id/vrijemePolaskaIspisRow"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/duzinaputa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dan"
+                android:layout_marginTop="15dp"
+                android:text="Duzina puta:"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/duzinaPutaIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/duzinaputa"
+                android:layout_alignLeft="@+id/danIspisRow"
+                android:layout_alignStart="@+id/danIspisRow"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/linija"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/duzinaputa"
+                android:layout_marginTop="15dp"
+                android:text="Linija:"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/linijaIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/linija"
+                android:layout_alignLeft="@+id/duzinaPutaIspisRow"
+                android:layout_alignStart="@+id/duzinaPutaIspisRow"
+                android:textStyle="bold" />
+
+
+
+
+            <TextView
+                android:id="@+id/cijena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linija"
+                android:layout_marginTop="15dp"
+                android:text="Cijena:"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/cijenaIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/cijena"
+                android:layout_alignLeft="@+id/linijaIspisRow"
+                android:layout_alignStart="@+id/linijaIspisRow"
+                android:textStyle="bold" />
+
+
+
+
+            <TextView
+                android:id="@+id/stanica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cijena"
+                android:layout_marginTop="15dp"
+                android:text="Stanica:"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/adresaStaniceIspisRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/stanica"
+                android:layout_alignLeft="@+id/cijenaIspisRow"
+                android:layout_alignStart="@+id/cijenaIspisRow"
+                android:textColor="#7b1fa2"
+                android:textStyle="bold" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </HorizontalScrollView>
+</android.support.v7.widget.CardView>
