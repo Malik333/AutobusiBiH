@@ -38,6 +38,7 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         adresa = (TextView) findViewById(R.id.adresaIspis);
         broj = (TextView) findViewById(R.id.telefonIspis);
         odvediDoStanice = (Button) findViewById(R.id.odvediDoStaniceBtn);
+        odvediDoStanice.requestFocus();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         infoIntent = getIntent();

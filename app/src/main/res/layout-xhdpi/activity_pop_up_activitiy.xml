@@ -73,6 +73,7 @@
                 android:id="@+id/telefonIspis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#7b1fa2"
                 android:layout_alignBaseline="@+id/textView29"
                 android:layout_alignLeft="@+id/adresaIspis"
                 android:layout_alignStart="@+id/adresaIspis"

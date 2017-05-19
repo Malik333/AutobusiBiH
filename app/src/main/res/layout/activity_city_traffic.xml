@@ -11,7 +11,7 @@
         android:id="@+id/city_traffic_conteiner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       >
+        >
 
 
         <TextView
@@ -368,6 +368,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/adresaStaniceIspis"
+                    android:textColor="#7b1fa2"
                     android:layout_alignBaseline="@+id/stanica"
                     android:layout_alignStart="@+id/prijevoznikIspis"
                     android:layout_alignLeft="@+id/prijevoznikIspis"

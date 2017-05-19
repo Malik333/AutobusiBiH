@@ -70,7 +70,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
                 }
 
 
-               prijevozniciAdapter = new TransportAdapter(prijevozniciList,BusTransport.this);
+                prijevozniciAdapter = new TransportAdapter(prijevozniciList,BusTransport.this);
                 prijevoznici.setAdapter(prijevozniciAdapter);
                 prijevozniciAdapter.notifyDataSetChanged();
 
