@@ -48,6 +48,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
 
 
 
+
     }
 
     @Override
@@ -62,6 +63,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
         TextView address;
         TextView phone;
         TextView webSite;
+        View line;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,6 +73,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
             address = (TextView) itemView.findViewById(R.id.adresa_prevoznik);
             phone = (TextView) itemView.findViewById(R.id.br_tel_prevoznik);
             webSite = (TextView) itemView.findViewById(R.id.web_prevoznik);
+
         }
     }
 }
