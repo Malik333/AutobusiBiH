@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Gravity;
@@ -99,6 +100,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
      stanicaTextview.setOnClickListener(this);
+
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -111,7 +113,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 toCityList.clear();
                 toCity(odGrada);
                 TransportList.clear();
-                TransportList.add("Svi");
 
 
             }
@@ -136,7 +137,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
                 spinnerPrijevoznik(odGrada, doGrada);
                 TransportList.clear();
-                TransportList.add("Svi");
             }
 
             @Override
@@ -408,14 +408,17 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                             TransportList.add(String.valueOf(object.get("Prijevoznik")));
 
                         }
+
                         hashSet4.addAll(TransportList);
                         TransportList.clear();
+                        TransportList.add("Svi");
+                        TransportList.set(0, "Svi");
                         TransportList.addAll(hashSet4);
                         TransportAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, TransportList);
                         TransportAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         prijevoznikSpinner.setAdapter(TransportAdapter);
                         hashSet4.clear();
-                        Collections.sort(TransportList);
+                        //ollections.sort(TransportList);
                         TransportAdapter.notifyDataSetChanged();
 
 
@@ -440,9 +443,12 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 @Override
     public void onClick(View view) {
         if (view.getId() == R.id.ispis){
-            vibrator.vibrate(100);
-          infoLayout.setVisibility(View.VISIBLE);
-            ispis();
+
+            if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
+                vibrator.vibrate(100);
+                infoLayout.setVisibility(View.VISIBLE);
+                ispis();
+            }
 
         } else if (view.getId() == R.id.adresaStaniceIspis){
             vibrator.vibrate(100);

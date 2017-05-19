@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:layout_marginTop="10dp"
+            android:autoLink="web"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/br_tel_prevoznik"/>
 

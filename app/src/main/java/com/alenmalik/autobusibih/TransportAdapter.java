@@ -1,7 +1,9 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -40,12 +42,15 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transport item = listData.get(position);
+        ProgressDialog dialog = new ProgressDialog(c);
+        dialog.setMessage("Loading...");
+        dialog.show();
         Picasso.with(c).load(item.getLogo()).into(holder.logo);
         holder.name.setText(item.getName());
         holder.address.setText(item.getAddress());
         holder.phone.setText(item.getPhoneNumber());
         holder.webSite.setText(item.getWebsite());
-
+        dialog.dismiss();
 
 
 
@@ -73,6 +78,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
             address = (TextView) itemView.findViewById(R.id.adresa_prevoznik);
             phone = (TextView) itemView.findViewById(R.id.br_tel_prevoznik);
             webSite = (TextView) itemView.findViewById(R.id.web_prevoznik);
+
 
         }
     }
