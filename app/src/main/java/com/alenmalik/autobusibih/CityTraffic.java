@@ -207,7 +207,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         String prijevoznikSelected = prijevoznik;
 
         if (prijevoznikSelected.equals("Svi")){
-            final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
+
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
             query.whereEqualTo("odGrada", odGrada);
             query.whereEqualTo("doGrada", doGrada);
@@ -219,7 +219,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                     if (e == null) {
 
                        for ( ParseObject object : list) {
-
+                           final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
                            item.vrijemePolaska = String.valueOf(object.get("Satnica"));
                            item.dan = String.valueOf(object.get("Dan"));
                            item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
@@ -267,32 +267,32 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
-                        if (list.size() > 0) {
+                        for ( ParseObject object : list) {
+                            final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
+                            item.vrijemePolaska = String.valueOf(object.get("Satnica"));
+                            item.dan = String.valueOf(object.get("Dan"));
+                            item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                            item.linija = String.valueOf(object.get("Linija"));
+                            item.cijena = String.valueOf(object.get("Cijena"));
+                            item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
-                            for (ParseObject object : list) {
-                                duzinaPutaTextView.setText(String.valueOf(object.get("DuzinaPuta")));
-                                prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
-                                satnicaTextview.setText(String.valueOf(object.get("Satnica")));
-                                cijenaTextView.setText(String.valueOf(object.get("Cijena")));
-                                linijaTextView.setText(String.valueOf(object.get("Linija")));
 
-                            }
-
-                        }
-                        relacijaTextView.setText(String.valueOf(odGrada + " - " + doGrada));
-                        danTextView.setText(dan);
-                    }
-                }
-            });
-
-            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
-            stanicaquery.whereEqualTo("CityName", odGrada);
-            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null) {
-                        for (ParseObject object : list) {
-                            stanicaTextview.setText(String.valueOf(object.get("Address")));
+                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                            stanicaquery.whereEqualTo("CityName", odGrada);
+                            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> list, ParseException e) {
+                                    if (e == null) {
+                                        for (ParseObject object1 : list) {
+                                            item.stanica = String.valueOf(object1.get("Address"));
+                                            detailsList.add(item);
+                                        }
+                                    }
+                                    adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                                    details.setAdapter(adapter);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
                         }
                     }
                 }
