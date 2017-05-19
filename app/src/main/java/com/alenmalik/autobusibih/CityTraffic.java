@@ -122,6 +122,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 toCity(odGrada);
                 TransportList.clear();
 
+                detailsList.clear();
 
             }
 
@@ -145,6 +146,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
                 spinnerPrijevoznik(odGrada, doGrada);
                 TransportList.clear();
+                detailsList.clear();
             }
 
             @Override
@@ -161,6 +163,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 vibrator.vibrate(100);
                 dan = (String) adapterView.getItemAtPosition(i);
                 Log.i("dan", dan);
+                detailsList.clear();
 
             }
 
@@ -179,6 +182,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
                 prijevoznik = (String) adapterView.getItemAtPosition(i);
+                detailsList.clear();
             }
 
             @Override
@@ -214,34 +218,33 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
-                       for (int i = 0; i < list.size(); i++){
+                       for ( ParseObject object : list) {
 
-                           item.vrijemePolaska = list.get(i).getString("Satnica");
-                           item.dan = list.get(i).getString("Dan");
-                           item.duzinaPuta = list.get(i).getString("DuzinaPuta");
-                           item.linija = list.get(i).getString("Linija");
-                           item.cijena = list.get(i).getString("Cijena");
-                           item.prijevoznik = list.get(i).getString("Prijevoznik");
-                           detailsList.add(item);
+                           item.vrijemePolaska = String.valueOf(object.get("Satnica"));
+                           item.dan = String.valueOf(object.get("Dan"));
+                           item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                           item.linija = String.valueOf(object.get("Linija"));
+                           item.cijena = String.valueOf(object.get("Cijena"));
+                           item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
+
+                           ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                           stanicaquery.whereEqualTo("CityName", odGrada);
+                           stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                               @Override
+                               public void done(List<ParseObject> list, ParseException e) {
+                                   if (e == null) {
+                                       for (ParseObject object1 : list) {
+                                           item.stanica = String.valueOf(object1.get("Address"));
+                                           detailsList.add(item);
+                                       }
+                                   }
+                                   adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                                   details.setAdapter(adapter);
+                                   adapter.notifyDataSetChanged();
+                               }
+                           });
                        }
-                        ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
-                        stanicaquery.whereEqualTo("CityName", odGrada);
-                        stanicaquery.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> list, ParseException e) {
-                                if (e == null) {
-                                    for (int i = 0; i < list.size(); i++) {
-                                        item.stanica = list.get(i).getString("Address");
-                                        detailsList.add(item);
-                                    }
-                                }
-                                adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
-                                details.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-
                     }
 
 
