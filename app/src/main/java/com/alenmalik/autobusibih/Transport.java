@@ -1,5 +1,8 @@
 package com.alenmalik.autobusibih;
 
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
 /**
  * Created by korisnik on 16/05/2017.
  */
@@ -23,15 +26,15 @@ package com.alenmalik.autobusibih;
             this.website = website;
         }
 
-        public String getLogo() {
-            return logo;
-        }
+    public String getLogo() {
+        return logo;
+    }
 
-        public void setLogo(String logo) {
-            this.logo = logo;
-        }
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
-        public String getName() {
+    public String getName() {
             return name;
         }
 

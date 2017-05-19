@@ -1,6 +1,14 @@
 package com.alenmalik.autobusibih;
 
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +27,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -34,6 +44,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     HashSet<String> hashSet = new HashSet<>();
     Vibrator vibrator;
     String webAdress;
+    private BitmapDrawable obwer;
 
     RecyclerView prijevoznici;
 
@@ -58,12 +69,20 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
 
                     for (int i = 0; i < list.size(); i++) {
                         Transport tr = new Transport();
+                        ProgressDialog dialog = new ProgressDialog(BusTransport.this);
+                        dialog.setMessage("Loading...");
+                        dialog.show();
                         tr.name = list.get(i).getString("Prijevoznik");
                         tr.address = list.get(i).getString("Adresa");
                         tr.phoneNumber = list.get(i).getString("Telefon");
                         tr.website = list.get(i).getString("webAdresa");
+                        ParseFile file = (ParseFile) (list.get(i).get("logo"));
+
+                        String url = file.getUrl();
+                        tr.setLogo(url);
 
                         prijevozniciList.add(tr);
+                        dialog.dismiss();
 
                     }
 
