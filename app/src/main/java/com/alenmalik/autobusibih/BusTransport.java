@@ -28,9 +28,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class BusTransport extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    ListView prijevozniciListView;
-    ArrayAdapter<String> prijevozniciAdapter;
-    ArrayList<String> prijevozniciList;
+
+    TransportAdapter prijevozniciAdapter;
+   List<Transport> prijevozniciList;
     HashSet<String> hashSet = new HashSet<>();
     Vibrator vibrator;
     String webAdress;
@@ -42,11 +42,46 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_transport);
         prijevoznici = (RecyclerView) findViewById(R.id.prijevozniciListView);
-        //prijevozniciList = new ArrayList<>();
+
 
         prijevoznici.setLayoutManager(new LinearLayoutManager(this));
-        TransportAdapter adapter = new TransportAdapter(TransportData.getAlldata(), BusTransport.this);
-        prijevoznici.setAdapter(adapter);
+
+        prijevozniciList = new ArrayList<>();
+
+        final ParseQuery<ParseObject> prevoznici = ParseQuery.getQuery("Prijevoznici");
+
+        prevoznici.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+                if (e == null) {
+
+                    for (int i = 0; i < list.size(); i++) {
+                        Transport tr = new Transport();
+                        tr.name = list.get(i).getString("Prijevoznik");
+                        tr.address = list.get(i).getString("Adresa");
+                        tr.phoneNumber = list.get(i).getString("Telefon");
+                        tr.website = list.get(i).getString("webAdresa");
+
+                        prijevozniciList.add(tr);
+
+                    }
+
+                }
+
+
+               prijevozniciAdapter = new TransportAdapter(prijevozniciList,BusTransport.this);
+                prijevoznici.setAdapter(prijevozniciAdapter);
+                prijevozniciAdapter.notifyDataSetChanged();
+
+
+
+
+
+            }
+        });
+
+
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 

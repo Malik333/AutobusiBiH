@@ -1,3 +1,4 @@
+/*
 package com.alenmalik.autobusibih;
 
 import com.parse.FindCallback;
@@ -8,9 +9,11 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by korisnik on 16/05/2017.
- */
+ *//*
+
 
 public class TransportData {
 
@@ -52,9 +55,11 @@ public class TransportData {
                 }
                     data.add(listItem);
 
+
             }
         });
 
         return data;
     }
 }
+*/
