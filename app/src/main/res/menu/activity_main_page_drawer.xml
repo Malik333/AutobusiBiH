@@ -21,15 +21,15 @@
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="INFO">
         <menu>
             <item
                 android:id="@+id/nav_kontakt_informacije"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/contactinfo"
                 android:title="KONTAKT INFO" />
             <item
                 android:id="@+id/nav_o_aplikaciji"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/info"
                 android:title="O APLIKACIJI" />
         </menu>
     </item>

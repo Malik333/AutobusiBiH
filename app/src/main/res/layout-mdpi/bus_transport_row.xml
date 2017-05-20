@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/colorPrimary"
 
     >
 
@@ -61,8 +62,8 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:layout_marginTop="10dp"
-            android:autoLink="web"
             android:layout_centerHorizontal="true"
+            android:autoLink="web"
             android:layout_below="@+id/br_tel_prevoznik"/>
 
         <TextView

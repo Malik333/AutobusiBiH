@@ -38,6 +38,7 @@
         <activity
             android:name=".AboutApplication"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name=".InternacionalTraffic"
@@ -46,6 +47,7 @@
         <activity
             android:name=".ContactInfo"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name=".BusTransport"

@@ -95,15 +95,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         details.setLayoutManager(new LinearLayoutManager(this));
         detailsList = new ArrayList<>();
 
-        relacijaTextView = (TextView) findViewById(R.id.relacijaIspis);
-      danTextView = (TextView) findViewById(R.id.danIspis);
-        duzinaPutaTextView = (TextView) findViewById(R.id.duzinaPutaIspis);
+
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
         ispisBtn = (Button) findViewById(R.id.ispis);
-        satnicaTextview = (TextView) findViewById(R.id.vrijemePolaskaIspis);
-        stanicaTextview = (TextView) findViewById(R.id.adresaStaniceIspis);
-        linijaTextView = (TextView) findViewById(R.id.linijaIspis);
-        cijenaTextView = (TextView) findViewById(R.id.cijenaIspis);
+
        infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
@@ -229,6 +224,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                            item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
 
+
                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
                            stanicaquery.whereEqualTo("CityName", odGrada);
                            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
@@ -236,18 +232,21 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                public void done(List<ParseObject> list, ParseException e) {
                                    if (e == null) {
                                        for (ParseObject object1 : list) {
+
                                            item.stanica = String.valueOf(object1.get("Address"));
                                            detailsList.add(item);
+
                                        }
                                    }
-                                   adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
-                                   details.setAdapter(adapter);
-                                   adapter.notifyDataSetChanged();
+
                                }
                            });
                        }
                     }
 
+                    adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                    details.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
                 }
             });
@@ -469,44 +468,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 ispis();
             }
 
-        } else if (view.getId() == R.id.adresaStaniceIspis){
-            vibrator.vibrate(100);
-            Intent infoStanica = new Intent(CityTraffic.this, PopUpActivitiy.class);
-            infoStanica.putExtra("gradStanica", odGrada);
-            stanicaCity = true;
-            BusStateListActivity.busTran = false;
-            ParseGeoPoint location = new ParseGeoPoint(latitude, longitude);
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("BusAddress");
-            query.whereEqualTo("CityName", odGrada);
 
-            query.whereNear("Location", location);
-            query.setLimit(10);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list, ParseException e) {
-                    if (e == null) {
-
-
-                        if (list.size() > 0) {
-
-                            for (ParseObject object : list) {
-                                busLat = object.getParseGeoPoint("Location").getLatitude();
-                                busLng = object.getParseGeoPoint("Location").getLongitude();
-
-                                Log.i("buslatituda", String.valueOf(busLat));
-                                Log.i("buslongituda", String.valueOf(busLng));
-
-
-                            }
-
-
-                        }
-
-
-                    }
-                }
-            });
-            startActivity(infoStanica);
         }
         if (view.getId() == R.id.prijevoznikIspis){
             vibrator.vibrate(100);

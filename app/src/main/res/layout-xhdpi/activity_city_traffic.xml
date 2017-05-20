@@ -149,7 +149,11 @@
             android:id="@+id/ispis_medjugradski_rec"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ispis"></android.support.v7.widget.RecyclerView>
+            android:layout_below="@+id/ispis"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary">
+
+        </android.support.v7.widget.RecyclerView>
 
 
 

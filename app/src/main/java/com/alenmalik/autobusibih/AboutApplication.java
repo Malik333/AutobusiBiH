@@ -20,7 +20,7 @@ public class AboutApplication extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AboutApplication.this, MainPage.class));
-        finish();
+  Intent intent = new Intent(AboutApplication.this,MainPage.class);
+        startActivity(intent);
     }
 }

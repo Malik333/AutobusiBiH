@@ -95,9 +95,13 @@ public class MainPage extends AppCompatActivity
             Intent intent = new Intent(MainPage.this,BusTransport.class);
             startActivity(intent);
         } else if (id == R.id.nav_kontakt_informacije) {
+            Intent intent = new Intent(MainPage.this,ContactInfo.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_o_aplikaciji) {
 
+            Intent intent = new Intent(MainPage.this,AboutApplication.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
