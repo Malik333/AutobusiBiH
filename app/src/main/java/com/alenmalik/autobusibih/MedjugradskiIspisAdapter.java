@@ -47,7 +47,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
         MedjugradskiIspisModel item = listData.get(position);
         holder.satnicaTextview.setText(item.getVrijemePolaska());
         holder.danTextView.setText(item.getDan());
-        holder.duzinaPutaTextView.setText(item.getVrijemePolaska());
+        holder.duzinaPutaTextView.setText(item.getDuzinaPuta());
         holder.linijaTextView.setText(item.getLinija());
         holder.cijenaTextView.setText(item.getCijena());
         holder.prijevoznikTextView.setText(item.getPrijevoznik());
