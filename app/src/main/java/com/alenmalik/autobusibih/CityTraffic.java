@@ -56,7 +56,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     HashSet<String> hashSet3 = new HashSet<>();
     HashSet<String> hashSet4 = new HashSet<>();
     TextView relacijaTextView;
-    String odGrada;
+    static String odGrada;
     String doGrada;
     String dan;
     String prijevoznik;
@@ -225,6 +225,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                            item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
                            item.linija = String.valueOf(object.get("Linija"));
                            item.cijena = String.valueOf(object.get("Cijena"));
+                           item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
                            item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
 
@@ -274,6 +275,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                             item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
                             item.linija = String.valueOf(object.get("Linija"));
                             item.cijena = String.valueOf(object.get("Cijena"));
+                            item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
                             item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
 
