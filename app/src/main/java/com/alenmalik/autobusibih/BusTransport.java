@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     HashSet<String> hashSet = new HashSet<>();
     Vibrator vibrator;
     String webAdress;
+    ImageView goBack;
     private BitmapDrawable obwer;
 
     RecyclerView prijevoznici;
@@ -53,6 +55,15 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_transport);
         prijevoznici = (RecyclerView) findViewById(R.id.prijevozniciListView);
+        goBack = (ImageView) findViewById(R.id.backGo);
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BusTransport.this,MainPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         prijevoznici.setLayoutManager(new LinearLayoutManager(this));

@@ -2,6 +2,7 @@ package com.alenmalik.autobusibih;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -72,6 +74,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     RecyclerView details;
     List<MedjugradskiIspisModel> detailsList;
     MedjugradskiIspisAdapter adapter;
+    ImageView goBack;
 
     double latitude = 0, longitude = 0;
     static double busLat, busLng;
@@ -94,6 +97,15 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         details = (RecyclerView) findViewById(R.id.ispis_medjugradski_rec);
         details.setLayoutManager(new LinearLayoutManager(this));
         detailsList = new ArrayList<>();
+        goBack = (ImageView) findViewById(R.id.goBack);
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CityTraffic.this,MainPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);

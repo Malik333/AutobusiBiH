@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,7 +61,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
 
     String country, citySelected, toCity, daySelect;
     Vibrator vibrator;
-
+     ImageView goBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         linijaTextView = (TextView) findViewById(R.id.linijaIspis_international);
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis_international);
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis_international);
+        goBack = (ImageView) findViewById(R.id.backGoArrow);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         stateList = new ArrayList<>();
@@ -91,6 +93,13 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
         informacije.setOnClickListener(this);
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InternacionalTraffic.this,MainPage.class);
+                startActivity(intent);
+            }
+        });
 
         stateSpinner.setTitle("IZABERITE DRŽAVU");
         fromCitySpinner.setTitle("IZABERITE OD GRADA");
