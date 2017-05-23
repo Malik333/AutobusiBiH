@@ -35,16 +35,11 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
         broj = (TextView) findViewById(R.id.telefonIspis);
         odvediDoStanice = (Button) findViewById(R.id.odvediDoStaniceBtn);
         odvediDoStanice.requestFocus();
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
         infoIntent = getIntent();
         cityName = infoIntent.getStringExtra("gradStanica");
         city = infoIntent.getStringExtra("city");
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width * .8), (int) (height * .6));
         broj.setOnClickListener(this);
         odvediDoStanice.setOnClickListener(this);
         if (CityTraffic.stanicaCity == true) {
