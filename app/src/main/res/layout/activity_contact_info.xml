@@ -8,72 +8,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimary"
     tools:context="com.alenmalik.autobusibih.ContactInfo">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="POMOZITE NAM!"
-            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="15dp"
-            android:text="Pomozite nam u razvoju aplikacije slanjem redoslijeda vožnje sa cijenom ako ste u mogućnosti"
-
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView6"
-            android:text="Molimo vas da informacije budu tačne"
-
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView7"
-            android:text="Hvala!"
-
-            android:textStyle="normal|bold" />
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:id="@+id/infotext"
+            android:textColor="@color/whiteColor"
+            android:text="Molimo vas ukoliko vam je poznata neka cijena iz relacija u kojima je cijena nepoznata da nam posaljete.Hvala"/>
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView11"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/infotext"
             android:layout_marginTop="15dp"
             android:text="Vaše ime i prezime:(ukoliko želite)"
-
+            android:textColor="@color/whiteColor"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/imeIPrezimeEdit"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/textView12"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape"
@@ -81,47 +45,54 @@
             android:hint="Ime i Prezime"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp" />
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blackColor"/>
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/imeIPrezimeEdit"
-            android:layout_marginTop="10dp"
-            android:text="Redoslijed vožnje sa satnicom i cijenom"
-
+            android:layout_marginTop="15dp"
+            android:text="Relacija i cijena"
+            android:textColor="@color/whiteColor"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/redoslijedVoznjeEdit"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+
             android:layout_below="@+id/textView14"
-            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:background="@drawable/shape"
             android:ems="10"
             android:gravity="top"
             android:inputType="textMultiLine"
-            android:selectAllOnFocus="false"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:paddingLeft="10dp" />
+            android:selectAllOnFocus="false"
+            android:textColor="@color/blackColor"
+            android:textColorHighlight="@color/blackColor"
+            android:textColorLink="@color/blackColor" />
 
 
         <Button
             android:id="@+id/posaljiBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_below="@+id/redoslijedVoznjeEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:background="@drawable/shape"
             android:text="POŠALJI"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp" />
+            android:textColor="@color/blackColor" />
 
     </RelativeLayout>
 
