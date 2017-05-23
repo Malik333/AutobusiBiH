@@ -19,7 +19,6 @@ import java.util.List;
 import static android.R.attr.value;
 
 public class SemberijaTransport extends AppCompatActivity {
-    String webAddress;
     String value;
     WebView myWebView;
     WebSettings webSettings;
@@ -39,28 +38,6 @@ public class SemberijaTransport extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         myWebView.loadUrl(String.valueOf(value));
         myWebView.setWebViewClient(new WebViewClient());
-
-        /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Prijevoznici");
-        query.whereEqualTo("Prijevoznik",value);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-
-                if (e == null){
-
-                 for (ParseObject object : list){
-                     webAddress = String.valueOf(object.get("webAdresa"));
-
-                     Log.i("proba",webAddress);
-                 }
-
-                }
-
-
-            }
-        }); */
-
-
 
     }
 

@@ -2,6 +2,7 @@ package com.alenmalik.autobusibih;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -52,6 +53,13 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
         holder.webSite.setText(item.getWebsite());
         dialog.dismiss();
 
+        holder.specijalnePonude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent spec_ponude = new Intent(c, MainPage.class);
+                c.startActivity(spec_ponude);
+            }
+        });
 
 
     }
@@ -68,6 +76,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
         TextView address;
         TextView phone;
         TextView webSite;
+        TextView specijalnePonude;
         View line;
 
         public ViewHolder(View itemView) {
@@ -78,6 +87,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
             address = (TextView) itemView.findViewById(R.id.adresa_prevoznik);
             phone = (TextView) itemView.findViewById(R.id.br_tel_prevoznik);
             webSite = (TextView) itemView.findViewById(R.id.web_prevoznik);
+            specijalnePonude = (TextView) itemView.findViewById(R.id.po);
 
 
         }

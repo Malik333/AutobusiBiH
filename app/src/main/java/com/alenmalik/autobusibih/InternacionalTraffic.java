@@ -59,7 +59,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     TextView prijevoznikTextView;
 
 
-    String country, citySelected, toCity, daySelect;
+    String country, citySelected, toCity;
     Vibrator vibrator;
      ImageView goBack;
     @Override
@@ -142,7 +142,6 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vibrator.vibrate(100);
                 toCity = String.valueOf(adapterView.getItemAtPosition(i));
-                // chooseDayInternationalTraffic(citySelected, toCity);
             }
 
             @Override

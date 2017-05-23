@@ -2,35 +2,23 @@ package com.alenmalik.autobusibih;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -57,18 +45,11 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     HashSet<String> hashSet2 = new HashSet<String>();
     HashSet<String> hashSet3 = new HashSet<>();
     HashSet<String> hashSet4 = new HashSet<>();
-    TextView relacijaTextView;
     static String odGrada;
     String doGrada;
     String dan;
     String prijevoznik;
-    TextView danTextView;
-    TextView duzinaPutaTextView;
-    TextView satnicaTextview;
     TextView prijevoznikTextView;
-    TextView stanicaTextview;
-    TextView linijaTextView;
-    TextView cijenaTextView;
     Button ispisBtn;
     HorizontalScrollView infoLayout;
     RecyclerView details;
@@ -76,7 +57,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     MedjugradskiIspisAdapter adapter;
     ImageView goBack;
 
-    double latitude = 0, longitude = 0;
     static double busLat, busLng;
 
     static boolean stanicaCity = false;
@@ -114,7 +94,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
        infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
-     //stanicaTextview.setOnClickListener(this);
+
 
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -182,7 +162,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
         daysSpinner.setTitle("IZABERI DAN");
         daysSpinner.setPositiveButton("OK");
-        //TransportList.add("Svi");
+
 
         prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -448,7 +428,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         TransportAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         prijevoznikSpinner.setAdapter(TransportAdapter);
                         hashSet4.clear();
-                        //ollections.sort(TransportList);
                         TransportAdapter.notifyDataSetChanged();
 
 
@@ -476,7 +455,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
                 vibrator.vibrate(100);
-                //infoLayout.setVisibility(View.VISIBLE);
                 ispis();
             }
 

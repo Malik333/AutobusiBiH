@@ -7,7 +7,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,9 +29,6 @@ public class PopUpActivitiy extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_activitiy);
-      //  getSupportActionBar().setTitle("INFORMACIJE");
-
-
 
         grad = (TextView) findViewById(R.id.gradIspis);
         adresa = (TextView) findViewById(R.id.adresaIspis);
