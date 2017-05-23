@@ -94,6 +94,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
        infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
+        ispisBtn.requestFocus();
 
 
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -193,7 +194,9 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
         String prijevoznikSelected = prijevoznik;
 
+
         if (prijevoznikSelected.equals("Svi")){
+
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
             query.whereEqualTo("odGrada", odGrada);
@@ -204,7 +207,6 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-
                        for ( ParseObject object : list) {
                            final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
                            item.vrijemePolaska = String.valueOf(object.get("Satnica"));
@@ -223,6 +225,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                @Override
                                public void done(List<ParseObject> list, ParseException e) {
                                    if (e == null) {
+                                       detailsList.clear();
                                        for (ParseObject object1 : list) {
 
                                            item.stanica = String.valueOf(object1.get("Address"));
@@ -239,6 +242,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                     adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
                     details.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+
 
                 }
             });
@@ -276,6 +280,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                 @Override
                                 public void done(List<ParseObject> list, ParseException e) {
                                     if (e == null) {
+                                        detailsList.clear();
                                         for (ParseObject object1 : list) {
                                             item.stanica = String.valueOf(object1.get("Address"));
                                             detailsList.add(item);
