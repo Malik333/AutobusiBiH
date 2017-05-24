@@ -225,7 +225,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                @Override
                                public void done(List<ParseObject> list, ParseException e) {
                                    if (e == null) {
-                                       detailsList.clear();
+
                                        for (ParseObject object1 : list) {
 
                                            item.stanica = String.valueOf(object1.get("Address"));
