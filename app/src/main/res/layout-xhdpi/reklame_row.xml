@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container_of_reklame_row">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_for_ime_prijevoznik">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="proba"
+                android:id="@+id/prijevoznik_ime"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"/>
+
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_for_galerija"
+            android:layout_below="@+id/layout_for_ime_prijevoznik"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_za_centriranje_slika"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/slika1_za_galeriju"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/slika2_za_galeriju"
+                    android:layout_alignBaseline="@+id/slika1_za_galeriju"
+                    android:layout_toRightOf="@+id/slika1_za_galeriju"
+                    android:layout_toEndOf="@+id/slika1_za_galeriju"
+                    />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/slika3_za_galeriju"
+                    android:layout_below="@+id/slika1_za_galeriju"/>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/slika4_za_galeriju"
+                    android:layout_below="@+id/slika2_za_galeriju"
+                    android:layout_alignBaseline="@+id/slika3_za_galeriju"
+                    android:layout_toRightOf="@+id/slika3_za_galeriju"
+                    android:layout_toEndOf="@+id/slika3_za_galeriju"/>
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutforsamojednaslika"
+            android:layout_below="@+id/layout_for_ime_prijevoznik"
+            android:layout_marginTop="10dp">
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/samojednaslika"/>
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
