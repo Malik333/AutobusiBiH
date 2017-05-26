@@ -2,6 +2,7 @@ package com.alenmalik.autobusibih;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,13 +75,22 @@ public class MainPage extends AppCompatActivity
                 mReference
         ) {
             @Override
-            protected void populateViewHolder(ReklameViewHolder viewHolder, ReklameModel model, int position) {
+            protected void populateViewHolder(final ReklameViewHolder viewHolder, ReklameModel model, int position) {
                 viewHolder.setPrijevoznik(model.getPrijevoznik());
-                viewHolder.setGalerija1(getApplicationContext(),model.getGalerija1());
-                viewHolder.setGalerija2(getApplicationContext(),model.getGalerija2());
-                viewHolder.setGalerija3(getApplicationContext(),model.getGalerija3());
-                viewHolder.setGalerija4(getApplicationContext(),model.getGalerija4());
-                viewHolder.setSamojednaslika(getApplicationContext(),model.getSamojednaslika());
+                viewHolder.setHeaderTextPrviObavezni(model.getHeaderTextPrviObavezni());
+                viewHolder.setHeaderText2(model.getHeaderText2());
+                viewHolder.setHeaderText3(model.getHeaderText3());
+                viewHolder.setHeaderText4(model.getHeaderText4());
+                viewHolder.setMainTextHeaderObavezni(model.getMainTextHeaderObavezni());
+                viewHolder.setMainTextHeader2(model.getMainTextHeader2());
+                viewHolder.setMainTextHeader3(model.getMainTextHeader3());
+                viewHolder.setSlika(getApplicationContext(),model.getSlika());
+                viewHolder.setDonjiTextObavezni(model.getDonjiTextObavezni());
+                viewHolder.setDonjiTextKojiNaglasava(model.getDonjiTextKojiNaglasava());
+                viewHolder.setDonjiTextDodatni(model.getDonjiTextDodatni());
+                viewHolder.setDonjiTextDodatni2(model.getDonjitTextDodatni2());
+
+
             }
         };
         reklameList.setAdapter(firebaseRecyclerAdapter);
@@ -91,16 +101,36 @@ public class MainPage extends AppCompatActivity
     public static class ReklameViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
-        RelativeLayout layoutforgalerija;
-        RelativeLayout layoutforjednaslika;
+        RelativeLayout layoutForObavezni;
+        RelativeLayout layoutForDodatni1;
+        RelativeLayout layoutForDodatni2;
+        RelativeLayout layoutForDodatni3;
+        RelativeLayout layoutForMainObavezni;
+        RelativeLayout layoutForMainDodatni1;
+        RelativeLayout layoutForMainDodatni2;
+        RelativeLayout layoutForDonjiObavezni;
+        RelativeLayout layoutForDonjiNaglasava;
+        RelativeLayout layoutForDonjiDodatni;
+        RelativeLayout layoutForDonjiDodatni2;
+        RelativeLayout layoutForSlika;
+
 
         public ReklameViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
-
-            layoutforgalerija = (RelativeLayout) mView.findViewById(R.id.layout_for_galerija);
-            layoutforjednaslika = (RelativeLayout) mView.findViewById(R.id.layoutforsamojednaslika);
+            layoutForObavezni = (RelativeLayout) mView.findViewById(R.id.layout_header_text1);
+            layoutForDodatni1 = (RelativeLayout) mView.findViewById(R.id.layout_header_text2);
+            layoutForDodatni2 = (RelativeLayout) mView.findViewById(R.id.layout_header_text3);
+            layoutForDodatni3 = (RelativeLayout) mView.findViewById(R.id.layout_header_text4);
+            layoutForMainObavezni = (RelativeLayout) mView.findViewById(R.id.layout_for_main_header_text);
+            layoutForMainDodatni1 = (RelativeLayout) mView.findViewById(R.id.layout_for_main_header_text2);
+            layoutForMainDodatni2 = (RelativeLayout) mView.findViewById(R.id.layout_for_main_header_text3);
+            layoutForDonjiObavezni = (RelativeLayout) mView.findViewById(R.id.layout_for_donji_text_jedan);
+            layoutForDonjiNaglasava = (RelativeLayout) mView.findViewById(R.id.layout_for_text_koji_nesto_naglasi);
+            layoutForDonjiDodatni = (RelativeLayout) mView.findViewById(R.id.layout_for_dodatni_text);
+            layoutForDonjiDodatni2 = (RelativeLayout) mView.findViewById(R.id.layout_for_dodatni_text2);
+            layoutForSlika = (RelativeLayout) mView.findViewById(R.id.container_for_image);
         }
 
         public void setPrijevoznik(String prijevoznik) {
@@ -110,67 +140,148 @@ public class MainPage extends AppCompatActivity
             }
         }
 
-        public void setGalerija1(Context ctx, String galerija1) {
-            if (galerija1 != null) {
-                layoutforgalerija.setVisibility(View.VISIBLE);
-                ImageView galerija1ImageView = (ImageView) mView.findViewById(R.id.slika1_za_galeriju);
-                Picasso.with(ctx).load(galerija1).into(galerija1ImageView);
 
+        public void setHeaderTextPrviObavezni(String headerTextPrviObavezni) {
+
+            if (headerTextPrviObavezni != null) {
+                layoutForObavezni.setVisibility(View.VISIBLE);
+                TextView obavezni_text_header = (TextView) mView.findViewById(R.id.grad_adresa_info);
+                obavezni_text_header.setText(headerTextPrviObavezni);
 
             } else {
-                layoutforgalerija.setVisibility(View.GONE);
+                layoutForObavezni.setVisibility(View.GONE);
             }
 
         }
 
-        public void setGalerija2(Context ctx, String galerija2) {
-
-            if (galerija2 != null) {
-                layoutforgalerija.setVisibility(View.VISIBLE);
-                ImageView galerija2ImageView = (ImageView) mView.findViewById(R.id.slika2_za_galeriju);
-                Picasso.with(ctx).load(galerija2).into(galerija2ImageView);
-
-
+        public void setHeaderText2(String headerText2) {
+            if (headerText2 != null) {
+                layoutForDodatni1.setVisibility(View.VISIBLE);
+                TextView heaader_text_drugi = (TextView) mView.findViewById(R.id.header_dodatni_text);
+                heaader_text_drugi.setText(headerText2);
             } else {
-                layoutforgalerija.setVisibility(View.GONE);
-            }
-        }
-
-        public void setGalerija3(Context ctx, String galerija3) {
-
-            if (galerija3 != null) {
-                layoutforgalerija.setVisibility(View.VISIBLE);
-                ImageView galerija3ImageView = (ImageView) mView.findViewById(R.id.slika3_za_galeriju);
-                Picasso.with(ctx).load(galerija3).into(galerija3ImageView);
-
-
-            } else {
-                layoutforgalerija.setVisibility(View.GONE);
-            }
-        }
-
-        public void setGalerija4(Context ctx, String galerija4) {
-            if (galerija4 != null) {
-                layoutforgalerija.setVisibility(View.VISIBLE);
-                ImageView galerija4ImageView = (ImageView) mView.findViewById(R.id.slika4_za_galeriju);
-                Picasso.with(ctx).load(galerija4).into(galerija4ImageView);
-
-
-            } else {
-                layoutforgalerija.setVisibility(View.GONE);
+                layoutForDodatni1.setVisibility(View.GONE);
             }
 
         }
 
-        public void setSamojednaslika(Context ctx, String samojednaslika) {
-        if (samojednaslika != null){
+        public void setHeaderText3(String headerText3) {
+            if (headerText3 != null) {
+                layoutForDodatni2.setVisibility(View.VISIBLE);
+                TextView heaader_text_treci = (TextView) mView.findViewById(R.id.header_dodatni_text2);
+                heaader_text_treci.setText(headerText3);
+            } else {
+                layoutForDodatni2.setVisibility(View.GONE);
+            }
 
-            layoutforjednaslika.setVisibility(View.VISIBLE);
-            ImageView samojednaslikaImageView = (ImageView) mView.findViewById(R.id.samojednaslika);
-            Picasso.with(ctx).load(samojednaslika).into(samojednaslikaImageView);
-        }else {
-            layoutforjednaslika.setVisibility(View.GONE);
         }
+
+        public void setHeaderText4(String headerText4) {
+            if (headerText4 != null) {
+                layoutForDodatni3.setVisibility(View.VISIBLE);
+                TextView heaader_text_cetvrti = (TextView) mView.findViewById(R.id.header_dodatni_text3);
+                heaader_text_cetvrti.setText(headerText4);
+            } else {
+                layoutForDodatni3.setVisibility(View.GONE);
+            }
+
+        }
+
+        public void setMainTextHeaderObavezni(String mainTextHeaderObavezni) {
+
+            if (mainTextHeaderObavezni != null) {
+                layoutForMainObavezni.setVisibility(View.VISIBLE);
+                TextView main_obavezni_header = (TextView) mView.findViewById(R.id.main_text_header);
+                main_obavezni_header.setText(mainTextHeaderObavezni);
+
+
+            } else {
+                layoutForMainObavezni.setVisibility(View.GONE);
+            }
+
+        }
+        public void setMainTextHeader2(String mainTextHeader2){
+
+
+            if (mainTextHeader2 != null) {
+                layoutForMainDodatni1.setVisibility(View.VISIBLE);
+                TextView main_dodatni_header = (TextView) mView.findViewById(R.id.main_text_header2);
+                main_dodatni_header.setText(mainTextHeader2);
+
+
+            } else {
+                layoutForMainDodatni1.setVisibility(View.GONE);
+            }
+        }
+
+
+        public void setMainTextHeader3(String mainTextHeader3){
+
+
+            if (mainTextHeader3 != null) {
+                layoutForMainDodatni2.setVisibility(View.VISIBLE);
+                TextView main_dodatni2_header = (TextView) mView.findViewById(R.id.main_text_header3);
+                main_dodatni2_header.setText(mainTextHeader3);
+
+
+            } else {
+                layoutForMainDodatni2.setVisibility(View.GONE);
+            }
+        }
+
+        public void setSlika(Context ctx,String slika){
+          if (slika != null){
+              layoutForSlika.setVisibility(View.VISIBLE);
+              ImageView slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
+              Picasso.with(ctx).load(slika).into(slika_image_view);
+
+          }else {
+              layoutForSlika.setVisibility(View.GONE);
+          }
+        }
+
+        public void setDonjiTextObavezni (String donjiTextObavezni){
+            if (donjiTextObavezni != null){
+                layoutForDonjiObavezni.setVisibility(View.VISIBLE);
+                TextView donji_obavezni_textview = (TextView) mView.findViewById(R.id.donji_text_obavezni);
+                donji_obavezni_textview.setText(donjiTextObavezni);
+            }else {
+                layoutForDonjiObavezni.setVisibility(View.GONE);
+            }
+
+        }
+
+
+        public void setDonjiTextKojiNaglasava (String donjiTextKojiNaglasava){
+            if (donjiTextKojiNaglasava != null){
+                layoutForDonjiNaglasava.setVisibility(View.VISIBLE);
+                TextView naglasava= (TextView) mView.findViewById(R.id.text_koji_naglasava);
+                naglasava.setText(donjiTextKojiNaglasava);
+            }else {
+                layoutForDonjiNaglasava.setVisibility(View.GONE);
+            }
+
+        }
+
+        public void setDonjiTextDodatni (String donjiTextDodatni){
+            if (donjiTextDodatni != null){
+                layoutForDonjiDodatni.setVisibility(View.VISIBLE);
+                TextView donji_dodatni = (TextView) mView.findViewById(R.id.donji_dodatni_text);
+                donji_dodatni.setText(donjiTextDodatni);
+            }else {
+                layoutForDonjiDodatni.setVisibility(View.GONE);
+            }
+
+        }
+
+        public void setDonjiTextDodatni2 (String donjiTextDodatni2){
+            if (donjiTextDodatni2 != null){
+                layoutForDonjiDodatni2.setVisibility(View.VISIBLE);
+                TextView donji_dodatni_dva= (TextView) mView.findViewById(R.id.donji_dodatni_text2);
+                donji_dodatni_dva.setText(donjiTextDodatni2);
+            }else {
+                layoutForDonjiDodatni2.setVisibility(View.GONE);
+            }
 
         }
 

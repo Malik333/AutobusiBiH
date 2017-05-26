@@ -4,26 +4,42 @@ package com.alenmalik.autobusibih;
  * Created by Nane on 24.5.2017.
  */
 
-public class ReklameModel  {
+public class ReklameModel {
     String prijevoznik;
-    String samojednaslika;
-    String galerija1;
-    String galerija2;
-    String galerija3;
-    String galerija4;
-
+    String headerTextPrviObavezni;
+    String headerText2;
+    String headerText3;
+    String headerText4;
+    String mainTextHeaderObavezni;
+    String mainTextHeader2;
+    String mainTextHeader3;
+    String slika;
+    String donjiTextObavezni;
+    String donjiTextKojiNaglasava;
+    String donjiTextDodatni;
+    String donjitTextDodatni2;
 
     public ReklameModel() {
     }
 
-    public ReklameModel(String prijevoznik, String samojednaslika, String galerija1, String galerija2, String galerija3, String galerija4) {
+
+    public ReklameModel(String prijevoznik, String headerTextPrviObavezni, String headerText2, String headerText3, String headerText4, String mainTextHeaderObavezni, String mainTextHeader2, String mainTextHeader3, String slika,String donjiTextObavezni,String donjiTextKojiNaglasava,String donjiTextDodatni,String donjitTextDodatni2) {
         this.prijevoznik = prijevoznik;
-        this.samojednaslika = samojednaslika;
-        this.galerija1 = galerija1;
-        this.galerija2 = galerija2;
-        this.galerija3 = galerija3;
-        this.galerija4 = galerija4;
+        this.headerTextPrviObavezni = headerTextPrviObavezni;
+        this.headerText2 = headerText2;
+        this.headerText3 = headerText3;
+        this.headerText4 = headerText4;
+        this.mainTextHeaderObavezni = mainTextHeaderObavezni;
+        this.mainTextHeader2 = mainTextHeader2;
+        this.mainTextHeader3 = mainTextHeader3;
+        this.slika = slika;
+        this.donjiTextObavezni = donjiTextObavezni;
+        this.donjiTextKojiNaglasava = donjiTextKojiNaglasava;
+        this.donjiTextDodatni = donjiTextDodatni;
+        this.donjitTextDodatni2 = donjitTextDodatni2;
     }
+
+
 
     public String getPrijevoznik() {
         return prijevoznik;
@@ -33,43 +49,99 @@ public class ReklameModel  {
         this.prijevoznik = prijevoznik;
     }
 
-    public String getSamojednaslika() {
-        return samojednaslika;
+    public String getHeaderTextPrviObavezni() {
+        return headerTextPrviObavezni;
     }
 
-    public void setSamojednaslika(String samojednaslika) {
-        this.samojednaslika = samojednaslika;
+    public void setHeaderTextPrviObavezni(String headerTextPrviObavezni) {
+        this.headerTextPrviObavezni = headerTextPrviObavezni;
     }
 
-    public String getGalerija1() {
-        return galerija1;
+    public String getHeaderText2() {
+        return headerText2;
     }
 
-    public void setGalerija1(String galerija1) {
-        this.galerija1 = galerija1;
+    public void setHeaderText2(String headerText2) {
+        this.headerText2 = headerText2;
     }
 
-    public String getGalerija2() {
-        return galerija2;
+    public String getHeaderText3() {
+        return headerText3;
     }
 
-    public void setGalerija2(String galerija2) {
-        this.galerija2 = galerija2;
+    public void setHeaderText3(String headerText3) {
+        this.headerText3 = headerText3;
     }
 
-    public String getGalerija3() {
-        return galerija3;
+    public String getHeaderText4() {
+        return headerText4;
     }
 
-    public void setGalerija3(String galerija3) {
-        this.galerija3 = galerija3;
+    public void setHeaderText4(String headerText4) {
+        this.headerText4 = headerText4;
     }
 
-    public String getGalerija4() {
-        return galerija4;
+    public String getMainTextHeaderObavezni() {
+        return mainTextHeaderObavezni;
     }
 
-    public void setGalerija4(String galerija4) {
-        this.galerija4 = galerija4;
+    public void setMainTextHeaderObavezni(String mainTextHeaderObavezni) {
+        this.mainTextHeaderObavezni = mainTextHeaderObavezni;
+    }
+
+    public String getMainTextHeader2() {
+        return mainTextHeader2;
+    }
+
+    public void setMainTextHeader2(String mainTextHeader2) {
+        this.mainTextHeader2 = mainTextHeader2;
+    }
+
+    public String getMainTextHeader3() {
+        return mainTextHeader3;
+    }
+
+    public void setMainTextHeader3(String mainTextHeader3) {
+        this.mainTextHeader3 = mainTextHeader3;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    public String getDonjiTextObavezni() {
+        return donjiTextObavezni;
+    }
+
+    public void setDonjiTextObavezni(String donjiTextObavezni) {
+        this.donjiTextObavezni = donjiTextObavezni;
+    }
+
+    public String getDonjiTextKojiNaglasava() {
+        return donjiTextKojiNaglasava;
+    }
+
+    public void setDonjiTextKojiNaglasava(String donjiTextKojiNaglasava) {
+        this.donjiTextKojiNaglasava = donjiTextKojiNaglasava;
+    }
+
+    public String getDonjiTextDodatni() {
+        return donjiTextDodatni;
+    }
+
+    public void setDonjiTextDodatni(String donjiTextDodatni) {
+        this.donjiTextDodatni = donjiTextDodatni;
+    }
+
+    public String getDonjitTextDodatni2() {
+        return donjitTextDodatni2;
+    }
+
+    public void setDonjitTextDodatni2(String donjitTextDodatni2) {
+        this.donjitTextDodatni2 = donjitTextDodatni2;
     }
 }
