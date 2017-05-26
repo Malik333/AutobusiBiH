@@ -77,18 +77,18 @@ public class MainPage extends AppCompatActivity
             @Override
             protected void populateViewHolder(final ReklameViewHolder viewHolder, ReklameModel model, int position) {
                 viewHolder.setPrijevoznik(model.getPrijevoznik());
-                viewHolder.setHeaderTextPrviObavezni(model.getHeaderTextPrviObavezni());
-                viewHolder.setHeaderText2(model.getHeaderText2());
-                viewHolder.setHeaderText3(model.getHeaderText3());
-                viewHolder.setHeaderText4(model.getHeaderText4());
-                viewHolder.setMainTextHeaderObavezni(model.getMainTextHeaderObavezni());
-                viewHolder.setMainTextHeader2(model.getMainTextHeader2());
-                viewHolder.setMainTextHeader3(model.getMainTextHeader3());
+                viewHolder.setAdresa(model.getAdresa());
+                viewHolder.setH2(model.getH2());
+                viewHolder.setH3(model.getH3());
+                viewHolder.setH4(model.getH4());
+                viewHolder.setMainObavezni(model.getMainObavezni());
+                viewHolder.setMainH2(model.getMainH2());
+                viewHolder.setMainH3(model.getMainH3());
                 viewHolder.setSlika(getApplicationContext(),model.getSlika());
-                viewHolder.setDonjiTextObavezni(model.getDonjiTextObavezni());
-                viewHolder.setDonjiTextKojiNaglasava(model.getDonjiTextKojiNaglasava());
-                viewHolder.setDonjiTextDodatni(model.getDonjiTextDodatni());
-                viewHolder.setDonjiTextDodatni2(model.getDonjitTextDodatni2());
+                viewHolder.setDonjiObavezni(model.getDonjiObavezni());
+                viewHolder.setDonjiNaglasava(model.getDonjiNaglasava());
+                viewHolder.setDonjiDodatni(model.getDonjiDodatni());
+                viewHolder.setDonjiDodatni2(model.getDonjiDodatni2());
 
 
             }
@@ -141,12 +141,12 @@ public class MainPage extends AppCompatActivity
         }
 
 
-        public void setHeaderTextPrviObavezni(String headerTextPrviObavezni) {
+        public void setAdresa(String adresa) {
 
-            if (headerTextPrviObavezni != null) {
+            if (adresa != null) {
                 layoutForObavezni.setVisibility(View.VISIBLE);
                 TextView obavezni_text_header = (TextView) mView.findViewById(R.id.grad_adresa_info);
-                obavezni_text_header.setText(headerTextPrviObavezni);
+                obavezni_text_header.setText(adresa);
 
             } else {
                 layoutForObavezni.setVisibility(View.GONE);
@@ -154,45 +154,45 @@ public class MainPage extends AppCompatActivity
 
         }
 
-        public void setHeaderText2(String headerText2) {
-            if (headerText2 != null) {
+        public void setH2(String h2) {
+            if (h2 != null) {
                 layoutForDodatni1.setVisibility(View.VISIBLE);
                 TextView heaader_text_drugi = (TextView) mView.findViewById(R.id.header_dodatni_text);
-                heaader_text_drugi.setText(headerText2);
+                heaader_text_drugi.setText(h2);
             } else {
                 layoutForDodatni1.setVisibility(View.GONE);
             }
 
         }
 
-        public void setHeaderText3(String headerText3) {
-            if (headerText3 != null) {
+        public void setH3(String h3) {
+            if (h3 != null) {
                 layoutForDodatni2.setVisibility(View.VISIBLE);
                 TextView heaader_text_treci = (TextView) mView.findViewById(R.id.header_dodatni_text2);
-                heaader_text_treci.setText(headerText3);
+                heaader_text_treci.setText(h3);
             } else {
                 layoutForDodatni2.setVisibility(View.GONE);
             }
 
         }
 
-        public void setHeaderText4(String headerText4) {
-            if (headerText4 != null) {
+        public void setH4(String h4) {
+            if (h4 != null) {
                 layoutForDodatni3.setVisibility(View.VISIBLE);
                 TextView heaader_text_cetvrti = (TextView) mView.findViewById(R.id.header_dodatni_text3);
-                heaader_text_cetvrti.setText(headerText4);
+                heaader_text_cetvrti.setText(h4);
             } else {
                 layoutForDodatni3.setVisibility(View.GONE);
             }
 
         }
 
-        public void setMainTextHeaderObavezni(String mainTextHeaderObavezni) {
+        public void setMainObavezni(String mainObavezni) {
 
-            if (mainTextHeaderObavezni != null) {
+            if (mainObavezni != null) {
                 layoutForMainObavezni.setVisibility(View.VISIBLE);
                 TextView main_obavezni_header = (TextView) mView.findViewById(R.id.main_text_header);
-                main_obavezni_header.setText(mainTextHeaderObavezni);
+                main_obavezni_header.setText(mainObavezni);
 
 
             } else {
@@ -200,13 +200,13 @@ public class MainPage extends AppCompatActivity
             }
 
         }
-        public void setMainTextHeader2(String mainTextHeader2){
+        public void setMainH2(String mainH2){
 
 
-            if (mainTextHeader2 != null) {
+            if (mainH2 != null) {
                 layoutForMainDodatni1.setVisibility(View.VISIBLE);
                 TextView main_dodatni_header = (TextView) mView.findViewById(R.id.main_text_header2);
-                main_dodatni_header.setText(mainTextHeader2);
+                main_dodatni_header.setText(mainH2);
 
 
             } else {
@@ -215,13 +215,13 @@ public class MainPage extends AppCompatActivity
         }
 
 
-        public void setMainTextHeader3(String mainTextHeader3){
+        public void setMainH3(String mainH3){
 
 
-            if (mainTextHeader3 != null) {
+            if (mainH3 != null) {
                 layoutForMainDodatni2.setVisibility(View.VISIBLE);
                 TextView main_dodatni2_header = (TextView) mView.findViewById(R.id.main_text_header3);
-                main_dodatni2_header.setText(mainTextHeader3);
+                main_dodatni2_header.setText(mainH3);
 
 
             } else {
@@ -240,11 +240,11 @@ public class MainPage extends AppCompatActivity
           }
         }
 
-        public void setDonjiTextObavezni (String donjiTextObavezni){
-            if (donjiTextObavezni != null){
+        public void setDonjiObavezni (String donjiObavezni){
+            if (donjiObavezni != null){
                 layoutForDonjiObavezni.setVisibility(View.VISIBLE);
                 TextView donji_obavezni_textview = (TextView) mView.findViewById(R.id.donji_text_obavezni);
-                donji_obavezni_textview.setText(donjiTextObavezni);
+                donji_obavezni_textview.setText(donjiObavezni);
             }else {
                 layoutForDonjiObavezni.setVisibility(View.GONE);
             }
@@ -252,33 +252,33 @@ public class MainPage extends AppCompatActivity
         }
 
 
-        public void setDonjiTextKojiNaglasava (String donjiTextKojiNaglasava){
-            if (donjiTextKojiNaglasava != null){
+        public void setDonjiNaglasava (String donjiNaglasava){
+            if (donjiNaglasava != null){
                 layoutForDonjiNaglasava.setVisibility(View.VISIBLE);
                 TextView naglasava= (TextView) mView.findViewById(R.id.text_koji_naglasava);
-                naglasava.setText(donjiTextKojiNaglasava);
+                naglasava.setText(donjiNaglasava);
             }else {
                 layoutForDonjiNaglasava.setVisibility(View.GONE);
             }
 
         }
 
-        public void setDonjiTextDodatni (String donjiTextDodatni){
-            if (donjiTextDodatni != null){
+        public void setDonjiDodatni (String donjiDodatni){
+            if (donjiDodatni != null){
                 layoutForDonjiDodatni.setVisibility(View.VISIBLE);
                 TextView donji_dodatni = (TextView) mView.findViewById(R.id.donji_dodatni_text);
-                donji_dodatni.setText(donjiTextDodatni);
+                donji_dodatni.setText(donjiDodatni);
             }else {
                 layoutForDonjiDodatni.setVisibility(View.GONE);
             }
 
         }
 
-        public void setDonjiTextDodatni2 (String donjiTextDodatni2){
-            if (donjiTextDodatni2 != null){
+        public void setDonjiDodatni2 (String donjiDodatni2){
+            if (donjiDodatni2 != null){
                 layoutForDonjiDodatni2.setVisibility(View.VISIBLE);
                 TextView donji_dodatni_dva= (TextView) mView.findViewById(R.id.donji_dodatni_text2);
-                donji_dodatni_dva.setText(donjiTextDodatni2);
+                donji_dodatni_dva.setText(donjiDodatni2);
             }else {
                 layoutForDonjiDodatni2.setVisibility(View.GONE);
             }
