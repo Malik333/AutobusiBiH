@@ -2,13 +2,10 @@ package com.alenmalik.autobusibih;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 
-import android.os.CountDownTimer;
-import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -27,17 +24,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.awareness.snapshot.TimeIntervalsResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainPage extends AppCompatActivity
@@ -47,6 +39,9 @@ public class MainPage extends AppCompatActivity
     Button probabuton;
 
     DatabaseReference mReference;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +55,6 @@ public class MainPage extends AppCompatActivity
         reklameList.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,12 +64,6 @@ public class MainPage extends AppCompatActivity
         drawer.openDrawer(Gravity.LEFT);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    @Override
-    protected void onStart() {
-
-        super.onStart();
 
         mReference = FirebaseDatabase.getInstance().getReference().child("Reklame");
         FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder>(
@@ -98,19 +82,33 @@ public class MainPage extends AppCompatActivity
                 viewHolder.setMainObavezni(model.getMainObavezni());
                 viewHolder.setMainH2(model.getMainH2());
                 viewHolder.setMainH3(model.getMainH3());
-                viewHolder.setSlika(getApplicationContext(), model.getSlika());
+                viewHolder.setSlika(getApplicationContext(),model.getSlika());
                 viewHolder.setDonjiObavezni(model.getDonjiObavezni());
                 viewHolder.setDonjiNaglasava(model.getDonjiNaglasava());
                 viewHolder.setDonjiDodatni(model.getDonjiDodatni());
                 viewHolder.setDonjiDodatni2(model.getDonjiDodatni2());
-                viewHolder.setLgc(model.getLgc());
-                viewHolder.setLdc(model.getLdc());
-                viewHolder.setHmtc(model.getHmtc());
-                viewHolder.setDvtc(model.getDvtc());
+
+                viewHolder.slika_image_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent openFullScreen = new Intent(MainPage.this, FullScreenImage.class);
+                        String tag = (String) viewHolder.slika_image_view.getTag();
+                        openFullScreen.putExtra("imageURL", tag);
+                        startActivity(openFullScreen);
+                    }
+                });
 
             }
         };
         reklameList.setAdapter(firebaseRecyclerAdapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+
 
 
     }
@@ -130,14 +128,7 @@ public class MainPage extends AppCompatActivity
         RelativeLayout layoutForDonjiDodatni;
         RelativeLayout layoutForDonjiDodatni2;
         RelativeLayout layoutForSlika;
-        RelativeLayout gornjiLayoutHeaderColor;
-        RelativeLayout gornjiLayoutMainColor;
-        RelativeLayout imePrijevoznikaColor;
-        RelativeLayout donjiLayoutColor;
-        TextView mainObavezni;
-        TextView mainHdrugi;
-        TextView mainHtreci;
-        TextView donjiVelikiText;
+        ImageView slika_image_view;
 
 
         public ReklameViewHolder(View itemView) {
@@ -156,14 +147,7 @@ public class MainPage extends AppCompatActivity
             layoutForDonjiDodatni = (RelativeLayout) mView.findViewById(R.id.layout_for_dodatni_text);
             layoutForDonjiDodatni2 = (RelativeLayout) mView.findViewById(R.id.layout_for_dodatni_text2);
             layoutForSlika = (RelativeLayout) mView.findViewById(R.id.container_for_image);
-            gornjiLayoutHeaderColor = (RelativeLayout) mView.findViewById(R.id.container_for_header_texts);
-            gornjiLayoutMainColor = (RelativeLayout) mView.findViewById(R.id.container_for_header_main_texts);
-            imePrijevoznikaColor = (RelativeLayout) mView.findViewById(R.id.layout_for_ime_prijevoznik);
-            donjiLayoutColor = (RelativeLayout) mView.findViewById(R.id.container_for_bottom_texts);
-            mainObavezni = (TextView) mView.findViewById(R.id.main_text_header);
-            mainHdrugi = (TextView) mView.findViewById(R.id.main_text_header2);
-            mainHtreci = (TextView) mView.findViewById(R.id.main_text_header3);
-            donjiVelikiText = (TextView) mView.findViewById(R.id.donji_text_obavezni);
+            slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
         }
 
         public void setPrijevoznik(String prijevoznik) {
@@ -233,8 +217,7 @@ public class MainPage extends AppCompatActivity
             }
 
         }
-
-        public void setMainH2(String mainH2) {
+        public void setMainH2(String mainH2){
 
 
             if (mainH2 != null) {
@@ -249,7 +232,7 @@ public class MainPage extends AppCompatActivity
         }
 
 
-        public void setMainH3(String mainH3) {
+        public void setMainH3(String mainH3){
 
 
             if (mainH3 != null) {
@@ -263,101 +246,65 @@ public class MainPage extends AppCompatActivity
             }
         }
 
-        public void setSlika(Context ctx, String slika) {
-            if (slika != null) {
-                layoutForSlika.setVisibility(View.VISIBLE);
-                ImageView slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
-                Picasso.with(ctx).load(slika).into(slika_image_view);
+        public void setSlika(Context ctx,String slika){
+          if (slika != null){
+              layoutForSlika.setVisibility(View.VISIBLE);
 
-            } else {
-                layoutForSlika.setVisibility(View.GONE);
-            }
+              Picasso.with(ctx).load(slika).into(slika_image_view);
+              slika_image_view.setTag(slika);
+
+          }else {
+              layoutForSlika.setVisibility(View.GONE);
+          }
         }
 
-        public void setDonjiObavezni(String donjiObavezni) {
-            if (donjiObavezni != null) {
+        public void setDonjiObavezni (String donjiObavezni){
+            if (donjiObavezni != null){
                 layoutForDonjiObavezni.setVisibility(View.VISIBLE);
                 TextView donji_obavezni_textview = (TextView) mView.findViewById(R.id.donji_text_obavezni);
                 donji_obavezni_textview.setText(donjiObavezni);
-            } else {
+            }else {
                 layoutForDonjiObavezni.setVisibility(View.GONE);
             }
 
         }
 
 
-        public void setDonjiNaglasava(String donjiNaglasava) {
-            if (donjiNaglasava != null) {
+        public void setDonjiNaglasava (String donjiNaglasava){
+            if (donjiNaglasava != null){
                 layoutForDonjiNaglasava.setVisibility(View.VISIBLE);
-                TextView naglasava = (TextView) mView.findViewById(R.id.text_koji_naglasava);
+                TextView naglasava= (TextView) mView.findViewById(R.id.text_koji_naglasava);
                 naglasava.setText(donjiNaglasava);
-            } else {
+            }else {
                 layoutForDonjiNaglasava.setVisibility(View.GONE);
             }
 
         }
 
-        public void setDonjiDodatni(String donjiDodatni) {
-            if (donjiDodatni != null) {
+        public void setDonjiDodatni (String donjiDodatni){
+            if (donjiDodatni != null){
                 layoutForDonjiDodatni.setVisibility(View.VISIBLE);
                 TextView donji_dodatni = (TextView) mView.findViewById(R.id.donji_dodatni_text);
                 donji_dodatni.setText(donjiDodatni);
-            } else {
+            }else {
                 layoutForDonjiDodatni.setVisibility(View.GONE);
             }
 
         }
 
-        public void setDonjiDodatni2(String donjiDodatni2) {
-            if (donjiDodatni2 != null) {
+        public void setDonjiDodatni2 (String donjiDodatni2){
+            if (donjiDodatni2 != null){
                 layoutForDonjiDodatni2.setVisibility(View.VISIBLE);
-                TextView donji_dodatni_dva = (TextView) mView.findViewById(R.id.donji_dodatni_text2);
+                TextView donji_dodatni_dva= (TextView) mView.findViewById(R.id.donji_dodatni_text2);
                 donji_dodatni_dva.setText(donjiDodatni2);
-            } else {
+            }else {
                 layoutForDonjiDodatni2.setVisibility(View.GONE);
-            }
-
-        }
-
-        public void setLgc(String lgc) {
-
-            if (lgc != null) {
-
-                gornjiLayoutHeaderColor.setBackgroundColor(Color.parseColor(lgc));
-                gornjiLayoutMainColor.setBackgroundColor(Color.parseColor(lgc));
-                imePrijevoznikaColor.setBackgroundColor(Color.parseColor(lgc));
-            }
-
-        }
-
-        public void setLdc(String ldc) {
-            if (ldc != null) {
-
-                donjiLayoutColor.setBackgroundColor(Color.parseColor(ldc));
-            }
-        }
-
-        public void setHmtc(String hmtc) {
-
-            if (hmtc != null) {
-                mainObavezni.setTextColor(Color.parseColor(hmtc));
-                mainHdrugi.setTextColor(Color.parseColor(hmtc));
-                mainHtreci.setTextColor(Color.parseColor(hmtc));
-
-            }
-        }
-
-        public void setDvtc(String dvtc) {
-            if (dvtc != null) {
-
-                donjiVelikiText.setTextColor(Color.parseColor(dvtc));
             }
 
         }
 
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -424,7 +371,22 @@ public class MainPage extends AppCompatActivity
     }
 
 
-    public void changeColor() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            reklameList.getLayoutManager().onRestoreInstanceState(listState);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = reklameList.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
 
     }
 
