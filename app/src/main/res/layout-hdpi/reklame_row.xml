@@ -189,13 +189,13 @@
             <RelativeLayout
                 android:id="@+id/container_for_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="120dp"
                 android:layout_below="@+id/container_for_header_main_texts">
 
                 <ImageView
                     android:id="@+id/imageForReklame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY" />
 
 
