@@ -58,7 +58,7 @@
                         android:id="@+id/grad_adresa_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
@@ -81,7 +81,7 @@
                         android:id="@+id/header_dodatni_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                       android:layout_centerHorizontal="true"
                         android:textStyle="bold" />
 
 
@@ -102,7 +102,7 @@
                         android:id="@+id/header_dodatni_text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                   android:gravity="center_horizontal"
                         android:textStyle="bold"
 
                         />
@@ -125,7 +125,7 @@
                         android:id="@+id/header_dodatni_text3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                       android:gravity="center_horizontal"
                         android:textStyle="bold"
 
                         />
@@ -139,6 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_header_texts"
+                android:paddingBottom="10dp"
                >
 
                 <RelativeLayout
@@ -157,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="30sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -178,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
 
                         />
@@ -199,9 +200,9 @@
                         android:id="@+id/main_text_header3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>
@@ -209,12 +210,12 @@
             <RelativeLayout
                 android:id="@+id/container_for_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_header_main_texts">
 
                 <ImageView
                     android:id="@+id/imageForReklame"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY" />
 
@@ -226,6 +227,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_image"
+                android:paddingBottom="10dp"
                 >
 
                 <RelativeLayout
@@ -244,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:textColor="#ffea00"
-                        android:textSize="30sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -264,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:textColor="#ffea00"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
@@ -290,7 +292,8 @@
                         android:id="@+id/donji_dodatni_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
 
 
                 </RelativeLayout>
@@ -310,7 +313,8 @@
                         android:id="@+id/donji_dodatni_text2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal"/>
 
 
                 </RelativeLayout>
