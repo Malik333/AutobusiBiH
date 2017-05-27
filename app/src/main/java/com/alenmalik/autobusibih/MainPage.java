@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -48,6 +49,9 @@ public class MainPage extends AppCompatActivity
 
     DatabaseReference mReference;
 
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +78,7 @@ public class MainPage extends AppCompatActivity
         drawer.openDrawer(Gravity.LEFT);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
-    @Override
-    protected void onStart() {
-
-        super.onStart();
 
         mReference = FirebaseDatabase.getInstance().getReference().child("Reklame");
         FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder>(
@@ -108,10 +107,27 @@ public class MainPage extends AppCompatActivity
                 viewHolder.setHmtc(model.getHmtc());
                 viewHolder.setDvtc(model.getDvtc());
 
+                viewHolder.slika_image_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent openFullScreen = new Intent(MainPage.this, FullScreenImage.class);
+                        String tag = (String) viewHolder.slika_image_view.getTag();
+                        openFullScreen.putExtra("imageURL", tag);
+                        startActivity(openFullScreen);
+                    }
+                });
+
             }
         };
         reklameList.setAdapter(firebaseRecyclerAdapter);
 
+
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
 
     }
 
@@ -138,6 +154,7 @@ public class MainPage extends AppCompatActivity
         TextView mainHdrugi;
         TextView mainHtreci;
         TextView donjiVelikiText;
+        ImageView slika_image_view;
 
 
         public ReklameViewHolder(View itemView) {
@@ -164,6 +181,7 @@ public class MainPage extends AppCompatActivity
             mainHdrugi = (TextView) mView.findViewById(R.id.main_text_header2);
             mainHtreci = (TextView) mView.findViewById(R.id.main_text_header3);
             donjiVelikiText = (TextView) mView.findViewById(R.id.donji_text_obavezni);
+            slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
         }
 
         public void setPrijevoznik(String prijevoznik) {
@@ -266,8 +284,8 @@ public class MainPage extends AppCompatActivity
         public void setSlika(Context ctx, String slika) {
             if (slika != null) {
                 layoutForSlika.setVisibility(View.VISIBLE);
-                ImageView slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
                 Picasso.with(ctx).load(slika).into(slika_image_view);
+                slika_image_view.setTag(slika);
 
             } else {
                 layoutForSlika.setVisibility(View.GONE);
@@ -357,7 +375,24 @@ public class MainPage extends AppCompatActivity
 
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            reklameList.getLayoutManager().onRestoreInstanceState(listState);
+        }
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = reklameList.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
+
+    }
 
     @Override
     public void onBackPressed() {

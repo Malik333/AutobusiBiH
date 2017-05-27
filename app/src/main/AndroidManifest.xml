@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.alenmalik.autobusibih">
 
+    <uses-sdk tools:overrideLibrary="com.toptoche.searchablespinnerlibrary,com.firebase.ui,com.firebase.ui.auth,com.facebook,android.support.customtabs" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:name="android.hardware.location.gps" />
-<uses-sdk tools:overrideLibrary="com.toptoche.searchablespinnerlibrary,com.firebase.ui,com.firebase.ui.auth,com.facebook,android.support.customtabs"/>
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -32,14 +33,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark">
-
-        </activity>
+            android:theme="@style/AppTheme.Dark"></activity>
         <activity
             android:name=".AboutApplication"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"
-            />
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".InternacionalTraffic"
             android:screenOrientation="portrait"
@@ -47,8 +45,7 @@
         <activity
             android:name=".ContactInfo"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BusTransport"
             android:screenOrientation="portrait"
@@ -63,10 +60,8 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".BusStateListActivity"
-            android:screenOrientation="portrait"
             android:label="TRAZI"
-
-           />
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -92,15 +87,13 @@
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.Dark">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".FullScreenImage"></activity>
     </application>
 
 </manifest>
