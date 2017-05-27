@@ -1,255 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<app:android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorPrimary"
     android:layout_margin="10dp">
 
     <RelativeLayout
-        android:id="@+id/container_of_reklame_row"
+        android:id="@+id/container_for_shape"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <RelativeLayout
-            android:id="@+id/layout_for_ime_prijevoznik"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/prijevoznik_ime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="proba"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_for_row_layout"
+        android:padding="3dp">
 
         <RelativeLayout
-            android:id="@+id/container_for_header_texts"
+            android:id="@+id/container_of_reklame_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_for_ime_prijevoznik">
+            android:background="#000000"
+
+            >
 
 
             <RelativeLayout
-                android:id="@+id/layout_header_text1"
+                android:id="@+id/layout_for_ime_prijevoznik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/grad_adresa_info"
+                    android:id="@+id/prijevoznik_ime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/blackColor"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_header_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_header_text1">
-
-                <TextView
-                    android:id="@+id/header_dodatni_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blackColor"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"/>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_header_text3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_header_text2">
-
-                <TextView
-                    android:id="@+id/header_dodatni_text2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:layout_centerHorizontal="true"
-
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_header_text4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_header_text3">
-
-
-                <TextView
-                    android:id="@+id/header_dodatni_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-
-                    />
-
-
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/container_for_header_main_texts"
-            android:layout_below="@+id/container_for_header_texts">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_for_main_header_text"
-                >
-
-                <TextView
-                    android:id="@+id/main_text_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-
-                    android:gravity="center_horizontal"
-                    android:textSize="30sp"
-                    android:textColor="@color/colorPrimary"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_for_main_header_text2"
-                android:layout_below="@+id/layout_for_main_header_text"
-                android:layout_centerHorizontal="true">
-
-                <TextView
-                    android:id="@+id/main_text_header2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_for_main_header_text3"
-                android:layout_below="@+id/layout_for_main_header_text2"
-                >
-
-                <TextView
-                    android:id="@+id/main_text_header3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:id="@+id/container_for_image"
-            android:layout_below="@+id/container_for_header_main_texts">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:id="@+id/imageForReklame"/>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/container_for_bottom_texts"
-            android:layout_below="@+id/container_for_image">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_for_donji_text_jedan">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FF0000"
-                    android:id="@+id/donji_text_obavezni"
-                    android:textSize="30sp"
-                    android:layout_centerHorizontal="true"
-                    android:textStyle="bold"/>
+                    android:layout_marginTop="10dp"
+                    android:text="proba"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/container_for_header_texts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#b71c1c"
-                android:id="@+id/layout_for_text_koji_nesto_naglasi"
-                android:layout_below="@+id/layout_for_donji_text_jedan">
+                android:layout_below="@+id/layout_for_ime_prijevoznik"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_koji_naglasava"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="#ffea00"
-                    android:textSize="24sp"/>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_for_dodatni_text"
-                android:layout_below="@+id/layout_for_text_koji_nesto_naglasi">
-
-                <TextView
+                <RelativeLayout
+                    android:id="@+id/layout_header_text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/donji_dodatni_text"
-                    />
 
+                    >
+
+                    <TextView
+                        android:id="@+id/grad_adresa_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_header_text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_header_text1"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/header_dodatni_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_header_text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_header_text2"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/header_dodatni_text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_header_text4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_header_text3"
+                    android:layout_marginTop="5dp">
+
+
+                    <TextView
+                        android:id="@+id/header_dodatni_text3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_for_header_main_texts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/container_for_header_texts"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_main_header_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/main_text_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_main_header_text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_for_main_header_text">
+
+                    <TextView
+                        android:id="@+id/main_text_header2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_main_header_text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_for_main_header_text2">
+
+                    <TextView
+                        android:id="@+id/main_text_header3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_for_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/container_for_header_main_texts">
+
+                <ImageView
+                    android:id="@+id/imageForReklame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/container_for_bottom_texts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout_for_dodatni_text2"
-                android:layout_below="@+id/layout_for_dodatni_text">
+                android:layout_below="@+id/container_for_image"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp">
 
-                <TextView
+                <RelativeLayout
+                    android:id="@+id/layout_for_donji_text_jedan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/donji_dodatni_text2"
-                    />
+                    android:layout_marginTop="5dp">
 
+                    <TextView
+                        android:id="@+id/donji_text_obavezni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="#FF0000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_text_koji_nesto_naglasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_for_donji_text_jedan"
+                    android:layout_marginTop="5dp"
+                    android:background="#b71c1c">
+
+
+                    <TextView
+                        android:id="@+id/text_koji_naglasava"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="#ffea00"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_dodatni_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_for_text_koji_nesto_naglasi"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/donji_dodatni_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_dodatni_text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_for_dodatni_text"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/donji_dodatni_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
 
 
             </RelativeLayout>
 
-
         </RelativeLayout>
-
     </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+</app:android.support.v7.widget.CardView>

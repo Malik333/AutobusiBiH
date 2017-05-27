@@ -18,11 +18,16 @@ public class ReklameModel {
     String donjiNaglasava;
     String donjiDodatni;
     String donjiDodatni2;
+    String lgc;
+    String ldc;
+    String hmtc;
+    String dvtc;
+
 
     public ReklameModel() {
     }
 
-    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2) {
+    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc) {
         this.prijevoznik = prijevoznik;
         this.adresa = adresa;
         this.h2 = h2;
@@ -36,6 +41,11 @@ public class ReklameModel {
         this.donjiNaglasava = donjiNaglasava;
         this.donjiDodatni = donjiDodatni;
         this.donjiDodatni2 = donjiDodatni2;
+        this.lgc = lgc;
+        this.ldc = ldc;
+        this.hmtc = hmtc;
+        this.dvtc = dvtc;
+
     }
 
     public String getPrijevoznik() {
@@ -141,4 +151,38 @@ public class ReklameModel {
     public void setDonjiDodatni2(String donjiDodatni2) {
         this.donjiDodatni2 = donjiDodatni2;
     }
+
+    public String getLgc() {
+        return lgc;
+    }
+
+    public void setLgc(String lgc) {
+        this.lgc = lgc;
+    }
+
+    public String getLdc() {
+        return ldc;
+    }
+
+    public void setLdc(String ldc) {
+        this.ldc = ldc;
+    }
+
+    public String getHmtc() {
+        return hmtc;
+    }
+
+    public void setHmtc(String hmtc) {
+        this.hmtc = hmtc;
+    }
+
+    public String getDvtc() {
+        return dvtc;
+    }
+
+    public void setDvtc(String dvtc) {
+        this.dvtc = dvtc;
+    }
+
+
 }
