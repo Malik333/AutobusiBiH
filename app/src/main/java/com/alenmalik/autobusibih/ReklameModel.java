@@ -22,12 +22,14 @@ public class ReklameModel {
     String ldc;
     String hmtc;
     String dvtc;
-
+    String phone;
+    String email;
+    String facebook;
 
     public ReklameModel() {
     }
 
-    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc) {
+    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc, String phone, String email, String facebook) {
         this.prijevoznik = prijevoznik;
         this.adresa = adresa;
         this.h2 = h2;
@@ -45,6 +47,9 @@ public class ReklameModel {
         this.ldc = ldc;
         this.hmtc = hmtc;
         this.dvtc = dvtc;
+        this.phone = phone;
+        this.email = email;
+        this.facebook = facebook;
 
     }
 
@@ -184,5 +189,27 @@ public class ReklameModel {
         this.dvtc = dvtc;
     }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
 }

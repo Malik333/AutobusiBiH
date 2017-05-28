@@ -106,6 +106,12 @@ public class MainPage extends AppCompatActivity
                 viewHolder.setLdc(model.getLdc());
                 viewHolder.setHmtc(model.getHmtc());
                 viewHolder.setDvtc(model.getDvtc());
+                viewHolder.setPhoneImage();
+                viewHolder.setEmailImage();
+                viewHolder.setFacebookImage();
+                viewHolder.setPhone(model.getPhone());
+                viewHolder.setEmail(model.getEmail());
+                viewHolder.setFacebook(model.getFacebook());
 
                 viewHolder.slika_image_view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -373,6 +379,31 @@ public class MainPage extends AppCompatActivity
 
         }
 
+        public void setPhoneImage() {
+            ImageView view = (ImageView) mView.findViewById(R.id.phoneImage);
+        }
+
+        public void setPhone (String phone) {
+            TextView phoneNumber = (TextView) mView.findViewById(R.id.phoneNumber);
+            phoneNumber.setText(phone);
+        }
+        public void setEmailImage() {
+            ImageView view = (ImageView) mView.findViewById(R.id.emailImage);
+        }
+
+        public void setFacebookImage() {
+            ImageView view = (ImageView) mView.findViewById(R.id.facebookImage);
+        }
+
+        public void setEmail (String email) {
+            TextView phoneNumber = (TextView) mView.findViewById(R.id.email);
+            phoneNumber.setText(email);
+        }
+
+        public void setFacebook (String facebook) {
+            TextView phoneNumber = (TextView) mView.findViewById(R.id.facebook);
+            phoneNumber.setText(facebook);
+        }
 
     }
     @Override
