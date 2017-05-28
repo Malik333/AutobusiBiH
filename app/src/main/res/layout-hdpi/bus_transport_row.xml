@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        android:background="@drawable/shape_for_row_layout"
+        android:background="@drawable/shape_for_bust_transport_row"
         >
 
         <ImageView

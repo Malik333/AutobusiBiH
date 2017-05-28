@@ -25,11 +25,15 @@ public class ReklameModel {
     String phone;
     String email;
     String facebook;
+    String dnlc;
+    String dntc;
+    String ddtx;
+    String ilc;
 
     public ReklameModel() {
     }
 
-    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc, String phone, String email, String facebook) {
+    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc, String phone, String email, String facebook,String dnlc,String dntc,String ddtx,String ilc) {
         this.prijevoznik = prijevoznik;
         this.adresa = adresa;
         this.h2 = h2;
@@ -50,6 +54,10 @@ public class ReklameModel {
         this.phone = phone;
         this.email = email;
         this.facebook = facebook;
+        this.dnlc = dnlc;
+        this.dntc = dntc;
+        this.ddtx = ddtx;
+        this.ilc = ilc;
 
     }
 
@@ -211,5 +219,37 @@ public class ReklameModel {
 
     public void setFacebook(String facebook) {
         this.facebook = facebook;
+    }
+
+    public String getDnlc() {
+        return dnlc;
+    }
+
+    public void setDnlc(String dnlc) {
+        this.dnlc = dnlc;
+    }
+
+    public String getDntc() {
+        return dntc;
+    }
+
+    public void setDntc(String dntc) {
+        this.dntc = dntc;
+    }
+
+    public String getDdtx() {
+        return ddtx;
+    }
+
+    public void setDdtx(String ddtx) {
+        this.ddtx = ddtx;
+    }
+
+    public String getIlc() {
+        return ilc;
+    }
+
+    public void setIlc(String ilc) {
+        this.ilc = ilc;
     }
 }

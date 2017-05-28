@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<app:android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorPrimary"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/colorPrimary">
 
     <RelativeLayout
         android:id="@+id/container_for_shape"
@@ -43,8 +43,7 @@
                 android:id="@+id/container_for_header_texts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_for_ime_prijevoznik"
-                >
+                android:layout_below="@+id/layout_for_ime_prijevoznik">
 
 
                 <RelativeLayout
@@ -59,11 +58,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -71,11 +70,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_header_text1"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/header_dodatni_text"
@@ -92,11 +91,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_header_text2"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/header_dodatni_text2"
@@ -114,11 +113,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_header_text3"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp">
 
 
                     <TextView
@@ -139,8 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_header_texts"
-                android:paddingBottom="10dp"
-                >
+                android:paddingBottom="10dp">
 
                 <RelativeLayout
                     android:id="@+id/layout_for_main_header_text"
@@ -227,8 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_image"
-                android:paddingBottom="10dp"
-                >
+                android:paddingBottom="10dp">
 
                 <RelativeLayout
                     android:id="@+id/layout_for_donji_text_jedan"
@@ -244,7 +241,7 @@
                         android:id="@+id/donji_text_obavezni"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
                         android:textColor="#ffea00"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -264,15 +261,15 @@
                         android:id="@+id/text_koji_naglasava"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:textColor="#ffea00"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#ffea00"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </RelativeLayout>
@@ -292,8 +289,8 @@
                         android:id="@+id/donji_dodatni_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold" />
 
 
                 </RelativeLayout>
@@ -313,74 +310,92 @@
                         android:id="@+id/donji_dodatni_text2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold" />
 
 
                 </RelativeLayout>
 
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/container_for_bottom_texts">
 
                 <RelativeLayout
-                    android:id="@+id/layout_for_phone"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/layout_za_informacije"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:id="@+id/phoneImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/phone_96" />
+                        android:src="@drawable/phone_96"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"/>
 
                     <TextView
-                        android:id="@+id/phoneNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/phoneImage"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginStart="4dp"
+                        android:id="@+id/phoneNumber"
+                        android:layout_alignBaseline="@+id/phoneImage"
                         android:layout_toEndOf="@+id/phoneImage"
-                        android:layout_toRightOf="@+id/phoneImage" />
+                        android:layout_toRightOf="@+id/phoneImage"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginStart="25dp"
+                        android:textStyle="bold"/>
 
                     <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:id="@+id/emailImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/phoneImage"
                         android:src="@drawable/email_96"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/phoneNumber"
-                        android:layout_toRightOf="@+id/phoneNumber" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"/>
 
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/emailImage"
-                        android:layout_toRightOf="@+id/emailImage"/>
+                        android:layout_below="@+id/phoneImage"
+                        android:layout_alignBaseline="@+id/emailImage"
+                        android:layout_alignLeft="@+id/phoneNumber"
+                        android:layout_alignStart="@+id/phoneNumber"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"/>
+
+
                     <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:id="@+id/facebookImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emailImage"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
                         android:src="@drawable/facebook_96"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/email"
-                        android:layout_toRightOf="@+id/email" />
+                        android:layout_marginBottom="10dp"/>
 
                     <TextView
-                        android:id="@+id/facebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/facebookImage"
-                        android:layout_toRightOf="@+id/facebookImage"/>
+                        android:id="@+id/facebook"
+                        android:layout_alignBaseline="@+id/facebookImage"
+                        android:layout_below="@+id/emailImage"
+                        android:layout_alignStart="@+id/phoneNumber"
+                        android:layout_alignLeft="@+id/phoneNumber"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"/>
 
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
-</app:android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>

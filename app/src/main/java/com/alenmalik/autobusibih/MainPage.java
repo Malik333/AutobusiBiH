@@ -64,11 +64,6 @@ public class MainPage extends AppCompatActivity
         reklameList.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -106,12 +101,13 @@ public class MainPage extends AppCompatActivity
                 viewHolder.setLdc(model.getLdc());
                 viewHolder.setHmtc(model.getHmtc());
                 viewHolder.setDvtc(model.getDvtc());
-                viewHolder.setPhoneImage();
-                viewHolder.setEmailImage();
-                viewHolder.setFacebookImage();
                 viewHolder.setPhone(model.getPhone());
                 viewHolder.setEmail(model.getEmail());
                 viewHolder.setFacebook(model.getFacebook());
+                viewHolder.setDnlc(model.getDnlc());
+                viewHolder.setDntc(model.getDntc());
+                viewHolder.setDdtx(model.getDdtx());
+                viewHolder.setIlc(model.getIlc());
 
                 viewHolder.slika_image_view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -161,6 +157,13 @@ public class MainPage extends AppCompatActivity
         TextView mainHtreci;
         TextView donjiVelikiText;
         ImageView slika_image_view;
+        TextView donjiNaglasavaBoja;
+        TextView donjiDodatniBoja;
+        TextView donjiDodatniBojaDrugi;
+        RelativeLayout informacijeLayoutColor;
+        ImageView phoneImage;
+        ImageView emailImage;
+        ImageView fbImage;
 
 
         public ReklameViewHolder(View itemView) {
@@ -188,6 +191,13 @@ public class MainPage extends AppCompatActivity
             mainHtreci = (TextView) mView.findViewById(R.id.main_text_header3);
             donjiVelikiText = (TextView) mView.findViewById(R.id.donji_text_obavezni);
             slika_image_view = (ImageView) mView.findViewById(R.id.imageForReklame);
+            donjiNaglasavaBoja = (TextView) mView.findViewById(R.id.text_koji_naglasava);
+            donjiDodatniBoja = (TextView) mView.findViewById(R.id.donji_dodatni_text);
+            donjiDodatniBojaDrugi = (TextView) mView.findViewById(R.id.donji_dodatni_text2);
+            informacijeLayoutColor = (RelativeLayout) mView.findViewById(R.id.layout_za_informacije);
+            phoneImage = (ImageView) mView.findViewById(R.id.phoneImage);
+            emailImage = (ImageView) mView.findViewById(R.id.emailImage);
+            fbImage = (ImageView) mView.findViewById(R.id.facebookImage);
         }
 
         public void setPrijevoznik(String prijevoznik) {
@@ -379,33 +389,55 @@ public class MainPage extends AppCompatActivity
 
         }
 
-        public void setPhoneImage() {
-            ImageView view = (ImageView) mView.findViewById(R.id.phoneImage);
-        }
 
-        public void setPhone (String phone) {
+
+        public void setPhone(String phone) {
             TextView phoneNumber = (TextView) mView.findViewById(R.id.phoneNumber);
             phoneNumber.setText(phone);
         }
-        public void setEmailImage() {
-            ImageView view = (ImageView) mView.findViewById(R.id.emailImage);
+
+
+
+        public void setEmail(String email) {
+            TextView emailtext = (TextView) mView.findViewById(R.id.email);
+            emailtext.setText(email);
         }
 
-        public void setFacebookImage() {
-            ImageView view = (ImageView) mView.findViewById(R.id.facebookImage);
+        public void setFacebook(String facebook) {
+            TextView facebooktext = (TextView) mView.findViewById(R.id.facebook);
+            facebooktext.setText(facebook);
         }
 
-        public void setEmail (String email) {
-            TextView phoneNumber = (TextView) mView.findViewById(R.id.email);
-            phoneNumber.setText(email);
+        public void setDnlc(String dnlc) {
+
+            if (dnlc != null) {
+                layoutForDonjiNaglasava.setBackgroundColor(Color.parseColor(dnlc));
+
+            }
+
         }
 
-        public void setFacebook (String facebook) {
-            TextView phoneNumber = (TextView) mView.findViewById(R.id.facebook);
-            phoneNumber.setText(facebook);
+        public void setDntc(String dntc) {
+            if (dntc != null) {
+                donjiNaglasavaBoja.setTextColor(Color.parseColor(dntc));
+            }
+        }
+
+        public void setDdtx(String ddtx) {
+            if (ddtx != null) {
+                donjiDodatniBoja.setTextColor(Color.parseColor(ddtx));
+                donjiDodatniBojaDrugi.setTextColor(Color.parseColor(ddtx));
+            }
+        }
+
+        public void setIlc(String ilc){
+            if (ilc != null){
+                informacijeLayoutColor.setBackgroundColor(Color.parseColor(ilc));
+            }
         }
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
