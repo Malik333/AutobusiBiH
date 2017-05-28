@@ -58,10 +58,12 @@ public class MainPage extends AppCompatActivity
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        probabuton = (Button) findViewById(R.id.probabuton);
         reklameList = (RecyclerView) findViewById(R.id.autobusi_recycler_view_reklame);
-        reklameList.setHasFixedSize(false);
-        reklameList.setLayoutManager(new LinearLayoutManager(this));
+        reklameList.setHasFixedSize(false);LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        reklameList.setLayoutManager(linearLayoutManager);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,7 +72,12 @@ public class MainPage extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        drawer.openDrawer(Gravity.LEFT);
+        Boolean isfirsttime = getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("isfirsttiem", true);
+        if (isfirsttime) {
+            drawer.openDrawer(Gravity.LEFT);
+            getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isfirsttiem", false).commit();
+        }
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
