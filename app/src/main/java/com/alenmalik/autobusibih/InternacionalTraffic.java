@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,6 +51,11 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     ArrayAdapter<String> toCityAdapter;
 
 
+    RecyclerView details;
+    List<MedjunarodniIspisModel> detailsList;
+    MedjunarodniIspisAdapter adapter;
+
+
     Button informacije;
     TextView relacijaTextView;
     TextView vrijemepolaskaTextView;
@@ -80,12 +87,15 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         cijenaTextView = (TextView) findViewById(R.id.cijenaIspis_international);
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis_international);
         goBack = (ImageView) findViewById(R.id.backGoArrow);
+        details = (RecyclerView) findViewById(R.id.rec_international);
+        details.setLayoutManager(new LinearLayoutManager(this));
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         stateList = new ArrayList<>();
         toCityList = new ArrayList<>();
         fromCityList = new ArrayList<>();
         daysList = new ArrayList<>();
+        detailsList = new ArrayList<>();
 
         fromCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -166,16 +176,22 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
                     for (ParseObject object : list) {
-                        vrijemepolaskaTextView.setText(String.valueOf(object.get("Satnica")));
-                        duzinaputTextView.setText(String.valueOf(object.get("DuzinaPuta")));
-                        linijaTextView.setText(String.valueOf(object.get("Linija")));
-                        cijenaTextView.setText(String.valueOf(object.get("Cijena")));
-                        prijevoznikTextView.setText(String.valueOf(object.get("Prijevoznik")));
+                        MedjunarodniIspisModel item = new MedjunarodniIspisModel();
+                        item.vrijemePolaska = String.valueOf(object.get("Satnica"));
+                        item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                        item.linija = String.valueOf(object.get("Linija"));
+                        item.cijena = String.valueOf(object.get("Cijena"));
+                        item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
+                        item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
+                        item.dan = String.valueOf(object.get("Dan"));
+
+
+                        detailsList.add(item);
+                        adapter = new MedjunarodniIspisAdapter(detailsList, InternacionalTraffic.this);
+                        details.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
                     }
                 }
-
-                relacijaTextView.setText(citySelected + " - " + toCity);
-
             }
         });
     }
@@ -293,7 +309,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if (view.getId() == R.id.ispis_international) {
             vibrator.vibrate(100);
-            infoScroll.setVisibility(View.VISIBLE);
+            detailsList.clear();
             ispisInfoInternacional();
         }
     }
