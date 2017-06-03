@@ -7,14 +7,12 @@
     app:cardBackgroundColor="@color/colorPrimary">
 
     <RelativeLayout
-        android:id="@+id/container_for_shape"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shape_for_row_layout"
         android:padding="5dp">
 
         <RelativeLayout
-            android:id="@+id/container_of_reklame_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#b71c1c"
@@ -33,7 +31,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="proba"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -225,7 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_image"
-                android:paddingBottom="10dp">
+                >
 
                 <RelativeLayout
                     android:id="@+id/layout_for_donji_text_jedan"
@@ -235,7 +232,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp">
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/donji_text_obavezni"
@@ -253,8 +250,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_for_donji_text_jedan"
-
-                    android:background="#b71c1c">
+                    android:background="#b71c1c"
+                    android:padding="10dp">
 
 
                     <TextView
@@ -265,7 +262,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:textColor="#ffea00"
                         android:textSize="18sp"
@@ -290,7 +286,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
 
                 </RelativeLayout>
@@ -304,7 +301,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/donji_dodatni_text2"
@@ -328,6 +326,13 @@
                     android:id="@+id/layout_za_informacije"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_dodatne_info"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:padding="7dp"/>
 
                     <ImageView
                         android:layout_width="30dp"
@@ -336,7 +341,9 @@
                         android:src="@drawable/phone_96"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="7dp"
+                        android:layout_below="@+id/text_dodatne_info"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -348,7 +355,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="25dp"
                         android:layout_marginStart="25dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_below="@+id/text_dodatne_info"/>
 
                     <ImageView
                         android:layout_width="30dp"
@@ -389,6 +397,54 @@
                         android:id="@+id/facebook"
                         android:layout_alignBaseline="@+id/facebookImage"
                         android:layout_below="@+id/emailImage"
+                        android:layout_alignStart="@+id/phoneNumber"
+                        android:layout_alignLeft="@+id/phoneNumber"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"/>
+
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/viber_image"
+                        android:layout_below="@+id/facebookImage"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:src="@drawable/icons8_viber_96"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viber"
+                        android:layout_alignBaseline="@+id/viber_image"
+                        android:layout_below="@+id/facebookImage"
+                        android:layout_alignStart="@+id/phoneNumber"
+                        android:layout_alignLeft="@+id/phoneNumber"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"/>
+
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/wiffi_image"
+                        android:layout_below="@+id/viber_image"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:src="@drawable/ic_wifi_white_48dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wiffi"
+                        android:layout_alignBaseline="@+id/wiffi_image"
+                        android:layout_below="@+id/viber_image"
                         android:layout_alignStart="@+id/phoneNumber"
                         android:layout_alignLeft="@+id/phoneNumber"
                         android:layout_marginTop="10dp"

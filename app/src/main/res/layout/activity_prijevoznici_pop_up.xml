@@ -21,7 +21,6 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView42"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -39,7 +38,6 @@
                 android:padding="5dp"/>
 
             <TextView
-                android:id="@+id/textView39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Grad:"
@@ -57,7 +55,6 @@
                 android:padding="5dp"/>
 
             <TextView
-                android:id="@+id/textView37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Adresa:"
@@ -75,7 +72,6 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/textView35"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Kontakt tel:"
@@ -93,7 +89,6 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/textView32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Email:"
@@ -110,7 +105,6 @@
                 android:padding="5dp"/>
 
             <TextView
-                android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Web adresa:"

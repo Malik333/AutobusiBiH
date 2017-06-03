@@ -25,6 +25,12 @@ public class ReklameModel {
     String phone;
     String email;
     String facebook;
+    String viber;
+    String wifi;
+    String it;
+    String itc;
+    String ptc;
+    String hgct;
     String dnlc;
     String dntc;
     String ddtx;
@@ -33,7 +39,7 @@ public class ReklameModel {
     public ReklameModel() {
     }
 
-    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc, String phone, String email, String facebook,String dnlc,String dntc,String ddtx,String ilc) {
+    public ReklameModel(String prijevoznik, String adresa, String h2, String h3, String h4, String mainObavezni, String mainH2, String mainH3, String slika, String donjiObavezni, String donjiNaglasava, String donjiDodatni, String donjiDodatni2,String lgc,String ldc,String hmtc,String dvtc, String phone, String email, String facebook,String dnlc,String dntc,String ddtx,String ilc,String viber,String wifi,String it,String itc,String ptc,String hgtc) {
         this.prijevoznik = prijevoznik;
         this.adresa = adresa;
         this.h2 = h2;
@@ -58,6 +64,12 @@ public class ReklameModel {
         this.dntc = dntc;
         this.ddtx = ddtx;
         this.ilc = ilc;
+        this.viber = viber;
+        this.wifi = wifi;
+        this.it = it;
+        this.itc = itc;
+        this.ptc = ptc;
+        this.hgct = hgtc;
 
     }
 
@@ -251,5 +263,53 @@ public class ReklameModel {
 
     public void setIlc(String ilc) {
         this.ilc = ilc;
+    }
+
+    public String getViber() {
+        return viber;
+    }
+
+    public void setViber(String viber) {
+        this.viber = viber;
+    }
+
+    public String getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(String wifi) {
+        this.wifi = wifi;
+    }
+
+    public String getIt() {
+        return it;
+    }
+
+    public void setIt(String it) {
+        this.it = it;
+    }
+
+    public String getItc() {
+        return itc;
+    }
+
+    public void setItc(String itc) {
+        this.itc = itc;
+    }
+
+    public String getPtc() {
+        return ptc;
+    }
+
+    public void setPtc(String ptc) {
+        this.ptc = ptc;
+    }
+
+    public String getHgct() {
+        return hgct;
+    }
+
+    public void setHgct(String hgct) {
+        this.hgct = hgct;
     }
 }

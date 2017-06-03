@@ -23,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@+id/logo_prevoznik"
-            android:id="@+id/line_row_prevoznici"
             android:background="@color/whiteColor"/>
 
         <TextView

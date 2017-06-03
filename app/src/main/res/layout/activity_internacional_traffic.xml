@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayoutInt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -9,7 +8,6 @@
 
 
     <RelativeLayout
-        android:id="@+id/international_traffic_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -93,7 +91,6 @@
             android:layout_marginTop="10dp" />
 
         <View
-            android:id="@+id/view2"
             android:layout_width="250dp"
             android:layout_height="1dp"
             android:layout_below="@+id/internationalSpinnerDoGrada"

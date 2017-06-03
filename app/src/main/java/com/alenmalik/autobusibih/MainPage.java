@@ -115,6 +115,12 @@ public class MainPage extends AppCompatActivity
                 viewHolder.setDntc(model.getDntc());
                 viewHolder.setDdtx(model.getDdtx());
                 viewHolder.setIlc(model.getIlc());
+                viewHolder.setViber(model.getViber());
+                viewHolder.setWifi(model.getWifi());
+                viewHolder.setIt(model.getIt());
+                viewHolder.setItc(model.getItc());
+                viewHolder.setPtc(model.getPtc());
+                viewHolder.setHgct(model.getHgct());
 
                 viewHolder.slika_image_view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -171,6 +177,12 @@ public class MainPage extends AppCompatActivity
         ImageView phoneImage;
         ImageView emailImage;
         ImageView fbImage;
+        TextView infotextColor;
+        TextView prijevoznikTextColor;
+        TextView gornjitextColor1;
+        TextView gornjitextColor2;
+        TextView gornjitextColor3;
+        TextView gornjitextColor4;
 
 
         public ReklameViewHolder(View itemView) {
@@ -205,6 +217,14 @@ public class MainPage extends AppCompatActivity
             phoneImage = (ImageView) mView.findViewById(R.id.phoneImage);
             emailImage = (ImageView) mView.findViewById(R.id.emailImage);
             fbImage = (ImageView) mView.findViewById(R.id.facebookImage);
+            infotextColor = (TextView) mView.findViewById(R.id.text_dodatne_info);
+            prijevoznikTextColor = (TextView) mView.findViewById(R.id.prijevoznik_ime);
+            gornjitextColor1 = (TextView) mView.findViewById(R.id.grad_adresa_info);
+           gornjitextColor2 = (TextView) mView.findViewById(R.id.header_dodatni_text);
+            gornjitextColor3 = (TextView) mView.findViewById(R.id.header_dodatni_text2);
+            gornjitextColor4 = (TextView) mView.findViewById(R.id.header_dodatni_text3);
+
+
         }
 
         public void setPrijevoznik(String prijevoznik) {
@@ -437,11 +457,58 @@ public class MainPage extends AppCompatActivity
             }
         }
 
-        public void setIlc(String ilc){
-            if (ilc != null){
-                informacijeLayoutColor.setBackgroundColor(Color.parseColor(ilc));
+      public void setViber(String viber){
+            if (viber != null){
+               TextView viberText = (TextView) mView.findViewById(R.id.viber);
+                viberText.setText(viber);
             }
         }
+
+        public void setWifi(String wifi){
+            if (wifi != null){
+               TextView wifiText = (TextView) mView.findViewById(R.id.wiffi);
+                wifiText.setText(wifi);
+            }
+        }
+
+
+        public void setIt(String it){
+            if (it != null){
+                TextView infoText = (TextView) mView.findViewById(R.id.text_dodatne_info);
+                infoText.setText(it);
+            }
+        }
+
+
+        public void setItc(String itc){
+            if (itc != null){
+               infotextColor.setTextColor(Color.parseColor(itc));
+            }
+        }
+
+
+        public void setPtc(String ptc){
+            if (ptc != null){
+               prijevoznikTextColor.setTextColor(Color.parseColor(ptc));
+            }
+        }
+
+
+        public void setHgct(String hgct){
+            if (hgct != null){
+                gornjitextColor1.setTextColor(Color.parseColor(hgct));
+                gornjitextColor2.setTextColor(Color.parseColor(hgct));
+                gornjitextColor3.setTextColor(Color.parseColor(hgct));
+                gornjitextColor4.setTextColor(Color.parseColor(hgct));
+            }
+        }
+
+
+   public void setIlc (String ilc){
+       if (ilc != null){
+           informacijeLayoutColor.setBackgroundColor(Color.parseColor(ilc));
+       }
+   }
 
     }
 
