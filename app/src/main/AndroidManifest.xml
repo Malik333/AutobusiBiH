@@ -85,7 +85,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".MainPage"
-            android:label="@string/title_activity_main_page"
+            android:label="AutobusiBiH"
             android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

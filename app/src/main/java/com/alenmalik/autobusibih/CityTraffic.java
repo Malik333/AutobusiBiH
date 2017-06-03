@@ -56,6 +56,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     List<MedjugradskiIspisModel> detailsList;
     MedjugradskiIspisAdapter adapter;
     ImageView goBack;
+    int loopCount = 0;
 
     static double busLat, busLng;
 
@@ -195,6 +196,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         String prijevoznikSelected = prijevoznik;
 
 
+        int limit = 20000;
         if (prijevoznikSelected.equals("Svi")){
 
 
@@ -202,7 +204,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             query.whereEqualTo("odGrada", odGrada);
             query.whereEqualTo("doGrada", doGrada);
             query.whereEqualTo("Dan", dan);
-            query.setLimit(10000);
+            query.setLimit(limit);
+            Log.i("odgrada", odGrada);
+            Log.i("dograda", doGrada);
+            Log.i("dan", dan);
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
@@ -217,6 +222,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                            item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
                            item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
+                           Log.i("danRelacija", String.valueOf(object.get("Dan")));
+                           Log.i("linijaRelacija", String.valueOf(object.get("Linija")));
 
 
                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
@@ -225,23 +232,24 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                @Override
                                public void done(List<ParseObject> list, ParseException e) {
                                    if (e == null) {
-                                       detailsList.clear();
                                        for (ParseObject object1 : list) {
 
                                            item.stanica = String.valueOf(object1.get("Address"));
-                                           detailsList.add(item);
 
                                        }
                                    }
-
+                                   //detailsList.clear();
+                                   detailsList.add(item);
+                                   adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                                   details.setAdapter(adapter);
+                                   adapter.notifyDataSetChanged();
                                }
                            });
                        }
                     }
 
-                    adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
-                    details.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    Log.i("lista", detailsList.toString());
+
 
 
                 }
@@ -283,9 +291,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                                         detailsList.clear();
                                         for (ParseObject object1 : list) {
                                             item.stanica = String.valueOf(object1.get("Address"));
-                                            detailsList.add(item);
+
                                         }
                                     }
+                                    detailsList.add(item);
                                     adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
                                     details.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
