@@ -92,7 +92,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         details = (RecyclerView) findViewById(R.id.rec_international);
         details.setLayoutManager(new LinearLayoutManager(this));
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
+        dialog = new ProgressDialog(this,R.style.AppTheme_Dark);
         stateList = new ArrayList<>();
         toCityList = new ArrayList<>();
         fromCityList = new ArrayList<>();
