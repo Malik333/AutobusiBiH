@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
@@ -57,6 +58,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     MedjugradskiIspisAdapter adapter;
     ImageView goBack;
     int loopCount = 0;
+    ProgressDialog  dialog;
 
     static double busLat, busLng;
 
@@ -79,6 +81,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         details.setLayoutManager(new LinearLayoutManager(this));
         detailsList = new ArrayList<>();
         goBack = (ImageView) findViewById(R.id.goBack);
+        dialog = new ProgressDialog(this);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +104,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                vibrator.vibrate(100);
+               // vibrator.vibrate(100);
 
                 odGrada = (String) adapterView.getItemAtPosition(i);
 
@@ -130,7 +133,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                vibrator.vibrate(100);
+               // vibrator.vibrate(100);
                 doGrada = String.valueOf(adapterView.getItemAtPosition(i));
 
                 spinnerPrijevoznik(odGrada, doGrada);
@@ -149,7 +152,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         daysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                vibrator.vibrate(100);
+                //vibrator.vibrate(100);
                 dan = (String) adapterView.getItemAtPosition(i);
                 Log.i("dan", dan);
                 detailsList.clear();
@@ -169,7 +172,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         prijevoznikSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                vibrator.vibrate(100);
+                //vibrator.vibrate(100);
                 prijevoznik = (String) adapterView.getItemAtPosition(i);
                 detailsList.clear();
             }
@@ -308,6 +311,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     }
     public void fromCity() {
 
+        dialog.setMessage("Loading...");
+        dialog.show();
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Relacija");
         fromCityQuery.setLimit(10000);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -443,7 +448,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         prijevoznikSpinner.setAdapter(TransportAdapter);
                         hashSet4.clear();
                         TransportAdapter.notifyDataSetChanged();
-
+                        dialog.dismiss();
 
                     }
 
@@ -469,6 +474,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
             if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
                 vibrator.vibrate(100);
+                detailsList.clear();
                 ispis();
             }
 

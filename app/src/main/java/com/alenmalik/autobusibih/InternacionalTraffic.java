@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
@@ -35,6 +36,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     SearchableSpinner toCitySpinner;
 
     HorizontalScrollView infoScroll;
+    ProgressDialog dialog;
 
     ArrayList<String> stateList;
     ArrayList<String> daysList;
@@ -197,6 +199,8 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
     }
 
     public void chooseCountry() {
+        dialog.setMessage("Loading...");
+        dialog.show();
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("MedjunarodneRelacije");
         fromCityQuery.setLimit(10000);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -289,6 +293,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                         toCitySpinner.setAdapter(toCityAdapter);
 
                         toCityAdapter.notifyDataSetChanged();
+                        dialog.dismiss();
 
                     }
 
