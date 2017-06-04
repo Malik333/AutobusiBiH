@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@+id/logo_prevoznik"
-            android:background="@color/whiteColor"/>
+            android:background="@color/whiteColor"
+            android:id="@+id/view3" />
 
         <TextView
             android:id="@+id/ime_prevoznik"
@@ -70,11 +71,12 @@
             android:id="@+id/br_tel_prevoznik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignStart="@+id/adresa_prevoznik"
             android:layout_alignLeft="@+id/adresa_prevoznik"
+            android:layout_alignStart="@+id/adresa_prevoznik"
             android:layout_below="@+id/adresa_prevoznik"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:autoLink="phone"
             android:text="TextView" />
 
         <ImageView

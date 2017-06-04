@@ -211,7 +211,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_for_header_main_texts">
-
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
+                    />
                 <ImageView
                     android:id="@+id/imageForReklame"
                     android:layout_width="match_parent"
@@ -360,6 +368,7 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginStart="25dp"
                         android:textStyle="bold"
+                        android:autoLink="phone"
                         android:layout_below="@+id/text_dodatne_info"/>
 
                     <ImageView
@@ -381,6 +390,7 @@
                         android:layout_alignLeft="@+id/phoneNumber"
                         android:layout_alignStart="@+id/phoneNumber"
                         android:layout_marginTop="10dp"
+                        android:autoLink="email"
                         android:textStyle="bold"/>
 
 
@@ -428,6 +438,7 @@
                         android:layout_alignStart="@+id/phoneNumber"
                         android:layout_alignLeft="@+id/phoneNumber"
                         android:layout_marginTop="10dp"
+                        android:autoLink="phone"
                         android:textStyle="bold"/>
 
 

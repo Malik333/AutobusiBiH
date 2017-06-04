@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -81,7 +82,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         details.setLayoutManager(new LinearLayoutManager(this));
         detailsList = new ArrayList<>();
         goBack = (ImageView) findViewById(R.id.goBack);
-        dialog = new ProgressDialog(this);
+        dialog = new ProgressDialog(this, R.style.AppTheme_Dark);
+
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,6 +315,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
         dialog.setMessage("Loading...");
         dialog.show();
+        dialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
+        dialog.getWindow().setGravity(Gravity.CENTER_VERTICAL);
         ParseQuery<ParseObject> fromCityQuery = new ParseQuery<ParseObject>("Relacija");
         fromCityQuery.setLimit(10000);
         fromCityQuery.findInBackground(new FindCallback<ParseObject>() {
