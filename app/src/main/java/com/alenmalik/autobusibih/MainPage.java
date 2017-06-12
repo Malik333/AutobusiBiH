@@ -132,6 +132,14 @@ public class MainPage extends AppCompatActivity
                     }
                 });
 
+                viewHolder.openMap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MainPage.this, DriversMapActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         };
         reklameList.setAdapter(firebaseRecyclerAdapter);
@@ -183,6 +191,7 @@ public class MainPage extends AppCompatActivity
         TextView gornjitextColor2;
         TextView gornjitextColor3;
         TextView gornjitextColor4;
+        Button openMap;
 
 
         public ReklameViewHolder(View itemView) {
@@ -223,6 +232,8 @@ public class MainPage extends AppCompatActivity
            gornjitextColor2 = (TextView) mView.findViewById(R.id.header_dodatni_text);
             gornjitextColor3 = (TextView) mView.findViewById(R.id.header_dodatni_text2);
             gornjitextColor4 = (TextView) mView.findViewById(R.id.header_dodatni_text3);
+            openMap = (Button) mView.findViewById(R.id.openMap);
+
 
 
         }
