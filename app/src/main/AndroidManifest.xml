@@ -33,7 +33,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".AboutApplication"
             android:screenOrientation="portrait"
@@ -86,17 +86,21 @@
         <activity
             android:name=".MainPage"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FullScreenImage"
+        <activity
+            android:name=".FullScreenImage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".DriversMapActivity"
+            android:label="@string/title_activity_drivers_map"></activity>
     </application>
 
 </manifest>
