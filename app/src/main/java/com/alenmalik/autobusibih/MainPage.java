@@ -39,7 +39,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//nesto
 
 
 public class MainPage extends AppCompatActivity
