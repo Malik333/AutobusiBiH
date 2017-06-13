@@ -92,7 +92,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private GoogleMap mMap;
 
 
-
+    double lat, lng;
     private SettingsClient mSettingsClient;
 
     private LocationRequest mLocationRequest;
@@ -106,6 +106,10 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private String mLatitudeLabel;
     private String mLongitudeLabel;
     private String mLastUpdateTimeLabel;
+
+    private String latitude;
+    private String longitude;
+
 
     private Boolean mRequestingLocationUpdates;
 
@@ -137,6 +141,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         createLocationCallback();
         createLocationRequest();
         buildLocationSettingsRequest();
+        startLocationUpdates();
 
 
 
@@ -144,6 +149,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         geoFire = new GeoFire(ref);
 
     }
+
+
     /**
      * Updates fields based on data stored in the bundle.
      *
@@ -294,12 +301,15 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
      */
     private void updateLocationUI() {
         if (mCurrentLocation != null) {
-            Log.i("latitude", String.format(Locale.ENGLISH, "%s: %f", mLatitudeLabel,
-                    mCurrentLocation.getLatitude()));
-            Log.i("longitudeString", String.format(Locale.ENGLISH, "%s: %f", mLongitudeLabel,
-                    mCurrentLocation.getLongitude()));
+
+
+            lat = mCurrentLocation.getLatitude();
+            lng = mCurrentLocation.getLongitude();
             Log.i("vrijeme", String.format(Locale.ENGLISH, "%s: %s",
                     mLastUpdateTimeLabel, mLastUpdateTime));
+
+
+            geoFire.setLocation("lokacija", new GeoLocation(lat, lng));
         }
     }
 
@@ -348,7 +358,9 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
         // Add a marker in Sydney and move the camera
 
-        geoFire.getLocation("firebase-hq", new LocationCallback() {
+
+
+        geoFire.getLocation("lokacija", new LocationCallback() {
             @Override
             public void onLocationResult(String key, GeoLocation location) {
                 if (location != null) {
@@ -367,6 +379,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                 System.err.println("There was an error getting the GeoFire location: " + databaseError);
             }
         });
+
 
     }
 
