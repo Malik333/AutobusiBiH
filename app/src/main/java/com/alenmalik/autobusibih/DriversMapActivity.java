@@ -76,7 +76,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     private static final GeoLocation INITIAL_CENTER = new GeoLocation(37.7789, -122.4017);
-    private GeoFire geoFire;
+    private GeoFire geoFire, geofireRetrive;
     private GeoQuery geoQuery;
 
     private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
@@ -114,6 +114,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private Boolean mRequestingLocationUpdates;
 
     private String mLastUpdateTime;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,8 +146,13 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().push();
         geoFire = new GeoFire(ref);
+
+        DatabaseReference retrive = FirebaseDatabase.getInstance().getReference();
+        key = retrive.getKey();
+
+        geofireRetrive = new GeoFire(retrive);
 
     }
 
@@ -310,6 +316,29 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
 
             geoFire.setLocation("lokacija", new GeoLocation(lat, lng));
+
+            geofireRetrive.getLocation("lokacija", new LocationCallback() {
+                @Override
+                public void onLocationResult(String key, GeoLocation location) {
+                    if (location != null) {
+                        System.out.println(String.format("The location for key %s is [%f,%f]", key, location.latitude, location.longitude));
+
+                        mMap.clear();
+                        LatLng sydney = new LatLng(location.latitude, location.longitude);
+                        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                    } else {
+                        System.out.println(String.format("There is no location for key %s in GeoFire", key));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.err.println("There was an error getting the GeoFire location: " + databaseError);
+                }
+            });
+
+
         }
     }
 
@@ -358,25 +387,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
 //nesto
 
-        geoFire.getLocation("lokacija", new LocationCallback() {
-            @Override
-            public void onLocationResult(String key, GeoLocation location) {
-                if (location != null) {
-                    System.out.println(String.format("The location for key %s is [%f,%f]", key, location.latitude, location.longitude));
-
-                    LatLng sydney = new LatLng(location.latitude, location.longitude);
-                    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                } else {
-                    System.out.println(String.format("There is no location for key %s in GeoFire", key));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.err.println("There was an error getting the GeoFire location: " + databaseError);
-            }
-        });
 
 
     }
