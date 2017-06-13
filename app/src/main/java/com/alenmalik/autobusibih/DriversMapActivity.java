@@ -356,7 +356,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
+//nesro
 
         geoFire.getLocation("lokacija", new LocationCallback() {
             @Override
