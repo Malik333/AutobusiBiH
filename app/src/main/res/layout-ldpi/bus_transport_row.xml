@@ -11,20 +11,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
         android:background="@drawable/shape_for_bust_transport_row"
-        >
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/logo_prevoznik"
             android:layout_width="match_parent"
             android:layout_height="150dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@+id/logo_prevoznik"
-            android:background="@color/whiteColor"
-            android:id="@+id/view2" />
+            android:background="@color/whiteColor" />
 
         <TextView
             android:id="@+id/ime_prevoznik"
@@ -34,72 +33,94 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="27dp"
             android:gravity="center"
-            android:text="Putnik Bugojno doo"
             android:textSize="24sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_for_lokacija"
             android:layout_below="@+id/ime_prevoznik"
-            android:layout_toLeftOf="@+id/adresa_prevoznik"
-            android:layout_toStartOf="@+id/adresa_prevoznik"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/lokacija"
-            android:id="@+id/lokacija_image"/>
+            android:layout_marginTop="15dp">
 
-        <TextView
-            android:id="@+id/adresa_prevoznik"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/lokacija_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/lokacija" />
+
+            <TextView
+                android:id="@+id/adresa_prevoznik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/lokacija_image"
+                android:layout_toEndOf="@+id/lokacija_image"
+                android:layout_alignBaseline="@+id/lokacija_image"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ime_prevoznik"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:autoLink="phone" />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:id="@+id/telefon_image"
-            android:src="@drawable/phone_96"
-            android:layout_below="@+id/lokacija_image"
-            android:layout_marginTop="15dp"
-            android:layout_alignStart="@+id/lokacija_image"
-            android:layout_alignLeft="@+id/lokacija_image" />
+            android:id="@+id/layout_for_telefon"
+            android:layout_below="@+id/layout_for_lokacija"
+            android:layout_marginTop="15dp">
+            <ImageView
+                android:id="@+id/telefon_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/phone_96"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"/>
 
-        <TextView
-            android:id="@+id/br_tel_prevoznik"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/br_tel_prevoznik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/telefon_image"
+                android:layout_toEndOf="@+id/telefon_image"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignBaseline="@+id/telefon_image"
+                android:autoLink="phone"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignStart="@+id/adresa_prevoznik"
-            android:layout_alignLeft="@+id/adresa_prevoznik"
-            android:layout_below="@+id/adresa_prevoznik"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:id="@+id/layout_for_web"
+            android:layout_below="@+id/layout_for_telefon"
+            android:layout_marginTop="15dp">
+            <ImageView
+                android:id="@+id/web_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/www"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"/>
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:id="@+id/web_image"
-            android:layout_below="@+id/telefon_image"
-            android:src="@drawable/www"
-            android:layout_alignStart="@+id/lokacija_image"
-            android:layout_alignLeft="@+id/lokacija_image"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:id="@+id/web_prevoznik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignStart="@+id/adresa_prevoznik"
-            android:layout_alignLeft="@+id/adresa_prevoznik"
-            android:autoLink="web"
-            android:layout_below="@+id/br_tel_prevoznik"/>
-
+            <TextView
+                android:id="@+id/web_prevoznik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/web_image"
+                android:layout_toEndOf="@+id/web_image"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignBaseline="@+id/web_image"
+                android:autoLink="web" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
