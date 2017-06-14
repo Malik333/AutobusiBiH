@@ -11,6 +11,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.provider.Settings;
@@ -59,9 +60,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -69,7 +72,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class DriversMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class DriversMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final String TAG = DriversMapActivity.class.getSimpleName();
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -109,7 +112,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
     private String latitude;
     private String longitude;
-
+    DatabaseReference ref;
 
     private Boolean mRequestingLocationUpdates;
 
@@ -146,13 +149,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().push();
-        geoFire = new GeoFire(ref);
+        ref = FirebaseDatabase.getInstance().getReference();
 
-        DatabaseReference retrive = FirebaseDatabase.getInstance().getReference();
-        key = retrive.getKey();
-
-        geofireRetrive = new GeoFire(retrive);
 
     }
 
@@ -311,37 +309,65 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
             lat = mCurrentLocation.getLatitude();
             lng = mCurrentLocation.getLongitude();
+
+            String latString = String.valueOf(lat);
+            String lngString = String.valueOf(lng);
             Log.i("vrijeme", String.format(Locale.ENGLISH, "%s: %s",
                     mLastUpdateTimeLabel, mLastUpdateTime));
 
 
-            geoFire.setLocation("lokacija", new GeoLocation(lat, lng));
+            DatabaseReference newLocation = ref.child("Lokacija").child("mojaLokacija");
+            key = ref.getKey();
+            newLocation.child("latitude").setValue(latString);
+            newLocation.child("longitude").setValue(lngString);
 
-            geofireRetrive.getLocation("lokacija", new LocationCallback() {
-                @Override
-                public void onLocationResult(String key, GeoLocation location) {
-                    if (location != null) {
-                        System.out.println(String.format("The location for key %s is [%f,%f]", key, location.latitude, location.longitude));
+            new CountDownTimer(3000, 1000) {
 
-                        mMap.clear();
-                        LatLng sydney = new LatLng(location.latitude, location.longitude);
-                        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                    } else {
-                        System.out.println(String.format("There is no location for key %s in GeoFire", key));
-                    }
+                public void onTick(long millisUntilFinished) {
+                      //here you can have your logic to set text to edittext
                 }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    System.err.println("There was an error getting the GeoFire location: " + databaseError);
+                public void onFinish() {
+                   retriveLocation();
                 }
-            });
 
+            }.start();
 
         }
     }
 
+    public void retriveLocation(){
+        DatabaseReference retriveRef = ref.child("Lokacija").child("mojaLokacija");
+        retriveRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot != null) {
+
+                    Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+
+                    Log.i("value", String.valueOf(value.get("latitude")));
+                    Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
+                    Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
+                    mMap.clear();
+                    Marker myMarker;
+                    LatLng sydney = new LatLng(latitude, longitude);
+                    myMarker = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                    myMarker.setPosition(new LatLng(latitude, longitude));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }
     /**
      * Removes location updates from the FusedLocationApi.
      */
@@ -386,7 +412,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         mMap = googleMap;
 
 //nesto
-
 
 
     }
@@ -527,9 +552,4 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         updateUI();
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-
-        geoFire.setLocation("firebase-hq", new GeoLocation(location.getLatitude(), location.getLongitude()));
-    }
 }
