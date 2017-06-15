@@ -132,13 +132,6 @@ public class MainPage extends AppCompatActivity
                     }
                 });
 
-                viewHolder.openMap.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainPage.this, DriversMapActivity.class);
-                        startActivity(intent);
-                    }
-                });
 
             }
         };
@@ -232,7 +225,7 @@ public class MainPage extends AppCompatActivity
            gornjitextColor2 = (TextView) mView.findViewById(R.id.header_dodatni_text);
             gornjitextColor3 = (TextView) mView.findViewById(R.id.header_dodatni_text2);
             gornjitextColor4 = (TextView) mView.findViewById(R.id.header_dodatni_text3);
-            openMap = (Button) mView.findViewById(R.id.openMap);
+
 
 
 
@@ -578,7 +571,13 @@ public class MainPage extends AppCompatActivity
 
         } else if (id == R.id.nav_o_aplikaciji) {
 
-            Intent intent = new Intent(MainPage.this, AboutApplication.class);
+            Intent intent = new Intent(MainPage.this, DriversMapActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_reklame){
+            Intent intent = new Intent(MainPage.this, ZaReklameActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_gps){
+            Intent intent = new Intent(MainPage.this, ZaPracenjeAutobusa.class);
             startActivity(intent);
         }
 

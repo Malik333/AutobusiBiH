@@ -100,7 +100,14 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".DriversMapActivity"
-            android:label="@string/title_activity_drivers_map"></activity>
+            android:label="@string/title_activity_drivers_map"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ZaReklameActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ZaPracenjeAutobusa"
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

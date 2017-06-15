@@ -34,4 +34,20 @@
         </menu>
     </item>
 
+    <item android:title="ZA PRIJEVOZNIKE">
+
+        <menu>
+            <item
+                android:id="@+id/nav_reklame"
+                android:title="ZA REKLAME"
+                android:icon="@drawable/reklameimg"/>
+
+            <item
+                android:id="@+id/nav_gps"
+                android:title="ZA PRAČENJE AUTOBUSA"
+                android:icon="@drawable/pracenje"/>
+        </menu>
+
+    </item>
+
 </menu>
