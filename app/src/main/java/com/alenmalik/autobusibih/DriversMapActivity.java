@@ -60,6 +60,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,6 +68,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -318,8 +320,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
             DatabaseReference newLocation = ref.child("Lokacija").child("mojaLokacija");
             key = ref.getKey();
-            newLocation.child("latitude").setValue(latString);
-            newLocation.child("longitude").setValue(lngString);
+          //  newLocation.child("latitude").setValue(latString);
+           // newLocation.child("longitude").setValue(lngString);
 
             new CountDownTimer(3000, 1000) {
 
@@ -337,35 +339,49 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     }
 
     public void retriveLocation(){
-        DatabaseReference retriveRef = ref.child("Lokacija").child("mojaLokacija");
-        retriveRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        DatabaseReference retriveRef = ref.child("Putnik");
+       retriveRef.addChildEventListener(new ChildEventListener() {
+           @Override
+           public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+               Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
 
-                if (dataSnapshot != null) {
+               ArrayList<String> latitudelist = new ArrayList<String>();
+               ArrayList<String> longitudelist = new ArrayList<String>();
 
-                    Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+               latitudelist.add(String.valueOf(value.get("latitude")));
+               longitudelist.add(String.valueOf(value.get("longitude")));
 
-                    Log.i("value", String.valueOf(value.get("latitude")));
-                    Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
-                    Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
-                    mMap.clear();
-                    Marker myMarker;
-                    LatLng sydney = new LatLng(latitude, longitude);
-                    myMarker = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                    myMarker.setPosition(new LatLng(latitude, longitude));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                }
-            }
+               Log.i("value", String.valueOf(value.get("latitude")));
+               Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
+               Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
+                mMap.clear();
+               Marker myMarker;
+               LatLng sydney = new LatLng(latitude, longitude);
+               myMarker = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+               myMarker.setPosition(new LatLng(latitude, longitude));
+               mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+           }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+           @Override
+           public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            }
-        });
+           }
 
+           @Override
+           public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+           }
 
+           @Override
+           public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+           }
+
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+
+           }
+       });
 
     }
     /**
