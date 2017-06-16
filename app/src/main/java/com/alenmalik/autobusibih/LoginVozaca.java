@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,6 +33,9 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
     ArrayList<String> listCode;
 
     boolean valid = true;
+
+    String serialUsername;
+    String serialCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,7 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
             errorUsername.setText("Polje ne može biti prazno");
             errorUsername.setVisibility(View.VISIBLE);
             valid = false;
-        } else if (!listUsername.contains(username.getText())) {
+        } else if (!listUsername.contains(username.getText().toString().trim())) {
             errorUsername.setText("Unjeli ste nepostojeći username");
             errorUsername.setVisibility(View.VISIBLE);
             valid = false;
@@ -100,16 +104,68 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if (view.getId() == R.id.btn_login_vozac) {
 
-            if (validate()){
-                Toast.makeText(this, "successful", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "failed", Toast.LENGTH_LONG).show();
-            }
+            usernameSerial();
+            codeSerial();
 
-            for (int i = 1; i < listUsername.size(); i++){
-                System.out.println(listUsername);
-            }
+            new CountDownTimer(2000, 1000) {
+                @Override
+                public void onTick(long l) {
 
+                }
+
+                @Override
+                public void onFinish() {
+
+                    if (!serialUsername.equals(serialCode)){
+                        Toast.makeText(LoginVozaca.this, "Username i kod se ne poklapaju", Toast.LENGTH_LONG).show();
+                    }
+                    if (validate() && serialUsername.equals(serialCode)) {
+
+                        Log.i("seriacUs", serialUsername);
+                        Log.i("serialCode", serialCode);
+                        Toast.makeText(LoginVozaca.this, "successful", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(LoginVozaca.this, "failed", Toast.LENGTH_LONG).show();
+                    }
+
+                    for (int i = 1; i < listUsername.size(); i++){
+                        System.out.println(listUsername);
+                    }
+                }
+            }.start();
         }
+    }
+
+    public void usernameSerial(){
+        ParseQuery<ParseObject> getData = ParseQuery.getQuery("LoginVozaca");
+        getData.whereEqualTo("username", username.getText().toString().trim());
+        getData.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (objects != null) {
+                    for (ParseObject object : objects){
+                        serialUsername = String.valueOf(object.get("serialCode"));
+                    }
+                }
+
+            }
+        });
+    }
+
+    public void codeSerial(){
+        ParseQuery<ParseObject> getData = ParseQuery.getQuery("LoginVozaca");
+        getData.whereEqualTo("kod", code.getText().toString().trim());
+        getData.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (objects != null) {
+                    for (ParseObject object : objects){
+                        serialCode = String.valueOf(object.get("serialCode"));
+                    }
+                }
+
+            }
+        });
     }
 }
