@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ import java.util.List;
 
 import static com.alenmalik.autobusibih.R.id.view;
 
-public class LoginVozaca extends AppCompatActivity implements View.OnClickListener{
+public class LoginVozaca extends AppCompatActivity implements View.OnClickListener {
 
     EditText username;
     EditText code;
@@ -35,8 +36,8 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
 
     boolean valid = true;
 
-    String serialUsername;
-    String serialCode;
+    String serialUsername = "1";
+    String serialCode = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
         code = (EditText) findViewById(R.id.input_kode);
         errorUsername = (TextView) findViewById(R.id.infoUsernameError);
         errorCode = (TextView) findViewById(R.id.codeError);
-        login  = (Button) findViewById(R.id.btn_login_vozac);
+        login = (Button) findViewById(R.id.btn_login_vozac);
         login.setOnClickListener(this);
 
         listUsername = new ArrayList<>();
@@ -58,10 +59,10 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (objects != null) {
-                     for (ParseObject object : objects){
-                         listUsername.add(String.valueOf(object.get("username")));
-                         listCode.add(String.valueOf(object.get("kod")));
-                     }
+                    for (ParseObject object : objects) {
+                        listUsername.add(String.valueOf(object.get("username")));
+                        listCode.add(String.valueOf(object.get("kod")));
+                    }
                 }
 
             }
@@ -101,10 +102,14 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
 
         return valid;
     }
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_login_vozac) {
 
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setMessage("Provjera podataka...");
+            dialog.show();
             usernameSerial();
             codeSerial();
 
@@ -117,58 +122,78 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
                 @Override
                 public void onFinish() {
 
-                    if (!serialUsername.equals(serialCode)){
+                    if (!serialUsername.equals(serialCode)) {
                         Toast.makeText(LoginVozaca.this, "Username i kod se ne poklapaju", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
                     }
                     if (validate() && serialUsername.equals(serialCode)) {
 
-                        Log.i("seriacUs", serialUsername);
-                        Log.i("serialCode", serialCode);
-                        Toast.makeText(LoginVozaca.this, "successful", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginVozaca.this,VozacLogovan.class);
-                        startActivity(intent);
+                        ParseQuery<ParseObject> getInfo = ParseQuery.getQuery("LoginVozaca");
+                        getInfo.whereEqualTo("username", username.getText().toString().trim());
+                        getInfo.whereEqualTo("kod", code.getText().toString().trim());
+                        getInfo.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> objects, ParseException e) {
+                                if (objects != null) {
+                                    for (ParseObject object : objects) {
+                                        String prijevoznik = String.valueOf(object.get("prijevoznik"));
+                                        String relacija = String.valueOf(object.get("relacija"));
+                                        String username = String.valueOf(object.get("username"));
+
+                                        Intent openLocationActivity = new Intent(LoginVozaca.this, VozacLogovan.class);
+                                        openLocationActivity.putExtra("prijevoznik", prijevoznik);
+                                        openLocationActivity.putExtra("relacija", relacija);
+                                        openLocationActivity.putExtra("username", username);
+                                        startActivity(openLocationActivity);
+                                    }
+                                }
+
+                            }
+                        });
+                        dialog.dismiss();
 
                     } else {
                         Toast.makeText(LoginVozaca.this, "failed", Toast.LENGTH_LONG).show();
-                    }
-
-                    for (int i = 1; i < listUsername.size(); i++){
-                        System.out.println(listUsername);
+                        dialog.dismiss();
                     }
                 }
             }.start();
         }
     }
 
-    public void usernameSerial(){
-        ParseQuery<ParseObject> getData = ParseQuery.getQuery("LoginVozaca");
-        getData.whereEqualTo("username", username.getText().toString().trim());
-        getData.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (objects != null) {
-                    for (ParseObject object : objects){
-                        serialUsername = String.valueOf(object.get("serialCode"));
+    public void usernameSerial() {
+        if (!TextUtils.isEmpty(username.getText().toString().trim())) {
+            ParseQuery<ParseObject> getSerialCodeUsername = ParseQuery.getQuery("LoginVozaca");
+            getSerialCodeUsername.whereEqualTo("username", username.getText().toString().trim());
+            getSerialCodeUsername.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (objects != null) {
+                        for (ParseObject object : objects) {
+                            serialUsername = String.valueOf(object.get("serialCode"));
+                        }
                     }
-                }
 
-            }
-        });
+                }
+            });
+        }
     }
 
-    public void codeSerial(){
-        ParseQuery<ParseObject> getData = ParseQuery.getQuery("LoginVozaca");
-        getData.whereEqualTo("kod", code.getText().toString().trim());
-        getData.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (objects != null) {
-                    for (ParseObject object : objects){
-                        serialCode = String.valueOf(object.get("serialCode"));
+    public void codeSerial() {
+        if (!TextUtils.isEmpty(code.getText().toString().trim())) {
+            ParseQuery<ParseObject> getSerialCodeKod = ParseQuery.getQuery("LoginVozaca");
+            getSerialCodeKod.whereEqualTo("kod", code.getText().toString().trim());
+            getSerialCodeKod.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (objects != null) {
+                        for (ParseObject object : objects) {
+                            serialCode = String.valueOf(object.get("serialCode"));
+                        }
                     }
-                }
 
-            }
-        });
+                }
+            });
+        }
     }
 }
