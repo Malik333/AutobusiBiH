@@ -99,9 +99,9 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
         daysList = new ArrayList<>();
         detailsList = new ArrayList<>();
 
-        fromCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, fromCityList);
+        fromCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, R.layout.my_spinner, fromCityList);
         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        toCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, toCityList);
+        toCityAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, R.layout.my_spinner, toCityList);
         toCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
         informacije.setOnClickListener(this);
@@ -217,7 +217,7 @@ public class InternacionalTraffic extends AppCompatActivity implements View.OnCl
                         hashSet4.addAll(stateList);
                         stateList.clear();
                         stateList.addAll(hashSet4);
-                        stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, android.R.layout.simple_spinner_dropdown_item, stateList);
+                        stateAdapter = new ArrayAdapter<String>(InternacionalTraffic.this, R.layout.my_spinner, stateList);
                         stateAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         Collections.sort(stateList);
                         stateSpinner.setAdapter(stateAdapter);
