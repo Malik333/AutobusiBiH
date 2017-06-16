@@ -8,4 +8,5 @@
     <color name="backgroundColor">#e3f2fd</color>
     <color name="popupColor">#ffcdd2</color>
     <color name="primary_darker">#1a237e</color>
+    <color name="redError">#FFFFFF</color>
 </resources>

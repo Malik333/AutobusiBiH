@@ -101,11 +101,16 @@
         <activity
             android:name=".DriversMapActivity"
             android:label="@string/title_activity_drivers_map"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ZaReklameActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ZaPracenjeAutobusa"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ZaReklameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ZaPracenjeAutobusa"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".LoginVozaca"
             android:theme="@style/AppTheme.Dark"
             android:screenOrientation="portrait"></activity>
     </application>

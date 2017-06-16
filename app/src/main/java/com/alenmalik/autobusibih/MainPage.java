@@ -579,6 +579,9 @@ public class MainPage extends AppCompatActivity
         }else if (id == R.id.nav_gps){
             Intent intent = new Intent(MainPage.this, ZaPracenjeAutobusa.class);
             startActivity(intent);
+        }else if (id == R.id.nav_login_vozaca){
+            Intent intent = new Intent(MainPage.this,LoginVozaca.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
