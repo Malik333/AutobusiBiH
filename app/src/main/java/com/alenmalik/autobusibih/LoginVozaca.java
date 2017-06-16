@@ -1,5 +1,6 @@
 package com.alenmalik.autobusibih;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -124,6 +125,8 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
                         Log.i("seriacUs", serialUsername);
                         Log.i("serialCode", serialCode);
                         Toast.makeText(LoginVozaca.this, "successful", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginVozaca.this,VozacLogovan.class);
+                        startActivity(intent);
 
                     } else {
                         Toast.makeText(LoginVozaca.this, "failed", Toast.LENGTH_LONG).show();

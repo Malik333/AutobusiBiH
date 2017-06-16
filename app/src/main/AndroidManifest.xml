@@ -110,7 +110,11 @@
             android:name=".ZaPracenjeAutobusa"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".LoginVozaca"
+        <activity
+            android:name=".LoginVozaca"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".VozacLogovan"
             android:theme="@style/AppTheme.Dark"
             android:screenOrientation="portrait"></activity>
     </application>
