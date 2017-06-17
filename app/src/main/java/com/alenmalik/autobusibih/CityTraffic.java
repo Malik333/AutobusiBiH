@@ -48,9 +48,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     HashSet<String> hashSet3 = new HashSet<>();
     HashSet<String> hashSet4 = new HashSet<>();
     static String odGrada;
+    static String relacija;
     String doGrada;
     String dan;
-    String prijevoznik;
+    static String prijevoznik, prijevoznik2;
     TextView prijevoznikTextView;
     Button ispisBtn;
     HorizontalScrollView infoLayout;
@@ -176,6 +177,11 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //vibrator.vibrate(100);
                 prijevoznik = (String) adapterView.getItemAtPosition(i);
+                if (prijevoznik.equals("PUTNIK BUGOJNO")){
+                    prijevoznik2 = "Putnik";
+                }else {
+                    prijevoznik2 = prijevoznik;
+                }
                 detailsList.clear();
             }
 
@@ -286,8 +292,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                             item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
                             item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
-
-                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                            relacija = item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
+                                    ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
                             stanicaquery.whereEqualTo("CityName", odGrada);
                             stanicaquery.findInBackground(new FindCallback<ParseObject>() {
                                 @Override
@@ -480,6 +486,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 vibrator.vibrate(100);
                 detailsList.clear();
                 ispis();
+
             }
 
 

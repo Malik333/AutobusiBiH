@@ -7,8 +7,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
@@ -99,6 +107,50 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             }
         });
 
+        holder.checkStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.i("button", "kliknuto");
+                final String prijevoznik = CityTraffic.prijevoznik2;
+                final String relacija = CityTraffic.relacija;
+
+                DatabaseReference checkDatabase = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznik).child(relacija);
+                checkDatabase.addChildEventListener(new ChildEventListener() {
+
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot.hasChild("online")) {
+
+                            Toast.makeText(c, "Postoji", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(c, "Ne postoji", Toast.LENGTH_LONG);
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
@@ -116,6 +168,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
         TextView linijaTextView;
         TextView cijenaTextView;
         TextView relacijaTextView;
+        Button checkStatus;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -128,6 +181,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             linijaTextView = (TextView) itemView.findViewById(R.id.linijaIspisRow);
             cijenaTextView = (TextView) itemView.findViewById(R.id.cijenaIspisRow);
             relacijaTextView = (TextView) itemView.findViewById(R.id.relacijaIspisRow);
+            checkStatus = (Button) itemView.findViewById(R.id.statusBtn);
         }
     }
 }

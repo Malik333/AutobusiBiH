@@ -20,44 +20,43 @@
         >
 
         <RelativeLayout
+            android:id="@+id/statusBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
 
-            >
+            android:padding="15dp">
 
             <TextView
                 android:id="@+id/prijevoznikIspisRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:textStyle="bold"
-                android:textSize="24sp"/>
+                android:layout_alignParentStart="true"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignBaseline="@+id/prijevoznikIspisRow"
-                android:layout_toRightOf="@+id/prijevoznikIspisRow"
-                android:layout_toEndOf="@id/prijevoznikIspisRow"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/shape_pracenje"
-                android:enabled="false"
-                android:layout_marginRight="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                />
+                android:layout_toEndOf="@id/prijevoznikIspisRow"
+                android:layout_toRightOf="@+id/prijevoznikIspisRow"
+                android:background="@drawable/shape_pracenje"
+                android:enabled="false" />
 
             <TextView
                 android:id="@+id/relacijaRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Relacija:"
                 android:layout_below="@+id/prijevoznikIspisRow"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:text="Relacija:"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/relacijaIspisRow"
@@ -69,8 +68,6 @@
                 android:layout_toEndOf="@+id/relacijaRow"
                 android:layout_toRightOf="@+id/relacijaRow"
                 android:textStyle="bold" />
-
-
 
 
             <TextView
@@ -113,7 +110,6 @@
                 android:textStyle="bold" />
 
 
-
             <TextView
                 android:id="@+id/duzinaputa"
                 android:layout_width="wrap_content"
@@ -154,8 +150,6 @@
                 android:textStyle="bold" />
 
 
-
-
             <TextView
                 android:id="@+id/cijena"
                 android:layout_width="wrap_content"
@@ -174,8 +168,6 @@
                 android:layout_alignLeft="@+id/linijaIspisRow"
                 android:layout_alignStart="@+id/linijaIspisRow"
                 android:textStyle="bold" />
-
-
 
 
             <TextView
@@ -197,9 +189,6 @@
                 android:layout_alignStart="@+id/cijenaIspisRow"
                 android:textColor="#fff176"
                 android:textStyle="bold" />
-
-
-
 
 
         </RelativeLayout>

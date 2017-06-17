@@ -296,6 +296,7 @@ public class VozacLogovan extends AppCompatActivity {
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
             newLocation.child("relacija").setValue(relacija);
+            newLocation.child("online").setValue("true");
 
 
         }
@@ -313,8 +314,9 @@ public class VozacLogovan extends AppCompatActivity {
                     }
                 });
 
-        Task<Void> removeLatitude = ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("latitude").removeValue();
-        Task<Void> removeLongitude = ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("longitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("latitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("longitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("online").removeValue();
     }
 
     private void buildLocationSettingsRequest() {
