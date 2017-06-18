@@ -23,7 +23,9 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.alenmalik.autobusibih.CityTraffic.busLat;
 import static com.alenmalik.autobusibih.CityTraffic.busLng;
@@ -51,7 +53,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         MedjugradskiIspisModel item = listData.get(position);
         holder.satnicaTextview.setText(item.getVrijemePolaska());
         holder.danTextView.setText(item.getDan());
@@ -107,50 +109,88 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             }
         });
 
-        holder.checkStatus.setOnClickListener(new View.OnClickListener() {
+        final String prijevoznik = CityTraffic.prijevoznik2;
+        final String relacija = CityTraffic.relacija;
+        final ArrayList<String> onlineStatus = new ArrayList<String>();
+        Log.i("adaper" ,prijevoznik);
+
+
+        final DatabaseReference checkDatabase = FirebaseDatabase.getInstance().getReference().child("Pracenje");
+        checkDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //provjera da li postoji prijevoznik u baz
+                if (dataSnapshot.child(prijevoznik).exists()) {
 
-                Log.i("button", "kliknuto");
-                final String prijevoznik = CityTraffic.prijevoznik2;
-                final String relacija = CityTraffic.relacija;
+                    final DatabaseReference prijevoznikRef = checkDatabase.child(prijevoznik);
+                    prijevoznikRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                DatabaseReference checkDatabase = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznik).child(relacija);
-                checkDatabase.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            //provjera dali postoji relacija u bazi
+                            if (dataSnapshot.child(relacija).exists()){
+                                holder.checkStatus.setVisibility(View.VISIBLE);
 
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (dataSnapshot.hasChild("online")) {
+                                DatabaseReference relacijaRef = prijevoznikRef.child(relacija);
+                                relacijaRef.addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                                        //provjera da li je uključen online status
+                                        Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
 
-                            Toast.makeText(c, "Postoji", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(c, "Ne postoji", Toast.LENGTH_LONG);
+
+                                        onlineStatus.add(String.valueOf(value.get("online")));
+                                        Log.i("lista", onlineStatus.toString());
+                                        if (onlineStatus.contains("true")){
+                                            holder.checkStatus.setEnabled(true);
+                                            onlineStatus.clear();
+                                        } else {
+                                            holder.checkStatus.setEnabled(false);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            } else {
+                                holder.checkStatus.setVisibility(View.GONE);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
+                        }
+                    });
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                } else {
+                    holder.checkStatus.setVisibility(View.GONE);
+                }
+            }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
-
     }
 
     @Override

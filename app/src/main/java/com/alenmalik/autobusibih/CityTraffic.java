@@ -177,11 +177,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //vibrator.vibrate(100);
                 prijevoznik = (String) adapterView.getItemAtPosition(i);
-                if (prijevoznik.equals("PUTNIK BUGOJNO")){
-                    prijevoznik2 = "Putnik";
-                }else {
-                    prijevoznik2 = prijevoznik;
-                }
+
                 detailsList.clear();
             }
 
@@ -485,6 +481,11 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
                 vibrator.vibrate(100);
                 detailsList.clear();
+                if (prijevoznik.equals("PUTNIK BUGOJNO")){
+                    prijevoznik2 = "Putnik";
+                }else {
+                    prijevoznik2 = prijevoznik;
+                }
                 ispis();
 
             }
