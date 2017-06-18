@@ -48,7 +48,7 @@
                 android:layout_toEndOf="@id/prijevoznikIspisRow"
                 android:layout_toRightOf="@+id/prijevoznikIspisRow"
                 android:background="@drawable/shape_pracenje"
-                android:enabled="false" />
+                />
 
             <TextView
                 android:id="@+id/relacijaRow"

@@ -137,12 +137,12 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
                                 if (objects != null) {
                                     for (ParseObject object : objects) {
                                         String prijevoznik = String.valueOf(object.get("prijevoznik"));
-                                        String relacija = String.valueOf(object.get("relacija"));
+                                        String linija = String.valueOf(object.get("linija"));
                                         String username = String.valueOf(object.get("username"));
 
                                         Intent openLocationActivity = new Intent(LoginVozaca.this, VozacLogovan.class);
                                         openLocationActivity.putExtra("prijevoznik", prijevoznik);
-                                        openLocationActivity.putExtra("relacija", relacija);
+                                        openLocationActivity.putExtra("linija", linija);
                                         openLocationActivity.putExtra("username", username);
                                         startActivity(openLocationActivity);
                                     }

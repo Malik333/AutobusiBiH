@@ -51,7 +51,7 @@ public class VozacLogovan extends AppCompatActivity {
     Button stopGps;
 
     String prijevoznik;
-    String relacija;
+    String linija;
     String username;
 
     Intent myIntent;
@@ -102,7 +102,7 @@ public class VozacLogovan extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference();
         myIntent = getIntent();
         prijevoznik = myIntent.getStringExtra("prijevoznik");
-        relacija = myIntent.getStringExtra("relacija");
+        linija = myIntent.getStringExtra("linija");
         username = myIntent.getStringExtra("username");
 
         startGps = (Button) findViewById(R.id.start_gps);
@@ -125,9 +125,7 @@ public class VozacLogovan extends AppCompatActivity {
 
         // Kick off the process of building the LocationCallback, LocationRequest, and
         // LocationSettingsRequest objects.
-        createLocationCallback();
-        createLocationRequest();
-        buildLocationSettingsRequest();
+
 
 
         startGps.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +136,9 @@ public class VozacLogovan extends AppCompatActivity {
                 startGps.setClickable(false);
                 stopGps.setClickable(true);
                 Toast.makeText(VozacLogovan.this, "Uspješno ste pokrenuli pračenje autobusa", Toast.LENGTH_LONG).show();
+                createLocationCallback();
+                createLocationRequest();
+                buildLocationSettingsRequest();
                 startLocationUpdates();
 
             }
@@ -292,10 +293,10 @@ public class VozacLogovan extends AppCompatActivity {
                     mLastUpdateTimeLabel, mLastUpdateTime));
 
 
-            DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(relacija).child(username);
+            DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(linija).child(username);
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
-            newLocation.child("relacija").setValue(relacija);
+            newLocation.child("linija").setValue(linija);
             newLocation.child("online").setValue("true");
 
 
@@ -314,9 +315,9 @@ public class VozacLogovan extends AppCompatActivity {
                     }
                 });
 
-        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("latitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("longitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(relacija).child(username).child("online").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("latitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("longitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("online").removeValue();
     }
 
     private void buildLocationSettingsRequest() {

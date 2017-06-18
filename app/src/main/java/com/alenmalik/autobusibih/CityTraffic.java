@@ -48,7 +48,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     HashSet<String> hashSet3 = new HashSet<>();
     HashSet<String> hashSet4 = new HashSet<>();
     static String odGrada;
-    static String relacija;
+    static String linija;
     String doGrada;
     String dan;
     static String prijevoznik, prijevoznik2;
@@ -287,8 +287,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                             item.cijena = String.valueOf(object.get("Cijena"));
                             item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
                             item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
-
-                            relacija = item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
+                            linija = item.linija;
                                     ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
                             stanicaquery.whereEqualTo("CityName", odGrada);
                             stanicaquery.findInBackground(new FindCallback<ParseObject>() {

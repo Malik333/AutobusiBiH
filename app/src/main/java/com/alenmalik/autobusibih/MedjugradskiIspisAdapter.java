@@ -110,7 +110,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
         });
 
         final String prijevoznik = CityTraffic.prijevoznik2;
-        final String relacija = CityTraffic.relacija;
+        final String linija = CityTraffic.linija;
         final ArrayList<String> onlineStatus = new ArrayList<String>();
         Log.i("adaper" ,prijevoznik);
 
@@ -127,51 +127,91 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
 
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            //provjera dali postoji relacija u bazi
-                            if (dataSnapshot.child(relacija).exists()){
-                                holder.checkStatus.setVisibility(View.VISIBLE);
 
-                                DatabaseReference relacijaRef = prijevoznikRef.child(relacija);
-                                relacijaRef.addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                                        //provjera da li je uključen online status
-                                        Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+                                //provjera dali postoji relacija u bazi
+                                if (dataSnapshot.child(linija).exists()) {
+                                    Log.d("josjedna", dataSnapshot.child(linija).toString());
+                                    holder.checkStatus.setVisibility(View.VISIBLE);
+
+                                    DatabaseReference relacijaRef = prijevoznikRef.child(linija);
+                                    relacijaRef.addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                                            for (DataSnapshot daj : dataSnapshot.getChildren()){
+                                                Log.i("proba",daj.getValue().toString());
+                                                onlineStatus.add(String.valueOf(daj.getValue()));
+                                                if (onlineStatus.contains("true")){
+                                                    holder.checkStatus.setEnabled(true);
+                                                }else {
+                                                    holder.checkStatus.setEnabled(false);
+                                                }
 
 
-                                        onlineStatus.add(String.valueOf(value.get("online")));
-                                        Log.i("lista", onlineStatus.toString());
-                                        if (onlineStatus.contains("true")){
-                                            holder.checkStatus.setEnabled(true);
-                                            onlineStatus.clear();
-                                        } else {
-                                            holder.checkStatus.setEnabled(false);
+                                            }
+
+
+
+
+
+
+
+
+
+
+                                            //provjera da li je uključen online status
+                                          /*  Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+                                            Log.i("proba",value.values().toString());
+                                            if (value.values().contains("true")){
+                                                holder.checkStatus.setEnabled(true);
+                                            }else {
+                                                holder.checkStatus.setEnabled(false);
+                                            }*/
+                                         /*   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                                onlineStatus.add(String.valueOf(dataSnapshot1.getValue()));
+                                                 if (dataSnapshot1.hasChild("online")){
+
+                                                    holder.checkStatus.setEnabled(true);
+                                                }else {
+                                                    holder.checkStatus.setEnabled(false);
+                                                }
+                                              *//*  onlineStatus.add(String.valueOf(dataSnapshot1.getValue()));
+                                                Log.i("lista", onlineStatus.toString());
+                                                if (dataSnapshot1.hasChild("online")) {
+                                                    holder.checkStatus.setEnabled(true);
+
+                                                } else {
+                                                    holder.checkStatus.setEnabled(false);
+                                                }*//*
+
+                                            }*/
+
                                         }
-                                    }
 
-                                    @Override
-                                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                                        @Override
+                                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                                    }
+                                        }
 
-                                    @Override
-                                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                                        @Override
+                                        public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                                    }
+                                        }
 
-                                    @Override
-                                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                                        @Override
+                                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                                    }
+                                        }
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
 
-                                    }
-                                });
-                            } else {
-                                holder.checkStatus.setVisibility(View.GONE);
-                            }
+                                        }
+                                    });
+                                } else {
+                                    holder.checkStatus.setVisibility(View.GONE);
+                                }
+
                         }
 
                         @Override
