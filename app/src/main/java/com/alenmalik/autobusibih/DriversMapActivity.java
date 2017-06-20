@@ -131,9 +131,12 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                     Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
                     Float speed = Float.parseFloat(String.valueOf(dataSnapshot1.child("brzina").getValue()));
                     String city = String.valueOf(dataSnapshot1.child("grad").getValue());
+                    String probaGrada2 = String.valueOf(dataSnapshot1.child("probaGrada2").getValue());
+                    String probaAdrese1 = String.valueOf(dataSnapshot1.child("probaAdrese1").getValue());
                    mMap.clear();
 
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(prijevoznik + speed.toString() + city));
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Prijevoznik" + prijevoznik +
+                            "Brzina" + speed.toString() + "Grad" +  city + "ProbaGrada2" + probaGrada2 + "ProbaAdrese1" + probaAdrese1 ));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude),16));
                 }
             }

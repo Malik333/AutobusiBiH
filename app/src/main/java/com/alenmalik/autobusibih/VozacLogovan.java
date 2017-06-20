@@ -286,43 +286,93 @@ public class VozacLogovan extends AppCompatActivity {
     }
 
     private void updateLocationUI() {
-        String cityName = "";
         if (mCurrentLocation != null) {
-
+         String result = null;
 
             lat = mCurrentLocation.getLatitude();
             lng = mCurrentLocation.getLongitude();
  speed = mCurrentLocation.getSpeed();
-            String latString = String.valueOf(lat);
-            String lngString = String.valueOf(lng);
+            final String latString = String.valueOf(lat);
+            final String lngString = String.valueOf(lng);
             String speedString = String.valueOf(speed);
             Log.i("vrijeme", String.format(Locale.ENGLISH, "%s: %s",
                     mLastUpdateTimeLabel, mLastUpdateTime));
 
 
-            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-            List<Address> addresses;
-            try {
-                addresses = gcd.getFromLocation(Double.parseDouble(latString), Double.parseDouble(lngString), 1);
-                if (addresses != null) {
-                    if (addresses.size() > 0){
-                        System.out.println(addresses.get(0).getLocality());
-                    }
-
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(linija).child(username);
+            final DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(linija).child(username);
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
             newLocation.child("linija").setValue(linija);
             newLocation.child("brzina").setValue(speedString);
             newLocation.child("online").setValue("true");
-            newLocation.child("grad").setValue(cityName);
+
+
+
+
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    Geocoder geocoder = new Geocoder(VozacLogovan.this, Locale.getDefault());
+                    String result = null;
+                    try {
+                        List<Address> addressList = geocoder.getFromLocation(
+                                Double.parseDouble(latString), Double.parseDouble(lngString), 1);
+                        if (addressList != null && addressList.size() > 0) {
+                            newLocation.child("adresa").setValue(addressList.get(0).getAddressLine(0));
+
+                            newLocation.child("grad").setValue(addressList.get(0).getAddressLine(1));
+                            newLocation.child("drzava").setValue(addressList.get(0).getAddressLine(2));
+                            Address address = addressList.get(0);
+                            StringBuilder sb = new StringBuilder();
+                            for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                                sb.append(address.getAddressLine(i)).append("\n");
+                            }
+                            sb.append(address.getLocality()).append("\n");
+
+                            newLocation.child("probaGrada2").setValue(sb.toString());
+                        }
+                    } catch (IOException e) {
+                        Log.e(TAG, "Unable connect to Geocoder", e);
+                    }
+                }
+            };
+            thread.start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+         /*   try {
+
+
+
+                List<Address> addresses;
+               Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+                addresses = geocoder.getFromLocation(lat, lng, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+                String knownName = addresses.get(0).getFeatureName();
+                newLocation.child("adresa").setValue(address);
+                newLocation.child("city").setValue(city);
+                newLocation.child("drzava").setValue(country);
+                newLocation.child("postalcode").setValue(postalCode);
+                newLocation.child("knownName").setValue(knownName);
+            } catch (IOException e) {
+                Log.e(TAG, "Failed Geocoding.");
+            }*/
 
 
 
