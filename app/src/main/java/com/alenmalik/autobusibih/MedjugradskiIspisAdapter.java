@@ -109,6 +109,8 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             }
         });
 
+
+
         final String prijevoznik = CityTraffic.prijevoznik2;
         final String linija = CityTraffic.linija;
         final ArrayList<String> onlineStatus = new ArrayList<String>();
@@ -149,43 +151,6 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
 
 
                                             }
-
-
-
-
-
-
-
-
-
-
-                                            //provjera da li je uključen online status
-                                          /*  Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
-                                            Log.i("proba",value.values().toString());
-                                            if (value.values().contains("true")){
-                                                holder.checkStatus.setEnabled(true);
-                                            }else {
-                                                holder.checkStatus.setEnabled(false);
-                                            }*/
-                                         /*   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                                onlineStatus.add(String.valueOf(dataSnapshot1.getValue()));
-                                                 if (dataSnapshot1.hasChild("online")){
-
-                                                    holder.checkStatus.setEnabled(true);
-                                                }else {
-                                                    holder.checkStatus.setEnabled(false);
-                                                }
-                                              *//*  onlineStatus.add(String.valueOf(dataSnapshot1.getValue()));
-                                                Log.i("lista", onlineStatus.toString());
-                                                if (dataSnapshot1.hasChild("online")) {
-                                                    holder.checkStatus.setEnabled(true);
-
-                                                } else {
-                                                    holder.checkStatus.setEnabled(false);
-                                                }*//*
-
-                                            }*/
-
                                         }
 
                                         @Override
@@ -229,6 +194,16 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        holder.checkStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openMap = new Intent(c, DriversMapActivity.class);
+                openMap.putExtra("prijevoznik", prijevoznik);
+                openMap.putExtra("linija", linija);
+                c.startActivity(openMap);
             }
         });
     }
