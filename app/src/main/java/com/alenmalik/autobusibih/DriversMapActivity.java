@@ -81,6 +81,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private Map<String, Marker> markers;
     private GoogleMap mMap;
     DatabaseReference ref;
+    FirebaseDatabase database;
 
     double lat, lng;
 
@@ -92,9 +93,9 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+  database = FirebaseDatabase.getInstance();
 
 
-        ref = FirebaseDatabase.getInstance().getReference();
         new CountDownTimer(3000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -113,28 +114,60 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
     public void retriveLocation(){
         Intent getInfo = getIntent();
-        String prijevoznik = getInfo.getStringExtra("prijevoznik");
+        final String prijevoznik = getInfo.getStringExtra("prijevoznik");
         String linija = getInfo.getStringExtra("linija");
         Log.i("valuePrijevoznik", prijevoznik);
         Log.i("valueLinija", linija);
-        DatabaseReference retriveRef = ref.child("Pracenje").child(prijevoznik).child(linija);
+
+        ref = database.getReference().child("Pracenje").child(prijevoznik).child(linija);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+
+                    Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
+                    Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
+                    Float speed = Float.parseFloat(String.valueOf(dataSnapshot1.child("brzina").getValue()));
+                    String city = String.valueOf(dataSnapshot1.child("grad").getValue());
+                   mMap.clear();
+
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(prijevoznik + speed.toString() + city));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude),16));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+       /* DatabaseReference retriveRef = ref.child("Pracenje").child(prijevoznik).child(linija);
        retriveRef.addChildEventListener(new ChildEventListener() {
            @Override
            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-               Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+               try {
+                   Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
+                   Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
+                   Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
+                   Log.i("value", String.valueOf(value.get("latitude")));
+
+
+                   mMap.clear();
+                   Marker myMarker;
+                   myMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(prijevoznik));
+                   myMarker.setPosition(new LatLng(latitude, longitude));
+                   mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myMarker.getPosition(),14));
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
 
 
 
-               Log.i("value", String.valueOf(value.get("latitude")));
 
-               Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
-               Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
-                mMap.clear();
-               Marker myMarker;
-               LatLng sydney = new LatLng(latitude, longitude);
-               myMarker = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-               myMarker.setPosition(new LatLng(latitude, longitude));
-               mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
            }
 
            @Override
@@ -156,7 +189,9 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
            public void onCancelled(DatabaseError databaseError) {
 
            }
-       });
+       });*/
+
+
 
     }
 

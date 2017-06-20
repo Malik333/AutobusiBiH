@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -41,8 +43,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -72,6 +76,7 @@ public class VozacLogovan extends AppCompatActivity {
     private FusedLocationProviderClient mFusedLocationClient;
 
     double lat, lng;
+    float speed;
     private SettingsClient mSettingsClient;
 
     private LocationRequest mLocationRequest;
@@ -281,23 +286,45 @@ public class VozacLogovan extends AppCompatActivity {
     }
 
     private void updateLocationUI() {
+        String cityName = "";
         if (mCurrentLocation != null) {
 
 
             lat = mCurrentLocation.getLatitude();
             lng = mCurrentLocation.getLongitude();
-
+ speed = mCurrentLocation.getSpeed();
             String latString = String.valueOf(lat);
             String lngString = String.valueOf(lng);
+            String speedString = String.valueOf(speed);
             Log.i("vrijeme", String.format(Locale.ENGLISH, "%s: %s",
                     mLastUpdateTimeLabel, mLastUpdateTime));
+
+
+            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+            List<Address> addresses;
+            try {
+                addresses = gcd.getFromLocation(Double.parseDouble(latString), Double.parseDouble(lngString), 1);
+                if (addresses != null) {
+                    if (addresses.size() > 0){
+                        System.out.println(addresses.get(0).getLocality());
+                    }
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
             DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(linija).child(username);
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
             newLocation.child("linija").setValue(linija);
+            newLocation.child("brzina").setValue(speedString);
             newLocation.child("online").setValue("true");
+            newLocation.child("grad").setValue(cityName);
+
+
 
 
         }
@@ -317,6 +344,7 @@ public class VozacLogovan extends AppCompatActivity {
 
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("latitude").removeValue();
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("longitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("brzina").removeValue();
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("online").removeValue();
     }
 
