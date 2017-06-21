@@ -131,10 +131,19 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
                         Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
                         String city = String.valueOf(dataSnapshot1.child("grad").getValue());
-
                         mMap.clear();
-                        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("Prijevoznik: " + prijevoznik + " " + "Grad: " + city));
+                        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
+
+                        MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude,longitude))
+                                .title("Current Location")
+                                .snippet("Prijevoznik: " + prijevoznik + " " + "Grad: " + city)
+                                .icon(icon);
+                           mMap.addMarker(markerOptions);
+
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
+
+
+
                     }
                     }
             }
