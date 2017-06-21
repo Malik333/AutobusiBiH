@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alenmalik.autobusibih.ObjasnjenjePopup">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
+            android:src="@drawable/backarrow"
+            android:id="@+id/idi_nazad"/>
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/crven_krug"
+            android:background="@drawable/stop_gps_shape"
+            android:layout_below="@+id/idi_nazad"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/crven_krug"
+            android:layout_toEndOf="@+id/crven_krug"
+            android:layout_alignBaseline="@+id/crven_krug"
+            android:text="--> ima gps pračenje autobusa ali je trenutno offline"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/zut_krug"
+            android:background="@drawable/start_gps_shape"
+            android:layout_below="@+id/crven_krug"
+            android:layout_margin="7dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/zut_krug"
+            android:layout_toEndOf="@+id/zut_krug"
+            android:layout_alignBaseline="@+id/zut_krug"
+            android:text="--> možete pratiti autobus"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/zut_krug"
+            android:layout_marginTop="10dp"
+            android:text="Ukoliko pratite autobus na mapi klikom na marker možete vidjeti naziv prijevoznika i u kojem se gradu trenutno nalazi"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginEnd="7dp"/>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

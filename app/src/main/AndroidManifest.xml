@@ -114,9 +114,13 @@
             android:name=".LoginVozaca"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".VozacLogovan"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".VozacLogovan"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".ObjasnjenjePopup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"></activity>
     </application>
 
 </manifest>

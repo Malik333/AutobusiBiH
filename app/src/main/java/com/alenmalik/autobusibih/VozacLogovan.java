@@ -76,7 +76,6 @@ public class VozacLogovan extends AppCompatActivity {
     private FusedLocationProviderClient mFusedLocationClient;
 
     double lat, lng;
-    float speed;
     private SettingsClient mSettingsClient;
 
     private LocationRequest mLocationRequest;
@@ -87,12 +86,10 @@ public class VozacLogovan extends AppCompatActivity {
 
     private Location mCurrentLocation;
 
-    private String mLatitudeLabel;
-    private String mLongitudeLabel;
+
     private String mLastUpdateTimeLabel;
 
-    private String latitude;
-    private String longitude;
+
     DatabaseReference ref;
 
     private Boolean mRequestingLocationUpdates;
@@ -116,8 +113,7 @@ public class VozacLogovan extends AppCompatActivity {
         stopGps.setEnabled(false);
         stopGps.setClickable(false);
 
-        mLatitudeLabel = getResources().getString(R.string.latitude_label);
-        mLongitudeLabel = getResources().getString(R.string.longitude_label);
+
         mLastUpdateTimeLabel = getResources().getString(R.string.last_update_time_label);
 
         mRequestingLocationUpdates = false;
@@ -287,14 +283,12 @@ public class VozacLogovan extends AppCompatActivity {
 
     private void updateLocationUI() {
         if (mCurrentLocation != null) {
-         String result = null;
 
             lat = mCurrentLocation.getLatitude();
             lng = mCurrentLocation.getLongitude();
- speed = mCurrentLocation.getSpeed();
+
             final String latString = String.valueOf(lat);
             final String lngString = String.valueOf(lng);
-            String speedString = String.valueOf(speed);
             Log.i("vrijeme", String.format(Locale.ENGLISH, "%s: %s",
                     mLastUpdateTimeLabel, mLastUpdateTime));
 
@@ -303,7 +297,6 @@ public class VozacLogovan extends AppCompatActivity {
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
             newLocation.child("linija").setValue(linija);
-            newLocation.child("brzina").setValue(speedString);
             newLocation.child("online").setValue("true");
 
 
@@ -313,23 +306,14 @@ public class VozacLogovan extends AppCompatActivity {
                 @Override
                 public void run() {
                     Geocoder geocoder = new Geocoder(VozacLogovan.this, Locale.getDefault());
-                    String result = null;
+
                     try {
                         List<Address> addressList = geocoder.getFromLocation(
                                 Double.parseDouble(latString), Double.parseDouble(lngString), 1);
                         if (addressList != null && addressList.size() > 0) {
-                            newLocation.child("adresa").setValue(addressList.get(0).getAddressLine(0));
 
                             newLocation.child("grad").setValue(addressList.get(0).getAddressLine(1));
-                            newLocation.child("drzava").setValue(addressList.get(0).getAddressLine(2));
-                            Address address = addressList.get(0);
-                            StringBuilder sb = new StringBuilder();
-                            for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                                sb.append(address.getAddressLine(i)).append("\n");
-                            }
-                            sb.append(address.getLocality()).append("\n");
 
-                            newLocation.child("probaGrada2").setValue(sb.toString());
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "Unable connect to Geocoder", e);
