@@ -124,15 +124,22 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                ArrayList<Double> latArray = new ArrayList<Double>();
+                ArrayList<Double> lngArray = new ArrayList<Double>();
+                ArrayList<LatLng> locations = new ArrayList<LatLng>();
+                latArray.clear();
+                lngArray.clear();
+                locations.clear();
                 for (DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                     if(dataSnapshot1.exists()) {
 
                         Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
+                        latArray.add(latitude);
                         Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
-                        String city = String.valueOf(dataSnapshot1.child("grad").getValue());
+                        lngArray.add(longitude);
+
                         mMap.clear();
-                        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
+                        /*BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
 
                         MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude,longitude))
                                 .title("Current Location")
@@ -140,12 +147,28 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                                 .icon(icon);
                            mMap.addMarker(markerOptions);
 
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));*/
 
 
+                        for (int i = 0; i < latArray.size() && i <lngArray.size(); i++) {
+                            locations.add(new LatLng(latArray.get(i), lngArray.get(i)));
+                        }
+
+                        for(LatLng location : locations){
+
+                            String city = String.valueOf(dataSnapshot1.child("grad").getValue());
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(location)
+                                    .title("Current Location")
+                                    .snippet(("Prijevoznik: " + prijevoznik + " " + "Grad: " + city)));
+
+                        }
 
                     }
                     }
+
+
+
             }
 
             @Override
