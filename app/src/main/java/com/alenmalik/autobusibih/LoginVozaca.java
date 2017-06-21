@@ -13,6 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -20,6 +25,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.alenmalik.autobusibih.R.id.view;
 
@@ -30,6 +36,7 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
     TextView errorUsername;
     TextView errorCode;
     Button login;
+    boolean isStartLocation;
 
     ArrayList<String> listUsername;
     ArrayList<String> listCode;

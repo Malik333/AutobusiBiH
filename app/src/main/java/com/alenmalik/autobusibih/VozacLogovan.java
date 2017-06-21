@@ -40,8 +40,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -89,6 +92,7 @@ public class VozacLogovan extends AppCompatActivity {
 
     private String mLastUpdateTimeLabel;
 
+    boolean startLocationCheck;
 
     DatabaseReference ref;
 
@@ -127,7 +131,46 @@ public class VozacLogovan extends AppCompatActivity {
         // Kick off the process of building the LocationCallback, LocationRequest, and
         // LocationSettingsRequest objects.
 
+        DatabaseReference check = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznik).child(linija).child(username);
+        Log.i("prijevoznik", prijevoznik);
+        Log.i("liinija", linija);
+        Log.i("username", username);
+        check.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Boolean> value = (Map<String, Boolean>) dataSnapshot.getValue();
 
+
+                if (dataSnapshot.child("startLocationUpdate").exists()) {
+                    startLocationCheck = value.get("startLocationUpdate");
+                    Log.i("boolena", String.valueOf(startLocationCheck));
+
+
+                    if (startLocationCheck) {
+                        startGps.setEnabled(false);
+                        startGps.setClickable(false);
+                        stopGps.setEnabled(true);
+                        stopGps.setClickable(true);
+                    } else {
+                        startGps.setEnabled(true);
+                        startGps.setClickable(true);
+                        stopGps.setEnabled(false);
+                        stopGps.setClickable(false);
+                    }
+                } else {
+                    startGps.setEnabled(true);
+                    startGps.setClickable(true);
+                    stopGps.setEnabled(false);
+                    stopGps.setClickable(false);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.i("error", databaseError.getMessage());
+            }
+        });
 
         startGps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,7 +341,7 @@ public class VozacLogovan extends AppCompatActivity {
             newLocation.child("longitude").setValue(lngString);
             newLocation.child("linija").setValue(linija);
             newLocation.child("online").setValue("true");
-
+            newLocation.child("startLocationUpdate").setValue(true);
 
 
 
@@ -380,6 +423,7 @@ public class VozacLogovan extends AppCompatActivity {
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("longitude").removeValue();
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("brzina").removeValue();
         ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("online").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("startLocationUpdate").setValue(false);
     }
 
     private void buildLocationSettingsRequest() {
