@@ -30,7 +30,9 @@ import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -49,6 +51,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -74,14 +77,15 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class DriversMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
+public class DriversMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
     private Map<String, Marker> markers;
     private GoogleMap mMap;
     DatabaseReference ref;
     FirebaseDatabase database;
+    RelativeLayout mapLayout;
 
     double lat, lng;
 
@@ -93,7 +97,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-  database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
+        mapLayout = (RelativeLayout) findViewById(R.id.relativeLayoutMap);
 
 
         new CountDownTimer(3000, 1000) {
@@ -111,8 +116,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     }
 
 
-
-    public void retriveLocation(){
+    public void retriveLocation() {
         Intent getInfo = getIntent();
         final String prijevoznik = getInfo.getStringExtra("prijevoznik");
         String linija = getInfo.getStringExtra("linija");
@@ -127,11 +131,14 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                 ArrayList<Double> latArray = new ArrayList<Double>();
                 ArrayList<Double> lngArray = new ArrayList<Double>();
                 ArrayList<LatLng> locations = new ArrayList<LatLng>();
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                ArrayList<Marker> markers = new ArrayList<Marker>();
                 latArray.clear();
                 lngArray.clear();
                 locations.clear();
-                for (DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-                    if(dataSnapshot1.exists()) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    if (dataSnapshot1.exists()) {
 
                         Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
                         latArray.add(latitude);
@@ -150,24 +157,38 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));*/
 
 
-                        for (int i = 0; i < latArray.size() && i <lngArray.size(); i++) {
+                        for (int i = 0; i < latArray.size() && i < lngArray.size(); i++) {
                             locations.add(new LatLng(latArray.get(i), lngArray.get(i)));
                         }
 
-                        for(LatLng location : locations){
+                        for (final LatLng location : locations) {
 
-                            String city = String.valueOf(dataSnapshot1.child("grad").getValue());
+                            markers.add(mMap.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
+                        }
+                        for (Marker marker : markers) {
+                            builder.include(marker.getPosition());
+                        }
+
+                        LatLngBounds bounds = builder.build();
+
+                        int padding = 100;
+                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+                        mMap.animateCamera(cu);
+
+
+
+
+                           /* String city = String.valueOf(dataSnapshot1.child("grad").getValue());
                             mMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("Current Location")
                                     .snippet(("Prijevoznik: " + prijevoznik + " " + "Grad: " + city)));
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10)); */
 
-                        }
 
                     }
-                    }
-
-
+                }
 
             }
 
@@ -225,7 +246,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
        });*/
 
 
-
     }
 
     @Override
@@ -245,7 +265,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
 
     }
-
 
 
     @Override
