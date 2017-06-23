@@ -141,6 +141,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         latArray.add(latitude);
                         Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
                         lngArray.add(longitude);
+                        String adresa = String.valueOf(dataSnapshot1.child("adresa").getValue());
+                        String grad = String.valueOf(dataSnapshot1.child("grad").getValue());
 
                         mMap.clear();
 
@@ -154,8 +156,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         for (final LatLng location : locations) {
                             Marker marker = mMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title(prijevoznik)
-                                    .snippet("Snippet")
+                                    .title(prijevoznik )
+                                    .snippet("Trenutni grad: " + grad + "\n" + "Trenutna adresa: " + adresa)
                                     .icon(icon));
 
                             markers.add(marker);

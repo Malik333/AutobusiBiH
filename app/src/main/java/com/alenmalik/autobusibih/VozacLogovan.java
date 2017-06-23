@@ -341,10 +341,7 @@ public class VozacLogovan extends AppCompatActivity {
 
 
             final DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(key);
-            newLocation.child("latitude").setValue(latString);
-            newLocation.child("longitude").setValue(lngString);
-            newLocation.child("online").setValue("true");
-            newLocation.child("startLocationUpdate").setValue(true);
+
 
 
 
@@ -357,9 +354,12 @@ public class VozacLogovan extends AppCompatActivity {
                         List<Address> addressList = geocoder.getFromLocation(
                                 Double.parseDouble(latString), Double.parseDouble(lngString), 1);
                         if (addressList != null && addressList.size() > 0) {
-
+                            newLocation.child("adresa").setValue(addressList.get(0).getAddressLine(0));
                             newLocation.child("grad").setValue(addressList.get(0).getAddressLine(1));
-
+                            newLocation.child("latitude").setValue(latString);
+                            newLocation.child("longitude").setValue(lngString);
+                            newLocation.child("online").setValue("true");
+                            newLocation.child("startLocationUpdate").setValue(true);
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "Unable connect to Geocoder", e);
