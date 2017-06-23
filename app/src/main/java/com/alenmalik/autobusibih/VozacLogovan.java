@@ -95,6 +95,8 @@ public class VozacLogovan extends AppCompatActivity {
     boolean startLocationCheck;
 
     DatabaseReference ref;
+    String key;
+
 
     private Boolean mRequestingLocationUpdates;
 
@@ -110,6 +112,7 @@ public class VozacLogovan extends AppCompatActivity {
         prijevoznik = myIntent.getStringExtra("prijevoznik");
         linija = myIntent.getStringExtra("linija");
         username = myIntent.getStringExtra("username");
+        key = myIntent.getStringExtra("key");
 
         startGps = (Button) findViewById(R.id.start_gps);
         stopGps = (Button) findViewById(R.id.stop_gps);
@@ -131,10 +134,9 @@ public class VozacLogovan extends AppCompatActivity {
         // Kick off the process of building the LocationCallback, LocationRequest, and
         // LocationSettingsRequest objects.
 
-        DatabaseReference check = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznik).child(linija).child(username);
+        DatabaseReference check = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznik).child(key);
         Log.i("prijevoznik", prijevoznik);
-        Log.i("liinija", linija);
-        Log.i("username", username);
+
         check.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -336,10 +338,9 @@ public class VozacLogovan extends AppCompatActivity {
                     mLastUpdateTimeLabel, mLastUpdateTime));
 
 
-            final DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(linija).child(username);
+            final DatabaseReference newLocation = ref.child("Pracenje").child(prijevoznik).child(key);
             newLocation.child("latitude").setValue(latString);
             newLocation.child("longitude").setValue(lngString);
-            newLocation.child("linija").setValue(linija);
             newLocation.child("online").setValue("true");
             newLocation.child("startLocationUpdate").setValue(true);
 

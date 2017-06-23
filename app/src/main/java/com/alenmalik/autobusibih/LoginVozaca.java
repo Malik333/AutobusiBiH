@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.alenmalik.autobusibih.R.id.prijevozniciListView;
 import static com.alenmalik.autobusibih.R.id.view;
 
 public class LoginVozaca extends AppCompatActivity implements View.OnClickListener {
@@ -143,14 +144,17 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
                             public void done(List<ParseObject> objects, ParseException e) {
                                 if (objects != null) {
                                     for (ParseObject object : objects) {
-                                        String prijevoznik = String.valueOf(object.get("prijevoznik"));
-                                        String linija = String.valueOf(object.get("linija"));
-                                        String username = String.valueOf(object.get("username"));
+                                        String prijevoznikParse = String.valueOf(object.get("prijevoznik"));
+                                        String linijaParse = String.valueOf(object.get("linija"));
+                                        DatabaseReference prijevoznik = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznikParse).push();
+                                        prijevoznik.child("linija").setValue(linijaParse);
 
+
+                                        String key = prijevoznik.getKey();
                                         Intent openLocationActivity = new Intent(LoginVozaca.this, VozacLogovan.class);
-                                        openLocationActivity.putExtra("prijevoznik", prijevoznik);
-                                        openLocationActivity.putExtra("linija", linija);
-                                        openLocationActivity.putExtra("username", username);
+                                        openLocationActivity.putExtra("prijevoznik", prijevoznikParse);
+                                        openLocationActivity.putExtra("key", key);
+
                                         startActivity(openLocationActivity);
                                     }
                                 }

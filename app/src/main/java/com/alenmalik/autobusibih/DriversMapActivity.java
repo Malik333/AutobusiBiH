@@ -119,11 +119,8 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     public void retriveLocation() {
         Intent getInfo = getIntent();
         final String prijevoznik = getInfo.getStringExtra("prijevoznik");
-        String linija = getInfo.getStringExtra("linija");
-        Log.i("valuePrijevoznik", prijevoznik);
-        Log.i("valueLinija", linija);
 
-        ref = database.getReference().child("Pracenje").child(prijevoznik).child(linija);
+        ref = database.getReference().child("Pracenje").child(prijevoznik);
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
