@@ -9,4 +9,5 @@
     <color name="popupColor">#ffcdd2</color>
     <color name="primary_darker">#1a237e</color>
     <color name="redError">#FFFFFF</color>
+    <color name="textColor">#ffff00</color>
 </resources>

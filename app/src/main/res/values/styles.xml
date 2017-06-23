@@ -9,7 +9,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="actionMenuTextColor">@color/textColor</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
 
         <item name="colorControlNormal">@color/blackColor</item>

@@ -30,14 +30,14 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
     ImageView goBack;
 
     RecyclerView prijevoznici;
-
+  ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_transport);
         prijevoznici = (RecyclerView) findViewById(R.id.prijevozniciListView);
         goBack = (ImageView) findViewById(R.id.backGo);
-
+         progressDialog = new ProgressDialog(this,R.style.AppTheme_Dark);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +50,8 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
         prijevoznici.setLayoutManager(new LinearLayoutManager(this));
 
         prijevozniciList = new ArrayList<>();
-
+         progressDialog.setMessage("Loading...");
+        progressDialog.show();
         final ParseQuery<ParseObject> prevoznici = ParseQuery.getQuery("Prijevoznici");
 
         prevoznici.findInBackground(new FindCallback<ParseObject>() {
@@ -61,9 +62,8 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
 
                     for (int i = 0; i < list.size(); i++) {
                         Transport tr = new Transport();
-                        ProgressDialog dialog = new ProgressDialog(BusTransport.this);
-                        dialog.setMessage("Loading...");
-                        dialog.show();
+
+
                         tr.name = list.get(i).getString("Prijevoznik");
                         tr.address = list.get(i).getString("Adresa");
                         tr.phoneNumber = list.get(i).getString("Telefon");
@@ -74,7 +74,7 @@ public class BusTransport extends AppCompatActivity implements AdapterView.OnIte
                         tr.setLogo(url);
 
                         prijevozniciList.add(tr);
-                        dialog.dismiss();
+                        progressDialog.dismiss();
 
                     }
 

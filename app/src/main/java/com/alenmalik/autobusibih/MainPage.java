@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -590,8 +591,20 @@ public class MainPage extends AppCompatActivity
     }
 
 
-    public void changeColor() {
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_page,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings){
+        Intent intent = new Intent(MainPage.this,BusTransport.class);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

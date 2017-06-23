@@ -146,16 +146,9 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         lngArray.add(longitude);
 
                         mMap.clear();
-                        /*BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
 
-                        MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude,longitude))
-                                .title("Current Location")
-                                .snippet("Prijevoznik: " + prijevoznik + " " + "Grad: " + city)
-                                .icon(icon);
-                           mMap.addMarker(markerOptions);
-
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));*/
-
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
+                        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
 
                         for (int i = 0; i < latArray.size() && i < lngArray.size(); i++) {
                             locations.add(new LatLng(latArray.get(i), lngArray.get(i)));
@@ -163,7 +156,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
                         for (final LatLng location : locations) {
 
-                            markers.add(mMap.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title("Rider Location")));
+                            markers.add(mMap.addMarker(new MarkerOptions().position(location).icon(icon).title(prijevoznik)));
                         }
                         for (Marker marker : markers) {
                             builder.include(marker.getPosition());
