@@ -1,6 +1,7 @@
 package com.alenmalik.autobusibih;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -408,6 +410,11 @@ public class VozacLogovan extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     private void stopLocationUpdates() {
         // It is a good practice to remove location requests when the activity is in a paused or
         // stopped state. Doing so helps battery performance and is especially
@@ -420,11 +427,11 @@ public class VozacLogovan extends AppCompatActivity {
                     }
                 });
 
-        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("latitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("longitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("brzina").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("online").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(linija).child(username).child("startLocationUpdate").setValue(false);
+        ref.child("Pracenje").child(prijevoznik).child(key).child("latitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(key).child("longitude").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(key).child("brzina").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(key).child("online").removeValue();
+        ref.child("Pracenje").child(prijevoznik).child(key).child("startLocationUpdate").setValue(false);
     }
 
     private void buildLocationSettingsRequest() {
@@ -433,6 +440,27 @@ public class VozacLogovan extends AppCompatActivity {
         mLocationSettingsRequest = builder.build();
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
+                        startActivity(backLOGIN);
+                        stopLocationUpdates();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBoolean(KEY_REQUESTING_LOCATION_UPDATES, mRequestingLocationUpdates);
         savedInstanceState.putParcelable(KEY_LOCATION, mCurrentLocation);

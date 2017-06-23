@@ -152,9 +152,16 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         }
 
                         for (final LatLng location : locations) {
+                            Marker marker = mMap.addMarker(new MarkerOptions()
+                                    .position(location)
+                                    .title(prijevoznik)
+                                    .snippet("Snippet")
+                                    .icon(icon));
 
-                            markers.add(mMap.addMarker(new MarkerOptions().position(location).icon(icon).title(prijevoznik)));
+                            markers.add(marker);
+                            marker.showInfoWindow();
                         }
+
                         for (Marker marker : markers) {
                             builder.include(marker.getPosition());
                         }
