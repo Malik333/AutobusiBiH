@@ -33,6 +33,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -128,12 +129,16 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                 ArrayList<Double> latArray = new ArrayList<Double>();
                 ArrayList<Double> lngArray = new ArrayList<Double>();
                 ArrayList<LatLng> locations = new ArrayList<LatLng>();
+                ArrayList<String> gradovi = new ArrayList<String>();
+                ArrayList<String> adrese = new ArrayList<String>();
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
                 ArrayList<Marker> markers = new ArrayList<Marker>();
                 latArray.clear();
                 lngArray.clear();
                 locations.clear();
+                gradovi.clear();
+                adrese.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot1.exists()) {
 
@@ -142,28 +147,19 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
                         lngArray.add(longitude);
                         String adresa = String.valueOf(dataSnapshot1.child("adresa").getValue());
+                        adrese.add(adresa);
                         String grad = String.valueOf(dataSnapshot1.child("grad").getValue());
+                        gradovi.add(grad);
 
                         mMap.clear();
 
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
                         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
 
-                        for (int i = 0; i < latArray.size() && i < lngArray.size(); i++) {
-                            locations.add(new LatLng(latArray.get(i), lngArray.get(i)));
+                        for (int i = 0; i < latArray.size() && i < lngArray.size() && i < gradovi.size() && i<adrese.size(); i++) {
+                            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(latArray.get(i),lngArray.get(i))).title(prijevoznik).snippet("Trenutni grad: " + gradovi.get(i) + "\n" + "Trenutna adresa: " + adrese.get(i)).icon(icon)));
+
                         }
-
-                        for (final LatLng location : locations) {
-                            Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(location)
-                                    .title(prijevoznik )
-                                    .snippet("Trenutni grad: " + grad + "\n" + "Trenutna adresa: " + adresa)
-                                    .icon(icon));
-
-                            markers.add(marker);
-                            marker.showInfoWindow();
-                        }
-
                         for (Marker marker : markers) {
                             builder.include(marker.getPosition());
                         }
@@ -173,6 +169,24 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                         int padding = 100;
                         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
+                        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                            @Override
+                            public View getInfoWindow(Marker marker) {
+                                return null;
+                            }
+
+                            @Override
+                            public View getInfoContents(Marker marker) {
+                                View v = getLayoutInflater().inflate(R.layout.infow_window,null);
+                                TextView prijevoznikTitle = (TextView) v.findViewById(R.id.ime_prijevoznika);
+                                TextView grad = (TextView) v.findViewById(R.id.grad);
+                                TextView adresa = (TextView) v.findViewById(R.id.adresa);
+
+                                prijevoznikTitle.setText(marker.getTitle());
+                                grad.setText(marker.getSnippet());
+                                return null;
+                            }
+                        });
                         mMap.animateCamera(cu);
 
 
@@ -250,6 +264,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         new CountDownTimer(3000, 1000) {
 
             public void onTick(long millisUntilFinished) {
