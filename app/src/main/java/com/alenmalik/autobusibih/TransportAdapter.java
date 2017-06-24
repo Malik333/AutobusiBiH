@@ -85,6 +85,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
                                 onlineStatus.add(String.valueOf(daj.getValue()));
                                 if (onlineStatus.contains("true")){
                                     holder.checkStatus.setEnabled(true);
+                                    holder.infoState.setText("Možete pratiti autobuse ovog prijevoznika.");
                                 }else {
                                     holder.checkStatus.setEnabled(false);
                                 }
@@ -147,6 +148,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
         TextView phone;
         TextView webSite;
         Button checkStatus;
+        TextView infoState;
 
         View line;
 
@@ -159,6 +161,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.View
             phone = (TextView) itemView.findViewById(R.id.br_tel_prevoznik);
             webSite = (TextView) itemView.findViewById(R.id.web_prevoznik);
             checkStatus = (Button) itemView.findViewById(R.id.offline);
+            infoState = (TextView) itemView.findViewById(R.id.infoLoc);
 
 
         }

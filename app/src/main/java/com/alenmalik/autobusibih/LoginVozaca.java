@@ -37,7 +37,6 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
     TextView errorUsername;
     TextView errorCode;
     Button login;
-    boolean isStartLocation;
 
     ArrayList<String> listUsername;
     ArrayList<String> listCode;
@@ -149,16 +148,13 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
                                         DatabaseReference prijevoznik = FirebaseDatabase.getInstance().getReference().child("Pracenje").child(prijevoznikParse).push();
                                         prijevoznik.child("linija").setValue(linijaParse);
 
-
                                         String key = prijevoznik.getKey();
                                         Intent openLocationActivity = new Intent(LoginVozaca.this, VozacLogovan.class);
                                         openLocationActivity.putExtra("prijevoznik", prijevoznikParse);
                                         openLocationActivity.putExtra("key", key);
-
                                         startActivity(openLocationActivity);
                                     }
                                 }
-
                             }
                         });
                         dialog.dismiss();

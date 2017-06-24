@@ -140,17 +140,18 @@
                 android:enabled="false"/>
 
             <TextView
+                android:id="@+id/infoLoc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trenutno ne možete pratiti autobuse ovog prijevoznika"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
                 android:layout_below="@+id/offline"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="Trenutno ne možete pratiti autobuse ovog prijevoznika"
+                android:textStyle="bold" />
 
 
 

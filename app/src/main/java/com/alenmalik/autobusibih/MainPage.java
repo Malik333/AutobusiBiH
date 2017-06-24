@@ -185,7 +185,6 @@ public class MainPage extends AppCompatActivity
         TextView gornjitextColor2;
         TextView gornjitextColor3;
         TextView gornjitextColor4;
-        Button openMap;
 
 
         public ReklameViewHolder(View itemView) {

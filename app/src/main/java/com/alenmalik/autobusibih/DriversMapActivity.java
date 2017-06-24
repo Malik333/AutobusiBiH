@@ -184,7 +184,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
                                 prijevoznikTitle.setText(marker.getTitle());
                                 grad.setText(marker.getSnippet());
-                                return null;
+                                return v;
                             }
                         });
                         mMap.animateCamera(cu);

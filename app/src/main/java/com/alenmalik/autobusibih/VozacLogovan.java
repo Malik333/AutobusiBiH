@@ -356,10 +356,7 @@ public class VozacLogovan extends AppCompatActivity {
                         if (addressList != null && addressList.size() > 0) {
                             newLocation.child("adresa").setValue(addressList.get(0).getAddressLine(0));
                             newLocation.child("grad").setValue(addressList.get(0).getAddressLine(1));
-                            newLocation.child("latitude").setValue(latString);
-                            newLocation.child("longitude").setValue(lngString);
-                            newLocation.child("online").setValue("true");
-                            newLocation.child("startLocationUpdate").setValue(true);
+
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "Unable connect to Geocoder", e);
@@ -367,13 +364,10 @@ public class VozacLogovan extends AppCompatActivity {
                 }
             };
             thread.start();
-
-
-
-
-
-
-
+            newLocation.child("latitude").setValue(latString);
+            newLocation.child("longitude").setValue(lngString);
+            newLocation.child("online").setValue("true");
+            newLocation.child("startLocationUpdate").setValue(true);
 
 
 
@@ -443,16 +437,16 @@ public class VozacLogovan extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to exit?")
+        builder.setMessage("Želite isključiti praćenje Vašeg autobusa?")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
                         startActivity(backLOGIN);
                         stopLocationUpdates();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
