@@ -445,6 +445,7 @@ public class VozacLogovan extends AppCompatActivity {
                             Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
                             startActivity(backLOGIN);
                             stopLocationUpdates();
+                            finish();
                         }
                     })
                     .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -457,6 +458,7 @@ public class VozacLogovan extends AppCompatActivity {
         } else {
             Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
             startActivity(backLOGIN);
+            finish();
         }
 
     }
@@ -562,24 +564,5 @@ public class VozacLogovan extends AppCompatActivity {
             }
         }
     }
-    public void showAlert () {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Želite isključiti praćenje Vašeg autobusa?")
-                .setCancelable(false)
-                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
-                        startActivity(backLOGIN);
-                        stopLocationUpdates();
-                    }
-                })
-                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
 
-    }
 }
