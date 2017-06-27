@@ -95,7 +95,7 @@ public class VozacLogovan extends AppCompatActivity {
     private String mLastUpdateTimeLabel;
 
     boolean startLocationCheck;
-    boolean isStoppedPressed;
+    boolean isStoppedPressed = true;
 
     DatabaseReference ref;
     String key;

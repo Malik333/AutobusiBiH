@@ -86,6 +86,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     private GoogleMap mMap;
     DatabaseReference ref;
     FirebaseDatabase database;
+    Marker lastOpenned = null;
     RelativeLayout mapLayout;
 
     double lat, lng;
@@ -101,18 +102,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
         database = FirebaseDatabase.getInstance();
         mapLayout = (RelativeLayout) findViewById(R.id.relativeLayoutMap);
 
-
-        new CountDownTimer(3000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                //here you can have your logic to set text to edittext
-            }
-
-            public void onFinish() {
-                retriveLocation();
-            }
-
-        }.start();
 
     }
 
@@ -139,66 +128,51 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                 locations.clear();
                 gradovi.clear();
                 adrese.clear();
+                Log.i("broj keyeva", String.valueOf(dataSnapshot.getChildrenCount()));
+                int numberKey = (int) dataSnapshot.getChildrenCount();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot1.exists()) {
 
-                        Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
-                        latArray.add(latitude);
-                        Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
-                        lngArray.add(longitude);
-                        String adresa = String.valueOf(dataSnapshot1.child("adresa").getValue());
-                        adrese.add(adresa);
-                        String grad = String.valueOf(dataSnapshot1.child("grad").getValue());
-                        gradovi.add(grad);
 
-                        mMap.clear();
-
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
-                        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
-
-                        for (int i = 0; i < latArray.size() && i < lngArray.size() && i < gradovi.size() && i<adrese.size(); i++) {
-                            markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(latArray.get(i),lngArray.get(i))).title(prijevoznik).snippet("Trenutni grad: " + gradovi.get(i) + "\n" + "Trenutna adresa: " + adrese.get(i)).icon(icon)));
-
-                        }
-                        for (Marker marker : markers) {
-                            builder.include(marker.getPosition());
-                        }
-
-                        LatLngBounds bounds = builder.build();
-
-                        int padding = 100;
-                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-
-                        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                            @Override
-                            public View getInfoWindow(Marker marker) {
-                                return null;
+                        if (dataSnapshot1.child("latitude").exists() && dataSnapshot1.child("longitude").exists()) {
+                            Double latitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("latitude").getValue()));
+                            if (latitude != null) {
+                                latArray.add(latitude);
+                            }
+                            Double longitude = Double.parseDouble(String.valueOf(dataSnapshot1.child("longitude").getValue()));
+                            if (longitude != null) {
+                                lngArray.add(longitude);
                             }
 
-                            @Override
-                            public View getInfoContents(Marker marker) {
-                                View v = getLayoutInflater().inflate(R.layout.infow_window,null);
-                                TextView prijevoznikTitle = (TextView) v.findViewById(R.id.ime_prijevoznika);
-                                TextView grad = (TextView) v.findViewById(R.id.grad);
-                                TextView adresa = (TextView) v.findViewById(R.id.adresa);
+                            String adresa = String.valueOf(dataSnapshot1.child("adresa").getValue());
+                            adrese.add(adresa);
+                            String grad = String.valueOf(dataSnapshot1.child("grad").getValue());
+                            gradovi.add(grad);
 
-                                prijevoznikTitle.setText(marker.getTitle());
-                                grad.setText(marker.getSnippet());
-                                return v;
+                            mMap.clear();
+
+                            // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
+                            BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.busbus);
+
+                            for (int i = 0; i < latArray.size() && i < lngArray.size() && i < gradovi.size() && i < adrese.size(); i++) {
+
+                                markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(latArray.get(i), lngArray.get(i))).title(prijevoznik).snippet("Trenutni grad: " + gradovi.get(i) + "\n" + "Trenutna adresa: " + adrese.get(i)).icon(icon)));
+                                Log.i("novi marker", String.valueOf(true));
+
                             }
-                        });
-                        mMap.animateCamera(cu);
+                            for (Marker marker : markers) {
+                                builder.include(marker.getPosition());
+
+                            }
+
+                            LatLngBounds bounds = builder.build();
+
+                            int padding = 100;
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
 
-
-
-                           /* String city = String.valueOf(dataSnapshot1.child("grad").getValue());
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(location)
-                                    .title("Current Location")
-                                    .snippet(("Prijevoznik: " + prijevoznik + " " + "Grad: " + city)));
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10)); */
-
+                            mMap.animateCamera(cu);
+                        }
 
                     }
                 }
@@ -210,53 +184,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
             }
         });
-       /* DatabaseReference retriveRef = ref.child("Pracenje").child(prijevoznik).child(linija);
-       retriveRef.addChildEventListener(new ChildEventListener() {
-           @Override
-           public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-               try {
-                   Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
-                   Double latitude = Double.parseDouble(String.valueOf(value.get("latitude")));
-                   Double longitude = Double.parseDouble(String.valueOf(value.get("longitude")));
-                   Log.i("value", String.valueOf(value.get("latitude")));
-
-
-                   mMap.clear();
-                   Marker myMarker;
-                   myMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(prijevoznik));
-                   myMarker.setPosition(new LatLng(latitude, longitude));
-                   mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myMarker.getPosition(),14));
-               }catch (Exception e){
-                   e.printStackTrace();
-               }
-
-
-
-
-
-
-           }
-
-           @Override
-           public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-           }
-
-           @Override
-           public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-           }
-
-           @Override
-           public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-           }
-
-           @Override
-           public void onCancelled(DatabaseError databaseError) {
-
-           }
-       });*/
 
 
     }
@@ -265,6 +192,52 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                View v = getLayoutInflater().inflate(R.layout.infow_window,null);
+                TextView prijevoznikTitle = (TextView) v.findViewById(R.id.ime_prijevoznika);
+                TextView grad = (TextView) v.findViewById(R.id.grad);
+                TextView adresa = (TextView) v.findViewById(R.id.adresa);
+
+                prijevoznikTitle.setText(marker.getTitle());
+                grad.setText(marker.getSnippet());
+                return v;
+            }
+        });
+
+
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            public boolean onMarkerClick(Marker marker) {
+                // Check if there is an open info window
+                if (lastOpenned != null) {
+                    // Close the info window
+                    lastOpenned.hideInfoWindow();
+
+                    // Is the marker the same marker that was already open
+                    if (lastOpenned.equals(marker)) {
+                        // Nullify the lastOpenned object
+                        lastOpenned = null;
+                        // Return so that the info window isn't openned again
+                        return true;
+                    }
+                }
+
+                // Open the info window for the marker
+                marker.showInfoWindow();
+                // Re-assign the last openned such that we can close it later
+                lastOpenned = marker;
+
+                // Event was handled by our code do not launch default behaviour.
+                return true;
+            }
+        });
         new CountDownTimer(3000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -274,7 +247,6 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
             public void onFinish() {
                 retriveLocation();
             }
-
         }.start();
 
 
