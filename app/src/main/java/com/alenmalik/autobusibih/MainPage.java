@@ -542,6 +542,7 @@ public class MainPage extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
@@ -606,4 +607,6 @@ public class MainPage extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
