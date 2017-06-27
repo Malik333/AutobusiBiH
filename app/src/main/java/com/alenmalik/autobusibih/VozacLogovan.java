@@ -95,6 +95,7 @@ public class VozacLogovan extends AppCompatActivity {
     private String mLastUpdateTimeLabel;
 
     boolean startLocationCheck;
+    boolean isStoppedPressed;
 
     DatabaseReference ref;
     String key;
@@ -188,6 +189,7 @@ public class VozacLogovan extends AppCompatActivity {
                 createLocationRequest();
                 buildLocationSettingsRequest();
                 startLocationUpdates();
+                isStoppedPressed = false;
 
             }
         });
@@ -201,6 +203,7 @@ public class VozacLogovan extends AppCompatActivity {
                 stopGps.setClickable(false);
                 Toast.makeText(VozacLogovan.this, "Uspješno ste zasutavili pračenje autobusa", Toast.LENGTH_LONG).show();
                 stopLocationUpdates();
+                isStoppedPressed = true;
             }
         });
     }
@@ -433,23 +436,28 @@ public class VozacLogovan extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Želite isključiti praćenje Vašeg autobusa?")
-                .setCancelable(false)
-                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent backLOGIN = new Intent(VozacLogovan.this, MainPage.class);
-                        startActivity(backLOGIN);
-                        stopLocationUpdates();
-                    }
-                })
-                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
+        if (!isStoppedPressed){
+            AlertDialog.Builder builder = new AlertDialog.Builder(VozacLogovan.this);
+            builder.setMessage("Želite isključiti praćenje Vašeg autobusa?")
+                    .setCancelable(false)
+                    .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
+                            startActivity(backLOGIN);
+                            stopLocationUpdates();
+                        }
+                    })
+                    .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
+            startActivity(backLOGIN);
+        }
 
     }
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -553,5 +561,25 @@ public class VozacLogovan extends AppCompatActivity {
                         });
             }
         }
+    }
+    public void showAlert () {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Želite isključiti praćenje Vašeg autobusa?")
+                .setCancelable(false)
+                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
+                        startActivity(backLOGIN);
+                        stopLocationUpdates();
+                    }
+                })
+                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

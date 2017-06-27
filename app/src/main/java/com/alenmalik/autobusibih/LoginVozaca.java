@@ -203,4 +203,12 @@ public class LoginVozaca extends AppCompatActivity implements View.OnClickListen
             });
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent inn = new Intent(LoginVozaca.this,MainPage.class);
+        startActivity(inn);
+        super.onBackPressed();
+
+    }
 }
