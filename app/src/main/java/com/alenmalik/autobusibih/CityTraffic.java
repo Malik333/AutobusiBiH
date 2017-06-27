@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityTraffic extends AppCompatActivity implements View.OnClickListener{
+public class CityTraffic extends AppCompatActivity implements View.OnClickListener {
     SearchableSpinner fromCitySpinner;
     SearchableSpinner toCitySpinner;
     SearchableSpinner daysSpinner;
@@ -60,8 +60,8 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     MedjugradskiIspisAdapter adapter;
     ImageView goBack;
     int loopCount = 0;
-    ProgressDialog  dialog;
-
+    ProgressDialog dialog;
+    String[] dani = {"Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota", "Nedjelja"};
     static double busLat, busLng;
 
     static boolean stanicaCity = false;
@@ -85,11 +85,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         goBack = (ImageView) findViewById(R.id.goBack);
         dialog = new ProgressDialog(this, R.style.AppTheme_Dark);
 
-
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CityTraffic.this,MainPage.class);
+                Intent intent = new Intent(CityTraffic.this, MainPage.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +97,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         prijevoznikTextView = (TextView) findViewById(R.id.prijevoznikIspis);
         ispisBtn = (Button) findViewById(R.id.ispis);
 
-       infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
+        infoLayout = (HorizontalScrollView) findViewById(R.id.horizontal_layout_scroll);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ispisBtn.setOnClickListener(this);
         ispisBtn.requestFocus();
@@ -107,7 +106,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         fromCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               // vibrator.vibrate(100);
+                // vibrator.vibrate(100);
 
                 odGrada = (String) adapterView.getItemAtPosition(i);
 
@@ -132,11 +131,10 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         fromCitySpinner.setPositiveButton("OK");
 
 
-
         toCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               // vibrator.vibrate(100);
+                // vibrator.vibrate(100);
                 doGrada = String.valueOf(adapterView.getItemAtPosition(i));
 
                 spinnerPrijevoznik(odGrada, doGrada);
@@ -193,18 +191,15 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
         chooseDay();
 
 
-
-
-
     }
 
-    public void ispis(){
+    public void ispis() {
 
         String prijevoznikSelected = prijevoznik;
 
 
         int limit = 20000;
-        if (prijevoznikSelected.equals("Svi")){
+        if (prijevoznikSelected.equals("Svi")) {
 
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Relacija");
@@ -219,44 +214,43 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
-                       for ( ParseObject object : list) {
-                           final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
-                           item.vrijemePolaska = String.valueOf(object.get("Satnica"));
-                           item.dan = String.valueOf(object.get("Dan"));
-                           item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
-                           item.linija = String.valueOf(object.get("Linija"));
-                           item.cijena = String.valueOf(object.get("Cijena"));
-                           item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
-                           item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
+                        for (ParseObject object : list) {
+                            final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
+                            item.vrijemePolaska = String.valueOf(object.get("Satnica"));
+                            item.dan = String.valueOf(object.get("Dan"));
+                            item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
+                            item.linija = String.valueOf(object.get("Linija"));
+                            item.cijena = String.valueOf(object.get("Cijena"));
+                            item.relacija = String.valueOf(object.get("odGrada")) + " - " + String.valueOf(object.get("doGrada"));
+                            item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
 
-                           Log.i("danRelacija", String.valueOf(object.get("Dan")));
-                           Log.i("linijaRelacija", String.valueOf(object.get("Linija")));
+                            Log.i("danRelacija", String.valueOf(object.get("Dan")));
+                            Log.i("linijaRelacija", String.valueOf(object.get("Linija")));
 
 
-                           ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
-                           stanicaquery.whereEqualTo("CityName", odGrada);
-                           stanicaquery.findInBackground(new FindCallback<ParseObject>() {
-                               @Override
-                               public void done(List<ParseObject> list, ParseException e) {
-                                   if (e == null) {
-                                       for (ParseObject object1 : list) {
+                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                            stanicaquery.whereEqualTo("CityName", odGrada);
+                            stanicaquery.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> list, ParseException e) {
+                                    if (e == null) {
+                                        for (ParseObject object1 : list) {
 
-                                           item.stanica = String.valueOf(object1.get("Address"));
+                                            item.stanica = String.valueOf(object1.get("Address"));
 
-                                       }
-                                   }
-                                   //detailsList.clear();
-                                   detailsList.add(item);
-                                   adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
-                                   details.setAdapter(adapter);
-                                   adapter.notifyDataSetChanged();
-                               }
-                           });
-                       }
+                                        }
+                                    }
+                                    //detailsList.clear();
+                                    detailsList.add(item);
+                                    adapter = new MedjugradskiIspisAdapter(detailsList, CityTraffic.this);
+                                    details.setAdapter(adapter);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
                     }
 
                     Log.i("lista", detailsList.toString());
-
 
 
                 }
@@ -278,17 +272,17 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                 public void done(List<ParseObject> list, ParseException e) {
                     if (e == null) {
 
-                        for ( ParseObject object : list) {
+                        for (ParseObject object : list) {
                             final MedjugradskiIspisModel item = new MedjugradskiIspisModel();
                             item.vrijemePolaska = String.valueOf(object.get("Satnica"));
                             item.dan = String.valueOf(object.get("Dan"));
                             item.duzinaPuta = String.valueOf(object.get("DuzinaPuta"));
                             item.linija = String.valueOf(object.get("Linija"));
                             item.cijena = String.valueOf(object.get("Cijena"));
-                            item.relacija = String.valueOf(object.get("odGrada"))+" - "+ String.valueOf(object.get("doGrada"));
+                            item.relacija = String.valueOf(object.get("odGrada")) + " - " + String.valueOf(object.get("doGrada"));
                             item.prijevoznik = String.valueOf(object.get("Prijevoznik"));
                             linija = item.linija;
-                                    ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
+                            ParseQuery<ParseObject> stanicaquery = ParseQuery.getQuery("BusAddress");
                             stanicaquery.whereEqualTo("CityName", odGrada);
                             stanicaquery.findInBackground(new FindCallback<ParseObject>() {
                                 @Override
@@ -312,6 +306,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
             });
         }
     }
+
     public void fromCity() {
 
         dialog.setMessage("Loading...");
@@ -334,12 +329,11 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
                         hashSet.addAll(fromCityList);
                         fromCityList.clear();
                         fromCityList.addAll(hashSet);
-                        fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner,fromCityList);
+                        fromCityAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, fromCityList);
                         fromCityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
 
-
-                    fromCitySpinner.setAdapter(fromCityAdapter);
+                        fromCitySpinner.setAdapter(fromCityAdapter);
                         Collections.sort(fromCityList);
                         fromCityAdapter.notifyDataSetChanged();
 
@@ -391,41 +385,17 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     public void chooseDay() {
 
 
-        ParseQuery<ParseObject> chooseDayQuery = new ParseQuery<ParseObject>("Relacija");
-        chooseDayQuery.addAscendingOrder("createdAt");
-        chooseDayQuery.setLimit(10000);
-        chooseDayQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
 
-                    if (list.size() > 0) {
-
-                        for (ParseObject object : list) {
-                            daysList.add(String.valueOf(object.get("Dan")));
-
-                        }
-                        hashSet3.addAll(daysList);
-                        daysList.clear();
-                        daysList.addAll(hashSet3);
-                        daysAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, daysList);
+        daysAdapter = new ArrayAdapter<String>(CityTraffic.this, R.layout.my_spinner, dani);
 
 
-                        daysSpinner.setAdapter(daysAdapter);
+        daysSpinner.setAdapter(daysAdapter);
+        daysAdapter.notifyDataSetChanged();
 
-                        daysAdapter.notifyDataSetChanged();
-
-
-                    }
-
-
-                }
-            }
-        });
 
     }
 
-    public void spinnerPrijevoznik(String name, String toCity){
+    public void spinnerPrijevoznik(String name, String toCity) {
         ParseQuery<ParseObject> prijevoznikQuery = new ParseQuery<ParseObject>("Relacija");
         prijevoznikQuery.setLimit(10000);
         prijevoznikQuery.whereEqualTo("odGrada", name);
@@ -465,7 +435,7 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
     }
 
-        @Override
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -473,16 +443,16 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
     }
 
 
-@Override
+    @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.ispis){
+        if (view.getId() == R.id.ispis) {
 
             if (!TextUtils.isEmpty(odGrada) && !TextUtils.isEmpty(doGrada) && !TextUtils.isEmpty(dan) && !TextUtils.isEmpty(prijevoznik)) {
                 vibrator.vibrate(100);
                 detailsList.clear();
-                if (prijevoznik.equals("PUTNIK BUGOJNO")){
+                if (prijevoznik.equals("PUTNIK BUGOJNO")) {
                     prijevoznik2 = "Putnik";
-                }else {
+                } else {
                     prijevoznik2 = prijevoznik;
                 }
                 ispis();
@@ -491,16 +461,12 @@ public class CityTraffic extends AppCompatActivity implements View.OnClickListen
 
 
         }
-        if (view.getId() == R.id.prijevoznikIspis){
+        if (view.getId() == R.id.prijevoznikIspis) {
             vibrator.vibrate(100);
-            Intent intent = new Intent(CityTraffic.this,PopUpActivitiy.class);
+            Intent intent = new Intent(CityTraffic.this, PopUpActivitiy.class);
             startActivity(intent);
         }
     }
-
-
-
-
 
 
 }
