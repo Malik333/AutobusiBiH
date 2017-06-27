@@ -421,11 +421,8 @@ public class VozacLogovan extends AppCompatActivity {
                     }
                 });
 
-        ref.child("Pracenje").child(prijevoznik).child(key).child("latitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(key).child("longitude").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(key).child("brzina").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(key).child("online").removeValue();
-        ref.child("Pracenje").child(prijevoznik).child(key).child("startLocationUpdate").setValue(false);
+        ref.child("Pracenje").child(prijevoznik).child(key).removeValue();
+
     }
 
     private void buildLocationSettingsRequest() {
@@ -441,7 +438,7 @@ public class VozacLogovan extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent backLOGIN = new Intent(VozacLogovan.this, LoginVozaca.class);
+                        Intent backLOGIN = new Intent(VozacLogovan.this, MainPage.class);
                         startActivity(backLOGIN);
                         stopLocationUpdates();
                     }
