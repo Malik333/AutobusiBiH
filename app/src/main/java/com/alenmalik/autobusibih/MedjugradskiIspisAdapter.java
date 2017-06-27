@@ -126,8 +126,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
         TextView linijaTextView;
         TextView cijenaTextView;
         TextView relacijaTextView;
-        Button checkStatus;
-        TextView objasnjenje;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -140,8 +139,7 @@ public class MedjugradskiIspisAdapter extends RecyclerView.Adapter<MedjugradskiI
             linijaTextView = (TextView) itemView.findViewById(R.id.linijaIspisRow);
             cijenaTextView = (TextView) itemView.findViewById(R.id.cijenaIspisRow);
             relacijaTextView = (TextView) itemView.findViewById(R.id.relacijaIspisRow);
-            checkStatus = (Button) itemView.findViewById(R.id.statusBtn);
-            objasnjenje = (TextView) itemView.findViewById(R.id.objasnjenje_textview);
+
         }
     }
 }
