@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -17,7 +18,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.DrawableUtils.*;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -60,17 +61,17 @@ public class MainPage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         reklameList = (RecyclerView) findViewById(R.id.autobusi_recycler_view_reklame);
-        reklameList.setHasFixedSize(false);LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
-        reklameList.setLayoutManager(linearLayoutManager);
+        reklameList.setLayoutManager(new LinearLayoutManager(this));
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+
         toggle.syncState();
 
         Boolean isfirsttime = getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("isfirsttiem", true);
@@ -84,6 +85,12 @@ public class MainPage extends AppCompatActivity
 
 
         mReference = FirebaseDatabase.getInstance().getReference().child("Reklame");
+
+
+    }
+
+    @Override
+    protected void onStart() {
         FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ReklameModel, ReklameViewHolder>(
                 ReklameModel.class,
                 R.layout.reklame_row,
@@ -137,17 +144,9 @@ public class MainPage extends AppCompatActivity
             }
         };
         reklameList.setAdapter(firebaseRecyclerAdapter);
-
-
-    }
-
-    @Override
-    protected void onStart() {
-
         super.onStart();
 
     }
-
     public static class ReklameViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
@@ -187,7 +186,7 @@ public class MainPage extends AppCompatActivity
         TextView gornjitextColor4;
 
 
-        public ReklameViewHolder(View itemView) {
+        public  ReklameViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
@@ -225,9 +224,6 @@ public class MainPage extends AppCompatActivity
            gornjitextColor2 = (TextView) mView.findViewById(R.id.header_dodatni_text);
             gornjitextColor3 = (TextView) mView.findViewById(R.id.header_dodatni_text2);
             gornjitextColor4 = (TextView) mView.findViewById(R.id.header_dodatni_text3);
-
-
-
 
         }
 
@@ -542,7 +538,6 @@ public class MainPage extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            finish();
         }
     }
 
