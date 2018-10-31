@@ -35,7 +35,7 @@ public class BusStateListActivity extends AppCompatActivity {
     double latitude = 0, longitude = 0;
     private ProgressDialog dialog;
 
-    //BEZZE
+    
     static boolean busTran = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
